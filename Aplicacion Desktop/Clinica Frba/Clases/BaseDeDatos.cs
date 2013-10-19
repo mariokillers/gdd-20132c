@@ -1,32 +1,35 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.OleDb;
 using System.Linq;
 using System.Text;
-using System.Data.SqlClient;
 
-namespace Clinica_Frba
+namespace Clinica_Frba.Clases
 {
     public class BaseDeDatos
     {
-        private static SqlConnection _conexion = new SqlConnection();
+        private static OleDbConnection _conexion = new OleDbConnection();
 
-        public static SqlConnection ObtenerConexion()
+        public static OleDbConnection ObtenerConexion()
         {
             if (_conexion.State == ConnectionState.Closed)
             {
-                _conexion.ConnectionString = @"Provider=Microsoft.Jet.Oledb.4.0; Data Source=C:\Documents and Settings\Uri\Mis documentos\Historias Clinicas\Consultorio.mdb";
+                _conexion.ConnectionString = @"Provider=SQLOLEDB.1;Persist Security Info=False;User ID=gd;Initial Catalog=GD2C2013;Data Source=localhost\SQLSERVER2008;Password=gd2013";
                 _conexion.Open();
             }
             return _conexion;
         }
 
-        public static SqlDataReader ObtenerDataReader(string commandtext, string commandtype, List<OleDbParameter> ListaParametro)
+        public static OleDbDataReader ObtenerDataReader(string commandtext, string commandtype, List<OleDbParameter> ListaParametro)
         {
 
-            SqlCommand comando = new SqlCommand();
+            OleDbCommand comando = new OleDbCommand();
             comando.Connection = ObtenerConexion();
             comando.CommandText = commandtext;
-            foreach (SqlParameter elemento in ListaParametro)
+            foreach (OleDbParameter elemento in ListaParametro)
             {
                 comando.Parameters.Add(elemento);
             }
@@ -47,10 +50,10 @@ namespace Clinica_Frba
 
         public static bool EscribirEnBase(string commandtext, string commandtype, List<OleDbParameter> ListaParametro)
         {
-            SqlCommand comando = new SqlCommand();
+            OleDbCommand comando = new OleDbCommand();
             comando.Connection = ObtenerConexion();
             comando.CommandText = commandtext;
-            foreach (SqlParameter elemento in ListaParametro)
+            foreach (OleDbParameter elemento in ListaParametro)
             {
                 comando.Parameters.Add(elemento);
             }
@@ -69,14 +72,14 @@ namespace Clinica_Frba
                 return true;
             }
             catch
-            { return false; }
+            {   return false;   }
         }
 
         public static bool ObtenerCampo(int codigo, string tabla, string campo)
         {
             try
             {
-                SqlCommand comando = new SqlCommand();
+                OleDbCommand comando = new OleDbCommand();
                 comando.Connection = ObtenerConexion();
                 comando.CommandText = "select " + campo + "from " + tabla + "where codigo= " + codigo;
                 object objeto = comando.ExecuteScalar();

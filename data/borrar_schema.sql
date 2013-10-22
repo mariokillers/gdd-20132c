@@ -16,5 +16,8 @@ DROP TABLE mario_killers.Sintoma
 DROP TABLE mario_killers.Tipo_Especialidad
 DROP TABLE mario_killers.Turno
 DROP TABLE mario_killers.Usuario
+DROP TABLE mario_killers.TipoDocumento
+DROP TABLE mario_killers.EstadoCivil
+DROP TABLE mario_killers.GrupoFamiliar
 
 DROP SCHEMA mario_killers

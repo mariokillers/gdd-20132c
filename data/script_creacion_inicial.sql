@@ -11,18 +11,28 @@ CREATE TABLE Persona (
 	Persona_Mail varchar(255),
 
     -- Campos faltantes
-	Persona_Tipo_Doc int,
-	Persona_Grupo_Familia int,
-	Persona_Nro_Familiar int,
+	Persona_Tipo_Doc varchar(10),
+	Persona_Sexo char(1),
+	Persona_Usuario int,
+	
 	PRIMARY KEY (Persona_ID)
+	-- FOREIGN KEY (Persona_Tipo_Doc) REFERENCES TipoDocumento(TipoDoc_ID)
+	-- FOREIGN KEY (Persona_Usuario) REFERENCES Usuario(Usuario_ID)
 )
+
+CREATE TABLE TipoDocumento (
+	TipoDoc_Tipo varchar(10),
+	PRIMARY KEY (TipoDoc_Tipo)
+)	
 
 CREATE TABLE Usuario (
 	Usuario_Nombre varchar(255),
 	Usuario_Persona int,
 	Usuario_Password char(64), -- SHA256
 	Usuario_Intentos_Login int,
-	PRIMARY KEY (Usuario_Nombre)
+	Usuario_Activo bit,
+	PRIMARY KEY (Usuario_Nombre),
+	-- FOREIGN KEY (Usuario_Persona) REFERENCES Persona(Persona_ID)
 ) 
 
 CREATE TABLE Plan_Med (
@@ -43,9 +53,28 @@ CREATE TABLE Compra (
 
 CREATE TABLE Afiliado (
 	Afiliado_Persona int,
-	Afiliado_ID_Grupo int,
+	Afiliado_EstadoCivil int,
+	Afiliado_Codigo_Grupo numeric(18,0),
+	Afiliado_Nro_Familiar int,
+	Afiliado_Cant_Hijos int,
 	Afiliado_Activo bit,
 	PRIMARY KEY (Afiliado_Persona)
+	-- FOREIGN KEY (Afiliado_Persona) REFERENCES Persona(Persona_ID)
+	-- FOREIGN KEY (Afiliado_EstadoCivil) REFERENCES EstadoCivil(EstadoCiv_ID)
+	-- FOREIGN KEY (Afiliado_Codigo_Grupo) REFERENCES 
+)
+
+CREATE TABLE EstadoCivil (
+	EstadoCiv_ID int,
+	EstadoCiv_Desc varchar(255),
+	PRIMARY KEY (EstadoCiv_ID)
+)
+
+CREATE TABLE GrupoFamiliar (
+	GrupoFamiliar_Codigo numeric(18, 0),
+	GrupoFamiliar_Plan numeric(18, 0),
+	PRIMARY KEY (GrupoFamiliar_Codigo),
+	-- FOREIGN KEY (GrupoFamiliar_Plan) REFERENCES Plan_Med(Plan_Med_Codigo)
 )
 
 CREATE TABLE Profesional (
@@ -86,16 +115,17 @@ CREATE TABLE Turno (
 )
 
 CREATE TABLE Bono_Consulta (
+	Bono_Consulta_ID int,
 	Bono_Consulta_ID_Compra int,
 	Bono_Consulta_Contador int,
 	Bono_Consulta_Turno int,
-	-- Falta algo para PK?
+	PRIMARY KEY (Bono_Consulta_ID)
 )
 
 CREATE TABLE Bono_Farmacia (
 	Bono_Farmacia_ID_Compra int,
 	Bono_Farmacia_Receta int
-	-- Falta algo para PK?
+	PRIMARY KEY (Bono_Farmacia_ID_Compra)
 )
 
 CREATE TABLE Medicamento (

@@ -1,161 +1,178 @@
 CREATE SCHEMA mario_killers AUTHORIZATION gd
 
 CREATE TABLE Persona (
-	Persona_ID int,
-	Persona_Nombre varchar(255),
-	Persona_Apellido varchar(255),
-	Persona_Documento numeric(18, 0),
-	Persona_Fecha_Nac datetime,
-	Persona_Direccion varchar(255),
-	Persona_Telefono numeric(18, 0),
-	Persona_Mail varchar(255),
+	id int,
+	nombre varchar(255),
+	apellido varchar(255),
+	documento numeric(18, 0),
+	fecha_nac datetime,
+	direccion varchar(255),
+	telefono numeric(18, 0),
+	mail varchar(255),
 
     -- Campos faltantes
-	Persona_Tipo_Doc varchar(10),
-	Persona_Sexo char(1),
-	Persona_Usuario int,
+	tipo_doc int,
+	sexo char(1),
+	usuario int,
 	
-	PRIMARY KEY (Persona_ID)
-	-- FOREIGN KEY (Persona_Tipo_Doc) REFERENCES TipoDocumento(TipoDoc_ID)
-	-- FOREIGN KEY (Persona_Usuario) REFERENCES Usuario(Usuario_ID)
+	PRIMARY KEY (id)
+	-- FOREIGN KEY (tipo_doc) REFERENCES TipoDocumento(id)
+	-- FOREIGN KEY (usuario) REFERENCES Usuario(id)
 )
 
 CREATE TABLE TipoDocumento (
-	TipoDoc_Tipo varchar(10),
-	PRIMARY KEY (TipoDoc_Tipo)
+	id int,
+	tipo varchar(10),
+	PRIMARY KEY (id)
 )	
 
 CREATE TABLE Usuario (
-	Usuario_Nombre varchar(255),
-	Usuario_Persona int,
-	Usuario_Password char(64), -- SHA256
-	Usuario_Intentos_Login int,
-	Usuario_Activo bit,
-	PRIMARY KEY (Usuario_Nombre),
-	-- FOREIGN KEY (Usuario_Persona) REFERENCES Persona(Persona_ID)
+	nombre varchar(255),
+	persona int,
+	pw char(64), -- SHA256
+	intentos_login int,
+	activo bit,
+	PRIMARY KEY (nombre),
+	-- FOREIGN KEY (persona) REFERENCES Persona(id)
 ) 
 
-CREATE TABLE Plan_Med (
-	Plan_Med_Codigo numeric(18, 0),
-	Plan_Med_Descripcion varchar(255),
-	Plan_Med_Precio_Bono_Consulta numeric(18, 0),
-	Plan_Med_Precio_Bono_Farmacia numeric(18, 0),
-	PRIMARY KEY (Plan_Med_Codigo)
+CREATE TABLE Plan_Medico (
+	codigo numeric(18, 0),
+	descripcion varchar(255),
+	precio_bono_consulta numeric(18, 0),
+	precio_bono_farmacia numeric(18, 0),
+	PRIMARY KEY (codigo)
 )
 
 CREATE TABLE Compra (
-	Compra_ID int,
-	Compra_Fecha datetime,
-	Compra_Persona int,
-	Compra_Plan int, -- Para qué guardabamos esto?
-	PRIMARY KEY (Compra_ID)
+	id int,
+	fecha datetime,
+	persona int,
+	plan_medico int,
+	PRIMARY KEY (id)
 )
 
 CREATE TABLE Afiliado (
-	Afiliado_Persona int,
-	Afiliado_EstadoCivil int,
-	Afiliado_Codigo_Grupo numeric(18,0),
-	Afiliado_Nro_Familiar int,
-	Afiliado_Cant_Hijos int,
-	Afiliado_Activo bit,
-	PRIMARY KEY (Afiliado_Persona)
-	-- FOREIGN KEY (Afiliado_Persona) REFERENCES Persona(Persona_ID)
-	-- FOREIGN KEY (Afiliado_EstadoCivil) REFERENCES EstadoCivil(EstadoCiv_ID)
-	-- FOREIGN KEY (Afiliado_Codigo_Grupo) REFERENCES 
+	persona int,
+	estado_civil int,
+	grupo_familia numeric(18,0),
+	nro_familiar int,
+	cant_hijos int,
+	activo bit,
+	PRIMARY KEY (persona),
+	UNIQUE (grupo_familia, nro_familiar)
+	-- FOREIGN KEY (persona) REFERENCES Persona(id)
+	-- FOREIGN KEY (estado_civil) REFERENCES EstadoCivil(id)
+	-- FOREIGN KEY (grupo_familia) REFERENCES GrupoFamiliar(codigo)
 )
 
 CREATE TABLE EstadoCivil (
-	EstadoCiv_ID int,
-	EstadoCiv_Desc varchar(255),
-	PRIMARY KEY (EstadoCiv_ID)
+	id int,
+	estado varchar(255),
+	PRIMARY KEY (id)
 )
 
-CREATE TABLE GrupoFamiliar (
-	GrupoFamiliar_Codigo numeric(18, 0),
-	GrupoFamiliar_Plan numeric(18, 0),
-	PRIMARY KEY (GrupoFamiliar_Codigo),
-	-- FOREIGN KEY (GrupoFamiliar_Plan) REFERENCES Plan_Med(Plan_Med_Codigo)
+CREATE TABLE GrupoFamilia (
+	codigo numeric(18, 0),
+	plan_medico numeric(18, 0),
+	PRIMARY KEY (codigo),
+	-- FOREIGN KEY (plan_medico) REFERENCES Plan_Med(codigo)
 )
 
 CREATE TABLE Profesional (
-	Profesional_Persona int,
-	Profesional_Matricula int, -- unique
-	Profesional_Activo bit,
-	PRIMARY KEY (Profesional_Persona)
+	persona int,
+	matricula int,
+	activo bit,
+	PRIMARY KEY (persona),
+	UNIQUE (matricula)
 )
 
 CREATE TABLE Especialidad_Profesional (
-	EspecPro_Profesional int,
-	EspecPro_Especialidad int,
-	PRIMARY KEY (EspecPro_Profesional, EspecPro_Especialidad)
-)
-
-CREATE TABLE Especialidad (
-	Especialidad_Codigo numeric(18, 0),
-	Especialidad_Descripcion varchar(255),
-	Especialidad_Tipo numeric(18, 0),
-	PRIMARY KEY (Especialidad_Codigo)
+	profesional int,
+	especialidad int,
+	PRIMARY KEY (profesional, especialidad)
 )
 
 CREATE TABLE Tipo_Especialidad (
-	Tipo_Especialidad_Codigo numeric(18, 0),
-	Tipo_Especialidad_Descripcion varchar(255),
-	PRIMARY KEY (Tipo_Especialidad_Codigo)
+	codigo numeric(18, 0),
+	descripcion varchar(255),
+	PRIMARY KEY (codigo)
+)
+
+CREATE TABLE Especialidad (
+	codigo numeric(18, 0),
+	descripcion varchar(255),
+	tipo numeric(18, 0),
+	PRIMARY KEY (codigo),
+	-- FOREIGN KEY (tipo) REFERENCES Tipo_Especialidad(codigo)
 )
 
 CREATE TABLE Turno (
-	Turno_ID int,
-	Turno_Persona int,
-	Turno_Profesional int,
-	Turno_Horario datetime,
-	Turno_Especialidad int,
-	Turno_Activo bit,
-	Turno_Horario_Llegada datetime,
-	PRIMARY KEY (Turno_ID)
-)
-
-CREATE TABLE Bono_Consulta (
-	Bono_Consulta_ID int,
-	Bono_Consulta_ID_Compra int,
-	Bono_Consulta_Contador int,
-	Bono_Consulta_Turno int,
-	PRIMARY KEY (Bono_Consulta_ID)
-)
-
-CREATE TABLE Bono_Farmacia (
-	Bono_Farmacia_ID_Compra int,
-	Bono_Farmacia_Receta int
-	PRIMARY KEY (Bono_Farmacia_ID_Compra)
-)
-
-CREATE TABLE Medicamento (
-	Medicamento_ID int,
-	Medicamento_Detalle varchar(255),
-	PRIMARY KEY (Medicamento_ID)
-)
-
-CREATE TABLE Medicamento_Receta (
-	MedRec_Medicamento_ID int,
-	MedRec_Receta_ID int,
-	MedRec_Cantidad int, -- constraint  <= 3
-	PRIMARY KEY (MedRec_Medicamento_ID)
-)
-
-CREATE TABLE Receta (
-	Receta_ID int,
-	Receta_Atencion int,
-	PRIMARY KEY (Receta_ID)
+	id int,
+	persona int,
+	profesional int,
+	horario datetime,
+	especialidad int,
+	activo bit,
+	horario_llegada datetime,
+	PRIMARY KEY (id),
+	-- FOREIGN KEY (persona) REFERENCES Persona(id),
+	-- FOREIGN KEY (profesional) REFERENCES Profesional(persona),
+	-- FOREIGN KEY (especialidad) REFERENCES Especialidad(codigo)
 )
 
 CREATE TABLE Atencion (
-	Atencion_Turno int,
-	Atencion_Fecha datetime,
-	Atencion_Diagnostico varchar(255),
-	-- Falta algo? Turno puede ser NULL
+	turno int,
+	fecha datetime,
+	diagnostico varchar(255),
+	PRIMARY KEY (turno),
+	-- FOREIGN KEY (turno) REFERENCES Turno(id)
+)
+
+CREATE TABLE Bono_Consulta (
+	id int,
+	compra int,
+	contador int,
+	turno int,
+	PRIMARY KEY (id),
+	-- FOREIGN KEY (compra) REFERENCES Compra(id),
+	-- FOREIGN KEY (turno) REFERENCES Turno(id)
+)
+
+CREATE TABLE Bono_Farmacia (
+	id int,
+	compra int,
+	receta int,
+	PRIMARY KEY (id),
+	-- FOREIGN KEY (compra) REFERENCES Compra(id),
+	-- FOREIGN KEY (receta) REFERENCES Receta(id)
+)
+
+CREATE TABLE Medicamento_Receta (
+	medicamento int,
+	receta int,
+	cantidad int, -- constraint  <= 3
+	PRIMARY KEY (medicamento, receta),
+	-- FOREIGN KEY (medicamento) REFERENCES Medicamento(id),
+	-- FOREIGN KEY (receta) REFERENCES Receta(id)
+)
+
+CREATE TABLE Medicamento (
+	id int,
+	detalle varchar(255),
+	PRIMARY KEY (id)
+)
+
+CREATE TABLE Receta (
+	id int,
+	atencion int,
+	PRIMARY KEY (id),
+	-- FOREIGN KEY (atencion) REFERENCES Atencion(turno)
 )
 
 CREATE TABLE Sintoma (
-	Sintoma_Atencion int,
-	Sintoma_Detalle varchar(255),
-	PRIMARY KEY (Sintoma_Atencion)
+	atencion int,
+	detalle varchar(255),
+	PRIMARY KEY (atencion),
+	-- FOREIGN KEY (atencion) REFERENCES Atencion(turno)
 )

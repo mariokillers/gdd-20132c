@@ -1,7 +1,7 @@
 CREATE SCHEMA mario_killers AUTHORIZATION gd
 
 CREATE TABLE Persona (
-	id int,
+	id int IDENTITY,
 	nombre varchar(255),
 	apellido varchar(255),
 	documento numeric(18, 0),
@@ -21,7 +21,7 @@ CREATE TABLE Persona (
 )
 
 CREATE TABLE TipoDocumento (
-	id int,
+	id int IDENTITY,
 	tipo varchar(10),
 	PRIMARY KEY (id)
 )	
@@ -45,7 +45,7 @@ CREATE TABLE Plan_Medico (
 )
 
 CREATE TABLE Compra (
-	id int,
+	id int IDENTITY,
 	fecha datetime,
 	persona int,
 	plan_medico int,
@@ -60,14 +60,14 @@ CREATE TABLE Afiliado (
 	cant_hijos int,
 	activo bit,
 	PRIMARY KEY (persona),
-	UNIQUE (grupo_familia, nro_familiar)
+	-- UNIQUE (grupo_familia, nro_familiar) No es UNIQUE para la migracion
 	-- FOREIGN KEY (persona) REFERENCES Persona(id)
 	-- FOREIGN KEY (estado_civil) REFERENCES EstadoCivil(id)
 	-- FOREIGN KEY (grupo_familia) REFERENCES GrupoFamiliar(codigo)
 )
 
 CREATE TABLE EstadoCivil (
-	id int,
+	id int IDENTITY,
 	estado varchar(255),
 	PRIMARY KEY (id)
 )
@@ -84,7 +84,7 @@ CREATE TABLE Profesional (
 	matricula int,
 	activo bit,
 	PRIMARY KEY (persona),
-	UNIQUE (matricula)
+	-- UNIQUE (matricula)
 )
 
 CREATE TABLE Especialidad_Profesional (
@@ -94,13 +94,13 @@ CREATE TABLE Especialidad_Profesional (
 )
 
 CREATE TABLE Tipo_Especialidad (
-	codigo numeric(18, 0),
+	codigo numeric(18, 0) IDENTITY,
 	descripcion varchar(255),
 	PRIMARY KEY (codigo)
 )
 
 CREATE TABLE Especialidad (
-	codigo numeric(18, 0),
+	codigo numeric(18, 0) IDENTITY,
 	descripcion varchar(255),
 	tipo numeric(18, 0),
 	PRIMARY KEY (codigo),
@@ -108,7 +108,7 @@ CREATE TABLE Especialidad (
 )
 
 CREATE TABLE Turno (
-	id int,
+	id int IDENTITY,
 	persona int,
 	profesional int,
 	horario datetime,
@@ -130,7 +130,7 @@ CREATE TABLE Atencion (
 )
 
 CREATE TABLE Bono_Consulta (
-	id int,
+	id int IDENTITY,
 	compra int,
 	contador int,
 	turno int,
@@ -158,13 +158,13 @@ CREATE TABLE Medicamento_Receta (
 )
 
 CREATE TABLE Medicamento (
-	id int,
+	id int IDENTITY,
 	detalle varchar(255),
 	PRIMARY KEY (id)
 )
 
 CREATE TABLE Receta (
-	id int,
+	id int IDENTITY,
 	atencion int,
 	PRIMARY KEY (id),
 	-- FOREIGN KEY (atencion) REFERENCES Atencion(turno)
@@ -176,3 +176,6 @@ CREATE TABLE Sintoma (
 	PRIMARY KEY (atencion),
 	-- FOREIGN KEY (atencion) REFERENCES Atencion(turno)
 )
+
+--------------------------------- MIGRACION ---------------------------------
+

@@ -134,6 +134,7 @@ CREATE TABLE Bono_Consulta (
 	compra int,
 	contador int,
 	turno int,
+	plan_medico int,
 	PRIMARY KEY (id),
 	-- FOREIGN KEY (compra) REFERENCES Compra(id),
 	-- FOREIGN KEY (turno) REFERENCES Turno(id)
@@ -143,6 +144,7 @@ CREATE TABLE Bono_Farmacia (
 	id int,
 	compra int,
 	receta int,
+	plan_medico int,
 	PRIMARY KEY (id),
 	-- FOREIGN KEY (compra) REFERENCES Compra(id),
 	-- FOREIGN KEY (receta) REFERENCES Receta(id)

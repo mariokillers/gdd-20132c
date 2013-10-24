@@ -16,11 +16,11 @@ CREATE TABLE Persona (
 	usuario int,
 	
 	PRIMARY KEY (id)
-	-- FOREIGN KEY (tipo_doc) REFERENCES TipoDocumento(id)
+	-- FOREIGN KEY (tipo_doc) REFERENCES Tipo_Documento(id)
 	-- FOREIGN KEY (usuario) REFERENCES Usuario(id)
 )
 
-CREATE TABLE TipoDocumento (
+CREATE TABLE Tipo_Documento (
 	id int IDENTITY,
 	tipo varchar(10),
 	PRIMARY KEY (id)
@@ -62,17 +62,17 @@ CREATE TABLE Afiliado (
 	PRIMARY KEY (persona),
 	-- UNIQUE (grupo_familia, nro_familiar) No es UNIQUE para la migracion
 	-- FOREIGN KEY (persona) REFERENCES Persona(id)
-	-- FOREIGN KEY (estado_civil) REFERENCES EstadoCivil(id)
-	-- FOREIGN KEY (grupo_familia) REFERENCES GrupoFamiliar(codigo)
+	-- FOREIGN KEY (estado_civil) REFERENCES Estado_Civil(id)
+	-- FOREIGN KEY (grupo_familia) REFERENCES Grupo_Familia(codigo)
 )
 
-CREATE TABLE EstadoCivil (
+CREATE TABLE Estado_Civil (
 	id int IDENTITY,
 	estado varchar(255),
 	PRIMARY KEY (id)
 )
 
-CREATE TABLE GrupoFamilia (
+CREATE TABLE Grupo_Familia (
 	codigo numeric(18, 0),
 	plan_medico numeric(18, 0),
 	PRIMARY KEY (codigo),
@@ -136,6 +136,7 @@ CREATE TABLE Bono_Consulta (
 	turno int,
 	plan_medico int,
 	PRIMARY KEY (id),
+	-- FOREIGN KEY (plan_medico) REFERENCES Plan_Medico(codigo),
 	-- FOREIGN KEY (compra) REFERENCES Compra(id),
 	-- FOREIGN KEY (turno) REFERENCES Turno(id)
 )
@@ -146,6 +147,7 @@ CREATE TABLE Bono_Farmacia (
 	receta int,
 	plan_medico int,
 	PRIMARY KEY (id),
+	-- FOREIGN KEY (plan_medico) REFERENCES Plan_Medico(codigo),
 	-- FOREIGN KEY (compra) REFERENCES Compra(id),
 	-- FOREIGN KEY (receta) REFERENCES Receta(id)
 )

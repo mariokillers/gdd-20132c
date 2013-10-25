@@ -92,6 +92,15 @@ CREATE TABLE Grupo_Familia (
 	-- FOREIGN KEY (plan_medico) REFERENCES Plan_Med(codigo)
 ) GO
 
+CREATE TABLE Modificaciones_Grupo (
+	grupo_familia numeric(18, 0) NOT NULL,
+	plan_medico numeric(18, 0) NOT NULL,
+	fecha datetime NOT NULL,
+	motivo varchar(255) NOT NULL,
+	FOREIGN KEY (grupo_familia) REFERENCES Grupo_Familia(codigo),
+	FOREIGN KEY (plan_medico) REFERENCES Plan_medico(codigo)
+) GO
+
 CREATE TABLE Profesional (
 	persona int,
 	matricula int,

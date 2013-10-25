@@ -9,6 +9,7 @@ DROP TABLE mario_killers.Especialidad_Profesional
 DROP TABLE mario_killers.Compra
 DROP TABLE mario_killers.Medicamento
 DROP TABLE mario_killers.Medicamento_Receta
+DROP TABLE mario_killers.Modificaciones_Grupo
 DROP TABLE mario_killers.Persona
 DROP TABLE mario_killers.Plan_Medico
 DROP TABLE mario_killers.Profesional

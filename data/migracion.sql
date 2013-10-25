@@ -93,11 +93,15 @@ SET IDENTITY_INSERT mario_killers.Tipo_Especialidad OFF
 -- Planes medicos
 INSERT INTO mario_killers.Plan_Medico
            (codigo, descripcion, precio_bono_consulta, precio_bono_farmacia)
-	SELECT * FROM Planes_Medicos
+	SELECT Plan_Med_Codigo,
+	       Plan_Med_Descripcion,
+	       Plan_Med_Precio_Bono_Consulta,
+	       Plan_Med_Precio_Bono_Farmacia
+	FROM Planes_Medicos
     
 -- Medicamentos
 INSERT INTO mario_killers.Medicamento (detalle)
-	SELECT * FROM Medicamentos
+	SELECT Bono_Farmacia_Medicamento FROM Medicamentos
 
 -- Turnos
 

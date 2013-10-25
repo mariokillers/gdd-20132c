@@ -12,9 +12,10 @@ GO
 CREATE FUNCTION mario_killers.horas_se_pisan(@profesional int) RETURNS bit AS
 BEGIN
 	RETURN (
-		SELECT 1
+		SELECT COUNT(1)
 		FROM mario_killers.Rango r1 JOIN mario_killers.Rango r2 ON r1.dia = r2.dia
 		WHERE r1.hora_desde <= r2.hora_hasta AND r2.hora_desde <= r1.hora_hasta
+		      AND r1.id <> r2.id
 	)
 END
 GO
@@ -160,10 +161,12 @@ CREATE TABLE mario_killers.Agenda (
 )
 
 CREATE TABLE mario_killers.Rango (
+	id int IDENTITY,
 	dia int, -- domingo = 1, valor default de DATEFIRST
 	profesional int,
 	hora_desde time,
 	hora_hasta time,
+	PRIMARY KEY (id),
 	CONSTRAINT horarios_validos CHECK (
 	CASE
 		WHEN dia BETWEEN 2 AND 6
@@ -178,6 +181,7 @@ CREATE TABLE mario_killers.Rango (
 	AND hora_desde < hora_hasta
 	),
 	CONSTRAINT max_horas_por_semana CHECK (mario_killers.horas_por_semana(profesional) <= 48),
+	CONSTRAINT horas_no_se_pisan CHECK (mario_killers.horas_se_pisan(profesional) = 0)
 	-- FOREIGN KEY (profesional) REFERENCES Profesional(persona)
 	-- TODO: Ver fechas que se pisen
 )

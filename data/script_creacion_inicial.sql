@@ -115,7 +115,7 @@ CREATE TABLE Agenda (
 	desde date NOT NULL,
 	hasta date NOT NULL,
 	PRIMARY KEY (profesional),
-	CONSTRAINT max_120_dias CHECK (DATEDIFF(day, desde, hasta) < 120),
+	CONSTRAINT max_120_dias CHECK (DATEDIFF(day, desde, hasta) <= 120),
 	CONSTRAINT fechas_validas CHECK (desde < hasta)
 	-- FOREIGN KEY (profesional) REFERENCES Profesional(persona)
 ) GO

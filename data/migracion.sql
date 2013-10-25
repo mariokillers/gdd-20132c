@@ -1,7 +1,8 @@
 CREATE VIEW Pacientes AS
 	SELECT DISTINCT Paciente_Nombre, Paciente_Apellido,
 					Paciente_Dni, Paciente_Fecha_Nac,
-					Paciente_Direccion, Paciente_Telefono, Paciente_Mail
+					Paciente_Direccion, Paciente_Telefono, Paciente_Mail,
+					Plan_Med_Codigo
 	FROM gd_esquema.Maestra
 	WHERE Paciente_Nombre IS NOT NULL
 GO
@@ -46,14 +47,24 @@ GO
 
 -- Personas
 INSERT INTO mario_killers.Persona (nombre, apellido, documento, fecha_nac, direccion, telefono, mail)
-	SELECT * FROM Pacientes
+	SELECT Paciente_Nombre, Paciente_Apellido, Paciente_Dni,
+	       Paciente_Fecha_Nac, Paciente_Direccion, Paciente_Telefono,
+	       Paciente_Mail
+	FROM Pacientes
 
 INSERT INTO mario_killers.Persona (nombre, apellido, documento, fecha_nac, direccion, telefono, mail)
 	SELECT * FROM Medicos
 
--- Afiliados
-INSERT INTO mario_killers.Afiliado (persona)
-	SELECT id
+-- Grupos de familia
+INSERT INTO mario_killers.Grupo_Familia (codigo, plan_medico)
+	SELECT Persona.id, Plan_Med_Codigo
+	FROM Pacientes
+	     JOIN mario_killers.Persona
+	     ON Pacientes.Paciente_DNI = mario_killers.Persona.documento
+
+-- Afiliados y grupos de familia individuales
+INSERT INTO mario_killers.Afiliado (persona, grupo_familia, nro_familiar)
+	SELECT id, id, 1
 	FROM mario_killers.Persona
 	WHERE documento IN (SELECT Paciente_Dni FROM Pacientes)
 
@@ -80,7 +91,7 @@ SET IDENTITY_INSERT mario_killers.Tipo_Especialidad OFF
 INSERT INTO mario_killers.Plan_Medico
            (codigo, descripcion, precio_bono_consulta, precio_bono_farmacia)
 	SELECT * FROM Planes_Medicos
-
+    
 -- Medicamentos
 INSERT INTO mario_killers.Medicamento (detalle)
 	SELECT * FROM Medicamentos
@@ -100,3 +111,4 @@ DROP VIEW Medicos
 DROP VIEW Especialidades
 DROP VIEW Planes_Medicos
 DROP VIEW Medicamentos
+DROP VIEW Bonos_Consulta

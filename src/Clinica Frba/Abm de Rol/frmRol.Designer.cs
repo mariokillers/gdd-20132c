@@ -100,7 +100,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "frmRol";
-            this.Text = "Form1";
+            this.Text = "Roles";
             this.Load += new System.EventHandler(this.frmRol_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

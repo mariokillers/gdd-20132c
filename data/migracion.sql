@@ -53,7 +53,10 @@ INSERT INTO mario_killers.Persona (nombre, apellido, documento, fecha_nac, direc
 	FROM Pacientes
 
 INSERT INTO mario_killers.Persona (nombre, apellido, documento, fecha_nac, direccion, telefono, mail)
-	SELECT * FROM Medicos
+	SELECT Medico_Nombre, Medico_Apellido, Medico_Dni,
+	       Medico_Fecha_Nac, Medico_Direccion, Medico_Telefono,
+	       Medico_Mail
+	FROM Medicos
 
 -- Grupos de familia
 INSERT INTO mario_killers.Grupo_Familia (codigo, plan_medico)

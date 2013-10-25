@@ -33,11 +33,9 @@ CREATE TABLE mario_killers.Persona (
     -- Campos faltantes
 	tipo_doc int,
 	sexo char(1),
-	usuario int,
+	usuario varchar(255),
 	
-	PRIMARY KEY (id)
-	-- FOREIGN KEY (tipo_doc) REFERENCES Tipo_Documento(id)
-	-- FOREIGN KEY (usuario) REFERENCES Usuario(id)
+	PRIMARY KEY (id),
 )
 
 CREATE TABLE mario_killers.Tipo_Documento (
@@ -53,7 +51,7 @@ CREATE TABLE mario_killers.Usuario (
 	intentos_login int,
 	activo bit,
 	PRIMARY KEY (nombre),
-	-- FOREIGN KEY (persona) REFERENCES Persona(id)
+	
 )
 
 CREATE TABLE mario_killers.Rol (
@@ -71,16 +69,13 @@ CREATE TABLE mario_killers.Funcionalidad (
 
 CREATE TABLE mario_killers.Funcionalidad_Rol (
 	rol int,
-	funcionalidad int,
-	--FOREIGN KEY (rol) REFERENCES Rol(id),
-	--FOREIGN KEY (funcionalidad) REFERENCES Funcionalidad(id)
+	funcionalidad int,	
 )
 
 CREATE TABLE mario_killers.Roles_Usuario (
-	usuario int,
+	usuario varchar(255),
 	rol int,
-	-- FOREIGN KEY (usuario) REFERENCES Usuario(nombre)
-	-- FOREIGN KEY (rol) REFERENCES Rol(id)
+
 )
 
 CREATE TABLE mario_killers.Plan_Medico (
@@ -108,15 +103,12 @@ CREATE TABLE mario_killers.Afiliado (
 	activo bit,
 	PRIMARY KEY (persona),
 	-- UNIQUE (grupo_familia, nro_familiar) No es UNIQUE para la migracion
-	-- FOREIGN KEY (persona) REFERENCES Persona(id)
-	-- FOREIGN KEY (estado_civil) REFERENCES Estado_Civil(id)
-	-- FOREIGN KEY (grupo_familia) REFERENCES Grupo_Familia(codigo)
+
 )
 
 CREATE TABLE mario_killers.Bajas_Afiliado (
 	persona int NOT NULL,
 	fecha datetime NOT NULL,
-	-- FOREIGN KEY (persona) REFERENCES Afiliado(persona)
 )
 
 CREATE TABLE mario_killers.Estado_Civil (
@@ -129,7 +121,6 @@ CREATE TABLE mario_killers.Grupo_Familia (
 	codigo numeric(18, 0),
 	plan_medico numeric(18, 0),
 	PRIMARY KEY (codigo),
-	-- FOREIGN KEY (plan_medico) REFERENCES Plan_Med(codigo)
 )
 
 CREATE TABLE mario_killers.Modificaciones_Grupo (
@@ -137,8 +128,8 @@ CREATE TABLE mario_killers.Modificaciones_Grupo (
 	plan_medico numeric(18, 0) NOT NULL,
 	fecha datetime NOT NULL,
 	motivo varchar(255) NOT NULL,
-	-- FOREIGN KEY (grupo_familia) REFERENCES Grupo_Familia(codigo),
-	-- FOREIGN KEY (plan_medico) REFERENCES Plan_medico(codigo)
+	
+	
 )
 
 CREATE TABLE mario_killers.Profesional (
@@ -146,7 +137,7 @@ CREATE TABLE mario_killers.Profesional (
 	matricula int,
 	activo bit,
 	PRIMARY KEY (persona),
-	-- FOREIGN KEY (persona) REFERENCES Persona(id)
+	
 	-- UNIQUE (matricula)
 )
 
@@ -156,8 +147,7 @@ CREATE TABLE mario_killers.Agenda (
 	hasta date NOT NULL,
 	PRIMARY KEY (profesional),
 	CONSTRAINT max_120_dias CHECK (DATEDIFF(day, desde, hasta) <= 120),
-	CONSTRAINT fechas_validas CHECK (desde < hasta)
-	-- FOREIGN KEY (profesional) REFERENCES Profesional(persona)
+	CONSTRAINT fechas_validas CHECK (desde < hasta),
 )
 
 CREATE TABLE mario_killers.Rango (
@@ -181,14 +171,12 @@ CREATE TABLE mario_killers.Rango (
 	AND hora_desde < hora_hasta
 	),
 	CONSTRAINT max_horas_por_semana CHECK (mario_killers.horas_por_semana(profesional) <= 48),
-	CONSTRAINT horas_no_se_pisan CHECK (mario_killers.horas_se_pisan(profesional) = 0)
-	-- FOREIGN KEY (profesional) REFERENCES Profesional(persona)
-	-- TODO: Ver fechas que se pisen
+	CONSTRAINT horas_no_se_pisan CHECK (mario_killers.horas_se_pisan(profesional) = 0),
 )
 
 CREATE TABLE mario_killers.Especialidad_Profesional (
 	profesional int,
-	especialidad int,
+	especialidad numeric(18, 0),
 	PRIMARY KEY (profesional, especialidad)
 )
 
@@ -203,7 +191,6 @@ CREATE TABLE mario_killers.Especialidad (
 	descripcion varchar(255),
 	tipo numeric(18, 0),
 	PRIMARY KEY (codigo),
-	-- FOREIGN KEY (tipo) REFERENCES Tipo_Especialidad(codigo)
 )
 
 CREATE TABLE mario_killers.Turno (
@@ -211,13 +198,10 @@ CREATE TABLE mario_killers.Turno (
 	persona int,
 	profesional int,
 	horario datetime,
-	especialidad int,
+	especialidad numeric(18, 0),
 	activo bit,
 	horario_llegada datetime,
 	PRIMARY KEY (id),
-	-- FOREIGN KEY (persona) REFERENCES Persona(id),
-	-- FOREIGN KEY (profesional) REFERENCES Profesional(persona),
-	-- FOREIGN KEY (especialidad) REFERENCES Especialidad(codigo)
 )
 
 CREATE TABLE mario_killers.Atencion (
@@ -225,7 +209,6 @@ CREATE TABLE mario_killers.Atencion (
 	fecha datetime,
 	diagnostico varchar(255),
 	PRIMARY KEY (turno),
-	-- FOREIGN KEY (turno) REFERENCES Turno(id)
 )
 
 CREATE TABLE mario_killers.Bono_Consulta (
@@ -233,22 +216,16 @@ CREATE TABLE mario_killers.Bono_Consulta (
 	compra int,
 	contador int,
 	turno int,
-	plan_medico int,
+	plan_medico numeric(18, 0),
 	PRIMARY KEY (id),
-	-- FOREIGN KEY (plan_medico) REFERENCES Plan_Medico(codigo),
-	-- FOREIGN KEY (compra) REFERENCES Compra(id),
-	-- FOREIGN KEY (turno) REFERENCES Turno(id)
 )
 
 CREATE TABLE mario_killers.Bono_Farmacia (
 	id int,
 	compra int,
 	receta int,
-	plan_medico int,
+	plan_medico numeric(18, 0),
 	PRIMARY KEY (id),
-	-- FOREIGN KEY (plan_medico) REFERENCES Plan_Medico(codigo),
-	-- FOREIGN KEY (compra) REFERENCES Compra(id),
-	-- FOREIGN KEY (receta) REFERENCES Receta(id)
 )
 
 CREATE TABLE mario_killers.Medicamento_Receta (
@@ -256,14 +233,13 @@ CREATE TABLE mario_killers.Medicamento_Receta (
 	receta int,
 	cantidad int,
 	PRIMARY KEY (medicamento, receta),
-	-- FOREIGN KEY (medicamento) REFERENCES Medicamento(id),
-	-- FOREIGN KEY (receta) REFERENCES Receta(id)
 	CONSTRAINT max_3 CHECK (cantidad <= 3)
 )
 
 CREATE TABLE mario_killers.Medicamento (
 	id int IDENTITY,
 	detalle varchar(255),
+	receta int,
 	PRIMARY KEY (id)
 )
 
@@ -272,14 +248,91 @@ CREATE TABLE mario_killers.Receta (
 	atencion int,
 	activo bit,
 	PRIMARY KEY (id),
-	-- FOREIGN KEY (atencion) REFERENCES Atencion(turno)
 )
 
 CREATE TABLE mario_killers.Sintoma (
 	atencion int,
 	detalle varchar(255),
 	PRIMARY KEY (atencion),
-	-- FOREIGN KEY (atencion) REFERENCES Atencion(turno)
 )
 
---------------------------------- MIGRACION ---------------------------------
+ALTER TABLE mario_killers.Persona
+	ADD FOREIGN KEY (tipo_doc) REFERENCES mario_killers.Tipo_Documento(id);
+ALTER TABLE mario_killers.Persona
+	ADD FOREIGN KEY (usuario) REFERENCES mario_killers.Usuario(nombre);
+
+ALTER TABLE mario_killers.Usuario
+	ADD CONSTRAINT FK_Usuario_Persona FOREIGN KEY (persona) REFERENCES mario_killers.Persona(id);
+
+ALTER TABLE mario_killers.Funcionalidad_Rol
+	ADD FOREIGN KEY (funcionalidad) REFERENCES mario_killers.Funcionalidad(id);
+ALTER TABLE mario_killers.Funcionalidad_Rol
+	ADD FOREIGN KEY (rol) REFERENCES mario_killers.Rol(id);
+
+ALTER TABLE mario_killers.Roles_Usuario
+	ADD FOREIGN KEY (usuario) REFERENCES mario_killers.Usuario(nombre);
+ALTER TABLE mario_killers.Roles_Usuario
+	ADD FOREIGN KEY (rol) REFERENCES mario_killers.Rol(id);
+	
+ALTER TABLE mario_killers.Afiliado
+	ADD FOREIGN KEY (persona) REFERENCES mario_killers.Persona(id);
+ALTER TABLE mario_killers.Afiliado
+	ADD FOREIGN KEY (estado_civil) REFERENCES mario_killers.Estado_Civil(id);
+ALTER TABLE mario_killers.Afiliado
+	ADD FOREIGN KEY (grupo_familia) REFERENCES mario_killers.Grupo_Familia(codigo);
+	
+ALTER TABLE mario_killers.Bajas_Afiliado
+	ADD FOREIGN KEY (persona) REFERENCES mario_killers.Afiliado(persona);
+	
+ALTER TABLE mario_killers.Grupo_Familia
+	ADD FOREIGN KEY (plan_medico) REFERENCES mario_killers.Plan_Medico(codigo);
+	
+ALTER TABLE mario_killers.Modificaciones_Grupo
+	ADD FOREIGN KEY (grupo_familia) REFERENCES mario_killers.Grupo_Familia(codigo);
+ALTER TABLE mario_killers.Modificaciones_Grupo
+	ADD FOREIGN KEY (plan_medico) REFERENCES mario_killers.Plan_medico(codigo);
+	
+ALTER TABLE mario_killers.Profesional
+	ADD FOREIGN KEY (persona) REFERENCES mario_killers.Persona(id);
+
+ALTER TABLE mario_killers.Agenda
+	ADD FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona);
+
+ALTER TABLE mario_killers.Rango
+	ADD FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona);
+	
+ALTER TABLE mario_killers.Especialidad
+	ADD FOREIGN KEY (tipo) REFERENCES mario_killers.Tipo_Especialidad(codigo);
+
+ALTER TABLE mario_killers.Turno
+	ADD FOREIGN KEY (persona) REFERENCES mario_killers.Persona(id);
+ALTER TABLE mario_killers.Turno
+	ADD FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona);
+ALTER TABLE mario_killers.Turno
+	ADD FOREIGN KEY (especialidad) REFERENCES mario_killers.Especialidad(codigo);
+	
+ALTER TABLE mario_killers.Atencion
+	ADD FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id);
+
+ALTER TABLE mario_killers.Bono_Consulta
+	ADD FOREIGN KEY (plan_medico) REFERENCES mario_killers.Plan_Medico(codigo);
+ALTER TABLE mario_killers.Bono_Consulta
+	ADD FOREIGN KEY (compra) REFERENCES mario_killers.Compra(id);
+ALTER TABLE mario_killers.Bono_Consulta
+	ADD FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id);
+
+ALTER TABLE mario_killers.Bono_Farmacia
+	ADD FOREIGN KEY (plan_medico) REFERENCES mario_killers.Plan_Medico(codigo);
+ALTER TABLE mario_killers.Bono_Farmacia
+	ADD FOREIGN KEY (compra) REFERENCES mario_killers.Compra(id);
+ALTER TABLE mario_killers.Bono_Farmacia
+	ADD FOREIGN KEY (receta) REFERENCES mario_killers.Receta(id);
+
+ALTER TABLE mario_killers.Medicamento
+	ADD FOREIGN KEY (receta) REFERENCES mario_killers.Receta(id);
+	
+ALTER TABLE mario_killers.Receta
+	ADD FOREIGN KEY (atencion) REFERENCES mario_killers.Atencion(turno);
+
+ALTER TABLE mario_killers.Sintoma
+	ADD FOREIGN KEY (atencion) REFERENCES mario_killers.Atencion(turno);

@@ -2,6 +2,7 @@
 DROP TABLE mario_killers.Afiliado
 DROP TABLE mario_killers.Atencion
 DROP TABLE mario_killers.Agenda
+DROP TABLE mario_killers.Bajas_Afiliado
 DROP TABLE mario_killers.Bono_Consulta
 DROP TABLE mario_killers.Bono_Farmacia
 DROP TABLE mario_killers.Especialidad

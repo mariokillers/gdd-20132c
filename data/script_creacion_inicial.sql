@@ -79,6 +79,12 @@ CREATE TABLE Afiliado (
 	-- FOREIGN KEY (grupo_familia) REFERENCES Grupo_Familia(codigo)
 ) GO
 
+CREATE TABLE Bajas_Afiliado (
+	persona int NOT NULL,
+	fecha datetime NOT NULL,
+	FOREIGN KEY (persona) REFERENCES Afiliado(persona)
+)
+
 CREATE TABLE Estado_Civil (
 	id int IDENTITY,
 	estado varchar(255),
@@ -235,6 +241,7 @@ CREATE TABLE Medicamento (
 CREATE TABLE Receta (
 	id int IDENTITY,
 	atencion int,
+	activo bit,
 	PRIMARY KEY (id),
 	-- FOREIGN KEY (atencion) REFERENCES Atencion(turno)
 ) GO

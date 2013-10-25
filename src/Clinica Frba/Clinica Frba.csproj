@@ -67,8 +67,15 @@
   <ItemGroup>
     <Compile Include="Clases\Afiliado.cs" />
     <Compile Include="Clases\BaseDeDatos.cs" />
+    <Compile Include="Clases\Especialidad.cs" />
+    <Compile Include="Clases\Especialidades.cs" />
+    <Compile Include="Clases\Funcionalidad.cs" />
+    <Compile Include="Clases\Funcionalidades.cs" />
     <Compile Include="Clases\Persona.cs" />
+    <Compile Include="Clases\Plan.cs" />
     <Compile Include="Clases\Profesional.cs" />
+    <Compile Include="Clases\Rol.cs" />
+    <Compile Include="Clases\TipoEspecialidad.cs" />
     <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

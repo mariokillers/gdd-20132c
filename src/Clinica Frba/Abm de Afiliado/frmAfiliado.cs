@@ -16,20 +16,40 @@ namespace Clinica_Frba.NewFolder12
             InitializeComponent();
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void rdSi_CheckedChanged(object sender, EventArgs e)
         {
-            //ESTO NO ES ASI,PERO ES UNA IDEA
+            //Si apreta, pertenece al mismo grupo: tenerlo en cuenta para el ABM
             frmAfiliado a = new frmAfiliado();
             //this.Hide();
             a.ShowDialog();
+            rdSi.Enabled = false;
+            rdNo.Enabled = false;
         }
 
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
             try
             {
+                this.Hide();
             }
             catch { MessageBox.Show("Campos no válidos", "Error!", MessageBoxButtons.OK); }
+        }
+
+        private void cmdLimpiar_Click(object sender, EventArgs e)
+        {
+            txtApellido.Text = "";
+            txtDir.Text = "";
+            txtDni.Text = "";
+            txtMail.Text = "";
+            txtNombre.Text = "";
+            txtTel.Text = "";
+            cmbEstadoCivil.Text = "";
+            cmbSexo.Text = "";
+            cmbTipoDoc.Text = "";
+            rdNo.Enabled = true;
+            rdSi.Enabled = true;
+            rdNo.Checked = false;
+            rdSi.Checked = false;
         }
     }
 }

@@ -27,26 +27,43 @@ namespace Clinica_Frba.NewFolder10
                 {
                     Usuario user = new Usuario();
                     user.Name = txtUserName.Text;
+
+                    //comienza el hasheo de la pass
+                    UTF8Encoding encoderHash = new UTF8Encoding();
+                    SHA256Managed hasher = new SHA256Managed();
+                    byte[] bytesDeHasheo = hasher.ComputeHash(encoderHash.GetBytes(txtPassword.Text));
+                    user.Password = bytesDeHasheoToString(bytesDeHasheo);
+
+                    //VALIDAR EL USER
+
                     /*
                      * buscar en la db ese user y esa pass. if true pasa
                      * 
-                     * //cambia de form
+                     * //cambia de form*/
                     frmAfiliado a = new frmAfiliado();
                     this.Hide();
-                    a.ShowDialog();*/
+                    a.ShowDialog();
                 }
                 else
                 {
                     MessageBox.Show("Complete todos los campos", "Error!", MessageBoxButtons.OK);
                 }
-                
             }
             catch
             {
                 MessageBox.Show("Usuario y contraseña no validos", "Error!", MessageBoxButtons.OK);
             }
+        }
 
-
+        //funcion para transformar lo hasheado a string
+        private string bytesDeHasheoToString(byte[] array)
+        {
+            StringBuilder salida = new StringBuilder("");
+            for (int i = 0; i < array.Length; i++)
+            {
+                salida.Append(array[i].ToString("X2"));
+            }
+            return salida.ToString();
         }
     }
 }

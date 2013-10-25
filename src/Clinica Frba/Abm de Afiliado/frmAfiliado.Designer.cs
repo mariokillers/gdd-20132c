@@ -29,8 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.cmdLimpiar = new System.Windows.Forms.Button();
+            this.txtDni = new System.Windows.Forms.TextBox();
+            this.cmdAceptar = new System.Windows.Forms.Button();
+            this.rdNo = new System.Windows.Forms.RadioButton();
+            this.rdSi = new System.Windows.Forms.RadioButton();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.txtApellido = new System.Windows.Forms.TextBox();
@@ -62,22 +65,22 @@
             this.lblFechaNac = new System.Windows.Forms.Label();
             this.txtDir = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.tDNI = new System.Windows.Forms.MaskedTextBox();
             this.txtTel = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.cmdAceptar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmdLimpiar);
+            this.groupBox1.Controls.Add(this.txtDni);
             this.groupBox1.Controls.Add(this.cmdAceptar);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.rdNo);
+            this.groupBox1.Controls.Add(this.rdSi);
             this.groupBox1.Controls.Add(this.label25);
             this.groupBox1.Controls.Add(this.label24);
             this.groupBox1.Controls.Add(this.txtApellido);
@@ -109,7 +112,6 @@
             this.groupBox1.Controls.Add(this.lblFechaNac);
             this.groupBox1.Controls.Add(this.txtDir);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.tDNI);
             this.groupBox1.Controls.Add(this.txtTel);
             this.groupBox1.Controls.Add(this.txtNombre);
             this.groupBox1.Controls.Add(this.label4);
@@ -123,28 +125,54 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Personales";
             // 
-            // radioButton2
+            // cmdLimpiar
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(247, 226);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(39, 17);
-            this.radioButton2.TabIndex = 56;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "No";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.cmdLimpiar.Location = new System.Drawing.Point(319, 302);
+            this.cmdLimpiar.Name = "cmdLimpiar";
+            this.cmdLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.cmdLimpiar.TabIndex = 59;
+            this.cmdLimpiar.Text = "Limpiar";
+            this.cmdLimpiar.UseVisualStyleBackColor = true;
+            this.cmdLimpiar.Click += new System.EventHandler(this.cmdLimpiar_Click);
             // 
-            // radioButton1
+            // txtDni
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(190, 226);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(34, 17);
-            this.radioButton1.TabIndex = 55;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Si";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.txtDni.Location = new System.Drawing.Point(408, 102);
+            this.txtDni.Name = "txtDni";
+            this.txtDni.Size = new System.Drawing.Size(137, 20);
+            this.txtDni.TabIndex = 58;
+            // 
+            // cmdAceptar
+            // 
+            this.cmdAceptar.Location = new System.Drawing.Point(211, 302);
+            this.cmdAceptar.Name = "cmdAceptar";
+            this.cmdAceptar.Size = new System.Drawing.Size(75, 23);
+            this.cmdAceptar.TabIndex = 57;
+            this.cmdAceptar.Text = "Guardar";
+            this.cmdAceptar.UseVisualStyleBackColor = true;
+            this.cmdAceptar.Click += new System.EventHandler(this.cmdAceptar_Click);
+            // 
+            // rdNo
+            // 
+            this.rdNo.AutoSize = true;
+            this.rdNo.Location = new System.Drawing.Point(247, 226);
+            this.rdNo.Name = "rdNo";
+            this.rdNo.Size = new System.Drawing.Size(39, 17);
+            this.rdNo.TabIndex = 56;
+            this.rdNo.TabStop = true;
+            this.rdNo.Text = "No";
+            this.rdNo.UseVisualStyleBackColor = true;
+            // 
+            // rdSi
+            // 
+            this.rdSi.AutoSize = true;
+            this.rdSi.Location = new System.Drawing.Point(190, 226);
+            this.rdSi.Name = "rdSi";
+            this.rdSi.Size = new System.Drawing.Size(34, 17);
+            this.rdSi.TabIndex = 55;
+            this.rdSi.TabStop = true;
+            this.rdSi.Text = "Si";
+            this.rdSi.UseVisualStyleBackColor = true;
             // 
             // label25
             // 
@@ -438,14 +466,6 @@
             this.label9.TabIndex = 17;
             this.label9.Text = "Dirección:";
             // 
-            // tDNI
-            // 
-            this.tDNI.Location = new System.Drawing.Point(381, 104);
-            this.tDNI.Mask = "99999999";
-            this.tDNI.Name = "tDNI";
-            this.tDNI.Size = new System.Drawing.Size(160, 20);
-            this.tDNI.TabIndex = 12;
-            // 
             // txtTel
             // 
             this.txtTel.Location = new System.Drawing.Point(132, 154);
@@ -499,16 +519,6 @@
             this.label12.TabIndex = 2;
             this.label12.Text = "FALTA VER EL RESTO DE LOS ATRIBUTOS, VER REL. EN DER";
             // 
-            // cmdAceptar
-            // 
-            this.cmdAceptar.Location = new System.Drawing.Point(247, 302);
-            this.cmdAceptar.Name = "cmdAceptar";
-            this.cmdAceptar.Size = new System.Drawing.Size(75, 23);
-            this.cmdAceptar.TabIndex = 57;
-            this.cmdAceptar.Text = "Aceptar";
-            this.cmdAceptar.UseVisualStyleBackColor = true;
-            this.cmdAceptar.Click += new System.EventHandler(this.cmdAceptar_Click);
-            // 
             // frmAfiliado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -536,7 +546,6 @@
         private System.Windows.Forms.Label lblFechaNac;
         private System.Windows.Forms.TextBox txtDir;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.MaskedTextBox tDNI;
         private System.Windows.Forms.TextBox txtTel;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label4;
@@ -566,9 +575,11 @@
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rdNo;
+        private System.Windows.Forms.RadioButton rdSi;
         private System.Windows.Forms.Button cmdAceptar;
+        private System.Windows.Forms.TextBox txtDni;
+        private System.Windows.Forms.Button cmdLimpiar;
 
 
     }

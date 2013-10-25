@@ -8,7 +8,8 @@ namespace Clinica_Frba.Abm_de_Profesional
 {
     class Profesional : Persona
     {
-        public Persona Persona { get; set; }
+        public int Codigo_Persona { get; set; }
         public int Matricula { get; set; }
+        public int Codigo_Especialidad { get; set; } //VER SI NO ES PREFERIBLE TENER EL NOMBRE
     }
 }

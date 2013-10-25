@@ -14,6 +14,8 @@ DROP TABLE mario_killers.Plan_Medico
 DROP TABLE mario_killers.Profesional
 DROP TABLE mario_killers.Receta
 DROP TABLE mario_killers.Rango
+DROP TABLE mario_killers.Rol
+DROP TABLE mario_killers.Roles_Usuario
 DROP TABLE mario_killers.Sintoma
 DROP TABLE mario_killers.Tipo_Especialidad
 DROP TABLE mario_killers.Turno

@@ -36,6 +36,19 @@ CREATE TABLE Usuario (
 	-- FOREIGN KEY (persona) REFERENCES Persona(id)
 ) GO
 
+CREATE TABLE Rol (
+	id int IDENTITY,
+	rol varchar(255) NOT NULL,
+	PRIMARY KEY (id)
+)
+
+CREATE TABLE Roles_Usuario (
+	usuario int,
+	rol int,
+	-- FOREIGN KEY (usuario) REFERENCES Usuario(nombre)
+	-- FOREIGN KEY (rol) REFERENCES Rol(id)
+)
+
 CREATE TABLE Plan_Medico (
 	codigo numeric(18, 0),
 	descripcion varchar(255),

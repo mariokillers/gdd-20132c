@@ -63,7 +63,7 @@ CREATE TABLE mario_killers.Rol (
 
 CREATE TABLE mario_killers.Funcionalidad (
 	id int IDENTITY,
-	rol varchar(255) NOT NULL,
+	nombre varchar(255) NOT NULL,
 	PRIMARY KEY (id)
 )
 

@@ -71,24 +71,24 @@ INSERT INTO mario_killers.Afiliado (persona, grupo_familia, nro_familiar)
 	FROM mario_killers.Persona
 	WHERE documento IN (SELECT Paciente_Dni FROM Pacientes)
 
--- Profesionales
-INSERT INTO mario_killers.Profesional (persona)
-	SELECT id
-	FROM mario_killers.Persona
-	WHERE documento IN (SELECT Medico_Dni FROM Medicos)
-
 -- Especialidades
+SET IDENTITY_INSERT mario_killers.Tipo_Especialidad ON
+INSERT INTO mario_killers.Tipo_Especialidad (codigo, descripcion)
+	SELECT DISTINCT Tipo_Especialidad_Codigo, Tipo_Especialidad_Descripcion
+	FROM Especialidades
+SET IDENTITY_INSERT mario_killers.Tipo_Especialidad OFF
+
 SET IDENTITY_INSERT mario_killers.Especialidad ON
 INSERT INTO mario_killers.Especialidad (codigo, descripcion, tipo)
 	SELECT Especialidad_Codigo, Especialidad_Descripcion, Tipo_Especialidad_Codigo
 	FROM Especialidades
 SET IDENTITY_INSERT mario_killers.Especialidad OFF
 
-SET IDENTITY_INSERT mario_killers.Tipo_Especialidad ON
-INSERT INTO mario_killers.Tipo_Especialidad (codigo, descripcion)
-	SELECT DISTINCT Tipo_Especialidad_Codigo, Tipo_Especialidad_Descripcion
-	FROM Especialidades
-SET IDENTITY_INSERT mario_killers.Tipo_Especialidad OFF
+-- Profesionales
+INSERT INTO mario_killers.Profesional (persona)
+	SELECT id
+	FROM mario_killers.Persona
+	WHERE documento IN (SELECT Medico_Dni FROM Medicos)
 
 -- Planes medicos
 INSERT INTO mario_killers.Plan_Medico

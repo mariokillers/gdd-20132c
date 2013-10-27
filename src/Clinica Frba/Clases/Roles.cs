@@ -16,9 +16,9 @@ namespace Clinica_Frba.Clases
             List<Rol> listaDeRoles = new List<Rol>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@txt", filtro));
+            ListaParametros.Add(new SqlParameter("@txt", "%" + filtro + "%"));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id, rol FROM mario_killers.Rol WHERE activo = 1 AND rol like '%@txt%'", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id, nombre FROM mario_killers.Rol WHERE activo = 1 AND nombre like @txt", "T", ListaParametros);
 
             if (lector.HasRows)
             {
@@ -27,7 +27,7 @@ namespace Clinica_Frba.Clases
                     //FALTA TRAER LAS FUNCIONALIDADES POR ROL
                     Rol unRol = new Rol();
                     unRol.Id = (int)lector ["id"];
-                    unRol.Nombre = (string)lector["rol"];
+                    unRol.Nombre = (string)lector["nombre"];
                     unRol.Habilitado = true;
                     listaDeRoles.Add(unRol);
                 }
@@ -50,7 +50,30 @@ namespace Clinica_Frba.Clases
             {
                 //VER COMO AGREGAR LAS FUNCIONALIDADES
             }
-            return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Rol set Activo =0 where id=@id", "T", ListaParametros);
+            return Clases.BaseDeDatosSQL.EscribirEnBase("", "T", ListaParametros);
+        }
+
+        public static List<Rol> ObtenerTodos()
+        {
+            List<Rol> listaDeRoles = new List<Rol>();
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id, nombre FROM mario_killers.Rol WHERE activo = 1", "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                while (lector.Read())
+                {
+                    //FALTA TRAER LAS FUNCIONALIDADES POR ROL
+                    Rol unRol = new Rol();
+                    unRol.Id = (int)lector["id"];
+                    unRol.Nombre = (string)lector["nombre"];
+                    unRol.Habilitado = true;
+                    listaDeRoles.Add(unRol);
+                }
+            }
+            return listaDeRoles; ;
         }
     }
 }

@@ -45,5 +45,10 @@ namespace Clinica_Frba.Abm_de_Rol
                 grillaFuncionalidades.DisplayMember = "Nombre";
             }
         }
+
+        private void cmdAgregar_Click(object sender, EventArgs e)
+        {
+            //TOMA DE LO QUE CHEKEO, ARMA UNA LISTA Y SE LO DEVUELVE AL FORM
+        }
     }
 }

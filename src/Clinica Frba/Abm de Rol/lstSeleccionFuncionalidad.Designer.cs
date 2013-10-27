@@ -34,6 +34,7 @@
             this.cmdBuscar = new System.Windows.Forms.Button();
             this.cmdLimpiar = new System.Windows.Forms.Button();
             this.grillaFuncionalidades = new System.Windows.Forms.CheckedListBox();
+            this.cmdAgregar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,16 +88,27 @@
             // grillaFuncionalidades
             // 
             this.grillaFuncionalidades.FormattingEnabled = true;
-            this.grillaFuncionalidades.Location = new System.Drawing.Point(126, 160);
+            this.grillaFuncionalidades.Location = new System.Drawing.Point(117, 133);
             this.grillaFuncionalidades.Name = "grillaFuncionalidades";
             this.grillaFuncionalidades.Size = new System.Drawing.Size(120, 94);
             this.grillaFuncionalidades.TabIndex = 3;
+            // 
+            // cmdAgregar
+            // 
+            this.cmdAgregar.Location = new System.Drawing.Point(135, 245);
+            this.cmdAgregar.Name = "cmdAgregar";
+            this.cmdAgregar.Size = new System.Drawing.Size(75, 23);
+            this.cmdAgregar.TabIndex = 4;
+            this.cmdAgregar.Text = "Agregar";
+            this.cmdAgregar.UseVisualStyleBackColor = true;
+            this.cmdAgregar.Click += new System.EventHandler(this.cmdAgregar_Click);
             // 
             // lstSeleccionFuncionalidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 329);
+            this.Controls.Add(this.cmdAgregar);
             this.Controls.Add(this.grillaFuncionalidades);
             this.Controls.Add(this.cmdLimpiar);
             this.Controls.Add(this.cmdBuscar);
@@ -118,5 +130,6 @@
         private System.Windows.Forms.Button cmdBuscar;
         private System.Windows.Forms.Button cmdLimpiar;
         private System.Windows.Forms.CheckedListBox grillaFuncionalidades;
+        private System.Windows.Forms.Button cmdAgregar;
     }
 }

@@ -53,6 +53,7 @@ namespace Clinica_Frba.NewFolder1
                     }
                     //DOY DE ALTA EL ROL
                     Roles.Agregar(txtNombre.Text, listaDeFunc);
+                    MessageBox.Show("Se ha agregado el rol", "Error!", MessageBoxButtons.OK);
                 }
             }
             catch 

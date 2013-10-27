@@ -294,9 +294,6 @@
             // cmbSexo
             // 
             this.cmbSexo.FormattingEnabled = true;
-            this.cmbSexo.Items.AddRange(new object[] {
-            "Masculino",
-            "Femenino"});
             this.cmbSexo.Location = new System.Drawing.Point(132, 77);
             this.cmbSexo.Name = "cmbSexo";
             this.cmbSexo.Size = new System.Drawing.Size(121, 21);
@@ -305,12 +302,6 @@
             // cmbEstadoCivil
             // 
             this.cmbEstadoCivil.FormattingEnabled = true;
-            this.cmbEstadoCivil.Items.AddRange(new object[] {
-            "Soltero/a",
-            "Casado/a",
-            "Viudo/a",
-            "Divorciado/a",
-            "Concubinato"});
             this.cmbEstadoCivil.Location = new System.Drawing.Point(132, 177);
             this.cmbEstadoCivil.Name = "cmbEstadoCivil";
             this.cmbEstadoCivil.Size = new System.Drawing.Size(121, 21);
@@ -331,10 +322,6 @@
             "DNI",
             "Pasaporte"});
             this.cmbTipoDoc.FormattingEnabled = true;
-            this.cmbTipoDoc.Items.AddRange(new object[] {
-            "DNI",
-            "LE",
-            "LC"});
             this.cmbTipoDoc.Location = new System.Drawing.Point(132, 102);
             this.cmbTipoDoc.Name = "cmbTipoDoc";
             this.cmbTipoDoc.Size = new System.Drawing.Size(121, 21);

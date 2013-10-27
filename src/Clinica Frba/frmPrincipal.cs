@@ -105,12 +105,21 @@ namespace Clinica_Frba
             this.Hide();
         }
 
+        public void ocultar()
+        {
+            cmbRoles.Dispose();
+            cmdIngresar.Visible = false;
+            label1.Visible = false;
+        }
+
         private void cmdIngresar_Click(object sender, EventArgs e)
         {
             Rol unRol = new Rol(((Rol)cmbRoles.SelectedItem).Id);
             List<String> listaDeFunc = Funcionalidades.ObtenerFuncionalidadesPorRol(unRol.Id);
 
+            ocultar();
             menu.Visible = true;
+            
 
             //VEO QUE MOSTRAR EN BASE A SUS FUNCIONALIDADES
             cmdAfiliado.Visible = listaDeFunc.Contains("Administrar afiliados");

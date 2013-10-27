@@ -25,16 +25,14 @@ namespace Clinica_Frba.Abm_de_Rol
         private void cmdLimpiar_Click(object sender, EventArgs e)
         {
             txtNombre.Text = "";
+            ActualizarGrilla();
         }
 
         private void cmdBuscar_Click(object sender, EventArgs e)
         {
             try
             {
-                //me traigo los roles que cumplen con el filtro
-                listaDeRoles = Roles.ObtenerRoles(txtNombre.Text);
-                //meto el resultado en la grilla
-                grillaRoles.DataSource = listaDeRoles;
+                ActualizarGrilla();
             }
             catch{ MessageBox.Show("", "Error!", MessageBoxButtons.OK);}
         }
@@ -43,6 +41,25 @@ namespace Clinica_Frba.Abm_de_Rol
         {
             //genero las columnas de la grilla
             grillaRoles.AutoGenerateColumns = false;
+
+            cargarGrilla();
+            ActualizarGrilla();
+        }
+
+        public void ActualizarGrilla()
+        {
+            if (txtNombre.Text != "")
+            {
+                //me traigo los roles que cumplen con el filtro
+                listaDeRoles = Roles.ObtenerRoles(txtNombre.Text);
+            }
+            else
+            {
+                listaDeRoles = Roles.ObtenerTodos();
+            }
+            
+            //meto el resultado en la grilla
+            grillaRoles.DataSource = listaDeRoles;
         }
         
         private void cargarGrilla()
@@ -104,7 +121,7 @@ namespace Clinica_Frba.Abm_de_Rol
             principal.ShowDialog();
         }
 
-        private void grillaRoles_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void grillaRoles_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //IGNORA LOS CLICKS DE OTROS BOTONES 
             if (e.RowIndex < 0 || e.ColumnIndex !=
@@ -120,7 +137,8 @@ namespace Clinica_Frba.Abm_de_Rol
             {
                 if (Operacion == "Modificacion")
                 {
-
+                    lstSeleccionFuncionalidad formFunc = new lstSeleccionFuncionalidad();
+                    formFunc.Show();
                 }
                 //ME TENGO QUE ABRIR UNA NUEVA VISTA CON LAS FUNC DE ESE ROL
             }

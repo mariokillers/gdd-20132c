@@ -81,7 +81,8 @@ CREATE TABLE mario_killers.Roles_Usuario (
 	usuario varchar(255),
 	rol int,
 	FOREIGN KEY (usuario) REFERENCES mario_killers.Usuario(nombre),
-	FOREIGN KEY (rol) REFERENCES mario_killers.Rol(id)
+	FOREIGN KEY (rol) REFERENCES mario_killers.Rol(id),
+	PRIMARY KEY (usuario, rol)
 )
 
 CREATE TABLE mario_killers.Plan_Medico (
@@ -310,3 +311,8 @@ INSERT INTO mario_killers.Usuario (nombre, pw)
 	VALUES ('admin', 'bf7dabb787f940696c224f18566f7fd6dce389d9b41fcd75a352165e426bec1b'),
 	       ('cormillot', 'bf7dabb787f940696c224f18566f7fd6dce389d9b41fcd75a352165e426bec1b'),
 	       ('tomi', 'bf7dabb787f940696c224f18566f7fd6dce389d9b41fcd75a352165e426bec1b')
+
+INSERT INTO mario_killers.Roles_Usuario
+	VALUES ('admin', 1),
+	       ('cormillot', 2),
+	       ('tomi', 3)

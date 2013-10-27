@@ -1,4 +1,4 @@
-CREATE FUNCTION roles_usuario(@username varchar(255))
+CREATE FUNCTION mario_killers.roles_usuario(@username varchar(255))
 RETURNS @roles TABLE (rol int, nombre varchar(255)) AS
 BEGIN
 	INSERT INTO @roles

@@ -85,7 +85,7 @@ CREATE TABLE mario_killers.Funcionalidad_Rol (
 	FOREIGN KEY (funcionalidad) REFERENCES mario_killers.Funcionalidad(id)
 )
 
-CREATE TABLE mario_killers.Roles_Usuario (
+CREATE TABLE mario_killers.Rol_Usuario (
 	usuario varchar(255),
 	rol int,
 	FOREIGN KEY (usuario) REFERENCES mario_killers.Usuario(nombre),
@@ -366,7 +366,7 @@ INSERT INTO mario_killers.Usuario (nombre, pw)
 	       ('cormillot', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),
 	       ('tomi', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7');
 
-INSERT INTO mario_killers.Roles_Usuario
+INSERT INTO mario_killers.Rol_Usuario
 	VALUES ('admin', 1),
 	       ('cormillot', 2),
 	       ('tomi', 3);

@@ -21,7 +21,7 @@ DROP TABLE
     mario_killers.Estado_Civil,
     mario_killers.Compra,
     mario_killers.Plan_Medico,
-    mario_killers.Roles_Usuario,
+    mario_killers.Rol_Usuario,
     mario_killers.Funcionalidad_Rol,
     mario_killers.Funcionalidad,
     mario_killers.Rol,
@@ -30,7 +30,8 @@ DROP TABLE
     mario_killers.Tipo_Documento
            
 DROP FUNCTION mario_killers.horas_por_semana,
-              mario_killers.horas_se_pisan
+              mario_killers.horas_se_pisan,
+              mario_killers.roles_usuario
 
 DROP PROCEDURE mario_killers.agregar_funcionalidad
 

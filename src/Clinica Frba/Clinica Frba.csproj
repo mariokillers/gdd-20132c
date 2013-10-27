@@ -71,6 +71,12 @@
     <Compile Include="Abm de Afiliado\lstSeleccionAfiliado.Designer.cs">
       <DependentUpon>lstSeleccionAfiliado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm de Rol\lstSeleccionFuncionalidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm de Rol\lstSeleccionFuncionalidad.Designer.cs">
+      <DependentUpon>lstSeleccionFuncionalidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm de Rol\lstSeleccionRol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,8 +84,9 @@
       <DependentUpon>lstSeleccionRol.cs</DependentUpon>
     </Compile>
     <Compile Include="Clases\Afiliado.cs" />
+    <Compile Include="Clases\Afiliados.cs" />
     <Compile Include="Clases\Atencion.cs" />
-    <Compile Include="Clases\BaseDeDatos.cs" />
+    <Compile Include="Clases\BaseDeDatosSQL.cs" />
     <Compile Include="Clases\BonoConsulta.cs" />
     <Compile Include="Clases\BonoFarmacia.cs" />
     <Compile Include="Clases\Compra.cs" />
@@ -101,6 +108,7 @@
     <Compile Include="Clases\TipoEspecialidad.cs" />
     <Compile Include="Clases\Turno.cs" />
     <Compile Include="Clases\Usuario.cs" />
+    <Compile Include="Clases\Usuarios.cs" />
     <Compile Include="Clases\Utiles.cs" />
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
@@ -108,7 +116,6 @@
     <Compile Include="frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Funciones\FuncionesUtiles.cs" />
     <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm de Rol\frmRol.resx">
       <DependentUpon>frmRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm de Rol\lstSeleccionFuncionalidad.resx">
+      <DependentUpon>lstSeleccionFuncionalidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm de Rol\lstSeleccionRol.resx">
       <DependentUpon>lstSeleccionRol.cs</DependentUpon>

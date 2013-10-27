@@ -38,6 +38,7 @@
             this.cmdRolAlta = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdRolModificacion = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdRolBaja = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdAgenda = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,10 +47,11 @@
             this.ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmdAfiliado,
             this.cmdProfesional,
-            this.cmdRol});
+            this.cmdRol,
+            this.cmdAgenda});
             this.ToolStrip.Location = new System.Drawing.Point(0, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(284, 24);
+            this.ToolStrip.Size = new System.Drawing.Size(551, 24);
             this.ToolStrip.TabIndex = 0;
             this.ToolStrip.Text = "menuStrip1";
             // 
@@ -116,11 +118,17 @@
             this.cmdRolBaja.Size = new System.Drawing.Size(144, 22);
             this.cmdRolBaja.Text = "Baja";
             // 
+            // cmdAgenda
+            // 
+            this.cmdAgenda.Name = "cmdAgenda";
+            this.cmdAgenda.Size = new System.Drawing.Size(122, 20);
+            this.cmdAgenda.Text = "Agenda Profesional";
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(551, 262);
             this.Controls.Add(this.ToolStrip);
             this.MainMenuStrip = this.ToolStrip;
             this.Name = "frmPrincipal";
@@ -145,6 +153,7 @@
         private System.Windows.Forms.ToolStripMenuItem cmdRolAlta;
         private System.Windows.Forms.ToolStripMenuItem cmdRolModificacion;
         private System.Windows.Forms.ToolStripMenuItem cmdRolBaja;
+        private System.Windows.Forms.ToolStripMenuItem cmdAgenda;
 
 
     }

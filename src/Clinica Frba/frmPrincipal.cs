@@ -21,7 +21,7 @@ namespace Clinica_Frba
 
         //para el tema de las funcionalidades
         public string UserName { get; set; }
-        private List<Funcionalidad> listaDeFuncionalidades = new List<Funcionalidad>();
+        private List<Rol> listaDeRoles = new List<Rol>();
 
         //SOLO FALTA COMPLETAR LO DE ABAJO
         private void cmdAfiliadoAlta_Click(object sender, EventArgs e)
@@ -53,10 +53,13 @@ namespace Clinica_Frba
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            Usuario user = new Usuario(UserName);
-            listaDeFuncionalidades = user.ObtenerFuncionalidadesPorUsuario();
+            listaDeRoles = Usuarios.ObtenerRoles(new Usuario(UserName));
+            if (listaDeRoles.Count > 1)
+            {
+                //DAR LA OPCION DE LOGEARSE CON EL ROL QUE QUIERE
 
-            // VER ESTE TEMA
+            }
+            // OBTENER FUNCIONALIDADES POR ESTE ROL Y VER ESTE TEMA
            /* cmdAfiliado.Visible = listaDeFuncionalidades.Contains("ABM afiliado");
             cmdProfesional.Visible =
             cmdRol.Visible=*/

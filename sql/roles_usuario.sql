@@ -4,9 +4,9 @@ BEGIN
 	INSERT INTO @roles
 		SELECT id, nombre
 		FROM
-			mario_killers.Roles_Usuario JOIN mario_killers.Rol
-			ON Roles_Usuario.rol = Rol.id
-		WHERE Roles_Usuario.usuario = @username
+			mario_killers.Rol_Usuario JOIN mario_killers.Rol
+			ON Rol_Usuario.rol = Rol.id
+		WHERE Rol_Usuario.usuario = @username
 	RETURN
 END
 GO

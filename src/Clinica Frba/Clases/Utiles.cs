@@ -29,12 +29,5 @@ namespace Clinica_Frba.Clases
             }
             catch { return false; }
         }
-
-    public enum Operacion
-    {
-        Baja,
-        Modificacion,
-        Seleccion
-    }
     }
 }

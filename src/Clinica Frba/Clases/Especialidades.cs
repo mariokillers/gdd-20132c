@@ -13,8 +13,6 @@ namespace Clinica_Frba.Clases
             List<Especialidad> Lista = new List<Especialidad>();
 
             List<OleDbParameter> ListaParametros = new List<OleDbParameter>();
-
-            OleDbConnection conexion = Clases.BaseDeDatos.ObtenerConexion();
             OleDbDataReader lector = Clases.BaseDeDatos.ObtenerDataReader("", "T", ListaParametros);
 
             if (lector.HasRows)

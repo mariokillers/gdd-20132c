@@ -12,13 +12,17 @@ namespace Clinica_Frba.Abm_de_Rol
 {
     public partial class lstSeleccionRol : Form
     {
-        public lstSeleccionRol()
+        public lstSeleccionRol(string op)
         {
+            Operacion = op;
             InitializeComponent();
         }
 
         //lista de roles que voy a tener para mostrar
         private List<Rol> listaDeRoles = new List<Rol>();
+
+        //que operacion se va a realizar
+        public string Operacion { get; set; }
 
         private void cmdLimpiar_Click(object sender, EventArgs e)
         {
@@ -35,7 +39,6 @@ namespace Clinica_Frba.Abm_de_Rol
                 grillaRoles.DataSource = listaDeRoles;
             }
             catch{ MessageBox.Show("", "Error!", MessageBoxButtons.OK);}
-            
         }
 
         private void lstSeleccionRol_Load(object sender, EventArgs e)
@@ -43,7 +46,6 @@ namespace Clinica_Frba.Abm_de_Rol
             //genero las columnas de la grilla
             grillaRoles.AutoGenerateColumns = false;
         }
-
         
         private void cargarGrilla()
         {
@@ -61,6 +63,31 @@ namespace Clinica_Frba.Abm_de_Rol
 
             grillaRoles.Columns.Add(ColHabilitado);
 
+            DataGridViewButtonColumn ColBoton = new DataGridViewButtonColumn();
+            ColBoton.HeaderText = "";
+            ColBoton.Width = 80;
+            ColBoton.UseColumnTextForButtonValue = true;
+
+            grillaRoles.Columns.Add(ColBoton);
+
+            if (Operacion == "Baja")
+            {
+                grillaRoles.Columns.Remove(ColBoton);
+            }
+            else
+            {
+                ColHabilitado.ReadOnly = true; // si eligio modificar, no puede inhabilitarlo
+                ColBoton.Text = "Modificar";
+            }
+               /* 
+                case Utiles.Operacion.Modificacion:
+                    ColBoton.Text = "Modificar";
+                    break;
+                case Utiles.Operacion.Seleccion:
+                    ColBoton.Text = "Seleccionar";
+                    break;*/
+            
+
             /*SELECCIONAR UN ROL Y APRETAR UN BOTON DE MODIFICAR FUNC. Y ME APAREZCA UNA GRILLA
              * CON TODAS LAS FUNCIONALIDADES DE ESE ROL
              */
@@ -71,10 +98,15 @@ namespace Clinica_Frba.Abm_de_Rol
             //selecciona un rol
             Rol unRol = new Rol();
             unRol = (Rol)grillaRoles.CurrentRow.DataBoundItem;
+            if (!unRol.Habilitado)
+            {
+                //SI "INHABILITA" EL ROL, DARLO DE BAJA
+                Roles.Eliminar(unRol.Id);
+                cargarGrilla();
+            }
 
-            //SI "INHABILITA" EL ROL, DARLO DE BAJA
 
-            //ME TENGO QUE ABRIR UNA NUEVA VISTA CON LAS FUNC DE ESE ROL
+            
         }
 
         private void cmdVolver_Click(object sender, EventArgs e)
@@ -82,6 +114,25 @@ namespace Clinica_Frba.Abm_de_Rol
             frmPrincipal principal = new frmPrincipal();
             this.Hide();
             principal.ShowDialog();
+        }
+
+        private void grillaRoles_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (Operacion == "Baja")
+            {
+                Rol unRol = (Rol)grillaRoles.CurrentRow.DataBoundItem;
+                if (!unRol.Habilitado)
+                {
+                    //SI "INHABILITA" EL ROL, DARLO DE BAJA
+                    Roles.Eliminar(unRol.Id);
+                    cargarGrilla();
+                }
+            }
+            else
+            {
+                Rol unRol = (Rol)grillaRoles.CurrentRow.DataBoundItem;
+                //ME TENGO QUE ABRIR UNA NUEVA VISTA CON LAS FUNC DE ESE ROL
+            }
         }
     }
 }

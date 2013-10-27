@@ -6,11 +6,11 @@ using System.Data.OleDb;
 
 namespace Clinica_Frba.Clases
 {
-    class Funcionalidades
+    class Afiliados
     {
-        public static List<Funcionalidad> ObtenerFuncionalidades()
+        public static List<Afiliado> ObtenerAfiliados()
         {
-            List<Funcionalidad> Lista = new List<Funcionalidad>();
+            List<Afiliado> Lista = new List<Afiliado>();
 
             List<OleDbParameter> ListaParametros = new List<OleDbParameter>();
             OleDbDataReader lector = Clases.BaseDeDatos.ObtenerDataReader("", "T", ListaParametros);
@@ -19,10 +19,10 @@ namespace Clinica_Frba.Clases
             {
                 while (lector.Read())
                 {
-                    Funcionalidad unaFuncionalidad = new Funcionalidad();
-                    unaFuncionalidad.Id = 0;//me lo devuelve la consulta
-                    unaFuncionalidad.Nombre = (string)lector["nombre"];
-                    Lista.Add(unaFuncionalidad);
+                    Afiliado unAfiliado = new Afiliado();
+                    //unAfiliado.Codigo = 0;//me lo devuelve la consulta
+                    //unAfiliado.Descripcion = (string)lector["desripcion"];
+                    Lista.Add(unAfiliado);
                 }
             }
             return Lista;

@@ -19,30 +19,39 @@ namespace Clinica_Frba.NewFolder10
             InitializeComponent();
         }
 
+        frmPrincipal formPrincipal;
+
         private void Ingresar_Click_1(object sender, EventArgs e)
         {
             try
             {
                 if (txtUserName.Text != "" && txtPassword.Text != "")
                 {
-                    Usuario user = new Usuario();
-                    user.Name = txtUserName.Text;
+                    Usuario user = new Usuario(txtUserName.Text);
 
                     //comienza el hasheo de la pass
                     UTF8Encoding encoderHash = new UTF8Encoding();
                     SHA256Managed hasher = new SHA256Managed();
                     byte[] bytesDeHasheo = hasher.ComputeHash(encoderHash.GetBytes(txtPassword.Text));
-                    user.Password = bytesDeHasheoToString(bytesDeHasheo);
+                    string pass = bytesDeHasheoToString(bytesDeHasheo);
 
                     //VALIDAR EL USER
+                    if (!user.Activo)
+                    {
+                    }
+                    if (!user.Password.Equals(pass))
+                    {
+                        //ACTUALIZAR CANT FALLIDOS
+                        user.ActualizarFallidos();
+                        MessageBox.Show("Usuario y contraseña no validos", "Error!", MessageBoxButtons.OK);
+                    }
+                    //SETEO LOS FALLIDOS EN 0 PORQUE ENTRO
+                    user.ReiniciarFallidos();
 
-                    /*
-                     * buscar en la db ese user y esa pass. if true pasa
-                     * 
-                     * //cambia de form*/
-                    frmAfiliado a = new frmAfiliado();
-                    this.Hide();
-                    a.ShowDialog();
+                    //INGRESO AL FORM PRINCIPAL,LE PASO EL USER ID ASI SABE QUE FUNCIONALIDADES MOSTRAR
+                    formPrincipal.UserName = user.Name;
+                    //this.Hide();
+                    //formPrincipal.Show();
                 }
                 else
                 {

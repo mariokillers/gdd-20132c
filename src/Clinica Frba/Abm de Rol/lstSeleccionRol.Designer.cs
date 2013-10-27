@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdLimpiar = new System.Windows.Forms.Button();
@@ -43,7 +42,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtNombre);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -52,16 +50,6 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de Búsqueda";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(90, 68);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(291, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "SE PUEDE/CONVIENE FILTRAR POR FUNCIONALIDAD?";
             // 
             // txtNombre
             // 
@@ -114,7 +102,7 @@
             this.cmdModificar.Name = "cmdModificar";
             this.cmdModificar.Size = new System.Drawing.Size(75, 23);
             this.cmdModificar.TabIndex = 5;
-            this.cmdModificar.Text = "button1";
+            this.cmdModificar.Text = "Modificar";
             this.cmdModificar.UseVisualStyleBackColor = true;
             this.cmdModificar.Click += new System.EventHandler(this.cmdModificar_Click);
             // 
@@ -133,8 +121,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(613, 381);
-            this.Controls.Add(this.cmdVolver);
             this.Controls.Add(this.cmdModificar);
+            this.Controls.Add(this.cmdVolver);
             this.Controls.Add(this.grillaRoles);
             this.Controls.Add(this.cmdBuscar);
             this.Controls.Add(this.cmdLimpiar);
@@ -156,7 +144,6 @@
         private System.Windows.Forms.Button cmdBuscar;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView grillaRoles;
         private System.Windows.Forms.Button cmdModificar;
         private System.Windows.Forms.Button cmdVolver;

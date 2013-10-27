@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data.OleDb;
 
 namespace Clinica_Frba.Clases
 {
@@ -12,9 +13,7 @@ namespace Clinica_Frba.Clases
         public List<Funcionalidad> ListaFuncionalidades { get; set; }
         public bool Habilitado { get; set; }
 
-        public Rol()
-        {
-
-        }
+        public Rol() { }
+        
     }
 }

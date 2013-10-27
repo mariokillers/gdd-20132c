@@ -42,10 +42,11 @@
             this.cmdRolModificacion = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdRolBaja = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdAgenda = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdEstadisticas = new System.Windows.Forms.ToolStripMenuItem();
             this.cmbRoles = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdIngresar = new System.Windows.Forms.Button();
-            this.cmdEstadisticas = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdLogOut = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +57,8 @@
             this.cmdProfesional,
             this.cmdRol,
             this.cmdAgenda,
-            this.cmdEstadisticas});
+            this.cmdEstadisticas,
+            this.cmdLogOut});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(530, 24);
@@ -76,20 +78,20 @@
             // cmdAfiliadoAlta
             // 
             this.cmdAfiliadoAlta.Name = "cmdAfiliadoAlta";
-            this.cmdAfiliadoAlta.Size = new System.Drawing.Size(152, 22);
+            this.cmdAfiliadoAlta.Size = new System.Drawing.Size(144, 22);
             this.cmdAfiliadoAlta.Text = "Alta";
             // 
             // cmdAfiliadoModificacion
             // 
             this.cmdAfiliadoModificacion.Name = "cmdAfiliadoModificacion";
-            this.cmdAfiliadoModificacion.Size = new System.Drawing.Size(152, 22);
+            this.cmdAfiliadoModificacion.Size = new System.Drawing.Size(144, 22);
             this.cmdAfiliadoModificacion.Text = "Modificacion";
             this.cmdAfiliadoModificacion.Click += new System.EventHandler(this.cmdAfiliadoModificacion_Click);
             // 
             // cmdAfiliadoBaja
             // 
             this.cmdAfiliadoBaja.Name = "cmdAfiliadoBaja";
-            this.cmdAfiliadoBaja.Size = new System.Drawing.Size(152, 22);
+            this.cmdAfiliadoBaja.Size = new System.Drawing.Size(144, 22);
             this.cmdAfiliadoBaja.Text = "Baja";
             this.cmdAfiliadoBaja.Click += new System.EventHandler(this.cmdAfiliadoBaja_Click);
             // 
@@ -158,6 +160,12 @@
             this.cmdAgenda.Size = new System.Drawing.Size(122, 20);
             this.cmdAgenda.Text = "Agenda Profesional";
             // 
+            // cmdEstadisticas
+            // 
+            this.cmdEstadisticas.Name = "cmdEstadisticas";
+            this.cmdEstadisticas.Size = new System.Drawing.Size(79, 20);
+            this.cmdEstadisticas.Text = "Estadisticas";
+            // 
             // cmbRoles
             // 
             this.cmbRoles.FormattingEnabled = true;
@@ -187,11 +195,12 @@
             this.cmdIngresar.UseVisualStyleBackColor = true;
             this.cmdIngresar.Click += new System.EventHandler(this.cmdIngresar_Click);
             // 
-            // cmdEstadisticas
+            // cmdLogOut
             // 
-            this.cmdEstadisticas.Name = "cmdEstadisticas";
-            this.cmdEstadisticas.Size = new System.Drawing.Size(79, 20);
-            this.cmdEstadisticas.Text = "Estadisticas";
+            this.cmdLogOut.Name = "cmdLogOut";
+            this.cmdLogOut.Size = new System.Drawing.Size(87, 20);
+            this.cmdLogOut.Text = "Cerrar sesion";
+            this.cmdLogOut.Click += new System.EventHandler(this.cmdLogOut_Click);
             // 
             // frmPrincipal
             // 
@@ -233,6 +242,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button cmdIngresar;
         private System.Windows.Forms.ToolStripMenuItem cmdEstadisticas;
+        private System.Windows.Forms.ToolStripMenuItem cmdLogOut;
 
 
     }

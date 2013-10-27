@@ -101,19 +101,6 @@ namespace Clinica_Frba.Abm_de_Rol
              */
         }
 
-        private void cmdModificar_Click(object sender, EventArgs e)
-        {
-            //selecciona un rol
-            Rol unRol = new Rol();
-            unRol = (Rol)grillaRoles.CurrentRow.DataBoundItem;
-            if (!unRol.Habilitado)
-            {
-                //SI "INHABILITA" EL ROL, DARLO DE BAJA
-                Roles.Eliminar(unRol.Id);
-                cargarGrilla();
-            } 
-        }
-
         private void cmdVolver_Click(object sender, EventArgs e)
         {
             frmPrincipal principal = new frmPrincipal();

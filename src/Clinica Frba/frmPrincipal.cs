@@ -11,6 +11,7 @@ using Clinica_Frba.Abm_de_Rol;
 using Clinica_Frba.Clases;
 using Clinica_Frba.Abm_de_Afiliado;
 using Clinica_Frba.NewFolder1;
+using Clinica_Frba.NewFolder10;
 
 namespace Clinica_Frba
 {
@@ -122,6 +123,7 @@ namespace Clinica_Frba
             
 
             //VEO QUE MOSTRAR EN BASE A SUS FUNCIONALIDADES
+            cmdLogOut.Visible = true;
             cmdAfiliado.Visible = listaDeFunc.Contains("Administrar afiliados");
             cmbRoles.Visible = listaDeFunc.Contains("Administrar roles");
             cmdAgenda.Visible = listaDeFunc.Contains("Registrar agenda");
@@ -138,6 +140,13 @@ namespace Clinica_Frba
 	       ('Comprar bonos'),
 	       ('Ver turnos'),
 	       ('Pedir turno')*/
+        }
+
+        private void cmdLogOut_Click(object sender, EventArgs e)
+        {
+            frmLogin formLogin = new frmLogin();
+            this.Close();
+            formLogin.Show();
         }
     }
 }

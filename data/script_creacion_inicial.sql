@@ -247,7 +247,7 @@ CREATE TABLE mario_killers.Receta (
 	atencion int,
 	activo bit,
 	PRIMARY KEY (id),
-	-- FOREIGN KEY (atencion) REFERENCES mario_killers.Atencion(turno)
+	FOREIGN KEY (atencion) REFERENCES mario_killers.Atencion(turno)
 )
 
 CREATE TABLE mario_killers.Bono_Farmacia (
@@ -286,6 +286,13 @@ CREATE TABLE mario_killers.Sintoma (
 
 --------------------------------- DATOS INICIALES -----------------------------
 
+INSERT INTO mario_killers.Estado_Civil (estado)
+	VALUES ('Soltero/a'),
+	       ('Casado/a'),
+	       ('Viudo/a'),
+	       ('Concubinato'),
+	       ('Divorciado/a')
+
 INSERT INTO mario_killers.Rol (nombre)
 	VALUES ('Administrativo'),
 	       ('Profesional'),
@@ -308,9 +315,9 @@ INSERT INTO mario_killers.Funcionalidad (nombre)
 	       ('Pedir turno')
 
 INSERT INTO mario_killers.Usuario (nombre, pw)
-	VALUES ('admin', 'bf7dabb787f940696c224f18566f7fd6dce389d9b41fcd75a352165e426bec1b'),
-	       ('cormillot', 'bf7dabb787f940696c224f18566f7fd6dce389d9b41fcd75a352165e426bec1b'),
-	       ('tomi', 'bf7dabb787f940696c224f18566f7fd6dce389d9b41fcd75a352165e426bec1b')
+	VALUES ('admin', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),
+	       ('cormillot', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),
+	       ('tomi', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7')
 
 INSERT INTO mario_killers.Roles_Usuario
 	VALUES ('admin', 1),

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using Clinica_Frba.Clase_Persona;
 using System.Data.OleDb;
+using System.Data.Sql;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace Clinica_Frba.Clases
 {
@@ -19,26 +22,26 @@ namespace Clinica_Frba.Clases
 
         public bool Eliminar(int codigoGrupo, int numeroFamiliar)
         {
-            List<OleDbParameter> Lista = new List<OleDbParameter>();
+            List<SqlParameter> Lista = new List<SqlParameter>();
             //VER COMO ESTA EN LA DB (numeroAfiliado)
-            Lista.Add(new OleDbParameter("@codigoGrupo", codigoGrupo));
-            Lista.Add(new OleDbParameter("@numeroFamiliar", numeroFamiliar));
-            return Clases.BaseDeDatos.EscribirEnBase("update mario_killers.Paciente set Activo =0 where (Codigo_Grupo=@codigoGrupo and Nro_Familiar=@numeroFamiliar)", "T", Lista);
+            Lista.Add(new SqlParameter("@codigoGrupo", codigoGrupo));
+            Lista.Add(new SqlParameter("@numeroFamiliar", numeroFamiliar));
+            return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Paciente set Activo =0 where (Codigo_Grupo=@codigoGrupo and Nro_Familiar=@numeroFamiliar)", "T", Lista);
         }
 
         public bool Agregar(Afiliado unAfiliado)
         {
             //ANTES DE DAR UNA ALTA DE AFILIADO,HAY QUE DAR DE ALTA LA PERSONA
 
-            List<OleDbParameter> Lista = new List<OleDbParameter>();
-            Lista.Add(new OleDbParameter("@persona", unAfiliado.Codigo_Persona));
-            Lista.Add(new OleDbParameter("@estado_civil", unAfiliado.Estado_Civil));
-            Lista.Add(new OleDbParameter("@grupo_familia", unAfiliado.Numero_Grupo));
-            Lista.Add(new OleDbParameter("@nro_familiar", unAfiliado.Numero_Familiar));
-            Lista.Add(new OleDbParameter("@cant_hijos", unAfiliado.Cantidad_Hijos));
-            Lista.Add(new OleDbParameter("@activo", unAfiliado.Activo));
+            List<SqlParameter> Lista = new List<SqlParameter>();
+            Lista.Add(new SqlParameter("@persona", unAfiliado.Codigo_Persona));
+            Lista.Add(new SqlParameter("@estado_civil", unAfiliado.Estado_Civil));
+            Lista.Add(new SqlParameter("@grupo_familia", unAfiliado.Numero_Grupo));
+            Lista.Add(new SqlParameter("@nro_familiar", unAfiliado.Numero_Familiar));
+            Lista.Add(new SqlParameter("@cant_hijos", unAfiliado.Cantidad_Hijos));
+            Lista.Add(new SqlParameter("@activo", unAfiliado.Activo));
 
-            return Clases.BaseDeDatos.EscribirEnBase("insert into mario_killers.Afiliado ( persona, estado_civil , grupo_familia, nro_familiar, cant_hijos, activo) values (@persona, @estado_civil, @grupo_familia, @nro_familiar, @cant_hijos, @activo)", "T", Lista);
+            return Clases.BaseDeDatosSQL.EscribirEnBase("insert into mario_killers.Afiliado ( persona, estado_civil , grupo_familia, nro_familiar, cant_hijos, activo) values (@persona, @estado_civil, @grupo_familia, @nro_familiar, @cant_hijos, @activo)", "T", Lista);
         }
     }
 }

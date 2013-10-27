@@ -103,10 +103,7 @@ namespace Clinica_Frba.Abm_de_Rol
                 //SI "INHABILITA" EL ROL, DARLO DE BAJA
                 Roles.Eliminar(unRol.Id);
                 cargarGrilla();
-            }
-
-
-            
+            } 
         }
 
         private void cmdVolver_Click(object sender, EventArgs e)
@@ -131,6 +128,10 @@ namespace Clinica_Frba.Abm_de_Rol
             else
             {
                 Rol unRol = (Rol)grillaRoles.CurrentRow.DataBoundItem;
+                if (Operacion == "Modificacion")
+                {
+
+                }
                 //ME TENGO QUE ABRIR UNA NUEVA VISTA CON LAS FUNC DE ESE ROL
             }
         }

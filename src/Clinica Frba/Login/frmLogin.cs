@@ -19,8 +19,6 @@ namespace Clinica_Frba.NewFolder10
             InitializeComponent();
         }
 
-        frmPrincipal formPrincipal;
-
         private void Ingresar_Click_1(object sender, EventArgs e)
         {
             try
@@ -38,6 +36,7 @@ namespace Clinica_Frba.NewFolder10
                     //VALIDAR EL USER
                     if (!user.Activo)
                     {
+                        MessageBox.Show("Usuario inactivo", "Error!", MessageBoxButtons.OK);
                     }
                     if (!user.Password.Equals(pass))
                     {
@@ -49,9 +48,10 @@ namespace Clinica_Frba.NewFolder10
                     user.ReiniciarFallidos();
 
                     //INGRESO AL FORM PRINCIPAL,LE PASO EL USER ID ASI SABE QUE FUNCIONALIDADES MOSTRAR
+                    frmPrincipal formPrincipal = new frmPrincipal();
                     formPrincipal.UserName = user.Name;
-                    //this.Hide();
-                    //formPrincipal.Show();
+                    this.Hide();
+                    formPrincipal.Show();
                 }
                 else
                 {

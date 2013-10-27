@@ -9,25 +9,27 @@ using System.Data.SqlTypes;
 
 namespace Clinica_Frba.Clases
 {
-    class Planes
+    class Usuarios
     {
-        public static List<Plan> ObtenerPlanes()
+        public static List<Rol> ObtenerRoles(Usuario user)
         {
-            List<Plan> Lista = new List<Plan>();
+            List<Rol> Lista = new List<Rol>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@nombre", user.Name));
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("", "T", ListaParametros);
 
             if (lector.HasRows)
             {
                 while (lector.Read())
                 {
-                    Plan unPlan = new Plan();
-                    unPlan.Codigo = (int)lector["codigo "];
-                    unPlan.Descripcion = (string)lector["desripcion"];
-                    unPlan.Precio_Bono_Consulta = (int)lector["precio_bono_consulta"];
-                    unPlan.Precio_Bono_Farmacia = (int)lector["precio_bono_farmacia"];
-                    Lista.Add(unPlan);
+                    Rol unRol = new Rol();
+                    unRol.Id = (int)lector["codigo"];
+                    unRol.Nombre = (string)lector["nombre"];
+                    unRol.Habilitado = true;
+                    Lista.Add(unRol);
+
+                    //ME FALTA LLAMAR A FUNCIONALIDADES.OBTENERFUNCIONALIDADES(UNROL)
                 }
             }
             return Lista;

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Clinica_Frba.Clases;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 
 namespace Clinica_Frba.Abm_de_Afiliado
 {
@@ -19,7 +20,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
         }
 
         //PARA CARGAR EN LA LISTA LOS PARAMETROS DE BUSQUEDA
-        private List<OleDbParameter> ListaDeParametros = new List<OleDbParameter>();
+        private List<SqlParameter> ListaDeParametros = new List<SqlParameter>();
 
         //CARGO EL COMBO CON TODOS LOS PLANES
         private void lstSeleccionAfiliado_Load(object sender, EventArgs e)

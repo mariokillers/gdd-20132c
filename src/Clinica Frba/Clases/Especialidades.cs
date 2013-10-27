@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.OleDb;
+using System.Data.Sql;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace Clinica_Frba.Clases
 {
@@ -12,8 +15,8 @@ namespace Clinica_Frba.Clases
         {
             List<Especialidad> Lista = new List<Especialidad>();
 
-            List<OleDbParameter> ListaParametros = new List<OleDbParameter>();
-            OleDbDataReader lector = Clases.BaseDeDatos.ObtenerDataReader("", "T", ListaParametros);
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("", "T", ListaParametros);
 
             if (lector.HasRows)
             {

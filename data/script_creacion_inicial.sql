@@ -48,16 +48,19 @@ CREATE TABLE mario_killers.Usuario (
 	nombre varchar(255),
 	persona int,
 	pw char(64), -- SHA256
-	intentos_login int,
-	activo bit,
+	intentos_login int
+		CONSTRAINT "intentos_login_0" DEFAULT 0,
+	activo bit
+		CONSTRAINT "usuario_activo" DEFAULT 1,
 	PRIMARY KEY (nombre),
-	FOREIGN KEY (persona) REFERENCES mario_killers.Persona(id)
+	FOREIGN KEY (persona) REFERENCES mario_killers.Persona(id),
 )
 
 CREATE TABLE mario_killers.Rol (
 	id int IDENTITY,
-	rol varchar(255) NOT NULL,
-	activo bit,
+	nombre varchar(255) NOT NULL,
+	activo bit
+		CONSTRAINT rol_activo DEFAULT 1,
 	PRIMARY KEY (id)
 )
 
@@ -280,4 +283,30 @@ CREATE TABLE mario_killers.Sintoma (
 	FOREIGN KEY (atencion) REFERENCES mario_killers.Atencion(turno)
 )
 
---------------------------------- MIGRACION ---------------------------------
+--------------------------------- DATOS INICIALES -----------------------------
+
+INSERT INTO mario_killers.Rol (nombre)
+	VALUES ('Administrativo'),
+	       ('Profesional'),
+	       ('Afiliado');
+	       
+INSERT INTO mario_killers.Funcionalidad (nombre)
+	VALUES ('Administrar roles'),
+	       ('Ver afiliados'),
+	       ('Administrar afiliados'),
+	       ('Ver profesionales'),
+	       ('Administrar profesionales'),
+	       ('Consultar listado estadístico'),
+	       ('Registrar llegada'),
+	       ('Registrar agenda'),
+	       ('Registrar diagnóstico'),
+	       ('Cancelar atención médica'),
+	       ('Crear receta médica'),
+	       ('Comprar bonos'),
+	       ('Ver turnos'),
+	       ('Pedir turno')
+
+INSERT INTO mario_killers.Usuario (nombre, pw)
+	VALUES ('admin', 'bf7dabb787f940696c224f18566f7fd6dce389d9b41fcd75a352165e426bec1b'),
+	       ('cormillot', 'bf7dabb787f940696c224f18566f7fd6dce389d9b41fcd75a352165e426bec1b'),
+	       ('tomi', 'bf7dabb787f940696c224f18566f7fd6dce389d9b41fcd75a352165e426bec1b')

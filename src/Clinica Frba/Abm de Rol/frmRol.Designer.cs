@@ -77,6 +77,7 @@
             this.cmdAgregar.TabIndex = 14;
             this.cmdAgregar.Text = "Guardar";
             this.cmdAgregar.UseVisualStyleBackColor = true;
+            this.cmdAgregar.Click += new System.EventHandler(this.cmdAgregar_Click);
             // 
             // cmdLimpiar
             // 

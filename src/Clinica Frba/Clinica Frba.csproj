@@ -92,6 +92,7 @@
     <Compile Include="Clases\Medicamentos.cs" />
     <Compile Include="Clases\Persona.cs" />
     <Compile Include="Clases\Plan.cs" />
+    <Compile Include="Clases\Planes.cs" />
     <Compile Include="Clases\Profesional.cs" />
     <Compile Include="Clases\Receta.cs" />
     <Compile Include="Clases\Rol.cs" />

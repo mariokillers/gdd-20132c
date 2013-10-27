@@ -66,20 +66,19 @@
             // cmdAfiliadoAlta
             // 
             this.cmdAfiliadoAlta.Name = "cmdAfiliadoAlta";
-            this.cmdAfiliadoAlta.Size = new System.Drawing.Size(144, 22);
+            this.cmdAfiliadoAlta.Size = new System.Drawing.Size(152, 22);
             this.cmdAfiliadoAlta.Text = "Alta";
-            this.cmdAfiliadoAlta.Click += new System.EventHandler(this.altaToolStripMenuItem_Click);
             // 
             // cmdAfiliadoModificacion
             // 
             this.cmdAfiliadoModificacion.Name = "cmdAfiliadoModificacion";
-            this.cmdAfiliadoModificacion.Size = new System.Drawing.Size(144, 22);
+            this.cmdAfiliadoModificacion.Size = new System.Drawing.Size(152, 22);
             this.cmdAfiliadoModificacion.Text = "Modificacion";
             // 
             // cmdAfiliadoBaja
             // 
             this.cmdAfiliadoBaja.Name = "cmdAfiliadoBaja";
-            this.cmdAfiliadoBaja.Size = new System.Drawing.Size(144, 22);
+            this.cmdAfiliadoBaja.Size = new System.Drawing.Size(152, 22);
             this.cmdAfiliadoBaja.Text = "Baja";
             // 
             // cmdProfesional
@@ -110,14 +109,12 @@
             this.cmdRolModificacion.Name = "cmdRolModificacion";
             this.cmdRolModificacion.Size = new System.Drawing.Size(144, 22);
             this.cmdRolModificacion.Text = "Modificacion";
-            this.cmdRolModificacion.Click += new System.EventHandler(this.modificacionToolStripMenuItem1_Click);
             // 
             // cmdRolBaja
             // 
             this.cmdRolBaja.Name = "cmdRolBaja";
             this.cmdRolBaja.Size = new System.Drawing.Size(144, 22);
             this.cmdRolBaja.Text = "Baja";
-            this.cmdRolBaja.Click += new System.EventHandler(this.bajaToolStripMenuItem1_Click);
             // 
             // frmPrincipal
             // 

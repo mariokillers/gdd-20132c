@@ -13,18 +13,7 @@ namespace Clinica_Frba.Clases
         public List<Funcionalidad> ListaFuncionalidades { get; set; }
         public bool Habilitado { get; set; }
 
-        public Rol()
-        {
-
-        }
-
-        public bool Eliminar()
-        {
-            List<OleDbParameter> ListaParametros = new List<OleDbParameter>();
-            ListaParametros.Add(new OleDbParameter("@id", this.Id));
-            return Clases.BaseDeDatos.EscribirEnBase("update mario_killers.Rol set Activo =0 where id=@id", "T", ListaParametros);
-
-
-        }
+        public Rol() { }
+        
     }
 }

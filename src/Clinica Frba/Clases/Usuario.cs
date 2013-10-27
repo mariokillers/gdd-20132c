@@ -38,7 +38,7 @@ namespace Clinica_Frba.Clases
             List<OleDbParameter> Lista = new List<OleDbParameter>();
             Lista.Add(new OleDbParameter("@intentos_login", CantFallidos + 1));
             Lista.Add(new OleDbParameter("@nombre", Name));
-
+            //VER ESTO COMO SP
             if (CantFallidos == 2)
             {
                 return Clases.BaseDeDatos.EscribirEnBase("update mario_killers.Usuario set activo=0, intentos_login=@intentos_login where nombre=@nombre", "T", Lista);

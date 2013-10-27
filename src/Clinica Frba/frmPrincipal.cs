@@ -24,24 +24,24 @@ namespace Clinica_Frba
         private List<Funcionalidad> listaDeFuncionalidades = new List<Funcionalidad>();
 
         //SOLO FALTA COMPLETAR LO DE ABAJO
-        private void altaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void cmdAfiliadoAlta_Click(object sender, EventArgs e)
         {
             frmAfiliadoAlta formAf = new frmAfiliadoAlta();
             formAf.Show();
             this.Hide();
         }
-        private void modificacionToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void cmdRolModificacion_Click(object sender, EventArgs e)
         {
            /* lstSeleccionRol formRol = new lstSeleccionRol(Utiles.Operacion.Modificacion);
             formRol.Show();
             this.Hide();*/
         }
 
-        private void bajaToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void cmdRolBaja_Click(object sender, EventArgs e)
         {
-           /* lstSeleccionRol formRol = new lstSeleccionRol(Utiles.Operacion.Baja);
+            lstSeleccionRol formRol = new lstSeleccionRol("Baja");
             formRol.Show();
-            this.Hide();*/
+            this.Hide();
         }
 
         private void cmdRolAlta_Click(object sender, EventArgs e)
@@ -61,5 +61,6 @@ namespace Clinica_Frba
             cmdProfesional.Visible =
             cmdRol.Visible=*/
         }
+
     }
 }

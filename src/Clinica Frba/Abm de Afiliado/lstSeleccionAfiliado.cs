@@ -21,6 +21,8 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         //PARA CARGAR EN LA LISTA LOS PARAMETROS DE BUSQUEDA
         private List<SqlParameter> ListaDeParametros = new List<SqlParameter>();
+        //PARA SABER SI ES MODIFICACION O BAJA
+        public string Operacion { get; set; }
 
         //CARGO EL COMBO CON TODOS LOS PLANES
         private void lstSeleccionAfiliado_Load(object sender, EventArgs e)

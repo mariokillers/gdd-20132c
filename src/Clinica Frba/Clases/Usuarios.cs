@@ -17,15 +17,16 @@ namespace Clinica_Frba.Clases
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@nombre", user.Name));
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("select * from mario_killers.roles_usuario(@nombre)", "T", ListaParametros);
 
             if (lector.HasRows)
             {
                 while (lector.Read())
                 {
                     Rol unRol = new Rol();
-                    unRol.Id = (int)lector["codigo"];
                     unRol.Nombre = (string)lector["nombre"];
+                    unRol.Id = (int)lector["rol"];
+                    
                     unRol.Habilitado = true;
                     Lista.Add(unRol);
 

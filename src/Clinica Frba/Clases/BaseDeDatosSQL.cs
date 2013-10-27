@@ -19,7 +19,7 @@ namespace Clinica_Frba.Clases
         {
             if (_conexion.State == ConnectionState.Closed)
             {
-                _conexion.ConnectionString = @"User ID=gd;Initial Catalog=GD2C2013;Data Source=localhost\SQLSERVER2008;Password=gd2013";
+                _conexion.ConnectionString = @"User ID=gd;Initial Catalog=GD2C2013;Data Source=localhost\SQLSERVER2008;Password=gd2013;MultipleActiveResultSets=True";
                 _conexion.Open();
             }
             return _conexion;

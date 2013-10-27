@@ -33,23 +33,26 @@ namespace Clinica_Frba.NewFolder10
                     byte[] bytesDeHasheo = hasher.ComputeHash(encoderHash.GetBytes(txtPassword.Text));
                     string pass = bytesDeHasheoToString(bytesDeHasheo);
 
-                    //VALIDAR EL USER
-                    if (!user.Activo)
-                    {
-                        MessageBox.Show("Usuario inactivo", "Error!", MessageBoxButtons.OK);
-                    }
                     if (!user.Password.Equals(pass))
                     {
                         //ACTUALIZAR CANT FALLIDOS
                         user.ActualizarFallidos();
                         MessageBox.Show("Usuario y contraseña no validos", "Error!", MessageBoxButtons.OK);
                     }
+
+
+                    //VALIDAR EL USER
+                    if (!user.Activo)
+                    {
+                        MessageBox.Show("Usuario inactivo", "Error!", MessageBoxButtons.OK);
+                    }
+
                     //SETEO LOS FALLIDOS EN 0 PORQUE ENTRO
                     user.ReiniciarFallidos();
 
                     //INGRESO AL FORM PRINCIPAL,LE PASO EL USER ID ASI SABE QUE FUNCIONALIDADES MOSTRAR
                     frmPrincipal formPrincipal = new frmPrincipal();
-                    formPrincipal.UserName = user.Name;
+                    formPrincipal.User = user;
                     this.Hide();
                     formPrincipal.Show();
                 }

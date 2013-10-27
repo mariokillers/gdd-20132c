@@ -9,7 +9,7 @@ using System.Data.SqlTypes;
 
 namespace Clinica_Frba.Clases
 {
-    class Usuario
+    public class Usuario
     {
         public int Codigo_Persona { get; set; }
         public string Name { get; set; }
@@ -22,7 +22,6 @@ namespace Clinica_Frba.Clases
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@userName", userName));
 
-            //ESTA HARDCODEADO, VER QUE ONDA
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Usuario where nombre=@userName", "T", ListaParametros);
             if (lector.HasRows)
             {
@@ -54,8 +53,8 @@ namespace Clinica_Frba.Clases
         public bool ReiniciarFallidos()
         {
             List<SqlParameter> Lista = new List<SqlParameter>();
-            return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Usuario set intentos_login=1 where nombre='admin'", "T", Lista);
-
+            Lista.Add(new SqlParameter("@nombre", Name));
+            return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Usuario set intentos_login=0 where nombre=@nombre", "T", Lista);
         }
     }
 }

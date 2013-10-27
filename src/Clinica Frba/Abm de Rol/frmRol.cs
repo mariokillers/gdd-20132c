@@ -21,16 +21,22 @@ namespace Clinica_Frba.NewFolder1
         {
             //ME CARGO TODAS LAS FUNCIONALIDADES PARA PODER AGREGARLAS A LO ROLES
             List<Funcionalidad> listaDeFuncionalidades = Funcionalidades.ObtenerFuncionalidades();
-            foreach (Funcionalidad unaFuncionalidad in listaDeFuncionalidades)
-            {
-                cmbFuncionalidades.ValueMember = "Id";
-                cmbFuncionalidades.DisplayMember = "Nombre";
-            }
+            cmbFuncionalidades.DataSource = listaDeFuncionalidades;
+            cmbFuncionalidades.ValueMember = "Id";
+            cmbFuncionalidades.DisplayMember = "Nombre";
         }
 
         private void cmdLimpiar_Click(object sender, EventArgs e)
         {
-            this.Refresh();
+            deschequearElCheckBox();    //NO ME LO ESTA TOMANDO
+            txtNombre.Text = "";
+        }
+
+        public void deschequearElCheckBox()
+        {
+            bool state = false;
+            for (int i = 0; i < cmbFuncionalidades.Items.Count; i++)
+                cmbFuncionalidades.SetItemCheckState(i, (state ? CheckState.Checked : CheckState.Unchecked));
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
@@ -53,6 +59,13 @@ namespace Clinica_Frba.NewFolder1
             {
                 MessageBox.Show("Se ha producido un error,vuelva a intentarlo", "Error!", MessageBoxButtons.OK);
             }
+        }
+
+        private void cmdSeleccionarTodo_Click(object sender, EventArgs e)
+        {
+            bool state = true;
+            for (int i = 0; i < cmbFuncionalidades.Items.Count; i++)
+                cmbFuncionalidades.SetItemCheckState(i, (state ? CheckState.Checked : CheckState.Unchecked));
         }
     }
 }

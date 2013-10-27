@@ -34,6 +34,7 @@
             this.cmbFuncionalidades = new System.Windows.Forms.CheckedListBox();
             this.cmdAgregar = new System.Windows.Forms.Button();
             this.cmdLimpiar = new System.Windows.Forms.Button();
+            this.cmdSeleccionarTodo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -89,11 +90,22 @@
             this.cmdLimpiar.UseVisualStyleBackColor = true;
             this.cmdLimpiar.Click += new System.EventHandler(this.cmdLimpiar_Click);
             // 
+            // cmdSeleccionarTodo
+            // 
+            this.cmdSeleccionarTodo.Location = new System.Drawing.Point(144, 175);
+            this.cmdSeleccionarTodo.Name = "cmdSeleccionarTodo";
+            this.cmdSeleccionarTodo.Size = new System.Drawing.Size(98, 23);
+            this.cmdSeleccionarTodo.TabIndex = 16;
+            this.cmdSeleccionarTodo.Text = "Seleccionar todo";
+            this.cmdSeleccionarTodo.UseVisualStyleBackColor = true;
+            this.cmdSeleccionarTodo.Click += new System.EventHandler(this.cmdSeleccionarTodo_Click);
+            // 
             // frmRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.cmdSeleccionarTodo);
             this.Controls.Add(this.cmdLimpiar);
             this.Controls.Add(this.cmdAgregar);
             this.Controls.Add(this.cmbFuncionalidades);
@@ -116,5 +128,6 @@
         private System.Windows.Forms.CheckedListBox cmbFuncionalidades;
         private System.Windows.Forms.Button cmdAgregar;
         private System.Windows.Forms.Button cmdLimpiar;
+        private System.Windows.Forms.Button cmdSeleccionarTodo;
     }
 }

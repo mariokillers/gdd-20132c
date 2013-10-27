@@ -16,7 +16,7 @@ namespace Clinica_Frba.Clases
             List<Funcionalidad> Lista = new List<Funcionalidad>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT F.id, F.nombre FROM mario_killers.Rol R JOIN mario_killers.Funcionalidad_Rol FM ON R.id = FM.rol JOIN mario_killers.Funcionalidad F ON FM.funcionalidad = F.id", "T", ListaParametros);
 
             if (lector.HasRows)
             {
@@ -47,6 +47,27 @@ namespace Clinica_Frba.Clases
                     unaFuncionalidad.Id = (int)lector["id"];
                     unaFuncionalidad.Nombre = (string)lector["nombre"];
                     Lista.Add(unaFuncionalidad);
+                }
+            }
+            return Lista;
+        }
+
+        public static List<String> ObtenerFuncionalidadesPorRol(int idRol)
+        {
+            List<String> Lista = new List<String>();
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@rol", idRol));
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT F.id, F.nombre FROM mario_killers.Rol R JOIN mario_killers.Funcionalidad_Rol FM ON R.id = FM.rol JOIN mario_killers.Funcionalidad F ON FM.funcionalidad = F.id WHERE R.id = @rol", "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                while (lector.Read())
+                {
+                    Funcionalidad unaFuncionalidad = new Funcionalidad();
+                    unaFuncionalidad.Id = (int)lector["id"];
+                    unaFuncionalidad.Nombre = (string)lector["nombre"];
+                    Lista.Add(unaFuncionalidad.Nombre);
                 }
             }
             return Lista;

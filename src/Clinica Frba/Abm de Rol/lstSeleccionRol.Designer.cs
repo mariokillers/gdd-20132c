@@ -36,6 +36,7 @@
             this.grillaRoles = new System.Windows.Forms.DataGridView();
             this.cmdModificar = new System.Windows.Forms.Button();
             this.cmdVolver = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grillaRoles)).BeginInit();
             this.SuspendLayout();
@@ -116,11 +117,22 @@
             this.cmdVolver.UseVisualStyleBackColor = true;
             this.cmdVolver.Click += new System.EventHandler(this.cmdVolver_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(258, 341);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(269, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "FALTA VER EL TEMA DE MODIFICACION DE ROLES";
+            // 
             // lstSeleccionRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(613, 381);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.cmdModificar);
             this.Controls.Add(this.cmdVolver);
             this.Controls.Add(this.grillaRoles);
@@ -134,6 +146,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grillaRoles)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -147,5 +160,6 @@
         private System.Windows.Forms.DataGridView grillaRoles;
         private System.Windows.Forms.Button cmdModificar;
         private System.Windows.Forms.Button cmdVolver;
+        private System.Windows.Forms.Label label2;
     }
 }

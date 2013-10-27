@@ -45,18 +45,26 @@ CREATE VIEW mario_killers.Bonos_Consulta AS
 	      Compra_Bono_Fecha IS NOT NULL
 GO
 
+CREATE VIEW mario_killers.Turnos AS
+	SELECT DISTINCT Turno_Numero, Paciente_Dni, Medico_Dni, Turno_Fecha, Especialidad_Codigo
+	FROM gd_esquema.Maestra
+	WHERE Turno_Numero IS NOT NULL
+GO
+
 -- Personas
-INSERT INTO mario_killers.Persona (nombre, apellido, documento, fecha_nac, direccion, telefono, mail)
-	SELECT Paciente_Nombre, Paciente_Apellido, Paciente_Dni,
+SET IDENTITY_INSERT mario_killers.Persona ON
+INSERT INTO mario_killers.Persona (id, nombre, apellido, documento, fecha_nac, direccion, telefono, mail)
+	SELECT Paciente_Dni, Paciente_Nombre, Paciente_Apellido, Paciente_Dni,
 	       Paciente_Fecha_Nac, Paciente_Direccion, Paciente_Telefono,
 	       Paciente_Mail
 	FROM mario_killers.Pacientes
 
-INSERT INTO mario_killers.Persona (nombre, apellido, documento, fecha_nac, direccion, telefono, mail)
-	SELECT Medico_Nombre, Medico_Apellido, Medico_Dni,
+INSERT INTO mario_killers.Persona (id, nombre, apellido, documento, fecha_nac, direccion, telefono, mail)
+	SELECT Medico_Dni, Medico_Nombre, Medico_Apellido, Medico_Dni,
 	       Medico_Fecha_Nac, Medico_Direccion, Medico_Telefono,
 	       Medico_Mail
 	FROM mario_killers.Medicos
+SET IDENTITY_INSERT mario_killers.Persona OFF
 
 -- Planes medicos
 INSERT INTO mario_killers.Plan_Medico
@@ -105,6 +113,12 @@ INSERT INTO mario_killers.Medicamento (detalle)
 	SELECT Bono_Farmacia_Medicamento FROM mario_killers.Medicamentos
 
 -- Turnos
+SET IDENTITY_INSERT mario_killers.Turno ON
+INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad)
+	SELECT Turno_Numero, Paciente_Dni,
+	       Medico_Dni, Turno_Fecha, Especialidad_Codigo
+	FROM mario_killers.Turnos
+SET IDENTITY_INSERT mario_killers.Turno OFF
 
 -- Bonos consulta
 
@@ -120,3 +134,4 @@ DROP VIEW mario_killers.Especialidades
 DROP VIEW mario_killers.Planes_Medicos
 DROP VIEW mario_killers.Medicamentos
 DROP VIEW mario_killers.Bonos_Consulta
+DROP VIEW mario_killers.Turnos

@@ -49,7 +49,8 @@ CREATE TABLE mario_killers.Persona (
 	sexo char(1),
 	
 	PRIMARY KEY (id),
-	FOREIGN KEY (tipo_doc) REFERENCES mario_killers.Tipo_Documento(id)
+	FOREIGN KEY (tipo_doc) REFERENCES mario_killers.Tipo_Documento(id),
+	UNIQUE (tipo_doc, documento)
 )
 
 CREATE TABLE mario_killers.Usuario (

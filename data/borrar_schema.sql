@@ -30,8 +30,7 @@ DROP TABLE
     mario_killers.Tipo_Documento
            
 DROP FUNCTION mario_killers.horas_por_semana,
-              mario_killers.horas_se_pisan,
-              mario_killers.roles_usuario
+              mario_killers.horas_se_pisan
 
 DROP PROCEDURE mario_killers.agregar_funcionalidad
 

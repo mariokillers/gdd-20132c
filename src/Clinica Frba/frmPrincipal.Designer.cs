@@ -29,93 +29,95 @@
         private void InitializeComponent()
         {
             this.ToolStrip = new System.Windows.Forms.MenuStrip();
-            this.afiliadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.altaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modificacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.profesionalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.altaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.modificacionToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.bajaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdAfiliado = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdAfiliadoAlta = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdAfiliadoModificacion = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdAfiliadoBaja = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdProfesional = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdRol = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdRolAlta = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdRolModificacion = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdRolBaja = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // ToolStrip
             // 
             this.ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.afiliadoToolStripMenuItem,
-            this.profesionalToolStripMenuItem,
-            this.rolToolStripMenuItem});
+            this.cmdAfiliado,
+            this.cmdProfesional,
+            this.cmdRol});
             this.ToolStrip.Location = new System.Drawing.Point(0, 0);
             this.ToolStrip.Name = "ToolStrip";
             this.ToolStrip.Size = new System.Drawing.Size(284, 24);
             this.ToolStrip.TabIndex = 0;
             this.ToolStrip.Text = "menuStrip1";
             // 
-            // afiliadoToolStripMenuItem
+            // cmdAfiliado
             // 
-            this.afiliadoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.altaToolStripMenuItem,
-            this.modificacionToolStripMenuItem,
-            this.bajaToolStripMenuItem});
-            this.afiliadoToolStripMenuItem.Name = "afiliadoToolStripMenuItem";
-            this.afiliadoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.afiliadoToolStripMenuItem.Text = "Afiliado";
+            this.cmdAfiliado.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmdAfiliadoAlta,
+            this.cmdAfiliadoModificacion,
+            this.cmdAfiliadoBaja});
+            this.cmdAfiliado.Name = "cmdAfiliado";
+            this.cmdAfiliado.Size = new System.Drawing.Size(60, 20);
+            this.cmdAfiliado.Text = "Afiliado";
             // 
-            // altaToolStripMenuItem
+            // cmdAfiliadoAlta
             // 
-            this.altaToolStripMenuItem.Name = "altaToolStripMenuItem";
-            this.altaToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.altaToolStripMenuItem.Text = "Alta";
-            this.altaToolStripMenuItem.Click += new System.EventHandler(this.altaToolStripMenuItem_Click);
+            this.cmdAfiliadoAlta.Name = "cmdAfiliadoAlta";
+            this.cmdAfiliadoAlta.Size = new System.Drawing.Size(144, 22);
+            this.cmdAfiliadoAlta.Text = "Alta";
+            this.cmdAfiliadoAlta.Click += new System.EventHandler(this.altaToolStripMenuItem_Click);
             // 
-            // modificacionToolStripMenuItem
+            // cmdAfiliadoModificacion
             // 
-            this.modificacionToolStripMenuItem.Name = "modificacionToolStripMenuItem";
-            this.modificacionToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.modificacionToolStripMenuItem.Text = "Modificacion";
+            this.cmdAfiliadoModificacion.Name = "cmdAfiliadoModificacion";
+            this.cmdAfiliadoModificacion.Size = new System.Drawing.Size(144, 22);
+            this.cmdAfiliadoModificacion.Text = "Modificacion";
             // 
-            // bajaToolStripMenuItem
+            // cmdAfiliadoBaja
             // 
-            this.bajaToolStripMenuItem.Name = "bajaToolStripMenuItem";
-            this.bajaToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.bajaToolStripMenuItem.Text = "Baja";
+            this.cmdAfiliadoBaja.Name = "cmdAfiliadoBaja";
+            this.cmdAfiliadoBaja.Size = new System.Drawing.Size(144, 22);
+            this.cmdAfiliadoBaja.Text = "Baja";
             // 
-            // profesionalToolStripMenuItem
+            // cmdProfesional
             // 
-            this.profesionalToolStripMenuItem.Name = "profesionalToolStripMenuItem";
-            this.profesionalToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
-            this.profesionalToolStripMenuItem.Text = "Profesional";
+            this.cmdProfesional.Name = "cmdProfesional";
+            this.cmdProfesional.Size = new System.Drawing.Size(78, 20);
+            this.cmdProfesional.Text = "Profesional";
             // 
-            // rolToolStripMenuItem
+            // cmdRol
             // 
-            this.rolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.altaToolStripMenuItem1,
-            this.modificacionToolStripMenuItem1,
-            this.bajaToolStripMenuItem1});
-            this.rolToolStripMenuItem.Name = "rolToolStripMenuItem";
-            this.rolToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
-            this.rolToolStripMenuItem.Text = "Rol";
+            this.cmdRol.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmdRolAlta,
+            this.cmdRolModificacion,
+            this.cmdRolBaja});
+            this.cmdRol.Name = "cmdRol";
+            this.cmdRol.Size = new System.Drawing.Size(36, 20);
+            this.cmdRol.Text = "Rol";
             // 
-            // altaToolStripMenuItem1
+            // cmdRolAlta
             // 
-            this.altaToolStripMenuItem1.Name = "altaToolStripMenuItem1";
-            this.altaToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.altaToolStripMenuItem1.Text = "Alta";
+            this.cmdRolAlta.Name = "cmdRolAlta";
+            this.cmdRolAlta.Size = new System.Drawing.Size(144, 22);
+            this.cmdRolAlta.Text = "Alta";
+            this.cmdRolAlta.Click += new System.EventHandler(this.cmdRolAlta_Click);
             // 
-            // modificacionToolStripMenuItem1
+            // cmdRolModificacion
             // 
-            this.modificacionToolStripMenuItem1.Name = "modificacionToolStripMenuItem1";
-            this.modificacionToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.modificacionToolStripMenuItem1.Text = "Modificacion";
-            this.modificacionToolStripMenuItem1.Click += new System.EventHandler(this.modificacionToolStripMenuItem1_Click);
+            this.cmdRolModificacion.Name = "cmdRolModificacion";
+            this.cmdRolModificacion.Size = new System.Drawing.Size(144, 22);
+            this.cmdRolModificacion.Text = "Modificacion";
+            this.cmdRolModificacion.Click += new System.EventHandler(this.modificacionToolStripMenuItem1_Click);
             // 
-            // bajaToolStripMenuItem1
+            // cmdRolBaja
             // 
-            this.bajaToolStripMenuItem1.Name = "bajaToolStripMenuItem1";
-            this.bajaToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.bajaToolStripMenuItem1.Text = "Baja";
+            this.cmdRolBaja.Name = "cmdRolBaja";
+            this.cmdRolBaja.Size = new System.Drawing.Size(144, 22);
+            this.cmdRolBaja.Text = "Baja";
+            this.cmdRolBaja.Click += new System.EventHandler(this.bajaToolStripMenuItem1_Click);
             // 
             // frmPrincipal
             // 
@@ -126,6 +128,7 @@
             this.MainMenuStrip = this.ToolStrip;
             this.Name = "frmPrincipal";
             this.Text = "Bienvenido!";
+            this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.ToolStrip.ResumeLayout(false);
             this.ToolStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -136,15 +139,15 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip ToolStrip;
-        private System.Windows.Forms.ToolStripMenuItem afiliadoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem profesionalToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rolToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem altaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem modificacionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bajaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem altaToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem modificacionToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem bajaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem cmdAfiliado;
+        private System.Windows.Forms.ToolStripMenuItem cmdProfesional;
+        private System.Windows.Forms.ToolStripMenuItem cmdRol;
+        private System.Windows.Forms.ToolStripMenuItem cmdAfiliadoAlta;
+        private System.Windows.Forms.ToolStripMenuItem cmdAfiliadoModificacion;
+        private System.Windows.Forms.ToolStripMenuItem cmdAfiliadoBaja;
+        private System.Windows.Forms.ToolStripMenuItem cmdRolAlta;
+        private System.Windows.Forms.ToolStripMenuItem cmdRolModificacion;
+        private System.Windows.Forms.ToolStripMenuItem cmdRolBaja;
 
 
     }

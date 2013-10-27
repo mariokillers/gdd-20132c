@@ -29,7 +29,9 @@ DROP TABLE
     mario_killers.Persona,
     mario_killers.Tipo_Documento
            
-DROP FUNCTION mario_killers.horas_por_semana
-DROP FUNCTION mario_killers.horas_se_pisan
+DROP FUNCTION mario_killers.horas_por_semana,
+              mario_killers.horas_se_pisan
+
+DROP PROCEDURE mario_killers.agregar_funcionalidad
 
 DROP SCHEMA mario_killers

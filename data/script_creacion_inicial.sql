@@ -133,7 +133,7 @@ CREATE TABLE mario_killers.Afiliado (
 	activo bit NOT NULL
 		CONSTRAINT afiliado_activo DEFAULT 1,
 	PRIMARY KEY (persona),
-	-- UNIQUE (grupo_familia, nro_familiar) No es UNIQUE para la migracion
+	UNIQUE (grupo_familia, nro_familiar),
 	FOREIGN KEY (persona) REFERENCES mario_killers.Persona(id),
 	FOREIGN KEY (estado_civil) REFERENCES mario_killers.Estado_Civil(id),
 	FOREIGN KEY (grupo_familia) REFERENCES mario_killers.Grupo_Familia(codigo)

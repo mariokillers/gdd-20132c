@@ -38,6 +38,13 @@ CREATE VIEW mario_killers.Medicamentos AS
 	WHERE Bono_Farmacia_Medicamento IS NOT NULL
 GO
 
+CREATE VIEW mario_killers.Compras AS
+	SELECT DISTINCT Compra_Bono_Fecha, Paciente_Dni, Plan_Med_Codigo
+	FROM gd_esquema.Maestra
+	WHERE Compra_Bono_Fecha IS NOT NULL
+	      AND Plan_Med_Codigo IS NOT NULL
+GO
+
 CREATE VIEW mario_killers.Bonos_Consulta AS
 	SELECT DISTINCT Bono_Consulta_Numero, Compra_Bono_Fecha
 	FROM gd_esquema.Maestra
@@ -120,6 +127,11 @@ INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad
 	FROM mario_killers.Turnos
 SET IDENTITY_INSERT mario_killers.Turno OFF
 
+-- Compras
+INSERT INTO mario_killers.Compra (fecha, persona, plan_medico)
+	SELECT Compra_Bono_Fecha, Paciente_Dni, Plan_Med_Codigo
+	FROM mario_killers.Compras
+
 -- Bonos consulta
 
 -- Bonos farmacia
@@ -135,3 +147,4 @@ DROP VIEW mario_killers.Planes_Medicos
 DROP VIEW mario_killers.Medicamentos
 DROP VIEW mario_killers.Bonos_Consulta
 DROP VIEW mario_killers.Turnos
+DROP VIEW mario_killers.Compras

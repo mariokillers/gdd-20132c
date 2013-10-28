@@ -39,17 +39,17 @@ CREATE VIEW mario_killers.Medicamentos AS
 GO
 
 CREATE VIEW mario_killers.Compras AS
-	SELECT DISTINCT Compra_Bono_Fecha, Paciente_Dni, Plan_Med_Codigo
+	SELECT Compra_Bono_Fecha, Paciente_Dni, Plan_Med_Codigo
 	FROM gd_esquema.Maestra
 	WHERE Compra_Bono_Fecha IS NOT NULL
 	      AND Plan_Med_Codigo IS NOT NULL
+	GROUP BY Compra_Bono_Fecha, Paciente_Dni, Plan_Med_Codigo
 GO
 
 CREATE VIEW mario_killers.Bonos_Consulta AS
-	SELECT DISTINCT Bono_Consulta_Numero, Compra_Bono_Fecha
+	SELECT DISTINCT Bono_Consulta_Numero, Compra_Bono_Fecha, Paciente_Dni
 	FROM gd_esquema.Maestra
-	WHERE Bono_Consulta_Numero IS NOT NULL AND
-	      Compra_Bono_Fecha IS NOT NULL
+	WHERE Bono_Consulta_Numero IS NOT NULL
 GO
 
 CREATE VIEW mario_killers.Turnos AS
@@ -119,6 +119,19 @@ INSERT INTO mario_killers.Profesional (persona)
 INSERT INTO mario_killers.Medicamento (detalle)
 	SELECT Bono_Farmacia_Medicamento FROM mario_killers.Medicamentos
 
+-- Compras
+INSERT INTO mario_killers.Compra (fecha, persona, plan_medico)
+	SELECT Compra_Bono_Fecha, Paciente_Dni, Plan_Med_Codigo
+	FROM mario_killers.Compras
+
+-- Bonos consulta
+INSERT INTO mario_killers.Bono_Consulta (compra, plan_medico)
+	SELECT Compra.id, Compra.plan_medico
+	FROM mario_killers.Bonos_Consulta
+	     JOIN mario_killers.Compra
+	     ON Compra.persona = Bonos_Consulta.Paciente_Dni
+	     AND Compra.fecha = Bonos_Consulta.Compra_Bono_Fecha
+
 -- Turnos
 SET IDENTITY_INSERT mario_killers.Turno ON
 INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad)
@@ -126,13 +139,6 @@ INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad
 	       Medico_Dni, Turno_Fecha, Especialidad_Codigo
 	FROM mario_killers.Turnos
 SET IDENTITY_INSERT mario_killers.Turno OFF
-
--- Compras
-INSERT INTO mario_killers.Compra (fecha, persona, plan_medico)
-	SELECT Compra_Bono_Fecha, Paciente_Dni, Plan_Med_Codigo
-	FROM mario_killers.Compras
-
--- Bonos consulta
 
 -- Bonos farmacia
 

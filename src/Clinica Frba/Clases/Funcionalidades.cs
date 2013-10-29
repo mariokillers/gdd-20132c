@@ -52,6 +52,27 @@ namespace Clinica_Frba.Clases
             return Lista;
         }
 
+        public static List<Funcionalidad> ObtenerFuncionalidades(int idRol)
+        {
+            List<Funcionalidad> Lista = new List<Funcionalidad>();
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@rol", idRol));
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT F.id, F.nombre FROM mario_killers.Rol R JOIN mario_killers.Funcionalidad_Rol FM ON R.id = FM.rol JOIN mario_killers.Funcionalidad F ON FM.funcionalidad = F.id WHERE R.id = @rol", "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                while (lector.Read())
+                {
+                    Funcionalidad unaFuncionalidad = new Funcionalidad();
+                    unaFuncionalidad.Id = (int)lector["id"];
+                    unaFuncionalidad.Nombre = (string)lector["nombre"];
+                    Lista.Add(unaFuncionalidad);
+                }
+            }
+            return Lista;
+        }
+
         public static List<String> ObtenerFuncionalidadesPorRol(int idRol)
         {
             List<String> Lista = new List<String>();
@@ -71,6 +92,14 @@ namespace Clinica_Frba.Clases
                 }
             }
             return Lista;
+        }
+
+        public static bool EliminarFuncionalidadPorRol(int idRol, Funcionalidad unaFunc)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@idRol", idRol));
+
+            //ver que necesito para eliminar una func.
         }
     }
 }

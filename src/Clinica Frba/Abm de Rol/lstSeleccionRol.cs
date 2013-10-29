@@ -78,22 +78,13 @@ namespace Clinica_Frba.Abm_de_Rol
 
             grillaRoles.Columns.Add(ColHabilitado);*/
 
-            DataGridViewButtonColumn ColBoton = new DataGridViewButtonColumn();
-            ColBoton.Name = "Boton";
-            ColBoton.HeaderText = "";
-            ColBoton.Width = 80;
-            ColBoton.UseColumnTextForButtonValue = true;
-
-            grillaRoles.Columns.Add(ColBoton);
-
             if (Operacion == "Baja")
             {
-                ColBoton.Text = "Eliminar";
+                cmdOperacion.Text = "Eliminar";
             }
             else
             {
-                //ColHabilitado.ReadOnly = true; // si eligio modificar, no puede inhabilitarlo
-                ColBoton.Text = "Modificar";
+                cmdOperacion.Text = "Modificar";
             }
 
             /*SELECCIONAR UN ROL Y APRETAR UN BOTON DE MODIFICAR FUNC. Y ME APAREZCA UNA GRILLA
@@ -101,19 +92,8 @@ namespace Clinica_Frba.Abm_de_Rol
              */
         }
 
-        private void cmdVolver_Click(object sender, EventArgs e)
+        private void cmdOperacion_Click(object sender, EventArgs e)
         {
-            frmPrincipal principal = new frmPrincipal();
-            this.Hide();
-            principal.ShowDialog();
-        }
-
-        private void grillaRoles_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //IGNORA LOS CLICKS DE OTROS BOTONES 
-            if (e.RowIndex < 0 || e.ColumnIndex !=
-                grillaRoles.Columns["Boton"].Index) return;
-
             Rol unRol = (Rol)grillaRoles.CurrentRow.DataBoundItem;
             if (Operacion == "Baja")
             {
@@ -125,6 +105,7 @@ namespace Clinica_Frba.Abm_de_Rol
                 if (Operacion == "Modificacion")
                 {
                     lstSeleccionFuncionalidad formFunc = new lstSeleccionFuncionalidad();
+                    formFunc.unRol = unRol;
                     formFunc.Show();
                 }
                 //ME TENGO QUE ABRIR UNA NUEVA VISTA CON LAS FUNC DE ESE ROL

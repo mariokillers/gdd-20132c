@@ -7,11 +7,11 @@ using System.Data.SqlClient;
 
 namespace Clinica_Frba.Clases
 {
-    class Rol
+    public class Rol
     {
         public string Nombre { get; set; }
         public int Id { get; set; }
-        public List<Funcionalidad> ListaFuncionalidades { get; set; }
+        private List<Funcionalidad> ListaFuncionalidades { get; set; }
         public bool Habilitado { get; set; }
 
         public Rol(int id)

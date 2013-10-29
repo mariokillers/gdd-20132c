@@ -19,6 +19,7 @@ namespace Clinica_Frba.Abm_de_Rol
 
         //lista de roles que voy a tener para mostrar
         private List<Funcionalidad> listaDeFuncionalidades = new List<Funcionalidad>();
+        public Rol unRol { get; set; }
 
         private void cmdBuscar_Click(object sender, EventArgs e)
         {
@@ -37,18 +38,47 @@ namespace Clinica_Frba.Abm_de_Rol
 
         private void lstSeleccionFuncionalidad_Load(object sender, EventArgs e)
         {
-            //ME CARGO TODAS LAS FUNCIONALIDADES PARA PODER AGREGARLAS A LO ROLES
-            List<Funcionalidad> listaDeFuncionalidades = Funcionalidades.ObtenerFuncionalidades();
-            foreach (Funcionalidad unaFuncionalidad in listaDeFuncionalidades)
+            if (unRol == null)
             {
+                //ME CARGO TODAS LAS FUNCIONALIDADES PARA PODER AGREGARLAS A LO ROLES
+                List<Funcionalidad> listaDeFuncionalidades = Funcionalidades.ObtenerFuncionalidades();
+                grillaFuncionalidades.DataSource = listaDeFuncionalidades;
                 grillaFuncionalidades.ValueMember = "Id";
                 grillaFuncionalidades.DisplayMember = "Nombre";
+            }
+            else
+            {
+                //ME MANDARON UN ROL ESPECIFICO -> MUESTRO SOLO LAS FUNC DE ESTE ROL
+                List<Funcionalidad> listaDeFuncionalidades = Funcionalidades.ObtenerFuncionalidades(unRol.Id);
+                grillaFuncionalidades.DataSource = listaDeFuncionalidades;
+                grillaFuncionalidades.ValueMember = "Id";
+                grillaFuncionalidades.DisplayMember = "Nombre";
+
+                cmdAgregar.Text = "Eliminar";
             }
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
             //TOMA DE LO QUE CHEKEO, ARMA UNA LISTA Y SE LO DEVUELVE AL FORM
+            List<Funcionalidad> listaDeFunc = new List<Funcionalidad>();
+            foreach (Funcionalidad unaFunc in grillaFuncionalidades.CheckedItems)
+            {
+                listaDeFunc.Add(unaFunc);
+            }
+
+            if (unRol == null)
+            {
+                //DOY DE ALTA
+            }
+            else 
+            { 
+                //DOY DE BAJA LAS FUNC SELECCIONADAS
+                foreach (Funcionalidad unaFunc in listaDeFunc)
+                {
+                    Funcionalidades.EliminarFuncionalidadPorRol(unRol.Id, unaFunc);
+                }
+            }
         }
     }
 }

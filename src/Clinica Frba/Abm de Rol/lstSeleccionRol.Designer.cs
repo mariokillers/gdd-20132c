@@ -34,8 +34,7 @@
             this.cmdLimpiar = new System.Windows.Forms.Button();
             this.cmdBuscar = new System.Windows.Forms.Button();
             this.grillaRoles = new System.Windows.Forms.DataGridView();
-            this.cmdVolver = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.cmdOperacion = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grillaRoles)).BeginInit();
             this.SuspendLayout();
@@ -96,33 +95,22 @@
             this.grillaRoles.Size = new System.Drawing.Size(435, 152);
             this.grillaRoles.TabIndex = 4;
             // 
-            // cmdVolver
+            // cmdOperacion
             // 
-            this.cmdVolver.Location = new System.Drawing.Point(189, 123);
-            this.cmdVolver.Name = "cmdVolver";
-            this.cmdVolver.Size = new System.Drawing.Size(75, 23);
-            this.cmdVolver.TabIndex = 6;
-            this.cmdVolver.Text = "Volver";
-            this.cmdVolver.UseVisualStyleBackColor = true;
-            this.cmdVolver.Click += new System.EventHandler(this.cmdVolver_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(52, 337);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(460, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "FALTA VER EL TEMA DE MODIFICACION DE ROLES; NO ME TOMA EL ACTION DEL CLICK";
+            this.cmdOperacion.Location = new System.Drawing.Point(189, 339);
+            this.cmdOperacion.Name = "cmdOperacion";
+            this.cmdOperacion.Size = new System.Drawing.Size(75, 23);
+            this.cmdOperacion.TabIndex = 7;
+            this.cmdOperacion.Text = "button1";
+            this.cmdOperacion.UseVisualStyleBackColor = true;
+            this.cmdOperacion.Click += new System.EventHandler(this.cmdOperacion_Click);
             // 
             // lstSeleccionRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(613, 381);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.cmdVolver);
+            this.ClientSize = new System.Drawing.Size(516, 381);
+            this.Controls.Add(this.cmdOperacion);
             this.Controls.Add(this.grillaRoles);
             this.Controls.Add(this.cmdBuscar);
             this.Controls.Add(this.cmdLimpiar);
@@ -134,7 +122,6 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grillaRoles)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -146,7 +133,6 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView grillaRoles;
-        private System.Windows.Forms.Button cmdVolver;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button cmdOperacion;
     }
 }

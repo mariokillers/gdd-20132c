@@ -47,9 +47,10 @@ CREATE VIEW mario_killers.Compras AS
 GO
 
 CREATE VIEW mario_killers.Bonos_Consulta AS
-	SELECT DISTINCT Bono_Consulta_Numero, Compra_Bono_Fecha, Paciente_Dni
+	SELECT Bono_Consulta_Numero, Compra_Bono_Fecha, Paciente_Dni, Turno_Numero
 	FROM gd_esquema.Maestra
-	WHERE Bono_Consulta_Numero IS NOT NULL
+	WHERE Bono_Consulta_Numero IS NOT NULL AND Compra_Bono_Fecha IS NOT NULL
+	GROUP BY Bono_Consulta_Numero, Compra_Bono_Fecha, Paciente_Dni, Turno_Numero
 GO
 
 CREATE VIEW mario_killers.Turnos AS
@@ -113,7 +114,6 @@ INSERT INTO mario_killers.Profesional (persona)
 	SELECT id
 	FROM mario_killers.Persona
 	WHERE documento IN (SELECT Medico_Dni FROM mario_killers.Medicos)
-
    
 -- Medicamentos
 INSERT INTO mario_killers.Medicamento (detalle)
@@ -124,14 +124,6 @@ INSERT INTO mario_killers.Compra (fecha, persona, plan_medico)
 	SELECT Compra_Bono_Fecha, Paciente_Dni, Plan_Med_Codigo
 	FROM mario_killers.Compras
 
--- Bonos consulta
-INSERT INTO mario_killers.Bono_Consulta (compra, plan_medico)
-	SELECT Compra.id, Compra.plan_medico
-	FROM mario_killers.Bonos_Consulta
-	     JOIN mario_killers.Compra
-	     ON Compra.persona = Bonos_Consulta.Paciente_Dni
-	     AND Compra.fecha = Bonos_Consulta.Compra_Bono_Fecha
-
 -- Turnos
 SET IDENTITY_INSERT mario_killers.Turno ON
 INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad)
@@ -139,6 +131,15 @@ INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad
 	       Medico_Dni, Turno_Fecha, Especialidad_Codigo
 	FROM mario_killers.Turnos
 SET IDENTITY_INSERT mario_killers.Turno OFF
+GO
+
+-- Bonos consulta TODO ARREGLAR
+INSERT INTO mario_killers.Bono_Consulta (compra, turno, plan_medico)
+	SELECT Compra.id, Bonos_Consulta.Turno_Numero, Compra.plan_medico
+	FROM mario_killers.Bonos_Consulta
+	     JOIN mario_killers.Compra
+	     ON Compra.persona = Bonos_Consulta.Paciente_Dni
+			AND Compra.fecha = Bonos_Consulta.Compra_Bono_Fecha
 
 -- Bonos farmacia
 
@@ -154,3 +155,8 @@ DROP VIEW mario_killers.Medicamentos
 DROP VIEW mario_killers.Bonos_Consulta
 DROP VIEW mario_killers.Turnos
 DROP VIEW mario_killers.Compras
+
+---------------------- Constraints post-migracion ----------------------
+
+ALTER TABLE mario_killers.Turno WITH NOCHECK
+	ADD CONSTRAINT fecha_turno CHECK (mario_killers.horario_atencion(horario) = 1)

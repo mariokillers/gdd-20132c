@@ -1,6 +1,22 @@
 CREATE SCHEMA mario_killers AUTHORIZATION gd
 GO
 
+CREATE FUNCTION mario_killers.horario_atencion(@hora datetime) returns int
+AS BEGIN
+	DECLARE @result int
+	SET @result = CASE
+		WHEN DATEPART(DW, @hora) BETWEEN 2 AND 6
+		     AND CONVERT(TIME, @hora) BETWEEN '07:00:00' AND '20:00:00'
+		THEN 1
+		WHEN DATEPART(DW, @hora) = 7
+		     AND CONVERT(TIME, @hora) BETWEEN '10:00:00' AND '15:00:00'
+		THEN 1
+		ELSE 0
+	END
+	RETURN @result
+END
+GO
+
 CREATE FUNCTION mario_killers.horas_por_semana(@profesional int) RETURNS int AS
 BEGIN
 	RETURN (SELECT SUM(DATEDIFF(HOUR, hora_desde, hora_hasta))
@@ -183,17 +199,9 @@ CREATE TABLE mario_killers.Rango (
 	hora_hasta time NOT NULL,
 	PRIMARY KEY (id),
 	CONSTRAINT horarios_validos CHECK (
-	CASE
-		WHEN dia BETWEEN 2 AND 6
-		     AND hora_desde BETWEEN '07:00:00' AND '20:00:00'
-		     AND hora_hasta BETWEEN '07:00:00' AND '20:00:00'
-		THEN 1
-		WHEN dia = 7
-		     AND hora_desde BETWEEN '10:00:00' AND '15:00:00'
-		     AND hora_hasta BETWEEN '10:00:00' AND '15:00:00'
-		THEN 1
-	END = 1
-	AND hora_desde < hora_hasta
+	mario_killers.horario_atencion(CONVERT(TIME,hora_desde)) = 1 AND
+	mario_killers.horario_atencion(CONVERT(TIME,hora_hasta)) = 1 AND
+	hora_desde < hora_hasta
 	),
 	CONSTRAINT max_horas_por_semana CHECK (mario_killers.horas_por_semana(profesional) <= 48),
 	CONSTRAINT horas_no_se_pisan CHECK (mario_killers.horas_se_pisan(profesional) = 0),

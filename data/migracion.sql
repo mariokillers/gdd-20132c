@@ -47,16 +47,18 @@ CREATE VIEW mario_killers.Compras AS
 GO
 
 CREATE VIEW mario_killers.Bonos_Consulta AS
-	SELECT Bono_Consulta_Numero, Compra_Bono_Fecha, Paciente_Dni, Turno_Numero
+	SELECT DISTINCT Bono_Consulta_Numero,
+	                MAX(Turno_Numero) AS Turno_Numero,
+	                MAX(Compra_Bono_Fecha) AS Compra_Bono_Fecha
 	FROM gd_esquema.Maestra
-	WHERE Bono_Consulta_Numero IS NOT NULL AND Compra_Bono_Fecha IS NOT NULL
-	GROUP BY Bono_Consulta_Numero, Compra_Bono_Fecha, Paciente_Dni, Turno_Numero
+	WHERE Bono_Consulta_Numero IS NOT NULL
+	GROUP BY Bono_Consulta_Numero
 GO
 
 CREATE VIEW mario_killers.Turnos AS
-	SELECT DISTINCT Turno_Numero, Paciente_Dni, Medico_Dni, Turno_Fecha, Especialidad_Codigo
-	FROM gd_esquema.Maestra
-	WHERE Turno_Numero IS NOT NULL
+		SELECT DISTINCT Turno_Numero, Paciente_Dni, Medico_Dni, Turno_Fecha, Especialidad_Codigo
+		FROM gd_esquema.Maestra
+		WHERE Turno_Numero IS NOT NULL
 GO
 
 -- Personas

@@ -141,6 +141,7 @@ CREATE TABLE mario_killers.Grupo_Familia (
 )
 
 CREATE TABLE mario_killers.Afiliado (
+	-- Cantidad de consultas se calcula
 	persona int,
 	estado_civil int,
 	grupo_familia numeric(18,0) NOT NULL,
@@ -254,7 +255,6 @@ CREATE TABLE mario_killers.Atencion (
 CREATE TABLE mario_killers.Bono_Consulta (
 	id int IDENTITY,
 	compra int,
-	contador int,
 	turno int,
 	plan_medico numeric(18, 0),
 	PRIMARY KEY (id),

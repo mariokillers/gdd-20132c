@@ -49,16 +49,34 @@ GO
 CREATE VIEW mario_killers.Bonos_Consulta AS
 	SELECT DISTINCT Bono_Consulta_Numero,
 	                MAX(Turno_Numero) AS Turno_Numero,
-	                MAX(Compra_Bono_Fecha) AS Compra_Bono_Fecha
+	                MAX(Compra_Bono_Fecha) AS Compra_Bono_Fecha,
+	                Paciente_Dni
 	FROM gd_esquema.Maestra
 	WHERE Bono_Consulta_Numero IS NOT NULL
-	GROUP BY Bono_Consulta_Numero
+	GROUP BY Bono_Consulta_Numero, Paciente_Dni
 GO
 
 CREATE VIEW mario_killers.Turnos AS
-		SELECT DISTINCT Turno_Numero, Paciente_Dni, Medico_Dni, Turno_Fecha, Especialidad_Codigo
-		FROM gd_esquema.Maestra
-		WHERE Turno_Numero IS NOT NULL
+	SELECT DISTINCT Turno_Numero, Paciente_Dni, Medico_Dni, Turno_Fecha, Especialidad_Codigo
+	FROM gd_esquema.Maestra
+	WHERE Turno_Numero IS NOT NULL
+GO
+
+CREATE VIEW mario_killers.Bonos_Farmacia AS
+	SELECT DISTINCT Bono_Farmacia_Numero,
+	                MAX(Compra_Bono_Fecha) Compra_Bono_Fecha,
+	                MAX(Turno_Numero) AS Turno_Numero,
+	                Paciente_Dni
+	FROM gd_esquema.Maestra
+	WHERE Bono_Farmacia_Numero IS NOT NULL
+	GROUP BY Bono_Farmacia_Numero, Paciente_Dni
+GO
+
+CREATE VIEW mario_killers.Atenciones AS
+	SELECT DISTINCT Turno_Numero, Turno_Fecha, MAX(Consulta_Enfermedades) AS Consulta_Enfermedades
+	FROM gd_esquema.Maestra
+	WHERE Turno_Numero IS NOT NULL
+	GROUP BY Turno_Numero, Turno_Fecha
 GO
 
 -- Personas
@@ -135,7 +153,7 @@ INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad
 SET IDENTITY_INSERT mario_killers.Turno OFF
 GO
 
--- Bonos consulta TODO ARREGLAR
+-- Bonos consulta
 INSERT INTO mario_killers.Bono_Consulta (compra, turno, plan_medico)
 	SELECT Compra.id, Bonos_Consulta.Turno_Numero, Compra.plan_medico
 	FROM mario_killers.Bonos_Consulta
@@ -144,19 +162,32 @@ INSERT INTO mario_killers.Bono_Consulta (compra, turno, plan_medico)
 			AND Compra.fecha = Bonos_Consulta.Compra_Bono_Fecha
 
 -- Bonos farmacia
+INSERT INTO mario_killers.Bono_Farmacia (compra, plan_medico)
+	SELECT Compra.id, plan_medico
+	FROM mario_killers.Bonos_Farmacia
+		JOIN mario_killers.Compra
+		ON Compra.persona = Bonos_Farmacia.Paciente_Dni
+			AND Compra.fecha = Bonos_Farmacia.Compra_Bono_Fecha
+
+-- Atenciones
+INSERT INTO mario_killers.Atencion (turno, fecha, diagnostico)
+	SELECT Turno_Numero, Turno_Numero, Consulta_Enfermedades
+	FROM mario_killers.Atenciones
 
 -- Sintomas
 
 -- Recetas?
 
 DROP VIEW mario_killers.Pacientes
-DROP VIEW mario_killers.Medicos
-DROP VIEW mario_killers.Especialidades
-DROP VIEW mario_killers.Planes_Medicos
-DROP VIEW mario_killers.Medicamentos
-DROP VIEW mario_killers.Bonos_Consulta
-DROP VIEW mario_killers.Turnos
-DROP VIEW mario_killers.Compras
+         ,mario_killers.Medicos
+         ,mario_killers.Especialidades
+         ,mario_killers.Planes_Medicos
+         ,mario_killers.Medicamentos
+         ,mario_killers.Bonos_Consulta
+         ,mario_killers.Turnos
+         ,mario_killers.Compras
+         ,mario_killers.Atenciones
+         ,mario_killers.Bonos_Farmacia
 
 ---------------------- Constraints post-migracion ----------------------
 

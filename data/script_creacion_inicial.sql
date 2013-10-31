@@ -273,7 +273,7 @@ CREATE TABLE mario_killers.Receta (
 )
 
 CREATE TABLE mario_killers.Bono_Farmacia (
-	id int,
+	id int IDENTITY,
 	compra int,
 	receta int,
 	plan_medico numeric(18, 0),

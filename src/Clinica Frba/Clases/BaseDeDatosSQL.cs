@@ -50,27 +50,6 @@ namespace Clinica_Frba.Clases
             return comando.ExecuteReader();
         }
 
-        public static SqlDataReader ObtenerDataReader(string commandtext, string commandtype, SqlTransaction trans)
-        {
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = trans.Connection;
-            comando.CommandText = commandtext;
-            switch (commandtype)
-            {
-                case "T":
-                    comando.CommandType = CommandType.Text;
-                    break;
-                case "TD":
-                    comando.CommandType = CommandType.TableDirect;
-                    break;
-                case "SP":
-                    comando.CommandType = CommandType.StoredProcedure;
-                    break;
-            }
-            comando.Transaction = trans;
-
-            return comando.ExecuteReader();
-        }
 
         public static bool EscribirEnBase(string commandtext, string commandtype, List<SqlParameter> ListaParametro)
         {
@@ -148,6 +127,28 @@ namespace Clinica_Frba.Clases
             comando.ExecuteNonQuery();
 
             return trans;
+        }
+
+        public static SqlDataReader ObtenerDataReader(string commandtext, string commandtype, SqlTransaction trans)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = trans.Connection;
+            comando.CommandText = commandtext;
+            switch (commandtype)
+            {
+                case "T":
+                    comando.CommandType = CommandType.Text;
+                    break;
+                case "TD":
+                    comando.CommandType = CommandType.TableDirect;
+                    break;
+                case "SP":
+                    comando.CommandType = CommandType.StoredProcedure;
+                    break;
+            }
+            comando.Transaction = trans;
+
+            return comando.ExecuteReader();
         }
     }
 

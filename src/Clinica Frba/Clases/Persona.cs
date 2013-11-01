@@ -12,7 +12,7 @@ namespace Clinica_Frba.Clase_Persona
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string TipoDocumento { get; set; }
-        public int NumeroDocumento  { get; set; }
+        public decimal NumeroDocumento  { get; set; }
         public int Telefono { get; set; }
         public string Direccion { get; set; }
         public string Mail  { get; set; }

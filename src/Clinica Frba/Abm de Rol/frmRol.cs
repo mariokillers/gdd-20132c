@@ -28,7 +28,7 @@ namespace Clinica_Frba.NewFolder1
 
         private void cmdLimpiar_Click(object sender, EventArgs e)
         {
-            deschequearElCheckBox();    //NO ME LO ESTA TOMANDO
+            deschequearElCheckBox();    
             txtNombre.Text = "";
         }
 

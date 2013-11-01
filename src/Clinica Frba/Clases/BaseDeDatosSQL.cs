@@ -50,6 +50,28 @@ namespace Clinica_Frba.Clases
             return comando.ExecuteReader();
         }
 
+        public static SqlDataReader ObtenerDataReader(string commandtext, string commandtype, SqlTransaction trans)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = trans.Connection;
+            comando.CommandText = commandtext;
+            switch (commandtype)
+            {
+                case "T":
+                    comando.CommandType = CommandType.Text;
+                    break;
+                case "TD":
+                    comando.CommandType = CommandType.TableDirect;
+                    break;
+                case "SP":
+                    comando.CommandType = CommandType.StoredProcedure;
+                    break;
+            }
+            comando.Transaction = trans;
+
+            return comando.ExecuteReader();
+        }
+
         public static bool EscribirEnBase(string commandtext, string commandtype, List<SqlParameter> ListaParametro)
         {
             SqlCommand comando = new SqlCommand();
@@ -89,6 +111,43 @@ namespace Clinica_Frba.Clases
             }
             catch
             { return false; }
+        }
+
+        public static int ObtenerUltimoAgregado(SqlTransaction trans)
+        {
+            SqlDataReader reader = ObtenerDataReader("SELECT @@IDENTITY AS Id", "T", trans);
+            if (reader.HasRows)
+            {
+                reader.Read();
+
+                return Convert.ToInt32(reader["Id"]);
+            }
+            throw new Exception("error al obtener id");
+        }
+
+        public static SqlTransaction EscribirEnBase(string commandtext, string commandtype, List<SqlParameter> ListaParametro, SqlTransaction trans)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ObtenerConexion();
+            comando.CommandText = commandtext;
+            comando.Transaction = trans;
+            foreach (SqlParameter elemento in ListaParametro)
+            {
+                comando.Parameters.Add(elemento);
+            }
+
+            switch (commandtype)
+            {
+                case "T":
+                    comando.CommandType = CommandType.Text;
+                    break;
+                case "SP":
+                    comando.CommandType = CommandType.StoredProcedure;
+                    break;
+            }
+            comando.ExecuteNonQuery();
+
+            return trans;
         }
     }
 

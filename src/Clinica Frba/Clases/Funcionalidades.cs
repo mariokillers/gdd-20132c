@@ -37,7 +37,7 @@ namespace Clinica_Frba.Clases
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@txt", filtro));
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id FROM mario_killers.Funcionalidad WHERE nombre LIKE '%' + @txt + '%' ", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id, nombre FROM mario_killers.Funcionalidad WHERE nombre LIKE '%' + @txt + '%' ", "T", ListaParametros);
 
             if (lector.HasRows)
             {
@@ -101,6 +101,15 @@ namespace Clinica_Frba.Clases
 
             //ver que necesito para eliminar una func.
             return true;
+        }
+
+        public static bool AgregarFuncionalidadEnRol(int idRol, Funcionalidad unaFunc)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@idRol", idRol));
+            ListaParametros.Add(new SqlParameter("@idFunc", unaFunc.Id));
+
+            return Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Funcionalidad_Rol (rol, funcionalidad) VALUES (@idRol, @idFunc)", "T", ListaParametros);
         }
     }
 }

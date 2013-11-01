@@ -36,70 +36,60 @@ namespace Clinica_Frba.Abm_de_Rol
 
         private void lstSeleccionFuncionalidad_Load(object sender, EventArgs e)
         {
-            if (unRol != null)
+            try
             {
-                //ME TRAIGO TODAS PARA MOSTRARLAS DESCHEACKEADAS
-                List<Funcionalidad> listaDeTodas = Funcionalidades.ObtenerFuncionalidades();
-
-                //ME MANDARON UN ROL ESPECIFICO -> MUESTRO SOLO LAS FUNC DE ESTE ROL
-                List<Funcionalidad> listaDeFuncionalidades = Funcionalidades.ObtenerFuncionalidades(unRol.Id);
-
-                //FILTRO LAS QUE YA TIENE
-                foreach (Funcionalidad unaFunc in listaDeFuncionalidades)
+                if (unRol != null)
                 {
-                    if (listaDeTodas.Contains(unaFunc))
+                    //ME TRAIGO TODAS PARA MOSTRARLAS DESCHEACKEADAS
+                    List<Funcionalidad> listaDeTodas = Funcionalidades.ObtenerFuncionalidades();
+
+                    grillaFuncionalidades.DataSource = listaDeTodas;
+                    grillaFuncionalidades.ValueMember = "Id";
+                    grillaFuncionalidades.DisplayMember = "Nombre";
+
+                    //ME MANDARON UN ROL ESPECIFICO -> MUESTRO SOLO LAS FUNC DE ESTE ROL
+                    List<Funcionalidad> listaDeFuncionalidades = Funcionalidades.ObtenerFuncionalidades(unRol.Id);
+
+                    //CHECKEO LAS QUE TIENE
+                    foreach (Funcionalidad unaFunc in listaDeTodas)
                     {
-                        listaDeTodas.Remove(unaFunc);
+                        var probar = listaDeFuncionalidades.SingleOrDefault(fun => fun.Id == unaFunc.Id);
+                        if (probar != null)
+                        {
+                            grillaFuncionalidades.SetItemChecked(listaDeTodas.IndexOf(unaFunc), true);
+                        }
                     }
                 }
-                //LISTA A MOSTRAR
-                List<Funcionalidad> listaAMostrar = listaDeTodas.Concat(listaDeFuncionalidades).ToList();
-
-                grillaFuncionalidades.DataSource = listaAMostrar;
-                grillaFuncionalidades.ValueMember = "Id";
-                grillaFuncionalidades.DisplayMember = "Nombre";
-
-                //CHEKEO LAS QUE TIENE
-                for (int i = 0; i < listaDeFuncionalidades.Count; i++)
-                {
-                    grillaFuncionalidades.SetItemChecked(i, true);
-                }
-                
             }
-            else
-            {
-                //ME CARGO TODAS LAS FUNCIONALIDADES PARA PODER AGREGARLAS A LO ROLES
-                /*List<Funcionalidad> listaDeFuncionalidades = Funcionalidades.ObtenerFuncionalidades();
-                grillaFuncionalidades.DataSource = listaDeFuncionalidades;
-                grillaFuncionalidades.ValueMember = "Id";
-                grillaFuncionalidades.DisplayMember = "Nombre";*/   
-
-                //cmdAgregar.Text = "Eliminar";
-            }
+            catch
+            {MessageBox.Show("Se ha producido un error,vuelva a intentarlo", "Error!", MessageBoxButtons.OK);}
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            //TOMA DE LO QUE CHEKEO, ARMA UNA LISTA Y SE LO DEVUELVE AL FORM
+            //LISTA DE FUNCIONALIDADES QUE TIENE ESE ROL
+            List<Funcionalidad> listaQueTiene = Funcionalidades.ObtenerFuncionalidades(unRol.Id);
+
+            //LISTA DE FUNCIONALIDADES CHEKEADAS
             List<Funcionalidad> listaDeFunc = new List<Funcionalidad>();
             foreach (Funcionalidad unaFunc in grillaFuncionalidades.CheckedItems)
             {
                 listaDeFunc.Add(unaFunc);
             }
 
-            if (unRol != null)
+            //DOY DE BAJA LAS FUNC QUE YA NO ESTAN
+            foreach (Funcionalidad unaFunc in listaQueTiene)
             {
-                //DOY DE BAJA LAS FUNC SELECCIONADAS
-                foreach (Funcionalidad unaFunc in listaDeFunc)
-                {
-                    Funcionalidades.EliminarFuncionalidadPorRol(unRol.Id, unaFunc);
-                }
+                Funcionalidades.EliminarFuncionalidadPorRol(unRol.Id, unaFunc);
             }
-            else 
-            { 
-                //QUE SE HACE?
-            }
-        }
 
+            //DOY DE ALTA LAS NUEVAS
+            foreach (Funcionalidad unaFunc in listaDeFunc)
+            {
+                Funcionalidades.AgregarFuncionalidadEnRol(unRol.Id, unaFunc);
+            }
+
+            MessageBox.Show("Se ha modificado el rol con éxito", "Enhorabuena!", MessageBoxButtons.OK);
+        }
     }
 }

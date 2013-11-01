@@ -16,7 +16,7 @@ namespace Clinica_Frba.Clases
             List<Funcionalidad> Lista = new List<Funcionalidad>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT F.id, F.nombre FROM mario_killers.Rol R JOIN mario_killers.Funcionalidad_Rol FM ON R.id = FM.rol JOIN mario_killers.Funcionalidad F ON FM.funcionalidad = F.id", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * from mario_killers.Funcionalidad", "T", ListaParametros);
 
             if (lector.HasRows)
             {
@@ -98,9 +98,11 @@ namespace Clinica_Frba.Clases
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@idRol", idRol));
+            ListaParametros.Add(new SqlParameter("@idFunc", unaFunc.Id));
 
             //ver que necesito para eliminar una func.
-            return true;
+            return Clases.BaseDeDatosSQL.EscribirEnBase("delete from mario_killers.Funcionalidad_Rol where (rol=@idRol AND funcionalidad=@idFunc)", "T", ListaParametros);
+
         }
 
         public static bool AgregarFuncionalidadEnRol(int idRol, Funcionalidad unaFunc)

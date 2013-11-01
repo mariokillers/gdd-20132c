@@ -36,8 +36,8 @@ namespace Clinica_Frba.NewFolder10
                     if (!user.Password.Equals(pass))
                     {
                         //ACTUALIZAR CANT FALLIDOS
-                        user.ActualizarFallidos();
-                        MessageBox.Show("Usuario y contraseña no validos", "Error!", MessageBoxButtons.OK);
+                        user.ActualizarFallidos(); MessageBox.Show("Usuario y contraseña no validos", "Error!", MessageBoxButtons.OK);
+                       
                     }
 
 

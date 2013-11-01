@@ -1,12 +1,10 @@
 -- Esto NO es parte de la entrega, solo es para testear el script
 DROP TABLE
-	mario_killers.Sintoma,
 	mario_killers.Medicamento_Receta,
     mario_killers.Medicamento,
     mario_killers.Bono_Farmacia,
     mario_killers.Receta,
     mario_killers.Bono_Consulta,
-    mario_killers.Atencion,
     mario_killers.Turno,
     mario_killers.Especialidad,
     mario_killers.Tipo_Especialidad,

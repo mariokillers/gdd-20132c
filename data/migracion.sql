@@ -57,9 +57,12 @@ CREATE VIEW mario_killers.Bonos_Consulta AS
 GO
 
 CREATE VIEW mario_killers.Turnos AS
-	SELECT DISTINCT Turno_Numero, Paciente_Dni, Medico_Dni, Turno_Fecha, Especialidad_Codigo
+	SELECT DISTINCT Turno_Numero, Paciente_Dni, Medico_Dni, Turno_Fecha, Especialidad_Codigo,
+	                MAX(Consulta_Sintomas) Consulta_Sintomas,
+	                MAX(Consulta_Enfermedades) Consulta_Enfermedades
 	FROM gd_esquema.Maestra
 	WHERE Turno_Numero IS NOT NULL
+	GROUP BY Turno_Numero, Paciente_Dni, Medico_Dni, Turno_Fecha, Especialidad_Codigo
 GO
 
 CREATE VIEW mario_killers.Bonos_Farmacia AS
@@ -70,13 +73,6 @@ CREATE VIEW mario_killers.Bonos_Farmacia AS
 	FROM gd_esquema.Maestra
 	WHERE Bono_Farmacia_Numero IS NOT NULL
 	GROUP BY Bono_Farmacia_Numero, Paciente_Dni
-GO
-
-CREATE VIEW mario_killers.Atenciones AS
-	SELECT DISTINCT Turno_Numero, Turno_Fecha, MAX(Consulta_Enfermedades) AS Consulta_Enfermedades
-	FROM gd_esquema.Maestra
-	WHERE Turno_Numero IS NOT NULL
-	GROUP BY Turno_Numero, Turno_Fecha
 GO
 
 -- Personas
@@ -146,9 +142,10 @@ INSERT INTO mario_killers.Compra (fecha, persona, plan_medico)
 
 -- Turnos
 SET IDENTITY_INSERT mario_killers.Turno ON
-INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad)
+INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad, sintomas, diagnostico)
 	SELECT Turno_Numero, Paciente_Dni,
-	       Medico_Dni, Turno_Fecha, Especialidad_Codigo
+	       Medico_Dni, Turno_Fecha, Especialidad_Codigo,
+	       Consulta_Sintomas, Consulta_Enfermedades
 	FROM mario_killers.Turnos
 SET IDENTITY_INSERT mario_killers.Turno OFF
 GO
@@ -169,15 +166,6 @@ INSERT INTO mario_killers.Bono_Farmacia (compra, plan_medico)
 		ON Compra.persona = Bonos_Farmacia.Paciente_Dni
 			AND Compra.fecha = Bonos_Farmacia.Compra_Bono_Fecha
 
--- Atenciones
-INSERT INTO mario_killers.Atencion (turno, fecha, diagnostico)
-	SELECT Turno_Numero, Turno_Numero, Consulta_Enfermedades
-	FROM mario_killers.Atenciones
-
--- Sintomas
-
--- Recetas?
-
 DROP VIEW mario_killers.Pacientes
          ,mario_killers.Medicos
          ,mario_killers.Especialidades
@@ -186,7 +174,6 @@ DROP VIEW mario_killers.Pacientes
          ,mario_killers.Bonos_Consulta
          ,mario_killers.Turnos
          ,mario_killers.Compras
-         ,mario_killers.Atenciones
          ,mario_killers.Bonos_Farmacia
 
 ---------------------- Constraints post-migracion ----------------------

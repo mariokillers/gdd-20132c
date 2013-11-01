@@ -238,18 +238,12 @@ CREATE TABLE mario_killers.Turno (
 	activo bit
 		CONSTRAINT turno_activo DEFAULT 1,
 	horario_llegada datetime,
+	sintomas text,
+	diagnostico text,
 	PRIMARY KEY (id),
 	FOREIGN KEY (persona) REFERENCES mario_killers.Persona(id),
 	FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona),
 	FOREIGN KEY (especialidad) REFERENCES mario_killers.Especialidad(codigo)
-)
-
-CREATE TABLE mario_killers.Atencion (
-	turno int,
-	fecha datetime,
-	diagnostico varchar(255),
-	PRIMARY KEY (turno),
-	FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id)
 )
 
 CREATE TABLE mario_killers.Bono_Consulta (
@@ -265,11 +259,11 @@ CREATE TABLE mario_killers.Bono_Consulta (
 
 CREATE TABLE mario_killers.Receta (
 	id int IDENTITY,
-	atencion int,
+	turno int,
 	activo bit
 		CONSTRAINT receta_activa DEFAULT 1,
 	PRIMARY KEY (id),
-	FOREIGN KEY (atencion) REFERENCES mario_killers.Atencion(turno)
+	FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id)
 )
 
 CREATE TABLE mario_killers.Bono_Farmacia (
@@ -297,13 +291,6 @@ CREATE TABLE mario_killers.Medicamento_Receta (
 	FOREIGN KEY (medicamento) REFERENCES mario_killers.Medicamento(id),
 	FOREIGN KEY (receta) REFERENCES mario_killers.Receta(id),
 	CONSTRAINT max_3 CHECK (cantidad <= 3)
-)
-
-CREATE TABLE mario_killers.Sintoma (
-	atencion int,
-	detalle varchar(255),
-	PRIMARY KEY (atencion),
-	FOREIGN KEY (atencion) REFERENCES mario_killers.Atencion(turno)
 )
 
 --------------------------------- DATOS INICIALES -----------------------------
@@ -377,5 +364,7 @@ INSERT INTO mario_killers.Usuario (nombre, pw)
 
 INSERT INTO mario_killers.Rol_Usuario
 	VALUES ('admin', 1),
+	       ('admin', 2),
+	       ('admin', 3),
 	       ('cormillot', 2),
 	       ('tomi', 3);

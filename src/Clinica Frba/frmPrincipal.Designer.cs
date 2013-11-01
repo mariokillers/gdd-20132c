@@ -43,10 +43,10 @@
             this.cmdRolBaja = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdAgenda = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdEstadisticas = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdLogOut = new System.Windows.Forms.ToolStripMenuItem();
             this.cmbRoles = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdIngresar = new System.Windows.Forms.Button();
-            this.cmdLogOut = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -166,6 +166,13 @@
             this.cmdEstadisticas.Size = new System.Drawing.Size(79, 20);
             this.cmdEstadisticas.Text = "Estadisticas";
             // 
+            // cmdLogOut
+            // 
+            this.cmdLogOut.Name = "cmdLogOut";
+            this.cmdLogOut.Size = new System.Drawing.Size(87, 20);
+            this.cmdLogOut.Text = "Cerrar sesion";
+            this.cmdLogOut.Click += new System.EventHandler(this.cmdLogOut_Click);
+            // 
             // cmbRoles
             // 
             this.cmbRoles.FormattingEnabled = true;
@@ -193,14 +200,8 @@
             this.cmdIngresar.TabIndex = 3;
             this.cmdIngresar.Text = "Ingresar";
             this.cmdIngresar.UseVisualStyleBackColor = true;
+            this.cmdIngresar.Visible = false;
             this.cmdIngresar.Click += new System.EventHandler(this.cmdIngresar_Click);
-            // 
-            // cmdLogOut
-            // 
-            this.cmdLogOut.Name = "cmdLogOut";
-            this.cmdLogOut.Size = new System.Drawing.Size(87, 20);
-            this.cmdLogOut.Text = "Cerrar sesion";
-            this.cmdLogOut.Click += new System.EventHandler(this.cmdLogOut_Click);
             // 
             // frmPrincipal
             // 

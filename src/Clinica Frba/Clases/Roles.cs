@@ -34,7 +34,7 @@ namespace Clinica_Frba.Clases
             }
             return listaDeRoles;
         }
-       
+
         public static bool Eliminar(int id)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
@@ -44,13 +44,27 @@ namespace Clinica_Frba.Clases
 
         public static bool Agregar(string nombre, List<Funcionalidad> listaDeFunc)
         {
-            List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@nombre", nombre));
-            foreach (Funcionalidad unaFun in listaDeFunc)
+            try
             {
-                //VER COMO AGREGAR LAS FUNCIONALIDADES
+                SqlConnection con = BaseDeDatosSQL.ObtenerConexion();
+                SqlTransaction trans = con.BeginTransaction();
+
+                List<SqlParameter> ListaParametros = new List<SqlParameter>();
+                ListaParametros.Add(new SqlParameter("@nombreRol", nombre));
+
+                //INSERTA EL ROL EN LA BASE DE DATOS
+                Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Rol (nombre, activo) VALUES (@nombreRol, 1)", "T", ListaParametros);
+                //TOMO EL ID DE LO QUE ACABO DE INSERTAR
+                int idRol = BaseDeDatosSQL.ObtenerUltimoAgregado(trans);
+                //TENGO QUE DAR DE ALTA LAS FUNCIONALIDADES DE ESE ROL
+                foreach (Funcionalidad unaFunc in listaDeFunc)
+                {
+                    //AGREGO EN FUNCIONALIDAD_ROL EL ROL Y LA FUNC.
+                    Funcionalidades.AgregarFuncionalidadEnRol(idRol, unaFunc);
+                }
+                return true;
             }
-            return Clases.BaseDeDatosSQL.EscribirEnBase("", "T", ListaParametros);
+            catch { return false; }
         }
 
         public static List<Rol> ObtenerTodos()

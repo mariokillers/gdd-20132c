@@ -63,11 +63,13 @@ namespace Clinica_Frba
                 label1.Visible = true;
                 menu.Visible = false;
                 cmbRoles.Visible = true;
+                cmdIngresar.Visible = true;
 
                 cmbRoles.DataSource = listaDeRoles;
                 cmbRoles.DisplayMember = "Nombre";
                 cmbRoles.ValueMember = "Id";    
             }
+
             // OBTENER FUNCIONALIDADES POR ESTE ROL Y VER ESTE TEMA
            /* cmdAfiliado.Visible = listaDeFuncionalidades.Contains("ABM afiliado");
             cmdProfesional.Visible =

@@ -27,26 +27,16 @@ namespace Clinica_Frba.Abm_de_Rol
             {
                 //me traigo todas las funcionalidades que cumplen con el filtro
                 listaDeFuncionalidades = Funcionalidades.ObtenerFuncionalidades(txtNombreFunc.Text);
-                foreach (Funcionalidad unaFuncionalidad in listaDeFuncionalidades)
-                {
-                    grillaFuncionalidades.ValueMember = "Id";
-                    grillaFuncionalidades.DisplayMember = "Nombre";
-                }
-            }
-            catch { MessageBox.Show("", "Error!", MessageBoxButtons.OK); }
-        }
-
-        private void lstSeleccionFuncionalidad_Load(object sender, EventArgs e)
-        {
-            if (unRol == null)
-            {
-                //ME CARGO TODAS LAS FUNCIONALIDADES PARA PODER AGREGARLAS A LO ROLES
-                List<Funcionalidad> listaDeFuncionalidades = Funcionalidades.ObtenerFuncionalidades();
                 grillaFuncionalidades.DataSource = listaDeFuncionalidades;
                 grillaFuncionalidades.ValueMember = "Id";
                 grillaFuncionalidades.DisplayMember = "Nombre";
             }
-            else
+            catch { MessageBox.Show("Se ha producido un error", "Error!", MessageBoxButtons.OK); }
+        }
+
+        private void lstSeleccionFuncionalidad_Load(object sender, EventArgs e)
+        {
+            if (unRol != null)
             {
                 //ME TRAIGO TODAS PARA MOSTRARLAS DESCHEACKEADAS
                 List<Funcionalidad> listaDeTodas = Funcionalidades.ObtenerFuncionalidades();
@@ -74,6 +64,15 @@ namespace Clinica_Frba.Abm_de_Rol
                 {
                     grillaFuncionalidades.SetItemChecked(i, true);
                 }
+                
+            }
+            else
+            {
+                //ME CARGO TODAS LAS FUNCIONALIDADES PARA PODER AGREGARLAS A LO ROLES
+                /*List<Funcionalidad> listaDeFuncionalidades = Funcionalidades.ObtenerFuncionalidades();
+                grillaFuncionalidades.DataSource = listaDeFuncionalidades;
+                grillaFuncionalidades.ValueMember = "Id";
+                grillaFuncionalidades.DisplayMember = "Nombre";*/   
 
                 //cmdAgregar.Text = "Eliminar";
             }

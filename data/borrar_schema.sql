@@ -28,12 +28,8 @@ DROP TABLE
            
 DROP FUNCTION mario_killers.horas_por_semana,
               mario_killers.horas_se_pisan,
-              mario_killers.horario_atencion,
-              mario_killers.roles_usuario
+              mario_killers.horario_atencion
 
 DROP PROCEDURE mario_killers.agregar_funcionalidad
 
-DROP VIEW mario_killers.AfiliadosABM
-
 DROP SCHEMA mario_killers
-

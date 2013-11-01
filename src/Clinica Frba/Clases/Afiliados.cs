@@ -16,13 +16,13 @@ namespace Clinica_Frba.Clases
             List<Afiliado> Lista = new List<Afiliado>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            if (nombre != "") ListaParametros.Add(new SqlParameter("@nombre", '%' + nombre + '%')); else ListaParametros.Add(new SqlParameter("@nombre", "%%"));
-            if (apellido != "") ListaParametros.Add(new SqlParameter("@apellido", '%' + apellido + '%')); else ListaParametros.Add(new SqlParameter("@apellido", "%%"));
-            if (dni != "") ListaParametros.Add(new SqlParameter("@dni", dni)); else ListaParametros.Add(new SqlParameter("@dni", "%%"));
-            if (numeroAfiliado != "") ListaParametros.Add(new SqlParameter("@numeroAfiliado", numeroAfiliado.Remove(numeroAfiliado.Length - 2))); else ListaParametros.Add(new SqlParameter("@numeroAfiliado", "%%"));
-            if(codigoPlan != 0) ListaParametros.Add(new SqlParameter("@codigoPlan", codigoPlan));else ListaParametros.Add(new SqlParameter("@codigoPlan", 0));
+            if (nombre != "") ListaParametros.Add(new SqlParameter("@nombre", "%" + nombre + "%")); else ListaParametros.Add(new SqlParameter("@nombre", "%%"));
+            if (apellido != "") ListaParametros.Add(new SqlParameter("@apellido", "%" + apellido + "%")); else ListaParametros.Add(new SqlParameter("@apellido", "%%"));
+            if (dni != "") ListaParametros.Add(new SqlParameter("@dni", "%" + dni + "%")); else ListaParametros.Add(new SqlParameter("@dni", "%%"));
+            if (numeroAfiliado != "") ListaParametros.Add(new SqlParameter("@numeroAfiliado", "%" + numeroAfiliado.Remove(numeroAfiliado.Length - 2) + "%")); else ListaParametros.Add(new SqlParameter("@numeroAfiliado", "%%"));
+            if (codigoPlan != 0) ListaParametros.Add(new SqlParameter("@codigoPlan", "%" + codigoPlan + "%")); else ListaParametros.Add(new SqlParameter("@codigoPlan", 0));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT grupo_familia, nro_familiar, apellido, nombre, documento, plan_medico FROM mario_killers.AfiliadosABM WHERE grupo_familia LIKE @numeroAfiliado AND apellido LIKE @apellido AND nombre LIKE @nombre AND documento LIKE @dni AND plan_medico LIKE @codigoPlan", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT grupo_familia, nro_familiar, apellido, nombre, documento, plan_medico FROM mario_killers.AfiliadosABM WHERE grupo_familia * 100 + nro_familiar LIKE @numeroAfiliado AND apellido LIKE @apellido AND nombre LIKE @nombre AND documento LIKE @dni AND plan_medico LIKE @codigoPlan", "T", ListaParametros);
 
             if (lector.HasRows)
             {

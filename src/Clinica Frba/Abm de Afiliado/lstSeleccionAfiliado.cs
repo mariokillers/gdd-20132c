@@ -35,8 +35,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
             cmbPlanes.ValueMember = "Codigo";
             cmbPlanes.DisplayMember = "Descripcion";
 
-            cargarGrilla();
-            
+            cargarGrilla();           
             
         }
 
@@ -44,8 +43,8 @@ namespace Clinica_Frba.Abm_de_Afiliado
         {
             try 
             {
-                string test = "1";
-                MessageBox.Show("" + Convert.ToInt32(test), "test", MessageBoxButtons.OK);
+                //string test = "1";
+                //MessageBox.Show("" + Convert.ToInt32(test), "test", MessageBoxButtons.OK);
                 ActualizarGrilla();
             }
             catch { MessageBox.Show("no actualiza grilla papa", "Error!", MessageBoxButtons.OK); }

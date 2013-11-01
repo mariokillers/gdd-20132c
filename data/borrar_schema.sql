@@ -34,4 +34,7 @@ DROP FUNCTION mario_killers.horas_por_semana,
 
 DROP PROCEDURE mario_killers.agregar_funcionalidad
 
+DROP VIEW mario_killers.AfiliadosABM
+
 DROP SCHEMA mario_killers
+

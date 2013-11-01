@@ -150,5 +150,10 @@ namespace Clinica_Frba
             this.Close();
             formLogin.Show();
         }
+
+        private void cmdAfiliadoAlta_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

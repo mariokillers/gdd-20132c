@@ -75,13 +75,6 @@ namespace Clinica_Frba.Abm_de_Rol
 
             grillaRoles.Columns.Add(ColNombre);
 
-            /*DataGridViewCheckBoxColumn ColHabilitado = new DataGridViewCheckBoxColumn();
-            ColHabilitado.DataPropertyName = "Habilitado";
-            ColHabilitado.HeaderText = "Habilitado";
-            ColHabilitado.Width = 50;
-
-            grillaRoles.Columns.Add(ColHabilitado);*/
-
             if (Operacion == "Baja")
             {
                 cmdOperacion.Text = "Eliminar";
@@ -90,10 +83,6 @@ namespace Clinica_Frba.Abm_de_Rol
             {
                 cmdOperacion.Text = "Modificar";
             }
-
-            /*SELECCIONAR UN ROL Y APRETAR UN BOTON DE MODIFICAR FUNC. Y ME APAREZCA UNA GRILLA
-             * CON TODAS LAS FUNCIONALIDADES DE ESE ROL
-             */
         }
 
         private void cmdOperacion_Click(object sender, EventArgs e)
@@ -102,19 +91,17 @@ namespace Clinica_Frba.Abm_de_Rol
             if (Operacion == "Baja")
             {
                 Roles.Eliminar(unRol.Id);
-                cargarGrilla();
                 Limpiar();
-
             }
             else
             {
                 if (Operacion == "Modificacion")
                 {
+                    //ABRO UN NUEVO FORM CON LAS FUNC DE ESE ROL
                     lstSeleccionFuncionalidad formFunc = new lstSeleccionFuncionalidad();
                     formFunc.unRol = unRol;
                     formFunc.Show();
                 }
-                //ME TENGO QUE ABRIR UNA NUEVA VISTA CON LAS FUNC DE ESE ROL
             }
         }
     }

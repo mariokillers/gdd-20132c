@@ -7,9 +7,9 @@ namespace Clinica_Frba.Clases
 {
     class Plan
     {
-        public int Codigo { get; set; }
+        public decimal Codigo { get; set; }
         public string Descripcion { get; set; }
-        public int Precio_Bono_Consulta { get; set; }
-        public int Precio_Bono_Farmacia { get; set; }
+        public decimal Precio_Bono_Consulta { get; set; }
+        public decimal Precio_Bono_Farmacia { get; set; }
     }
 }

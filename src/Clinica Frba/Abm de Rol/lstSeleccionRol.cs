@@ -24,10 +24,14 @@ namespace Clinica_Frba.Abm_de_Rol
 
         private void cmdLimpiar_Click(object sender, EventArgs e)
         {
+            Limpiar();
+        }
+
+        public void Limpiar()
+        {
             txtNombre.Text = "";
             ActualizarGrilla();
         }
-
         private void cmdBuscar_Click(object sender, EventArgs e)
         {
             try
@@ -99,6 +103,8 @@ namespace Clinica_Frba.Abm_de_Rol
             {
                 Roles.Eliminar(unRol.Id);
                 cargarGrilla();
+                Limpiar();
+
             }
             else
             {

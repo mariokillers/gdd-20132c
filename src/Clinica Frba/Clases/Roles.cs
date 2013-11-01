@@ -46,23 +46,36 @@ namespace Clinica_Frba.Clases
         {
             try
             {
-                SqlConnection con = BaseDeDatosSQL.ObtenerConexion();
-                SqlTransaction trans = con.BeginTransaction();
-
+                int idRol = -1;
                 List<SqlParameter> ListaParametros = new List<SqlParameter>();
                 ListaParametros.Add(new SqlParameter("@nombreRol", nombre));
 
                 //INSERTA EL ROL EN LA BASE DE DATOS
                 Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Rol (nombre, activo) VALUES (@nombreRol, 1)", "T", ListaParametros);
-                //TOMO EL ID DE LO QUE ACABO DE INSERTAR
-                int idRol = BaseDeDatosSQL.ObtenerUltimoAgregado(trans);
-                //TENGO QUE DAR DE ALTA LAS FUNCIONALIDADES DE ESE ROL
-                foreach (Funcionalidad unaFunc in listaDeFunc)
+
+
+                List<SqlParameter> Lista = new List<SqlParameter>();
+                Lista.Add(new SqlParameter("@nombreRol", nombre));
+                SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id from mario_killers.Rol WHERE nombre= @nombreRol", "T", Lista);
+                if (lector.HasRows)
                 {
-                    //AGREGO EN FUNCIONALIDAD_ROL EL ROL Y LA FUNC.
-                    Funcionalidades.AgregarFuncionalidadEnRol(idRol, unaFunc);
+                    while (lector.Read())
+                    {
+                        idRol= (int)lector["id"];
+                    }
                 }
-                return true;
+                if (idRol != -1)
+                {
+
+                    //TENGO QUE DAR DE ALTA LAS FUNCIONALIDADES DE ESE ROL
+                    foreach (Funcionalidad unaFunc in listaDeFunc)
+                    {
+                        //AGREGO EN FUNCIONALIDAD_ROL EL ROL Y LA FUNC.
+                        Funcionalidades.AgregarFuncionalidadEnRol(idRol, unaFunc);
+                    }
+                    return true;
+                }
+                else { return false; }
             }
             catch { return false; }
         }

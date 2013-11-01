@@ -19,6 +19,8 @@ namespace Clinica_Frba.Abm_de_Afiliado
             InitializeComponent();
         }
 
+        private List<Afiliado> listaDeAfiliados = new List<Afiliado>();
+
         //PARA CARGAR EN LA LISTA LOS PARAMETROS DE BUSQUEDA
         private List<SqlParameter> ListaDeParametros = new List<SqlParameter>();
         //PARA SABER SI ES MODIFICACION O BAJA
@@ -38,9 +40,9 @@ namespace Clinica_Frba.Abm_de_Afiliado
         {
             try 
             {
-                
+                ActualizarGrilla();
             }
-            catch { MessageBox.Show("", "Error!", MessageBoxButtons.OK); }
+            catch { MessageBox.Show("'no actualiza grilla papa", "Error!", MessageBoxButtons.OK); }
         }
 
         private void cmdLimpiar_Click(object sender, EventArgs e)
@@ -49,6 +51,23 @@ namespace Clinica_Frba.Abm_de_Afiliado
             txtDni.Text = "";
             txtNombre.Text = "";
             txtNumAfiliado.Text = "";
+        }
+
+        public void ActualizarGrilla()
+        {
+            if (txtNombre.Text != "")
+            {
+                //me traigo los roles que cumplen con el filtro
+                decimal unPlan = (decimal)cmbPlanes.SelectedValue;
+                listaDeAfiliados = Afiliados.ObtenerAfiliados(txtNombre.Text, txtApellido.Text, txtDni.Text, txtNumAfiliado.Text, unPlan);
+            }
+            else
+            {
+                listaDeAfiliados = Afiliados.ObtenerTodos();
+            }
+
+            //meto el resultado en la grilla
+            grillaPacientes.DataSource = listaDeAfiliados;
         }
     }
 }

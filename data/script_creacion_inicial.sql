@@ -1,9 +1,9 @@
 CREATE SCHEMA mario_killers AUTHORIZATION gd
 GO
 
-CREATE FUNCTION mario_killers.horario_atencion(@hora datetime) returns int
+CREATE FUNCTION mario_killers.horario_atencion(@hora datetime) returns numeric(18, 0)
 AS BEGIN
-	DECLARE @result int
+	DECLARE @result numeric(18, 0)
 	SET @result = CASE
 		WHEN DATEPART(DW, @hora) BETWEEN 2 AND 6
 		     AND CONVERT(TIME, @hora) BETWEEN '07:00:00' AND '20:00:00'
@@ -17,7 +17,7 @@ AS BEGIN
 END
 GO
 
-CREATE FUNCTION mario_killers.horas_por_semana(@profesional int) RETURNS int AS
+CREATE FUNCTION mario_killers.horas_por_semana(@profesional numeric(18, 0)) RETURNS numeric(18, 0) AS
 BEGIN
 	RETURN (SELECT SUM(DATEDIFF(HOUR, hora_desde, hora_hasta))
 	FROM mario_killers.Rango
@@ -25,7 +25,7 @@ BEGIN
 END
 GO
 
-CREATE FUNCTION mario_killers.horas_se_pisan(@profesional int) RETURNS bit AS
+CREATE FUNCTION mario_killers.horas_se_pisan(@profesional numeric(18, 0)) RETURNS bit AS
 BEGIN
 	RETURN (
 		SELECT COUNT(1)
@@ -45,13 +45,13 @@ END
 GO
 
 CREATE TABLE mario_killers.Tipo_Documento (
-	id int IDENTITY,
+	id numeric(18, 0) IDENTITY,
 	tipo varchar(10) NOT NULL,
 	PRIMARY KEY (id)
 )
 
 CREATE TABLE mario_killers.Persona (
-	id int IDENTITY,
+	id numeric(18, 0) IDENTITY,
 	nombre varchar(255) NOT NULL,
 	apellido varchar(255) NOT NULL,
 	documento numeric(18, 0) NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE mario_killers.Persona (
 	mail varchar(255) NOT NULL,
 
     -- Campos faltantes
-	tipo_doc int,
+	tipo_doc numeric(18, 0),
 	sexo char(1),
 	
 	PRIMARY KEY (id),
@@ -71,9 +71,9 @@ CREATE TABLE mario_killers.Persona (
 
 CREATE TABLE mario_killers.Usuario (
 	nombre varchar(255),
-	persona int,
+	persona numeric(18, 0),
 	pw char(64) NOT NULL, -- SHA256
-	intentos_login int NOT NULL
+	intentos_login numeric(18, 0) NOT NULL
 		CONSTRAINT "intentos_login_0" DEFAULT 0,
 	activo bit NOT NULL
 		CONSTRAINT "usuario_activo" DEFAULT 1,
@@ -82,7 +82,7 @@ CREATE TABLE mario_killers.Usuario (
 )
 
 CREATE TABLE mario_killers.Rol (
-	id int IDENTITY,
+	id numeric(18, 0) IDENTITY,
 	nombre varchar(255) NOT NULL,
 	activo bit NOT NULL
 		CONSTRAINT rol_activo DEFAULT 1,
@@ -90,21 +90,21 @@ CREATE TABLE mario_killers.Rol (
 )
 
 CREATE TABLE mario_killers.Funcionalidad (
-	id int IDENTITY,
+	id numeric(18, 0) IDENTITY,
 	nombre varchar(255) NOT NULL,
 	PRIMARY KEY (id)
 )
 
 CREATE TABLE mario_killers.Funcionalidad_Rol (
-	rol int NOT NULL,
-	funcionalidad int NOT NULL,
+	rol numeric(18, 0) NOT NULL,
+	funcionalidad numeric(18, 0) NOT NULL,
 	FOREIGN KEY (rol) REFERENCES mario_killers.Rol(id),
 	FOREIGN KEY (funcionalidad) REFERENCES mario_killers.Funcionalidad(id)
 )
 
 CREATE TABLE mario_killers.Rol_Usuario (
 	usuario varchar(255),
-	rol int,
+	rol numeric(18, 0),
 	FOREIGN KEY (usuario) REFERENCES mario_killers.Usuario(nombre),
 	FOREIGN KEY (rol) REFERENCES mario_killers.Rol(id),
 	PRIMARY KEY (usuario, rol)
@@ -119,16 +119,16 @@ CREATE TABLE mario_killers.Plan_Medico (
 )
 
 CREATE TABLE mario_killers.Compra (
-	id int IDENTITY,
+	id numeric(18, 0) IDENTITY,
 	fecha datetime,
-	persona int,
+	persona numeric(18, 0),
 	plan_medico numeric(18, 0) NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (plan_medico) REFERENCES mario_killers.Plan_Medico(codigo)
 )
 
 CREATE TABLE mario_killers.Estado_Civil (
-	id int IDENTITY,
+	id numeric(18, 0) IDENTITY,
 	estado varchar(255) NOT NULL,
 	PRIMARY KEY (id)
 )
@@ -142,11 +142,11 @@ CREATE TABLE mario_killers.Grupo_Familia (
 
 CREATE TABLE mario_killers.Afiliado (
 	-- Cantidad de consultas se calcula
-	persona int,
-	estado_civil int,
+	persona numeric(18, 0),
+	estado_civil numeric(18, 0),
 	grupo_familia numeric(18,0) NOT NULL,
-	nro_familiar int NOT NULL,
-	cant_hijos int,
+	nro_familiar numeric(18, 0) NOT NULL,
+	cant_hijos numeric(18, 0),
 	activo bit NOT NULL
 		CONSTRAINT afiliado_activo DEFAULT 1,
 	PRIMARY KEY (persona),
@@ -157,7 +157,7 @@ CREATE TABLE mario_killers.Afiliado (
 )
 
 CREATE TABLE mario_killers.Bajas_Afiliado (
-	persona int NOT NULL,
+	persona numeric(18, 0) NOT NULL,
 	fecha datetime NOT NULL,
 	FOREIGN KEY (persona) REFERENCES mario_killers.Afiliado(persona)
 )
@@ -173,8 +173,8 @@ CREATE TABLE mario_killers.Modificaciones_Grupo (
 )
 
 CREATE TABLE mario_killers.Profesional (
-	persona int,
-	matricula int,
+	persona numeric(18, 0),
+	matricula numeric(18, 0),
 	activo bit NOT NULL
 		CONSTRAINT profesional_activo DEFAULT 1,
 	PRIMARY KEY (persona),
@@ -183,7 +183,7 @@ CREATE TABLE mario_killers.Profesional (
 )
 
 CREATE TABLE mario_killers.Agenda (
-	profesional int NOT NULL,
+	profesional numeric(18, 0) NOT NULL,
 	desde date NOT NULL,
 	hasta date NOT NULL,
 	PRIMARY KEY (profesional),
@@ -193,9 +193,9 @@ CREATE TABLE mario_killers.Agenda (
 )
 
 CREATE TABLE mario_killers.Rango (
-	id int IDENTITY,
-	dia int NOT NULL, -- domingo = 1, valor default de DATEFIRST
-	profesional int NOT NULL,
+	id numeric(18, 0) IDENTITY,
+	dia numeric(18, 0) NOT NULL, -- domingo = 1, valor default de DATEFIRST
+	profesional numeric(18, 0) NOT NULL,
 	hora_desde time NOT NULL,
 	hora_hasta time NOT NULL,
 	PRIMARY KEY (id),
@@ -210,8 +210,8 @@ CREATE TABLE mario_killers.Rango (
 )
 
 CREATE TABLE mario_killers.Especialidad_Profesional (
-	profesional int,
-	especialidad int,
+	profesional numeric(18, 0),
+	especialidad numeric(18, 0),
 	PRIMARY KEY (profesional, especialidad)
 )
 
@@ -230,9 +230,9 @@ CREATE TABLE mario_killers.Especialidad (
 )
 
 CREATE TABLE mario_killers.Turno (
-	id int IDENTITY,
-	persona int NOT NULL,
-	profesional int NOT NULL,
+	id numeric(18, 0) IDENTITY,
+	persona numeric(18, 0) NOT NULL,
+	profesional numeric(18, 0) NOT NULL,
 	horario datetime NOT NULL,
 	especialidad numeric(18, 0) NOT NULL,
 	activo bit
@@ -247,49 +247,40 @@ CREATE TABLE mario_killers.Turno (
 )
 
 CREATE TABLE mario_killers.Bono_Consulta (
-	id int IDENTITY,
-	compra int,
-	turno int,
+	id numeric(18, 0) IDENTITY,
+	compra numeric(18, 0),
+	turno numeric(18, 0),
 	plan_medico numeric(18, 0),
 	PRIMARY KEY (id),
 	FOREIGN KEY (plan_medico) REFERENCES mario_killers.Plan_Medico(codigo),
 	FOREIGN KEY (compra) REFERENCES mario_killers.Compra(id),
-	FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id)
-)
-
-CREATE TABLE mario_killers.Receta (
-	id int IDENTITY,
-	turno int,
-	activo bit
-		CONSTRAINT receta_activa DEFAULT 1,
-	PRIMARY KEY (id),
 	FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id)
 )
 
 CREATE TABLE mario_killers.Bono_Farmacia (
-	id int IDENTITY,
-	compra int,
-	receta int,
+	id numeric(18, 0) IDENTITY,
+	compra numeric(18, 0),
+	turno numeric(18, 0),
 	plan_medico numeric(18, 0),
 	PRIMARY KEY (id),
 	FOREIGN KEY (plan_medico) REFERENCES mario_killers.Plan_Medico(codigo),
 	FOREIGN KEY (compra) REFERENCES mario_killers.Compra(id),
-	FOREIGN KEY (receta) REFERENCES mario_killers.Receta(id)
+	FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id)
 )
 
 CREATE TABLE mario_killers.Medicamento (
-	id int IDENTITY,
 	detalle varchar(255) NOT NULL,
-	PRIMARY KEY (id)
+	PRIMARY KEY (detalle)
 )
 
-CREATE TABLE mario_killers.Medicamento_Receta (
-	medicamento int,
-	receta int,
-	cantidad int,
-	PRIMARY KEY (medicamento, receta),
-	FOREIGN KEY (medicamento) REFERENCES mario_killers.Medicamento(id),
-	FOREIGN KEY (receta) REFERENCES mario_killers.Receta(id),
+CREATE TABLE mario_killers.Medicamento_Turno (
+	medicamento varchar(255),
+	turno numeric(18, 0),
+	cantidad numeric(18, 0)
+		CONSTRAINT default_1_med DEFAULT 1,
+	PRIMARY KEY (medicamento, turno),
+	FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id),
+	FOREIGN KEY (medicamento) REFERENCES mario_killers.Medicamento(detalle),
 	CONSTRAINT max_3 CHECK (cantidad <= 3)
 )
 

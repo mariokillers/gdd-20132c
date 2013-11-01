@@ -27,12 +27,11 @@ namespace Clinica_Frba.Abm_de_Afiliado
         //CARGO EL COMBO CON TODOS LOS PLANES
         private void lstSeleccionAfiliado_Load(object sender, EventArgs e)
         {
-            List<Plan> listaDePlaes = Planes.ObtenerPlanes();
-            foreach (Plan unPlan in listaDePlaes)
-            {
-                cmbPlanes.ValueMember = "Codigo";
-                cmbPlanes.DisplayMember = "Descripcion";
-            }
+            List<Plan> listaDePlanes = Planes.ObtenerPlanes();
+            cmbPlanes.DataSource = listaDePlanes;
+            cmbPlanes.ValueMember = "Codigo";
+            cmbPlanes.DisplayMember = "Descripcion";
+            
         }
 
         private void cmdBuscar_Click(object sender, EventArgs e)

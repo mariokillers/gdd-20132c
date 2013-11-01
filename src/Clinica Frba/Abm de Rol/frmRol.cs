@@ -43,7 +43,7 @@ namespace Clinica_Frba.NewFolder1
         {
             try
             {
-                if (txtNombre.Text != "" && cmbFuncionalidades.CheckedItems!= null) //VER SI CON NULL FUNCA
+                if (txtNombre.Text != "" && cmbFuncionalidades.CheckedItems != null) //VER SI CON NULL FUNCA
                 {
                     //TOMO LAS FUNCIONALIDADES QUE SELECCIONO
                     List<Funcionalidad> listaDeFunc = new List<Funcionalidad>();
@@ -53,7 +53,11 @@ namespace Clinica_Frba.NewFolder1
                     }
                     //DOY DE ALTA EL ROL
                     Roles.Agregar(txtNombre.Text, listaDeFunc);
-                    MessageBox.Show("Se ha agregado el rol", "Error!", MessageBoxButtons.OK);
+                    MessageBox.Show("El rol fue agregado con éxito", "Enhorabuena!", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    MessageBox.Show("Inserte correctamente los campos", "Error!", MessageBoxButtons.OK);
                 }
             }
             catch 

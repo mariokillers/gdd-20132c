@@ -67,12 +67,12 @@
             this.cmbFuncionalidades.FormattingEnabled = true;
             this.cmbFuncionalidades.Location = new System.Drawing.Point(133, 75);
             this.cmbFuncionalidades.Name = "cmbFuncionalidades";
-            this.cmbFuncionalidades.Size = new System.Drawing.Size(120, 94);
+            this.cmbFuncionalidades.Size = new System.Drawing.Size(215, 199);
             this.cmbFuncionalidades.TabIndex = 13;
             // 
             // cmdAgregar
             // 
-            this.cmdAgregar.Location = new System.Drawing.Point(38, 210);
+            this.cmdAgregar.Location = new System.Drawing.Point(133, 331);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(75, 23);
             this.cmdAgregar.TabIndex = 14;
@@ -82,7 +82,7 @@
             // 
             // cmdLimpiar
             // 
-            this.cmdLimpiar.Location = new System.Drawing.Point(165, 210);
+            this.cmdLimpiar.Location = new System.Drawing.Point(297, 331);
             this.cmdLimpiar.Name = "cmdLimpiar";
             this.cmdLimpiar.Size = new System.Drawing.Size(75, 23);
             this.cmdLimpiar.TabIndex = 15;
@@ -92,7 +92,7 @@
             // 
             // cmdSeleccionarTodo
             // 
-            this.cmdSeleccionarTodo.Location = new System.Drawing.Point(144, 175);
+            this.cmdSeleccionarTodo.Location = new System.Drawing.Point(202, 296);
             this.cmdSeleccionarTodo.Name = "cmdSeleccionarTodo";
             this.cmdSeleccionarTodo.Size = new System.Drawing.Size(98, 23);
             this.cmdSeleccionarTodo.TabIndex = 16;
@@ -104,7 +104,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(446, 407);
             this.Controls.Add(this.cmdSeleccionarTodo);
             this.Controls.Add(this.cmdLimpiar);
             this.Controls.Add(this.cmdAgregar);

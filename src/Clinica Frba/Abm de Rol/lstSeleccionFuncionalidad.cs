@@ -48,13 +48,34 @@ namespace Clinica_Frba.Abm_de_Rol
             }
             else
             {
+                //ME TRAIGO TODAS PARA MOSTRARLAS DESCHEACKEADAS
+                List<Funcionalidad> listaDeTodas = Funcionalidades.ObtenerFuncionalidades();
+
                 //ME MANDARON UN ROL ESPECIFICO -> MUESTRO SOLO LAS FUNC DE ESTE ROL
                 List<Funcionalidad> listaDeFuncionalidades = Funcionalidades.ObtenerFuncionalidades(unRol.Id);
-                grillaFuncionalidades.DataSource = listaDeFuncionalidades;
+
+                //FILTRO LAS QUE YA TIENE
+                foreach (Funcionalidad unaFunc in listaDeFuncionalidades)
+                {
+                    if (listaDeTodas.Contains(unaFunc))
+                    {
+                        listaDeTodas.Remove(unaFunc);
+                    }
+                }
+                //LISTA A MOSTRAR
+                List<Funcionalidad> listaAMostrar = listaDeTodas.Concat(listaDeFuncionalidades).ToList();
+
+                grillaFuncionalidades.DataSource = listaAMostrar;
                 grillaFuncionalidades.ValueMember = "Id";
                 grillaFuncionalidades.DisplayMember = "Nombre";
 
-                cmdAgregar.Text = "Eliminar";
+                //CHEKEO LAS QUE TIENE
+                for (int i = 0; i < listaDeFuncionalidades.Count; i++)
+                {
+                    grillaFuncionalidades.SetItemChecked(i, true);
+                }
+
+                //cmdAgregar.Text = "Eliminar";
             }
         }
 
@@ -67,18 +88,19 @@ namespace Clinica_Frba.Abm_de_Rol
                 listaDeFunc.Add(unaFunc);
             }
 
-            if (unRol == null)
+            if (unRol != null)
             {
-                //DOY DE ALTA
-            }
-            else 
-            { 
                 //DOY DE BAJA LAS FUNC SELECCIONADAS
                 foreach (Funcionalidad unaFunc in listaDeFunc)
                 {
                     Funcionalidades.EliminarFuncionalidadPorRol(unRol.Id, unaFunc);
                 }
             }
+            else 
+            { 
+                //QUE SE HACE?
+            }
         }
+
     }
 }

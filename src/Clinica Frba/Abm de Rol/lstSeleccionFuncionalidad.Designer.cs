@@ -88,18 +88,18 @@
             // grillaFuncionalidades
             // 
             this.grillaFuncionalidades.FormattingEnabled = true;
-            this.grillaFuncionalidades.Location = new System.Drawing.Point(117, 133);
+            this.grillaFuncionalidades.Location = new System.Drawing.Point(82, 133);
             this.grillaFuncionalidades.Name = "grillaFuncionalidades";
-            this.grillaFuncionalidades.Size = new System.Drawing.Size(120, 94);
+            this.grillaFuncionalidades.Size = new System.Drawing.Size(214, 154);
             this.grillaFuncionalidades.TabIndex = 3;
             // 
             // cmdAgregar
             // 
-            this.cmdAgregar.Location = new System.Drawing.Point(135, 245);
+            this.cmdAgregar.Location = new System.Drawing.Point(135, 293);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(75, 23);
             this.cmdAgregar.TabIndex = 4;
-            this.cmdAgregar.Text = "Agregar";
+            this.cmdAgregar.Text = "Guardar";
             this.cmdAgregar.UseVisualStyleBackColor = true;
             this.cmdAgregar.Click += new System.EventHandler(this.cmdAgregar_Click);
             // 
@@ -107,7 +107,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 329);
+            this.ClientSize = new System.Drawing.Size(417, 329);
             this.Controls.Add(this.cmdAgregar);
             this.Controls.Add(this.grillaFuncionalidades);
             this.Controls.Add(this.cmdLimpiar);

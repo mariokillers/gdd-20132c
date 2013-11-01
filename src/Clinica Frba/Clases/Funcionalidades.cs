@@ -100,6 +100,7 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(new SqlParameter("@idRol", idRol));
 
             //ver que necesito para eliminar una func.
+            return true;
         }
     }
 }

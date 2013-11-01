@@ -31,7 +31,7 @@ namespace Clinica_Frba
         {
             frmAfiliadoAlta formAf = new frmAfiliadoAlta();
             formAf.Show();
-            this.Hide();
+            //this.Hide();
         }
         private void cmdRolModificacion_Click(object sender, EventArgs e)
         {
@@ -44,14 +44,14 @@ namespace Clinica_Frba
         {
             lstSeleccionRol formRol = new lstSeleccionRol();
             formRol.Show();
-            this.Hide();
+            //this.Hide();
         }
 
         private void cmdRolAlta_Click(object sender, EventArgs e)
         {
             frmRol formRol = new frmRol();
             formRol.Show();
-            this.Hide();
+            //this.Hide();
         }
 
         private void frmPrincipal_Load(object sender, EventArgs e)
@@ -79,7 +79,7 @@ namespace Clinica_Frba
             lstSeleccionAfiliado formAfil = new lstSeleccionAfiliado();
             formAfil.Operacion = "Modificacion";
             formAfil.Show();
-            this.Hide();
+            //this.Hide();
         }
 
         private void cmdAfiliadoBaja_Click(object sender, EventArgs e)
@@ -87,7 +87,7 @@ namespace Clinica_Frba
             lstSeleccionAfiliado formAfil = new lstSeleccionAfiliado();
             formAfil.Operacion = "Baja";
             formAfil.Show();
-            this.Hide();
+            //this.Hide();
         }
 
         private void cmdRolModificacion_Click_1(object sender, EventArgs e)
@@ -95,7 +95,7 @@ namespace Clinica_Frba
             lstSeleccionRol formRol = new lstSeleccionRol();
             formRol.Operacion = "Modificacion";
             formRol.Show();
-            this.Hide();
+            //this.Hide();
         }
 
         private void cmdRolBaja_Click_1(object sender, EventArgs e)
@@ -103,7 +103,7 @@ namespace Clinica_Frba
             lstSeleccionRol formRol = new lstSeleccionRol();
             formRol.Operacion = "Baja";
             formRol.Show();
-            this.Hide();
+            //this.Hide();
         }
 
         public void ocultar()

@@ -26,7 +26,7 @@ namespace Clinica_Frba.Clases
                 {
                     //FALTA TRAER LAS FUNCIONALIDADES POR ROL
                     Rol unRol = new Rol();
-                    unRol.Id = (int)lector ["id"];
+                    unRol.Id = (int)(decimal)lector["id"];
                     unRol.Nombre = (string)lector["nombre"];
                     unRol.Habilitado = true;
                     listaDeRoles.Add(unRol);
@@ -61,7 +61,7 @@ namespace Clinica_Frba.Clases
                 {
                     while (lector.Read())
                     {
-                        idRol= (int)lector["id"];
+                        idRol = (int)(decimal)lector["id"];
                     }
                 }
                 if (idRol != -1)
@@ -94,7 +94,7 @@ namespace Clinica_Frba.Clases
                 {
                     //FALTA TRAER LAS FUNCIONALIDADES POR ROL
                     Rol unRol = new Rol();
-                    unRol.Id = (int)lector["id"];
+                    unRol.Id = ((int)(decimal)lector["id"]);
                     unRol.Nombre = (string)lector["nombre"];
                     unRol.Habilitado = true;
                     listaDeRoles.Add(unRol);

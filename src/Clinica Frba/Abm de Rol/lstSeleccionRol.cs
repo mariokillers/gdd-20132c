@@ -104,10 +104,5 @@ namespace Clinica_Frba.Abm_de_Rol
                 }
             }
         }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -302,51 +302,49 @@ INSERT INTO mario_killers.Rol (nombre)
 	       ('Afiliado');
 	       
 INSERT INTO mario_killers.Funcionalidad (nombre)
-	VALUES ('Administrar roles'),
-	       ('Ver afiliados'),
-	       ('Administrar afiliados'),
-	       ('Ver profesionales'),
-	       ('Administrar profesionales'),
-	       ('Consultar listado estadístico'),
-	       ('Registrar llegada'),
-	       ('Registrar agenda'),
+	VALUES ('ABM de roles'),
+	       ('ABM de afiliados'),
+	       ('ABM de profesionales'),
+	       ('ABM de especialidades médicas'),
+	       ('ABM de planes'),
+	       ('Registrar agenda profesional'),
+	       ('Registro de resultado para atención médica'),
+	       ('Registro de llegada para atención médica'),
 	       ('Registrar diagnóstico'),
 	       ('Cancelar atención médica'),
-	       ('Crear receta médica'),
-	       ('Comprar bonos'),
-	       ('Ver turnos'),
-	       ('Pedir turno');
+	       ('Confeccionar receta médica'),
+	       ('Consultar listado estadístico'),
+	       ('Compra de bonos'),
+	       ('Pedido de turno');
 
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'Administrar roles';
+	@rol = 'Administrativo', @func = 'ABM de roles';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'Ver afiliados';
+	@rol = 'Administrativo', @func = 'ABM de afiliados';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'Administrar afiliados';
+	@rol = 'Administrativo', @func = 'ABM de profesionales';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'Ver profesionales';
+	@rol = 'Administrativo', @func = 'ABM de especialidades médicas';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'Administrar profesionales';
+	@rol = 'Administrativo', @func = 'ABM de planes';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'Consultar listado estadístico';
+	@rol = 'Profesional', @func = 'Registrar agenda profesional';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'Registrar llegada';
+	@rol = 'Afiliado', @func = 'Compra de bonos';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'Ver turnos';
+	@rol = 'Afiliado', @func = 'Pedido de turno';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Profesional', @func = 'Ver turnos';
+	@rol = 'Administrativo', @func = 'Registro de llegada para atención médica';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Profesional', @func = 'Registrar agenda';
-EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Profesional', @func = 'Registrar diagnóstico';
+	@rol = 'Profesional', @func = 'Registro de resultado para atención médica';
 EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Profesional', @func = 'Cancelar atención médica';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Profesional', @func = 'Crear receta médica';
+	@rol = 'Afiliado', @func = 'Cancelar atención médica';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Afiliado', @func = 'Comprar bonos';
+	@rol = 'Profesional', @func = 'Confeccionar receta médica';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Afiliado', @func = 'Pedir turno';
+	@rol = 'Administrativo', @func = 'Consultar listado estadístico';
 	
 INSERT INTO mario_killers.Usuario (nombre, pw)
 	VALUES ('admin', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),

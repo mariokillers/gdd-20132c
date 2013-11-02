@@ -42,12 +42,13 @@
             this.cmdRolModificacion = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdRolBaja = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdAgenda = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrarAgendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdEstadisticas = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdLogOut = new System.Windows.Forms.ToolStripMenuItem();
             this.cmbRoles = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdIngresar = new System.Windows.Forms.Button();
-            this.registrarAgendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdTurnos = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,10 +60,11 @@
             this.cmdRol,
             this.cmdAgenda,
             this.cmdEstadisticas,
+            this.cmdTurnos,
             this.cmdLogOut});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(530, 24);
+            this.menu.Size = new System.Drawing.Size(743, 24);
             this.menu.TabIndex = 0;
             this.menu.Text = "menu";
             // 
@@ -164,6 +166,12 @@
             this.cmdAgenda.Size = new System.Drawing.Size(122, 20);
             this.cmdAgenda.Text = "Agenda Profesional";
             // 
+            // registrarAgendaToolStripMenuItem
+            // 
+            this.registrarAgendaToolStripMenuItem.Name = "registrarAgendaToolStripMenuItem";
+            this.registrarAgendaToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.registrarAgendaToolStripMenuItem.Text = "Registrar agenda";
+            // 
             // cmdEstadisticas
             // 
             this.cmdEstadisticas.Name = "cmdEstadisticas";
@@ -207,17 +215,17 @@
             this.cmdIngresar.Visible = false;
             this.cmdIngresar.Click += new System.EventHandler(this.cmdIngresar_Click);
             // 
-            // registrarAgendaToolStripMenuItem
+            // cmdTurnos
             // 
-            this.registrarAgendaToolStripMenuItem.Name = "registrarAgendaToolStripMenuItem";
-            this.registrarAgendaToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.registrarAgendaToolStripMenuItem.Text = "Registrar agenda";
+            this.cmdTurnos.Name = "cmdTurnos";
+            this.cmdTurnos.Size = new System.Drawing.Size(56, 20);
+            this.cmdTurnos.Text = "Turnos";
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(530, 250);
+            this.ClientSize = new System.Drawing.Size(743, 270);
             this.Controls.Add(this.cmdIngresar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbRoles);
@@ -255,6 +263,7 @@
         private System.Windows.Forms.ToolStripMenuItem cmdEstadisticas;
         private System.Windows.Forms.ToolStripMenuItem cmdLogOut;
         private System.Windows.Forms.ToolStripMenuItem registrarAgendaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmdTurnos;
 
 
     }

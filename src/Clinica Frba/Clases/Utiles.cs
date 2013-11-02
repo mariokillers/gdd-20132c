@@ -48,10 +48,9 @@ namespace Clinica_Frba.Clases
         {
             List<string> lista = new List<string>();
 
-            List<SqlParameter> ListaParametros = new List<SqlParameter>();
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT tipo FROM mario_killers.Tipo_Documento where id=@id", "T", ListaParametros);
 
+            return lista;
         }
     }
 }

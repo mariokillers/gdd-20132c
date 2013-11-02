@@ -31,13 +31,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbDias = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.cmdAceptar = new System.Windows.Forms.Button();
             this.grillaHorarios = new System.Windows.Forms.DataGridView();
             this.cmdEliminar = new System.Windows.Forms.Button();
-            this.cmdModificar = new System.Windows.Forms.Button();
             this.cmdFinalizar = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbDias = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grillaHorarios)).BeginInit();
             this.SuspendLayout();
@@ -62,6 +63,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cmbDias);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.cmdAceptar);
@@ -71,6 +74,23 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // cmbDias
+            // 
+            this.cmbDias.FormattingEnabled = true;
+            this.cmbDias.Location = new System.Drawing.Point(7, 33);
+            this.cmbDias.Name = "cmbDias";
+            this.cmbDias.Size = new System.Drawing.Size(121, 21);
+            this.cmbDias.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(28, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Día:";
             // 
             // cmdAceptar
             // 
@@ -95,17 +115,8 @@
             this.cmdEliminar.Name = "cmdEliminar";
             this.cmdEliminar.Size = new System.Drawing.Size(75, 23);
             this.cmdEliminar.TabIndex = 4;
-            this.cmdEliminar.Text = "button1";
+            this.cmdEliminar.Text = "Eliminar";
             this.cmdEliminar.UseVisualStyleBackColor = true;
-            // 
-            // cmdModificar
-            // 
-            this.cmdModificar.Location = new System.Drawing.Point(183, 278);
-            this.cmdModificar.Name = "cmdModificar";
-            this.cmdModificar.Size = new System.Drawing.Size(75, 23);
-            this.cmdModificar.TabIndex = 5;
-            this.cmdModificar.Text = "button1";
-            this.cmdModificar.UseVisualStyleBackColor = true;
             // 
             // cmdFinalizar
             // 
@@ -113,25 +124,26 @@
             this.cmdFinalizar.Name = "cmdFinalizar";
             this.cmdFinalizar.Size = new System.Drawing.Size(75, 23);
             this.cmdFinalizar.TabIndex = 6;
-            this.cmdFinalizar.Text = "button1";
+            this.cmdFinalizar.Text = "Confirmar";
             this.cmdFinalizar.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // label3
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(28, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Día:";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(187, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Hora Desde:";
             // 
-            // cmbDias
+            // label4
             // 
-            this.cmbDias.FormattingEnabled = true;
-            this.cmbDias.Location = new System.Drawing.Point(7, 33);
-            this.cmbDias.Name = "cmbDias";
-            this.cmbDias.Size = new System.Drawing.Size(121, 21);
-            this.cmbDias.TabIndex = 8;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(302, 15);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(64, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Hora Hasta:";
             // 
             // frmRegistrarAgenda
             // 
@@ -139,7 +151,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(463, 313);
             this.Controls.Add(this.cmdFinalizar);
-            this.Controls.Add(this.cmdModificar);
             this.Controls.Add(this.cmdEliminar);
             this.Controls.Add(this.grillaHorarios);
             this.Controls.Add(this.groupBox1);
@@ -165,7 +176,8 @@
         private System.Windows.Forms.Button cmdAceptar;
         private System.Windows.Forms.DataGridView grillaHorarios;
         private System.Windows.Forms.Button cmdEliminar;
-        private System.Windows.Forms.Button cmdModificar;
         private System.Windows.Forms.Button cmdFinalizar;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -126,22 +126,21 @@ namespace Clinica_Frba
 
             //VEO QUE MOSTRAR EN BASE A SUS FUNCIONALIDADES
             cmdLogOut.Visible = true;
-            cmdAfiliado.Visible = listaDeFunc.Contains("Administrar afiliados");
-            cmbRoles.Visible = listaDeFunc.Contains("Administrar roles");
-            cmdAgenda.Visible = listaDeFunc.Contains("Registrar agenda");
-            cmdProfesional.Visible = listaDeFunc.Contains("Adminisrar profesionales");
+            cmdAfiliado.Visible = listaDeFunc.Contains("ABM de afiliados");
+            cmbRoles.Visible = listaDeFunc.Contains("ABM de roles");
+            cmdAgenda.Visible = listaDeFunc.Contains("Registrar agenda profesional");
+            cmdProfesional.Visible = listaDeFunc.Contains("ABM de profesionales");
             cmdEstadisticas.Visible = listaDeFunc.Contains("Consultar listado estadístico");
+            cmdTurnos.Visible = listaDeFunc.Contains("Pedido de turno");
 
             /*
-	       ('Ver afiliados'),
-	       ('Ver profesionales'),
-	       ('Registrar llegada'),
+	       ('Registro de resultado para atención médica'),
+	       ('Registro de llegada para atención médica'),
 	       ('Registrar diagnóstico'),
 	       ('Cancelar atención médica'),
-	       ('Crear receta médica'),
-	       ('Comprar bonos'),
-	       ('Ver turnos'),
-	       ('Pedir turno')*/
+	       ('Confeccionar receta médica'),
+	       ('Compra de bonos'),
+             * */
         }
 
         private void cmdLogOut_Click(object sender, EventArgs e)

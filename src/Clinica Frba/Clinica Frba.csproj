@@ -177,12 +177,6 @@
     <Compile Include="Pedir Turno\frmTurno.Designer.cs">
       <DependentUpon>frmTurno.cs</DependentUpon>
     </Compile>
-    <Compile Include="Registro de LLegada\frmRegistroLlegada.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Registro de LLegada\frmRegistroLlegada.Designer.cs">
-      <DependentUpon>frmRegistroLlegada.cs</DependentUpon>
-    </Compile>
     <Compile Include="Registro Resultado Atencion\frmAtencion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,9 +250,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Registro de LLegada\frmRegistroLlegada.resx">
-      <DependentUpon>frmRegistroLlegada.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Registro Resultado Atencion\frmAtencion.resx">
       <DependentUpon>frmAtencion.cs</DependentUpon>
     </EmbeddedResource>
@@ -301,6 +292,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Registrar Agenda\" />
+    <Folder Include="Registro de LLegada\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

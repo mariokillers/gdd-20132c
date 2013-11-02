@@ -26,8 +26,7 @@ namespace Clinica_Frba.Clases
                 Id = id;
                 Nombre = ((string)lector["nombre"]);
                 Habilitado = (bool)lector["activo"];
-
-                //FALTA TODO LO DE FUNCIONALIDADES 
+                ListaFuncionalidades = Funcionalidades.ObtenerFuncionalidades(Id);
             }
         }
         public Rol() { }

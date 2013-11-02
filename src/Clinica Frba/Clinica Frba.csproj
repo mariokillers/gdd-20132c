@@ -122,6 +122,18 @@
     <Compile Include="Login\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pedir Turno\lstSeleccionTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pedir Turno\lstSeleccionTurno.Designer.cs">
+      <DependentUpon>lstSeleccionTurno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registrar Agenda\lstSeleccionAgenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registrar Agenda\lstSeleccionAgenda.Designer.cs">
+      <DependentUpon>lstSeleccionAgenda.cs</DependentUpon>
+    </Compile>
     <Compile Include="Registro de Usuario%28NO%29\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,11 +170,11 @@
     <Compile Include="Abm de Rol\frmRol.Designer.cs">
       <DependentUpon>frmRol.cs</DependentUpon>
     </Compile>
-    <Compile Include="Registrar Agenda\frmAgenda.cs">
+    <Compile Include="Registrar Agenda\frmAgendaAlta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Registrar Agenda\frmAgenda.Designer.cs">
-      <DependentUpon>frmAgenda.cs</DependentUpon>
+    <Compile Include="Registrar Agenda\frmAgendaAlta.Designer.cs">
+      <DependentUpon>frmAgendaAlta.cs</DependentUpon>
     </Compile>
     <Compile Include="Compra de Bono\frmBono.cs">
       <SubType>Form</SubType>
@@ -255,8 +267,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Registrar Agenda\frmAgenda.resx">
-      <DependentUpon>frmAgenda.cs</DependentUpon>
+    <EmbeddedResource Include="Registrar Agenda\frmAgendaAlta.resx">
+      <DependentUpon>frmAgendaAlta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Registro de LLegada\frmRegistroLlegada.resx">
       <DependentUpon>frmRegistroLlegada.cs</DependentUpon>

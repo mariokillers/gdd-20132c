@@ -1,6 +1,6 @@
-﻿namespace Clinica_Frba.NewFolder4
+﻿namespace Clinica_Frba.Registrar_Agenda
 {
-    partial class frmTurno
+    partial class lstSeleccionAgenda
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // frmTurno
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Name = "frmTurno";
-            this.Text = "Pedido de Turno";
-            this.ResumeLayout(false);
-
+            this.Text = "lstSeleccionAgenda";
         }
 
         #endregion

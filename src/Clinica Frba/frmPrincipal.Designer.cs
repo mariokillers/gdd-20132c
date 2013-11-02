@@ -47,6 +47,7 @@
             this.cmbRoles = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdIngresar = new System.Windows.Forms.Button();
+            this.registrarAgendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,21 +79,21 @@
             // cmdAfiliadoAlta
             // 
             this.cmdAfiliadoAlta.Name = "cmdAfiliadoAlta";
-            this.cmdAfiliadoAlta.Size = new System.Drawing.Size(152, 22);
+            this.cmdAfiliadoAlta.Size = new System.Drawing.Size(144, 22);
             this.cmdAfiliadoAlta.Text = "Alta";
             this.cmdAfiliadoAlta.Click += new System.EventHandler(this.cmdAfiliadoAlta_Click_1);
             // 
             // cmdAfiliadoModificacion
             // 
             this.cmdAfiliadoModificacion.Name = "cmdAfiliadoModificacion";
-            this.cmdAfiliadoModificacion.Size = new System.Drawing.Size(152, 22);
+            this.cmdAfiliadoModificacion.Size = new System.Drawing.Size(144, 22);
             this.cmdAfiliadoModificacion.Text = "Modificacion";
             this.cmdAfiliadoModificacion.Click += new System.EventHandler(this.cmdAfiliadoModificacion_Click);
             // 
             // cmdAfiliadoBaja
             // 
             this.cmdAfiliadoBaja.Name = "cmdAfiliadoBaja";
-            this.cmdAfiliadoBaja.Size = new System.Drawing.Size(152, 22);
+            this.cmdAfiliadoBaja.Size = new System.Drawing.Size(144, 22);
             this.cmdAfiliadoBaja.Text = "Baja";
             this.cmdAfiliadoBaja.Click += new System.EventHandler(this.cmdAfiliadoBaja_Click);
             // 
@@ -109,19 +110,19 @@
             // cmdProfAlta
             // 
             this.cmdProfAlta.Name = "cmdProfAlta";
-            this.cmdProfAlta.Size = new System.Drawing.Size(152, 22);
+            this.cmdProfAlta.Size = new System.Drawing.Size(144, 22);
             this.cmdProfAlta.Text = "Alta";
             // 
             // cmdProfMod
             // 
             this.cmdProfMod.Name = "cmdProfMod";
-            this.cmdProfMod.Size = new System.Drawing.Size(152, 22);
+            this.cmdProfMod.Size = new System.Drawing.Size(144, 22);
             this.cmdProfMod.Text = "Modificacion";
             // 
             // cmdProfBaja
             // 
             this.cmdProfBaja.Name = "cmdProfBaja";
-            this.cmdProfBaja.Size = new System.Drawing.Size(152, 22);
+            this.cmdProfBaja.Size = new System.Drawing.Size(144, 22);
             this.cmdProfBaja.Text = "Baja";
             // 
             // cmdRol
@@ -157,6 +158,8 @@
             // 
             // cmdAgenda
             // 
+            this.cmdAgenda.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registrarAgendaToolStripMenuItem});
             this.cmdAgenda.Name = "cmdAgenda";
             this.cmdAgenda.Size = new System.Drawing.Size(122, 20);
             this.cmdAgenda.Text = "Agenda Profesional";
@@ -204,6 +207,12 @@
             this.cmdIngresar.Visible = false;
             this.cmdIngresar.Click += new System.EventHandler(this.cmdIngresar_Click);
             // 
+            // registrarAgendaToolStripMenuItem
+            // 
+            this.registrarAgendaToolStripMenuItem.Name = "registrarAgendaToolStripMenuItem";
+            this.registrarAgendaToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.registrarAgendaToolStripMenuItem.Text = "Registrar agenda";
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -245,6 +254,7 @@
         private System.Windows.Forms.Button cmdIngresar;
         private System.Windows.Forms.ToolStripMenuItem cmdEstadisticas;
         private System.Windows.Forms.ToolStripMenuItem cmdLogOut;
+        private System.Windows.Forms.ToolStripMenuItem registrarAgendaToolStripMenuItem;
 
 
     }

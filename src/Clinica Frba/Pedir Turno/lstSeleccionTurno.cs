@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Clinica_Frba.NewFolder2
+namespace Clinica_Frba.Pedir_Turno
 {
-    public partial class frmAgenda : Form
+    public partial class lstSeleccionTurno : Form
     {
-        public frmAgenda()
+        public lstSeleccionTurno()
         {
             InitializeComponent();
         }

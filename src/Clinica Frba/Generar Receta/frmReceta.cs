@@ -7,13 +7,33 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Clinica_Frba.NewFolder8
+namespace Clinica_Frba.NewFolder5
 {
-    public partial class frmReceta : Form
+    public partial class frmRegistroLlegada : Form
     {
-        public frmReceta()
+        public frmRegistroLlegada()
         {
             InitializeComponent();
+        }
+
+        private void frmRegistroLlegada_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

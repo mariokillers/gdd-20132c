@@ -110,6 +110,12 @@
     <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Clases\Usuarios.cs" />
     <Compile Include="Clases\Utiles.cs" />
+    <Compile Include="Compra de Bono\frmBonoConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compra de Bono\frmBonoConsulta.Designer.cs">
+      <DependentUpon>frmBonoConsulta.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -234,6 +240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Compra de Bono\frmBono.resx">
       <DependentUpon>frmBono.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compra de Bono\frmBonoConsulta.resx">
+      <DependentUpon>frmBonoConsulta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>

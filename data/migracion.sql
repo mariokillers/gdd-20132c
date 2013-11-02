@@ -84,16 +84,16 @@ GO
 
 -- Personas
 SET IDENTITY_INSERT mario_killers.Persona ON
-INSERT INTO mario_killers.Persona (id, nombre, apellido, documento, fecha_nac, direccion, telefono, mail)
+INSERT INTO mario_killers.Persona (id, nombre, apellido, documento, fecha_nac, direccion, telefono, mail, sexo, tipo_doc)
 	SELECT Paciente_Dni, Paciente_Nombre, Paciente_Apellido, Paciente_Dni,
 	       Paciente_Fecha_Nac, Paciente_Direccion, Paciente_Telefono,
-	       Paciente_Mail
+	       Paciente_Mail, 'X', 5
 	FROM mario_killers.Pacientes
 
-INSERT INTO mario_killers.Persona (id, nombre, apellido, documento, fecha_nac, direccion, telefono, mail)
+INSERT INTO mario_killers.Persona (id, nombre, apellido, documento, fecha_nac, direccion, telefono, mail, sexo, tipo_doc)
 	SELECT Medico_Dni, Medico_Nombre, Medico_Apellido, Medico_Dni,
 	       Medico_Fecha_Nac, Medico_Direccion, Medico_Telefono,
-	       Medico_Mail
+	       Medico_Mail, 'X', 5
 	FROM mario_killers.Medicos
 SET IDENTITY_INSERT mario_killers.Persona OFF
 
@@ -114,8 +114,8 @@ INSERT INTO mario_killers.Grupo_Familia (codigo, plan_medico)
 	     ON mario_killers.Pacientes.Paciente_DNI = mario_killers.Persona.documento
 
 -- Afiliados y grupos de familia individuales
-INSERT INTO mario_killers.Afiliado (persona, grupo_familia, nro_familiar)
-	SELECT id, id, 1
+INSERT INTO mario_killers.Afiliado (persona, grupo_familia, nro_familiar, estado_civil)
+	SELECT id, id, 1, 6
 	FROM mario_killers.Persona
 	WHERE documento IN (SELECT Paciente_Dni FROM mario_killers.Pacientes)
 

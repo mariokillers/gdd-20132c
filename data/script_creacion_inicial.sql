@@ -318,10 +318,11 @@ INSERT INTO mario_killers.Estado_Civil (estado)
 	       ('Casado/a'),
 	       ('Viudo/a'),
 	       ('Concubinato'),
-	       ('Divorciado/a');
+	       ('Divorciado/a'),
+	       ('X');
 
 INSERT INTO mario_killers.Tipo_Documento (tipo)
-	VALUES ('DNI'), ('CI'), ('LC'), ('LE');
+	VALUES ('DNI'), ('CI'), ('LC'), ('LE'), ('X');
 
 INSERT INTO mario_killers.Rol (nombre)
 	VALUES ('Administrativo'),

@@ -67,5 +67,30 @@ namespace Clinica_Frba.NewFolder12
         {
 
         }
+
+        private void frmAfiliadoAlta_Load(object sender, EventArgs e)
+        {
+            cargarCampos();
+        }
+
+        private void cargarCampos()
+        {
+            if (Operacion == "Alta")
+            {
+                txtNombre.Text = "";       //---------------TODO
+            }
+            else if (Operacion == "Modificacion")
+            {
+                txtNombre.Text = Afiliado.Nombre;
+                txtNombre.Enabled = false;
+                txtApellido.Text = Afiliado.Apellido;
+                txtApellido.Enabled = false;
+                txtDni.Text = Afiliado.NumeroDocumento.ToString();
+                txtDni.Enabled = false;
+              //  dtpFechaNacimiento.Text = Afiliado.FechaNacimiento.ToString();   VER TEMA DE TIPO DATOS DE FECHA
+                dtpFechaNacimiento.Enabled = false;               
+
+            }
+        }
     }
 }

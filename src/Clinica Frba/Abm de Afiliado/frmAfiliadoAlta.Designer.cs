@@ -528,6 +528,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "frmAfiliadoAlta";
             this.Text = "CLINICA - FRBA - Alta";
+            this.Load += new System.EventHandler(this.frmAfiliadoAlta_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

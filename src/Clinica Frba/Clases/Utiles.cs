@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data.SqlClient;
 
 namespace Clinica_Frba.Clases
 {
@@ -28,6 +29,29 @@ namespace Clinica_Frba.Clases
                 } return true;
             }
             catch { return false; }
+        }
+
+        public static string ObtenerTipoDoc(int tipoDoc)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@id", tipoDoc));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT tipo FROM mario_killers.Tipo_Documento where id=@id", "T", ListaParametros);
+            if (lector.HasRows)
+            {
+                lector.Read();
+            }
+            return ((string)lector["tipo"]);
+        }
+
+        public static List<string> ObtenerTodosLosDias()
+        {
+            List<string> lista = new List<string>();
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT tipo FROM mario_killers.Tipo_Documento where id=@id", "T", ListaParametros);
+
         }
     }
 }

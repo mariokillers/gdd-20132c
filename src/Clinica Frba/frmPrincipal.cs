@@ -71,8 +71,8 @@ namespace Clinica_Frba
             }
 
             // OBTENER FUNCIONALIDADES POR ESTE ROL Y VER ESTE TEMA
-           /* cmdAfiliado.Visible = listaDeFuncionalidades.Contains("ABM afiliado");
-            cmdProfesional.Visible =
+            cmdAfiliado.Visible = true; // listaDeFuncionalidades.Contains("ABM afiliado");
+            /*cmdProfesional.Visible =
             cmdRol.Visible=*/
         }
 

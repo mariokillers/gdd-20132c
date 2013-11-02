@@ -193,3 +193,6 @@ DROP VIEW mario_killers.Pacientes
 
 ALTER TABLE mario_killers.Turno WITH NOCHECK
 	ADD CONSTRAINT fecha_turno CHECK (mario_killers.horario_atencion(horario) = 1)
+	
+ALTER TABLE mario_killers.Medicamento_Turno WITH NOCHECK
+	ADD CONSTRAINT max_5_receta CHECK ( mario_killers.cant_medicamentos(turno) <= 5)

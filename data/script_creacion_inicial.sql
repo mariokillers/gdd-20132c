@@ -272,6 +272,18 @@ CREATE TABLE mario_killers.Medicamento (
 	detalle varchar(255) NOT NULL,
 	PRIMARY KEY (detalle)
 )
+GO
+
+CREATE FUNCTION mario_killers.cant_medicamentos(@turno_id numeric(18, 0)) returns int
+AS BEGIN
+	RETURN (
+			SELECT COUNT(DISTINCT medicamento)
+			FROM mario_killers.Medicamento_Turno
+			GROUP BY turno
+			HAVING COUNT(DISTINCT medicamento) > 5
+	)
+END
+GO
 
 CREATE TABLE mario_killers.Medicamento_Turno (
 	medicamento varchar(255),
@@ -281,7 +293,8 @@ CREATE TABLE mario_killers.Medicamento_Turno (
 	PRIMARY KEY (medicamento, turno),
 	FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id),
 	FOREIGN KEY (medicamento) REFERENCES mario_killers.Medicamento(detalle),
-	CONSTRAINT max_3 CHECK (cantidad <= 3)
+	CONSTRAINT max_3_medicamento CHECK (cantidad <= 3),
+	CONSTRAINT max_5_receta CHECK ( mario_killers.cant_medicamentos(turno) <= 5)
 )
 
 --------------------------------- DATOS INICIALES -----------------------------

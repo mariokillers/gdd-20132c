@@ -42,7 +42,7 @@
             this.cmdLimpiar = new System.Windows.Forms.Button();
             this.cmdBuscar = new System.Windows.Forms.Button();
             this.grillaPacientes = new System.Windows.Forms.DataGridView();
-            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnAction = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grillaPacientes)).BeginInit();
             this.SuspendLayout();
@@ -182,22 +182,22 @@
             this.grillaPacientes.Size = new System.Drawing.Size(427, 161);
             this.grillaPacientes.TabIndex = 3;
             // 
-            // btnEliminar
+            // btnAction
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(332, 350);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 34);
-            this.btnEliminar.TabIndex = 4;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            this.btnAction.Location = new System.Drawing.Point(332, 350);
+            this.btnAction.Name = "btnAction";
+            this.btnAction.Size = new System.Drawing.Size(75, 34);
+            this.btnAction.TabIndex = 4;
+            this.btnAction.Text = "Action";
+            this.btnAction.UseVisualStyleBackColor = true;
+            this.btnAction.Click += new System.EventHandler(this.btnAction_Click);
             // 
             // lstSeleccionAfiliado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(569, 426);
-            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnAction);
             this.Controls.Add(this.grillaPacientes);
             this.Controls.Add(this.cmdBuscar);
             this.Controls.Add(this.cmdLimpiar);
@@ -228,6 +228,6 @@
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtDni;
-        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnAction;
     }
 }

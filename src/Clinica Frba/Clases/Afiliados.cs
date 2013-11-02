@@ -66,5 +66,12 @@ namespace Clinica_Frba.Clases
             }
             return listaDeAfiliados; ;
         }
+
+        public static bool Eliminar(decimal id)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@id", id));
+            return Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Afiliado SET Activo =0 where persona = @id", "T", ListaParametros);
+        }
     }
 }

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Clinica_Frba.Clases;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using Clinica_Frba.NewFolder12;
 
 namespace Clinica_Frba.Abm_de_Afiliado
 {
@@ -148,16 +149,17 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 Afiliados.Eliminar(unAfiliado.Id);
                 Limpiar();
             }
-            /*else    -----> TODO
+            else
             {
                 if (Operacion == "Modificacion")
                 { 
                     //ABRO UN NUEVO FORM CON LAS FUNC DE ESE ROL
-                    lstSeleccionFuncionalidad formFunc = new lstSeleccionFuncionalidad();
-                    formFunc.unRol = unRol;
-                    formFunc.Show();
+                    frmAfiliadoAlta formAfil = new frmAfiliadoAlta();
+                    formAfil.Operacion = this.Operacion;
+                    formAfil.Afiliado = unAfiliado;
+                    formAfil.Show();
                 }
-            }*/
+            }
         }
     }
 }

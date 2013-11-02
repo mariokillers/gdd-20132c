@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Clinica_Frba.Clases;
 
 namespace Clinica_Frba.NewFolder12
 {
@@ -15,6 +16,9 @@ namespace Clinica_Frba.NewFolder12
         {
             InitializeComponent();
         }
+
+        public string Operacion { get; set; }
+        public Afiliado Afiliado { get; set; }
 
         private void rdSi_CheckedChanged(object sender, EventArgs e)
         {

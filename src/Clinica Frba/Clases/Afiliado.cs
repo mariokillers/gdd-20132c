@@ -10,7 +10,7 @@ using System.Data.SqlTypes;
 
 namespace Clinica_Frba.Clases
 {
-    class Afiliado: Persona
+    public class Afiliado: Persona
     {
         public decimal Codigo_Persona { get; set; }
         public decimal Numero_Familiar { get; set; }

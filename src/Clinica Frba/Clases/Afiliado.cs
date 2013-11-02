@@ -12,14 +12,13 @@ namespace Clinica_Frba.Clases
 {
     class Afiliado: Persona
     {
-        public int Codigo_Persona { get; set; }
-        public int Numero_Familiar { get; set; }
+        public decimal Codigo_Persona { get; set; }
+        public decimal Numero_Familiar { get; set; }
         public decimal Numero_Grupo { get; set; }
         public string Estado_Civil { get; set; }
         public int Cantidad_Hijos { get; set; }
         public bool Activo { get; set; }
         public decimal Plan_Medico { get; set; }
-        public decimal Documento { get; set; }
         
 
         public bool Eliminar(int codigoGrupo, int numeroFamiliar)

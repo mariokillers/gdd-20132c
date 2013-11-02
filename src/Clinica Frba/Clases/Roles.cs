@@ -26,7 +26,7 @@ namespace Clinica_Frba.Clases
                 {
                     //FALTA TRAER LAS FUNCIONALIDADES POR ROL
                     Rol unRol = new Rol();
-                    unRol.Id = (int)lector ["id"];
+                    unRol.Id = (decimal)lector ["id"];
                     unRol.Nombre = (string)lector["nombre"];
                     unRol.Habilitado = true;
                     listaDeRoles.Add(unRol);
@@ -35,7 +35,7 @@ namespace Clinica_Frba.Clases
             return listaDeRoles;
         }
 
-        public static bool Eliminar(int id)
+        public static bool Eliminar(decimal id)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@id", id));
@@ -46,7 +46,7 @@ namespace Clinica_Frba.Clases
         {
             try
             {
-                int idRol = -1;
+                decimal idRol = -1;
                 List<SqlParameter> ListaParametros = new List<SqlParameter>();
                 ListaParametros.Add(new SqlParameter("@nombreRol", nombre));
 
@@ -61,7 +61,7 @@ namespace Clinica_Frba.Clases
                 {
                     while (lector.Read())
                     {
-                        idRol= (int)lector["id"];
+                        idRol= (decimal)lector["id"];
                     }
                 }
                 if (idRol != -1)
@@ -94,7 +94,7 @@ namespace Clinica_Frba.Clases
                 {
                     //FALTA TRAER LAS FUNCIONALIDADES POR ROL
                     Rol unRol = new Rol();
-                    unRol.Id = (int)lector["id"];
+                    unRol.Id = (decimal)lector["id"];
                     unRol.Nombre = (string)lector["nombre"];
                     unRol.Habilitado = true;
                     listaDeRoles.Add(unRol);

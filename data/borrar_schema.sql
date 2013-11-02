@@ -29,7 +29,11 @@ DROP TABLE
 DROP FUNCTION mario_killers.horas_por_semana,
               mario_killers.horas_se_pisan,
               mario_killers.horario_atencion,
+<<<<<<< HEAD
               mario_killers.roles_usuario
+=======
+              mario_killers.cant_medicamentos
+>>>>>>> f72891d047466bb448e5b1c4bd15d51544b52298
 
 DROP PROCEDURE mario_killers.agregar_funcionalidad
 

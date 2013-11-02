@@ -58,5 +58,10 @@ namespace Clinica_Frba.NewFolder12
             this.Hide();
             principal.ShowDialog();
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

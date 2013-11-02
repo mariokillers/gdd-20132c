@@ -10,11 +10,11 @@ namespace Clinica_Frba.Clases
     public class Rol
     {
         public string Nombre { get; set; }
-        public int Id { get; set; }
+        public decimal Id { get; set; }
         private List<Funcionalidad> ListaFuncionalidades { get; set; }
         public bool Habilitado { get; set; }
 
-        public Rol(int id)
+        public Rol(decimal id)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@idRol", id));

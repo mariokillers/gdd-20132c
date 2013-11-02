@@ -52,6 +52,11 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         private void cmdLimpiar_Click(object sender, EventArgs e)
         {
+            Limpiar();
+        }
+
+        public void Limpiar()
+        {
             txtApellido.Text = "";
             txtDni.Text = "";
             txtNombre.Text = "";
@@ -121,13 +126,38 @@ namespace Clinica_Frba.Abm_de_Afiliado
             ColPlan.Width = 120;
             grillaPacientes.Columns.Add(ColPlan);
 
+
+            if (Operacion == "Baja")
+            {
+                btnAction.Text = "Eliminar";
+            }
+            else
+            {
+                btnAction.Text = "Modificar";
+            }
+
          }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void btnAction_Click(object sender, EventArgs e)
         {
             Afiliado unAfiliado = new Afiliado();
-
             unAfiliado = (Afiliado)grillaPacientes.CurrentRow.DataBoundItem;
+
+            if (Operacion == "Baja")
+            {
+                Afiliados.Eliminar(unAfiliado.Id);
+                Limpiar();
+            }
+            /*else    -----> TODO
+            {
+                if (Operacion == "Modificacion")
+                { 
+                    //ABRO UN NUEVO FORM CON LAS FUNC DE ESE ROL
+                    lstSeleccionFuncionalidad formFunc = new lstSeleccionFuncionalidad();
+                    formFunc.unRol = unRol;
+                    formFunc.Show();
+                }
+            }*/
         }
     }
 }

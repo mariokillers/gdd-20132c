@@ -25,7 +25,7 @@ namespace Clinica_Frba.Clases
                 {
                     Rol unRol = new Rol();
                     unRol.Nombre = (string)lector["nombre"];
-                    unRol.Id = (int)lector["rol"];
+                    unRol.Id = (decimal)lector["rol"];
                     
                     unRol.Habilitado = true;
                     Lista.Add(unRol);

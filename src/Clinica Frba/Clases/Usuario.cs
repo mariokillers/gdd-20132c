@@ -15,7 +15,7 @@ namespace Clinica_Frba.Clases
         public string Name { get; set; }
         public string Password { get; set; }
         public bool Activo { get; set; }
-        public int CantFallidos { get; set; }
+        public decimal CantFallidos { get; set; }
 
         public Usuario(string userName)
         {
@@ -30,7 +30,7 @@ namespace Clinica_Frba.Clases
                 //Codigo_Persona = (int)lector["persona"];
                 Password = ((string)lector["pw"]).ToUpper();
                 Activo = (bool)lector["activo"];
-                CantFallidos = (int)lector["intentos_login"];
+                CantFallidos = (decimal)lector["intentos_login"];
             }
         }
 

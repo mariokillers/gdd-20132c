@@ -23,7 +23,7 @@ namespace Clinica_Frba.Clases
                 while (lector.Read())
                 {
                     Funcionalidad unaFuncionalidad = new Funcionalidad();
-                    unaFuncionalidad.Id = (int)lector["id"];
+                    unaFuncionalidad.Id = (decimal)lector["id"];
                     unaFuncionalidad.Nombre = (string)lector["nombre"];
                     Lista.Add(unaFuncionalidad);
                 }
@@ -44,7 +44,7 @@ namespace Clinica_Frba.Clases
                 while (lector.Read())
                 {
                     Funcionalidad unaFuncionalidad = new Funcionalidad();
-                    unaFuncionalidad.Id = (int)lector["id"];
+                    unaFuncionalidad.Id = (decimal)lector["id"];
                     unaFuncionalidad.Nombre = (string)lector["nombre"];
                     Lista.Add(unaFuncionalidad);
                 }
@@ -52,7 +52,7 @@ namespace Clinica_Frba.Clases
             return Lista;
         }
 
-        public static List<Funcionalidad> ObtenerFuncionalidades(int idRol)
+        public static List<Funcionalidad> ObtenerFuncionalidades(decimal idRol)
         {
             List<Funcionalidad> Lista = new List<Funcionalidad>();
 
@@ -65,7 +65,7 @@ namespace Clinica_Frba.Clases
                 while (lector.Read())
                 {
                     Funcionalidad unaFuncionalidad = new Funcionalidad();
-                    unaFuncionalidad.Id = (int)lector["id"];
+                    unaFuncionalidad.Id = (decimal)lector["id"];
                     unaFuncionalidad.Nombre = (string)lector["nombre"];
                     Lista.Add(unaFuncionalidad);
                 }
@@ -73,7 +73,7 @@ namespace Clinica_Frba.Clases
             return Lista;
         }
 
-        public static List<String> ObtenerFuncionalidadesPorRol(int idRol)
+        public static List<String> ObtenerFuncionalidadesPorRol(decimal idRol)
         {
             List<String> Lista = new List<String>();
 
@@ -86,7 +86,7 @@ namespace Clinica_Frba.Clases
                 while (lector.Read())
                 {
                     Funcionalidad unaFuncionalidad = new Funcionalidad();
-                    unaFuncionalidad.Id = (int)lector["id"];
+                    unaFuncionalidad.Id = (decimal)lector["id"];
                     unaFuncionalidad.Nombre = (string)lector["nombre"];
                     Lista.Add(unaFuncionalidad.Nombre);
                 }
@@ -94,7 +94,7 @@ namespace Clinica_Frba.Clases
             return Lista;
         }
 
-        public static bool EliminarFuncionalidadPorRol(int idRol, Funcionalidad unaFunc)
+        public static bool EliminarFuncionalidadPorRol(decimal idRol, Funcionalidad unaFunc)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@idRol", idRol));
@@ -105,7 +105,7 @@ namespace Clinica_Frba.Clases
 
         }
 
-        public static bool AgregarFuncionalidadEnRol(int idRol, Funcionalidad unaFunc)
+        public static bool AgregarFuncionalidadEnRol(decimal idRol, Funcionalidad unaFunc)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@idRol", idRol));

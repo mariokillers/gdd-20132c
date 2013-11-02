@@ -29,7 +29,7 @@ namespace Clinica_Frba.Clases
                 while (lector.Read())
                 {
                     Afiliado unAfiliado = new Afiliado();
-                    unAfiliado.Id = (int)lector["persona"];
+                    unAfiliado.Id = (decimal)lector["persona"];
                     unAfiliado.Apellido = (string)lector["apellido"];
                     unAfiliado.Nombre = (string)lector["nombre"];
                     unAfiliado.Numero_Grupo = (decimal)lector["grupo_familia"];

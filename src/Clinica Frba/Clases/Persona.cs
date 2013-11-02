@@ -8,6 +8,7 @@ namespace Clinica_Frba.Clase_Persona
 {
     class Persona
     {
+        public int Id { get; set; }
         public int Id_User { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }

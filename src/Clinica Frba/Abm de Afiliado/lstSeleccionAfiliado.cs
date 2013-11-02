@@ -79,6 +79,12 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         private void cargarGrilla(){
 
+            DataGridViewTextBoxColumn ColPersona = new DataGridViewTextBoxColumn();
+            ColPersona.DataPropertyName = "Id";
+            ColPersona.HeaderText = "Persona";
+            ColPersona.Width = 120;
+            grillaPacientes.Columns.Add(ColPersona);
+
             DataGridViewTextBoxColumn ColApellido = new DataGridViewTextBoxColumn();
             ColApellido.DataPropertyName = "Apellido";
             ColApellido.HeaderText = "Apellido";
@@ -116,5 +122,12 @@ namespace Clinica_Frba.Abm_de_Afiliado
             grillaPacientes.Columns.Add(ColPlan);
 
          }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            Afiliado unAfiliado = new Afiliado();
+
+            unAfiliado = (Afiliado)grillaPacientes.CurrentRow.DataBoundItem;
+        }
     }
 }

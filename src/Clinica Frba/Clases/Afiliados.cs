@@ -22,13 +22,14 @@ namespace Clinica_Frba.Clases
             if (numeroAfiliado != "") ListaParametros.Add(new SqlParameter("@numeroAfiliado", "%" + numeroAfiliado.Remove(numeroAfiliado.Length - 2) + "%")); else ListaParametros.Add(new SqlParameter("@numeroAfiliado", "%%"));
             if (codigoPlan != 0) ListaParametros.Add(new SqlParameter("@codigoPlan", "%" + codigoPlan + "%")); else ListaParametros.Add(new SqlParameter("@codigoPlan", 0));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT grupo_familia, nro_familiar, apellido, nombre, documento, plan_medico FROM mario_killers.AfiliadosABM WHERE grupo_familia * 100 + nro_familiar LIKE @numeroAfiliado AND apellido LIKE @apellido AND nombre LIKE @nombre AND documento LIKE @dni AND plan_medico LIKE @codigoPlan", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT persona, grupo_familia, nro_familiar, apellido, nombre, documento, plan_medico FROM mario_killers.AfiliadosABM WHERE grupo_familia * 100 + nro_familiar LIKE @numeroAfiliado AND apellido LIKE @apellido AND nombre LIKE @nombre AND documento LIKE @dni AND plan_medico LIKE @codigoPlan", "T", ListaParametros);
 
             if (lector.HasRows)
             {
                 while (lector.Read())
                 {
                     Afiliado unAfiliado = new Afiliado();
+                    unAfiliado.Id = (int)lector["persona"];
                     unAfiliado.Apellido = (string)lector["apellido"];
                     unAfiliado.Nombre = (string)lector["nombre"];
                     unAfiliado.Numero_Grupo = (decimal)lector["grupo_familia"];

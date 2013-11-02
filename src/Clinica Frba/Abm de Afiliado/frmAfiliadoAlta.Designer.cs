@@ -72,11 +72,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.cmbPlanes = new System.Windows.Forms.ComboBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmbPlanes);
+            this.groupBox1.Controls.Add(this.label26);
             this.groupBox1.Controls.Add(this.cmbVolver);
             this.groupBox1.Controls.Add(this.cmdLimpiar);
             this.groupBox1.Controls.Add(this.txtDni);
@@ -168,7 +172,7 @@
             // rdNo
             // 
             this.rdNo.AutoSize = true;
-            this.rdNo.Location = new System.Drawing.Point(247, 226);
+            this.rdNo.Location = new System.Drawing.Point(247, 253);
             this.rdNo.Name = "rdNo";
             this.rdNo.Size = new System.Drawing.Size(39, 17);
             this.rdNo.TabIndex = 56;
@@ -179,7 +183,7 @@
             // rdSi
             // 
             this.rdSi.AutoSize = true;
-            this.rdSi.Location = new System.Drawing.Point(190, 226);
+            this.rdSi.Location = new System.Drawing.Point(190, 253);
             this.rdSi.Name = "rdSi";
             this.rdSi.Size = new System.Drawing.Size(34, 17);
             this.rdSi.TabIndex = 55;
@@ -190,7 +194,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(6, 228);
+            this.label25.Location = new System.Drawing.Point(6, 255);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(176, 13);
             this.label25.TabIndex = 54;
@@ -519,6 +523,24 @@
             this.label12.TabIndex = 2;
             this.label12.Text = "FALTA VER EL RESTO DE LOS ATRIBUTOS, VER REL. EN DER";
             // 
+            // cmbPlanes
+            // 
+            this.cmbPlanes.FormattingEnabled = true;
+            this.cmbPlanes.Location = new System.Drawing.Point(132, 204);
+            this.cmbPlanes.Name = "cmbPlanes";
+            this.cmbPlanes.Size = new System.Drawing.Size(121, 21);
+            this.cmbPlanes.TabIndex = 6;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(6, 204);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(69, 13);
+            this.label26.TabIndex = 5;
+            this.label26.Text = "Plan Medico:";
+            // 
             // frmAfiliadoAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -582,6 +604,8 @@
         private System.Windows.Forms.TextBox txtDni;
         private System.Windows.Forms.Button cmdLimpiar;
         private System.Windows.Forms.Button cmbVolver;
+        private System.Windows.Forms.ComboBox cmbPlanes;
+        private System.Windows.Forms.Label label26;
 
 
     }

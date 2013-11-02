@@ -112,7 +112,9 @@
     <Compile Include="Clases\Rol.cs" />
     <Compile Include="Clases\Roles.cs" />
     <Compile Include="Clases\Sintoma.cs" />
+    <Compile Include="Clases\TipoDoc.cs" />
     <Compile Include="Clases\TipoEspecialidad.cs" />
+    <Compile Include="Clases\TiposDoc.cs" />
     <Compile Include="Clases\Turno.cs" />
     <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Clases\Usuarios.cs" />

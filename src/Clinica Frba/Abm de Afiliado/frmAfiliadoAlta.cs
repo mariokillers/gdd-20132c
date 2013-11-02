@@ -70,16 +70,27 @@ namespace Clinica_Frba.NewFolder12
 
         private void frmAfiliadoAlta_Load(object sender, EventArgs e)
         {
+
+            List<Plan> listaDePlanes = Planes.ObtenerPlanes();
+            cmbPlanes.DataSource = listaDePlanes;
+            cmbPlanes.ValueMember = "Codigo";
+            cmbPlanes.DisplayMember = "Descripcion";
+
+            List<TipoDoc> listaDeTipos = TiposDoc.ObtenerTiposDoc();
+            cmbTipoDoc.DataSource = listaDeTipos;
+            cmbTipoDoc.ValueMember = "Id";
+            cmbTipoDoc.DisplayMember = "Descripcion";
+
+            // Set the Format type and the CustomFormat string.
+            /*dtpFechaNacimiento.Format = DateTimePickerFormat.Custom;
+            dtpFechaNacimiento.CustomFormat = "MMMM dd, yyyy";*/
+     
             cargarCampos();
         }
 
         private void cargarCampos()
         {
-            if (Operacion == "Alta")
-            {
-                txtNombre.Text = "";       //---------------TODO
-            }
-            else if (Operacion == "Modificacion")
+            if (Operacion == "Modificacion")
             {
                 txtNombre.Text = Afiliado.Nombre;
                 txtNombre.Enabled = false;
@@ -87,7 +98,14 @@ namespace Clinica_Frba.NewFolder12
                 txtApellido.Enabled = false;
                 txtDni.Text = Afiliado.NumeroDocumento.ToString();
                 txtDni.Enabled = false;
-              //  dtpFechaNacimiento.Text = Afiliado.FechaNacimiento.ToString();   VER TEMA DE TIPO DATOS DE FECHA
+
+                label25.Hide();
+                rdNo.Hide();
+                rdSi.Hide();
+
+                //cmbTipoDoc.SelectedIndex = (int)Afiliado.TipoDocumento;    HABILITAR CUANDO ARREGLEMOS EL TEMA DE LOS TIPOS NULL
+                cmbTipoDoc.Enabled = false;
+                //dtpFechaNacimiento.Value.Date =     VER TEMA DE TIPOS, SINO YA FUE
                 dtpFechaNacimiento.Enabled = false;               
 
             }

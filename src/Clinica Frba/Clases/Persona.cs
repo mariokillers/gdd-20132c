@@ -13,14 +13,14 @@ namespace Clinica_Frba.Clase_Persona
         public int Id_User { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
-        public string TipoDocumento { get; set; }
+        public decimal TipoDocumento { get; set; }
         public decimal NumeroDocumento  { get; set; }
         public int Telefono { get; set; }
         public string Direccion { get; set; }
         public string Mail  { get; set; }
         public char Sexo  { get; set; }
         public DateTime FechaNacimiento { get; set; }
-
+        /*
         public Persona(int userId)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
@@ -42,7 +42,7 @@ namespace Clinica_Frba.Clase_Persona
                 Sexo = (char)lector["sexo"];
                 FechaNacimiento = (DateTime)lector["fecha_nac"];
             }
-        }
+        }*/
 
         public Persona()
         { }

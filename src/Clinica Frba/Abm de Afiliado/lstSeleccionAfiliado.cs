@@ -141,24 +141,32 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         private void btnAction_Click(object sender, EventArgs e)
         {
-            Afiliado unAfiliado = new Afiliado();
-            unAfiliado = (Afiliado)grillaPacientes.CurrentRow.DataBoundItem;
+            try
+            {
 
-            if (Operacion == "Baja")
-            {
-                Afiliados.Eliminar(unAfiliado.Id);
-                Limpiar();
-            }
-            else
-            {
-                if (Operacion == "Modificacion")
-                { 
-                    //ABRO UN NUEVO FORM CON LAS FUNC DE ESE ROL
-                    frmAfiliadoAlta formAfil = new frmAfiliadoAlta();
-                    formAfil.Operacion = this.Operacion;
-                    formAfil.Afiliado = unAfiliado;
-                    formAfil.Show();
+                Afiliado unAfiliado = new Afiliado();
+                unAfiliado = (Afiliado)grillaPacientes.CurrentRow.DataBoundItem;
+
+                if (Operacion == "Baja")
+                {
+                    Afiliados.Eliminar(unAfiliado.Id);
+                    Limpiar();
                 }
+                else
+                {
+                    if (Operacion == "Modificacion")
+                    {
+                        //ABRO UN NUEVO FORM CON LAS FUNC DE ESE ROL
+                        frmAfiliadoAlta formAfil = new frmAfiliadoAlta();
+                        formAfil.Operacion = this.Operacion;
+                        formAfil.Afiliado = unAfiliado;
+                        formAfil.Show();
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("No se selecciono ningun afiliado", "Error!", MessageBoxButtons.OK);
             }
         }
     }

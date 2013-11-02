@@ -293,8 +293,7 @@ CREATE TABLE mario_killers.Medicamento_Turno (
 	PRIMARY KEY (medicamento, turno),
 	FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id),
 	FOREIGN KEY (medicamento) REFERENCES mario_killers.Medicamento(detalle),
-	CONSTRAINT max_3_medicamento CHECK (cantidad <= 3),
-	CONSTRAINT max_5_receta CHECK ( mario_killers.cant_medicamentos(turno) <= 5)
+	CONSTRAINT max_3_medicamento CHECK (cantidad <= 3)
 )
 
 --------------------------------- DATOS INICIALES -----------------------------

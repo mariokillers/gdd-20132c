@@ -271,11 +271,11 @@ CREATE TABLE mario_killers.Bono_Consulta (
 )
 
 CREATE TABLE mario_killers.Bono_Farmacia (
-	id numeric(18, 0) IDENTITY,
+	codigo numeric(18, 0) IDENTITY,
 	compra numeric(18, 0),
 	turno numeric(18, 0),
 	plan_medico numeric(18, 0),
-	PRIMARY KEY (id),
+	PRIMARY KEY (codigo),
 	FOREIGN KEY (plan_medico) REFERENCES mario_killers.Plan_Medico(codigo),
 	FOREIGN KEY (compra) REFERENCES mario_killers.Compra(id),
 	FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id)
@@ -303,8 +303,10 @@ CREATE TABLE mario_killers.Medicamento_Turno (
 	turno numeric(18, 0),
 	cantidad numeric(18, 0)
 		CONSTRAINT default_1_med DEFAULT 1,
+	bono_farmacia numeric(18, 0),
 	PRIMARY KEY (medicamento, turno),
 	FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id),
+	FOREIGN KEY (bono_farmacia) REFERENCES mario_killers.Bono_Farmacia(codigo),
 	FOREIGN KEY (medicamento) REFERENCES mario_killers.Medicamento(detalle),
 	CONSTRAINT max_3_medicamento CHECK (cantidad <= 3)
 )

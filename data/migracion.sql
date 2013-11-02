@@ -39,7 +39,7 @@ CREATE VIEW mario_killers.Medicamentos AS
 GO
 
 CREATE VIEW mario_killers.Medicamentos_Turno AS
-	SELECT Bono_Farmacia_Medicamento, Turno_Numero
+	SELECT Bono_Farmacia_Medicamento, Turno_Numero, Bono_Farmacia_Numero
 	FROM gd_esquema.Maestra
 	WHERE Bono_Farmacia_Medicamento IS NOT NULL AND Turno_Numero IS NOT NULL
 GO
@@ -166,16 +166,18 @@ INSERT INTO mario_killers.Bono_Consulta (compra, turno, plan_medico)
 			AND Compra.fecha = Bonos_Consulta.Compra_Bono_Fecha
 
 -- Bonos farmacia
-INSERT INTO mario_killers.Bono_Farmacia (compra, plan_medico, turno)
-	SELECT Compra.id, plan_medico, Bonos_Farmacia.Turno_Numero
+SET IDENTITY_INSERT mario_killers.Bono_Farmacia ON
+INSERT INTO mario_killers.Bono_Farmacia (codigo, compra, plan_medico, turno)
+	SELECT Bonos_Farmacia.Bono_Farmacia_Numero, Compra.id, plan_medico, Bonos_Farmacia.Turno_Numero
 	FROM mario_killers.Bonos_Farmacia
 		JOIN mario_killers.Compra
 		ON Compra.persona = Bonos_Farmacia.Paciente_Dni
 			AND Compra.fecha = Bonos_Farmacia.Compra_Bono_Fecha
+SET IDENTITY_INSERT mario_killers.Bono_Farmacia OFF
 
 -- Medicamentos por turno
-INSERT INTO mario_killers.Medicamento_Turno (medicamento, turno)
-	SELECT Bono_Farmacia_Medicamento, Turno_Numero
+INSERT INTO mario_killers.Medicamento_Turno (medicamento, turno, bono_farmacia)
+	SELECT Bono_Farmacia_Medicamento, Turno_Numero, Bono_Farmacia_Numero
 	FROM mario_killers.Medicamentos_Turno
 
 DROP VIEW mario_killers.Pacientes

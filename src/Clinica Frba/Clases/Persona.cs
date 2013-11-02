@@ -21,6 +21,8 @@ namespace Clinica_Frba.Clase_Persona
         public char Sexo  { get; set; }
         public DateTime FechaNacimiento { get; set; }
 
+        string tipo;
+
         public Persona(int userId)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
@@ -44,6 +46,9 @@ namespace Clinica_Frba.Clase_Persona
             }
         }
 
+        public Persona()
+        { }
+
         private string ObtenerTipoDoc(int tipoDoc)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
@@ -51,7 +56,6 @@ namespace Clinica_Frba.Clase_Persona
 
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT tipo FROM mario_killers.Tipo_Documento where id=@id", "T", ListaParametros);
 
-            string tipo;
             if (lector.HasRows)
             {
                 lector.Read();

@@ -33,7 +33,7 @@ namespace Clinica_Frba.Clases
                     unAfiliado.Apellido = (string)lector["apellido"];
                     unAfiliado.Nombre = (string)lector["nombre"];
                     unAfiliado.Numero_Grupo = (decimal)lector["grupo_familia"];
-                    unAfiliado.Numero_Familiar = (int)lector["nro_familiar"];
+                    unAfiliado.Numero_Familiar = (decimal)lector["nro_familiar"];
                     unAfiliado.NumeroDocumento = (decimal)lector["documento"];
                     unAfiliado.Plan_Medico = (decimal)lector["plan_medico"];
                     Lista.Add(unAfiliado);
@@ -58,7 +58,7 @@ namespace Clinica_Frba.Clases
                     unAfiliado.Apellido = (string)lector["apellido"];
                     unAfiliado.Nombre = (string)lector["nombre"];
                     unAfiliado.Numero_Grupo = (decimal)lector["grupo_familia"];
-                    unAfiliado.Numero_Familiar = (int)lector["nro_familiar"];
+                    unAfiliado.Numero_Familiar = (decimal)lector["nro_familiar"];
                     unAfiliado.NumeroDocumento = (decimal)lector["documento"];
                     unAfiliado.Plan_Medico = (decimal)lector["plan_medico"];
                     listaDeAfiliados.Add(unAfiliado);

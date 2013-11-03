@@ -29,5 +29,24 @@ namespace Clinica_Frba.Abm_de_Afiliado
             cmbPlanes.ValueMember = "Codigo";
             cmbPlanes.DisplayMember = "Descripcion";
         }
+
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            Afiliado nuevoAfil = new Afiliado();
+            nuevoAfil.Id = unAfiliado.Id;
+            nuevoAfil.Plan_Medico = (decimal)cmbPlanes.SelectedValue;
+
+            decimal nuevoNum = Afiliados.AgregarGrupo(nuevoAfil);
+
+            MessageBox.Show("Su nuevo numero de afiliado es:" + nuevoNum, "Aviso", MessageBoxButtons.OK);
+
+            this.Hide();
+        }
+
+        private void cmbVolver_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

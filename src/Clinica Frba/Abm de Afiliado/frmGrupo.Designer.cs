@@ -28,47 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rdNo = new System.Windows.Forms.RadioButton();
-            this.rdSi = new System.Windows.Forms.RadioButton();
-            this.label25 = new System.Windows.Forms.Label();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.t = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbPlanes = new System.Windows.Forms.ComboBox();
             this.label26 = new System.Windows.Forms.Label();
+            this.btnGrupo = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.cmbVolver = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // rdNo
-            // 
-            this.rdNo.AutoSize = true;
-            this.rdNo.Location = new System.Drawing.Point(83, 174);
-            this.rdNo.Name = "rdNo";
-            this.rdNo.Size = new System.Drawing.Size(39, 17);
-            this.rdNo.TabIndex = 63;
-            this.rdNo.TabStop = true;
-            this.rdNo.Text = "No";
-            this.rdNo.UseVisualStyleBackColor = true;
-            // 
-            // rdSi
-            // 
-            this.rdSi.AutoSize = true;
-            this.rdSi.Location = new System.Drawing.Point(20, 174);
-            this.rdSi.Name = "rdSi";
-            this.rdSi.Size = new System.Drawing.Size(34, 17);
-            this.rdSi.TabIndex = 62;
-            this.rdSi.TabStop = true;
-            this.rdSi.Text = "Si";
-            this.rdSi.UseVisualStyleBackColor = true;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(17, 140);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(176, 13);
-            this.label25.TabIndex = 61;
-            this.label25.Text = "¿Desea dar de alta a algún familiar?";
             // 
             // txtApellido
             // 
@@ -124,16 +93,45 @@
             this.label26.TabIndex = 66;
             this.label26.Text = "Plan Medico Nuevo:";
             // 
+            // btnGrupo
+            // 
+            this.btnGrupo.Location = new System.Drawing.Point(129, 136);
+            this.btnGrupo.Name = "btnGrupo";
+            this.btnGrupo.Size = new System.Drawing.Size(99, 23);
+            this.btnGrupo.TabIndex = 69;
+            this.btnGrupo.Text = "Nuevos Afiliados";
+            this.btnGrupo.UseVisualStyleBackColor = true;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(20, 136);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.TabIndex = 68;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // cmbVolver
+            // 
+            this.cmbVolver.Location = new System.Drawing.Point(254, 136);
+            this.cmbVolver.Name = "cmbVolver";
+            this.cmbVolver.Size = new System.Drawing.Size(75, 23);
+            this.cmbVolver.TabIndex = 70;
+            this.cmbVolver.Text = "Volver";
+            this.cmbVolver.UseVisualStyleBackColor = true;
+            this.cmbVolver.Click += new System.EventHandler(this.cmbVolver_Click);
+            // 
             // frmGrupo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(417, 350);
+            this.Controls.Add(this.cmbVolver);
+            this.Controls.Add(this.btnGrupo);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.cmbPlanes);
             this.Controls.Add(this.label26);
-            this.Controls.Add(this.rdNo);
-            this.Controls.Add(this.rdSi);
-            this.Controls.Add(this.label25);
             this.Controls.Add(this.txtApellido);
             this.Controls.Add(this.t);
             this.Controls.Add(this.txtNombre);
@@ -148,14 +146,14 @@
 
         #endregion
 
-        private System.Windows.Forms.RadioButton rdNo;
-        private System.Windows.Forms.RadioButton rdSi;
-        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.Label t;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbPlanes;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button btnGrupo;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button cmbVolver;
     }
 }

@@ -1,6 +1,15 @@
 CREATE SCHEMA mario_killers AUTHORIZATION gd
 GO
 
+CREATE FUNCTION mario_killers.grupo_ultimo_agregado()
+RETURNS numeric(18,0)
+AS BEGIN
+	DECLARE @ret numeric(18,0)
+	SET @ret = SCOPE_IDENTITY()
+	RETURN @ret
+END
+GO
+
 CREATE FUNCTION mario_killers.horario_atencion(@hora datetime) returns numeric(18, 0)
 AS BEGIN
 	DECLARE @result numeric(18, 0)
@@ -395,4 +404,10 @@ FROM mario_killers.Afiliado A JOIN mario_killers.Persona P ON A.persona = P.id
 							  JOIN mario_killers.Grupo_Familia GF ON A.grupo_familia = GF.codigo
 							  JOIN mario_killers.Tipo_Documento TD ON P.tipo_doc = TD.id
 WHERE A.activo = 1
+GO
+
+CREATE VIEW mario_killers.ultimo_grupo AS
+SELECT codigo
+FROM mario_killers.Grupo_Familia
+WHERE codigo = SCOPE_IDENTITY() --mario_killers.grupo_ultimo_agregado()
 GO

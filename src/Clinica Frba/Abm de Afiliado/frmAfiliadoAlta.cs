@@ -78,9 +78,7 @@ namespace Clinica_Frba.NewFolder12
 
         private void cmbVolver_Click(object sender, EventArgs e)
         {
-            frmPrincipal principal = new frmPrincipal();
             this.Hide();
-            principal.ShowDialog();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -144,6 +142,8 @@ namespace Clinica_Frba.NewFolder12
                 label18.Hide();
                 label22.Hide();
                 label13.Hide();
+
+                cmdLimpiar.Hide();
 
                 cmbTipoDoc.Enabled = false;
                 //dtpFechaNacimiento.Value.Date =     VER TEMA DE TIPOS, SINO YA FUE

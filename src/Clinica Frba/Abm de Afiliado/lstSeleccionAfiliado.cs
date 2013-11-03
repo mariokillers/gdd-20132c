@@ -179,7 +179,6 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 frmGrupo formGrupo = new frmGrupo();
                 formGrupo.unAfiliado = unAfiliado;
                 formGrupo.Show();
-                this.Hide();
             }
             catch
             {

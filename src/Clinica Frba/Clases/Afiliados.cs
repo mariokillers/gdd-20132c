@@ -111,6 +111,22 @@ namespace Clinica_Frba.Clases
    
         }
 
+        
+        //VER DE HACER ESTA NEGRADA CON UNA FUNCION ASI NO HAY QUE ACCEDER DOS VECES A LA DB
+        public static decimal AgregarGrupo(Afiliado afil)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@id", afil.Id));
+            ListaParametros.Add(new SqlParameter("@plan_medico", afil.Plan_Medico));
+
+            Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Grupo_Familia (plan_medico) VALUES (@plan_medico)", "T", ListaParametros);
+         
+            //FALTA ACTUALIZAR EL AFILIADO CON EL NUMERO DE GRUPO AUTOGENERADO (VER COMO HACERLO) Y RETORNARLO
+
+            return 1;
+        
+        }
+
 
         public static bool Eliminar(decimal id)
         {

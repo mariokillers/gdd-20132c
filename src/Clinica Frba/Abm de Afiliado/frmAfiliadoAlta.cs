@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Clinica_Frba.Clases;
 using System.Data.SqlClient;
+using Clinica_Frba.Abm_de_Afiliado;
 
 namespace Clinica_Frba.NewFolder12
 {

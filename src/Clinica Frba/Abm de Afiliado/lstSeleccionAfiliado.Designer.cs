@@ -43,6 +43,7 @@
             this.cmdBuscar = new System.Windows.Forms.Button();
             this.grillaPacientes = new System.Windows.Forms.DataGridView();
             this.btnAction = new System.Windows.Forms.Button();
+            this.btnGrupoFlia = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grillaPacientes)).BeginInit();
             this.SuspendLayout();
@@ -184,7 +185,7 @@
             // 
             // btnAction
             // 
-            this.btnAction.Location = new System.Drawing.Point(332, 350);
+            this.btnAction.Location = new System.Drawing.Point(332, 349);
             this.btnAction.Name = "btnAction";
             this.btnAction.Size = new System.Drawing.Size(75, 34);
             this.btnAction.TabIndex = 4;
@@ -192,11 +193,22 @@
             this.btnAction.UseVisualStyleBackColor = true;
             this.btnAction.Click += new System.EventHandler(this.btnAction_Click);
             // 
+            // btnGrupoFlia
+            // 
+            this.btnGrupoFlia.Location = new System.Drawing.Point(231, 320);
+            this.btnGrupoFlia.Name = "btnGrupoFlia";
+            this.btnGrupoFlia.Size = new System.Drawing.Size(176, 23);
+            this.btnGrupoFlia.TabIndex = 5;
+            this.btnGrupoFlia.Text = "Modificar Grupo Familia";
+            this.btnGrupoFlia.UseVisualStyleBackColor = true;
+            this.btnGrupoFlia.Click += new System.EventHandler(this.btnGrupoFlia_Click);
+            // 
             // lstSeleccionAfiliado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(569, 426);
+            this.Controls.Add(this.btnGrupoFlia);
             this.Controls.Add(this.btnAction);
             this.Controls.Add(this.grillaPacientes);
             this.Controls.Add(this.cmdBuscar);
@@ -229,5 +241,6 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtDni;
         private System.Windows.Forms.Button btnAction;
+        protected System.Windows.Forms.Button btnGrupoFlia;
     }
 }

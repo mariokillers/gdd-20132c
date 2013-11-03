@@ -72,6 +72,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abm de Afiliado\frmGrupo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm de Afiliado\frmGrupo.Designer.cs">
+      <DependentUpon>frmGrupo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm de Afiliado\lstSeleccionAfiliado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +228,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Abm de Afiliado\frmAfiliadoAlta.resx">
       <DependentUpon>frmAfiliadoAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm de Afiliado\frmGrupo.resx">
+      <DependentUpon>frmGrupo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm de Afiliado\lstSeleccionAfiliado.resx">
       <DependentUpon>lstSeleccionAfiliado.cs</DependentUpon>

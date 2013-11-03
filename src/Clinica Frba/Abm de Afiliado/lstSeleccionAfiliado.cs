@@ -27,6 +27,8 @@ namespace Clinica_Frba.Abm_de_Afiliado
         //PARA SABER SI ES MODIFICACION O BAJA
         public string Operacion { get; set; }
 
+        public Afiliado unAfiliado = new Afiliado();
+
         //CARGO EL COMBO CON TODOS LOS PLANES
         private void lstSeleccionAfiliado_Load(object sender, EventArgs e)
         {
@@ -143,8 +145,6 @@ namespace Clinica_Frba.Abm_de_Afiliado
         {
             try
             {
-
-                Afiliado unAfiliado = new Afiliado();
                 unAfiliado = (Afiliado)grillaPacientes.CurrentRow.DataBoundItem;
 
                 if (Operacion == "Baja")
@@ -168,6 +168,24 @@ namespace Clinica_Frba.Abm_de_Afiliado
             {
                 MessageBox.Show("No se selecciono ningun afiliado", "Error!", MessageBoxButtons.OK);
             }
+        }
+
+        private void btnGrupoFlia_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                unAfiliado = (Afiliado)grillaPacientes.CurrentRow.DataBoundItem;
+
+                frmGrupo formGrupo = new frmGrupo();
+                formGrupo.unAfiliado = unAfiliado;
+                formGrupo.Show();
+                this.Hide();
+            }
+            catch
+            {
+                MessageBox.Show("No se selecciono ningun afiliado", "Error!", MessageBoxButtons.OK);
+            }
+
         }
     }
 }

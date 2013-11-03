@@ -39,6 +39,8 @@
             this.cmdFinalizar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.cmbDesde = new System.Windows.Forms.ComboBox();
+            this.cmbHasta = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grillaHorarios)).BeginInit();
             this.SuspendLayout();
@@ -63,6 +65,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmbHasta);
+            this.groupBox1.Controls.Add(this.cmbDesde);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cmbDias);
@@ -73,7 +77,7 @@
             this.groupBox1.Size = new System.Drawing.Size(415, 82);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Ingreso de datos";
             // 
             // cmbDias
             // 
@@ -94,7 +98,7 @@
             // 
             // cmdAceptar
             // 
-            this.cmdAceptar.Location = new System.Drawing.Point(334, 53);
+            this.cmdAceptar.Location = new System.Drawing.Point(334, 55);
             this.cmdAceptar.Name = "cmdAceptar";
             this.cmdAceptar.Size = new System.Drawing.Size(75, 23);
             this.cmdAceptar.TabIndex = 0;
@@ -120,7 +124,7 @@
             // 
             // cmdFinalizar
             // 
-            this.cmdFinalizar.Location = new System.Drawing.Point(327, 278);
+            this.cmdFinalizar.Location = new System.Drawing.Point(306, 278);
             this.cmdFinalizar.Name = "cmdFinalizar";
             this.cmdFinalizar.Size = new System.Drawing.Size(75, 23);
             this.cmdFinalizar.TabIndex = 6;
@@ -145,6 +149,22 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Hora Hasta:";
             // 
+            // cmbDesde
+            // 
+            this.cmbDesde.FormattingEnabled = true;
+            this.cmbDesde.Location = new System.Drawing.Point(179, 32);
+            this.cmbDesde.Name = "cmbDesde";
+            this.cmbDesde.Size = new System.Drawing.Size(95, 21);
+            this.cmbDesde.TabIndex = 11;
+            // 
+            // cmbHasta
+            // 
+            this.cmbHasta.FormattingEnabled = true;
+            this.cmbHasta.Location = new System.Drawing.Point(301, 32);
+            this.cmbHasta.Name = "cmbHasta";
+            this.cmbHasta.Size = new System.Drawing.Size(95, 21);
+            this.cmbHasta.TabIndex = 12;
+            // 
             // frmRegistrarAgenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -158,6 +178,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmRegistrarAgenda";
             this.Text = "Registrar Agenda";
+            this.Load += new System.EventHandler(this.frmRegistrarAgenda_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grillaHorarios)).EndInit();
@@ -179,5 +200,7 @@
         private System.Windows.Forms.Button cmdFinalizar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmbHasta;
+        private System.Windows.Forms.ComboBox cmbDesde;
     }
 }

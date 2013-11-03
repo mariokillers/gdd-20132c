@@ -6,6 +6,7 @@ using Clinica_Frba.Clase_Persona;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using Clinica_Frba.Abm_de_Profesional;
 
 namespace Clinica_Frba.Clases
 {
@@ -27,7 +28,7 @@ namespace Clinica_Frba.Clases
             {
                 lector.Read();
                 Name = userName;
-                //Codigo_Persona = (int)lector["persona"];
+                Codigo_Persona = (int)lector["persona"];
                 Password = ((string)lector["pw"]).ToUpper();
                 Activo = (bool)lector["activo"];
                 CantFallidos = (decimal)lector["intentos_login"];

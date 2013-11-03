@@ -9,5 +9,11 @@ namespace Clinica_Frba.Clases
     {
         public string Detalle { get; set; }
         public int Id { get; set; }
+
+        public Dias(int id, string detalle)
+        {
+            Detalle = detalle;
+            Id = id;
+        }
     }
 }

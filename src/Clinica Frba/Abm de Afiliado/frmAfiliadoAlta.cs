@@ -34,6 +34,19 @@ namespace Clinica_Frba.NewFolder12
         {
             try
             {
+                if (Operacion == "Modificacion")
+                {
+                    Afiliado nuevoAfil = new Afiliado();
+                    nuevoAfil.Estado_Civil = (decimal)cmbEstadoCivil.SelectedValue;
+                    nuevoAfil.Direccion = (String)txtDir.Text;
+                    nuevoAfil.Cantidad_Hijos = (decimal)decimal.Parse(txtHijos.Text);
+                    nuevoAfil.Mail = (String)txtMail.Text;
+                    nuevoAfil.Plan_Medico = (decimal)cmbPlanes.SelectedValue;
+                    nuevoAfil.Sexo = (String)cmbSexo.SelectedValue;
+                    nuevoAfil.Telefono = (decimal)decimal.Parse(txtTel.Text);
+
+
+                }
                 this.Hide();
             }
             catch { MessageBox.Show("Campos no válidos", "Error!", MessageBoxButtons.OK); }

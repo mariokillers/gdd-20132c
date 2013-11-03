@@ -1,6 +1,13 @@
 CREATE SCHEMA mario_killers AUTHORIZATION gd
 GO
 
+CREATE PROCEDURE mario_killers.prueba (@plan_medico numeric(18,0), @ret numeric(18,0) output)
+AS BEGIN
+	INSERT INTO mario_killers.Grupo_Familia (plan_medico) VALUES (@plan_medico)
+	SET @ret = SCOPE_IDENTITY()
+END
+GO
+
 CREATE FUNCTION mario_killers.grupo_ultimo_agregado()
 RETURNS numeric(18,0)
 AS BEGIN
@@ -156,7 +163,7 @@ CREATE TABLE mario_killers.Estado_Civil (
 )
 
 CREATE TABLE mario_killers.Grupo_Familia (
-	codigo numeric(18, 0),
+	codigo numeric(18, 0) IDENTITY,
 	plan_medico numeric(18, 0) NOT NULL,
 	PRIMARY KEY (codigo),
 	FOREIGN KEY (plan_medico) REFERENCES mario_killers.Plan_Medico(codigo)

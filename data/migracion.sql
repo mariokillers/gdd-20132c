@@ -107,11 +107,13 @@ INSERT INTO mario_killers.Plan_Medico
 	FROM mario_killers.Planes_Medicos
 
 -- Grupos de familia
+SET IDENTITY_INSERT mario_killers.Grupo_Familia ON
 INSERT INTO mario_killers.Grupo_Familia (codigo, plan_medico)
 	SELECT Persona.id, Plan_Med_Codigo
 	FROM mario_killers.Pacientes
 	     JOIN mario_killers.Persona
 	     ON mario_killers.Pacientes.Paciente_DNI = mario_killers.Persona.documento
+SET IDENTITY_INSERT mario_killers.Grupo_Familia OFF  
 
 -- Afiliados y grupos de familia individuales
 INSERT INTO mario_killers.Afiliado (persona, grupo_familia, nro_familiar, estado_civil, cant_hijos)

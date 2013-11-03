@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Clinica_Frba.Clases;
+using System.Data.SqlClient;
 
 namespace Clinica_Frba.NewFolder12
 {
@@ -37,6 +38,8 @@ namespace Clinica_Frba.NewFolder12
                 if (Operacion == "Modificacion")
                 {
                     Afiliado nuevoAfil = new Afiliado();
+                    nuevoAfil.Id = Afiliado.Id;
+                    nuevoAfil.Numero_Grupo = Afiliado.Numero_Grupo;
                     nuevoAfil.Estado_Civil = (decimal)cmbEstadoCivil.SelectedValue;
                     nuevoAfil.Direccion = (String)txtDir.Text;
                     nuevoAfil.Cantidad_Hijos = (decimal)decimal.Parse(txtHijos.Text);
@@ -45,11 +48,14 @@ namespace Clinica_Frba.NewFolder12
                     nuevoAfil.Sexo = (String)cmbSexo.SelectedValue;
                     nuevoAfil.Telefono = (decimal)decimal.Parse(txtTel.Text);
 
+                    Afiliados.Modificar(nuevoAfil);
 
+                    MessageBox.Show("El Afiliado ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
+                   
                 }
                 this.Hide();
             }
-            catch { MessageBox.Show("Campos no válidos", "Error!", MessageBoxButtons.OK); }
+            catch { MessageBox.Show("Error en la actualizacion!", "Error!", MessageBoxButtons.OK); }
         }
 
         private void cmdLimpiar_Click(object sender, EventArgs e)
@@ -99,8 +105,10 @@ namespace Clinica_Frba.NewFolder12
             cmbEstadoCivil.ValueMember = "Id";
             cmbEstadoCivil.DisplayMember = "Estado_Civil";
 
-            cmbSexo.Items.Add("M");
-            cmbSexo.Items.Add("F");
+            List<Sexo> listaDeSexos = Sexo.ObtenerSexos();
+            cmbSexo.DataSource = listaDeSexos;
+            cmbSexo.ValueMember = "Id";
+            cmbSexo.DisplayMember = "Id";
 
             // Set the Format type and the CustomFormat string.
             /*dtpFechaNacimiento.Format = DateTimePickerFormat.Custom;

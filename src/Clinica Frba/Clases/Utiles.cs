@@ -31,7 +31,7 @@ namespace Clinica_Frba.Clases
             catch { return false; }
         }
 
-        public static string ObtenerTipoDoc(int tipoDoc)
+        public static string ObtenerTipoDoc(decimal tipoDoc)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@id", tipoDoc));

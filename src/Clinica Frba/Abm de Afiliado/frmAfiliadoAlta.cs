@@ -81,6 +81,9 @@ namespace Clinica_Frba.NewFolder12
             cmbTipoDoc.ValueMember = "Id";
             cmbTipoDoc.DisplayMember = "Descripcion";
 
+            cmbSexo.Items.Add("M");
+            cmbSexo.Items.Add("F");
+
             // Set the Format type and the CustomFormat string.
             /*dtpFechaNacimiento.Format = DateTimePickerFormat.Custom;
             dtpFechaNacimiento.CustomFormat = "MMMM dd, yyyy";*/
@@ -103,10 +106,17 @@ namespace Clinica_Frba.NewFolder12
                 rdNo.Hide();
                 rdSi.Hide();
 
-                //cmbTipoDoc.SelectedIndex = (int)Afiliado.TipoDocumento;    HABILITAR CUANDO ARREGLEMOS EL TEMA DE LOS TIPOS NULL
                 cmbTipoDoc.Enabled = false;
                 //dtpFechaNacimiento.Value.Date =     VER TEMA DE TIPOS, SINO YA FUE
-                dtpFechaNacimiento.Enabled = false;               
+                dtpFechaNacimiento.Enabled = false;
+
+                //cmbSexo.Text = ""+Afiliado.Sexo;
+                cmbTipoDoc.Text = "" + Utiles.ObtenerTipoDoc(Afiliado.TipoDocumento);
+
+                txtDir.Text = Afiliado.Direccion;
+                txtMail.Text = Afiliado.Mail;
+                txtHijos.Text = Afiliado.Cantidad_Hijos.ToString();
+                txtTel.Text = Afiliado.Telefono.ToString();
 
             }
         }

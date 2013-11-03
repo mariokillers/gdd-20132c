@@ -114,8 +114,8 @@ INSERT INTO mario_killers.Grupo_Familia (codigo, plan_medico)
 	     ON mario_killers.Pacientes.Paciente_DNI = mario_killers.Persona.documento
 
 -- Afiliados y grupos de familia individuales
-INSERT INTO mario_killers.Afiliado (persona, grupo_familia, nro_familiar, estado_civil)
-	SELECT id, id, 1, 6
+INSERT INTO mario_killers.Afiliado (persona, grupo_familia, nro_familiar, estado_civil, cant_hijos)
+	SELECT id, id, 1, 6, 0
 	FROM mario_killers.Persona
 	WHERE documento IN (SELECT Paciente_Dni FROM mario_killers.Pacientes)
 

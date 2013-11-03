@@ -18,7 +18,7 @@ namespace Clinica_Frba.Clase_Persona
         public decimal Telefono { get; set; }
         public string Direccion { get; set; }
         public string Mail  { get; set; }
-        public char Sexo  { get; set; }
+        public string Sexo  { get; set; }
         public DateTime FechaNacimiento { get; set; }
         /*
         public Persona(int userId)

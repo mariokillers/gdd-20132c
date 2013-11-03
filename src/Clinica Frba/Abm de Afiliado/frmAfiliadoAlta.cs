@@ -81,6 +81,11 @@ namespace Clinica_Frba.NewFolder12
             cmbTipoDoc.ValueMember = "Id";
             cmbTipoDoc.DisplayMember = "Descripcion";
 
+            List<Estado> listaDeEstados = Estados.ObtenerEstados();
+            cmbEstadoCivil.DataSource = listaDeEstados;
+            cmbEstadoCivil.ValueMember = "Id";
+            cmbEstadoCivil.DisplayMember = "Estado_Civil";
+
             cmbSexo.Items.Add("M");
             cmbSexo.Items.Add("F");
 
@@ -105,6 +110,18 @@ namespace Clinica_Frba.NewFolder12
                 label25.Hide();
                 rdNo.Hide();
                 rdSi.Hide();
+                label14.Hide();
+                label24.Hide();
+                label3.Hide();
+                label17.Hide();
+                label20.Hide();
+                label11.Hide();
+                label15.Hide();
+                label16.Hide();
+                label19.Hide();
+                label18.Hide();
+                label22.Hide();
+                label13.Hide();
 
                 cmbTipoDoc.Enabled = false;
                 //dtpFechaNacimiento.Value.Date =     VER TEMA DE TIPOS, SINO YA FUE
@@ -117,6 +134,14 @@ namespace Clinica_Frba.NewFolder12
                 txtMail.Text = Afiliado.Mail;
                 txtHijos.Text = Afiliado.Cantidad_Hijos.ToString();
                 txtTel.Text = Afiliado.Telefono.ToString();
+                cmbSexo.Text = Afiliado.Sexo;
+                cmbPlanes.Text = "" + Utiles.ObtenerPlan(Afiliado.Plan_Medico);
+                cmbEstadoCivil.Text = "" + Utiles.ObtenerEstado(Afiliado.Estado_Civil);
+
+                if (Afiliado.Numero_Familiar != 1)
+                {
+                    cmbPlanes.Enabled = false;
+                }
 
             }
         }

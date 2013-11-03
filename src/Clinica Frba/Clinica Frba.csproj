@@ -99,6 +99,8 @@
     <Compile Include="Clases\Compra.cs" />
     <Compile Include="Clases\Especialidad.cs" />
     <Compile Include="Clases\Especialidades.cs" />
+    <Compile Include="Clases\Estado.cs" />
+    <Compile Include="Clases\Estados.cs" />
     <Compile Include="Clases\Funcionalidad.cs" />
     <Compile Include="Clases\Funcionalidades.cs" />
     <Compile Include="Clases\Medicamento.cs" />

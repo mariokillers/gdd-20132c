@@ -39,10 +39,11 @@ namespace Clinica_Frba.Clases
                     unAfiliado.FechaNacimiento = (DateTime)lector["fecha_nac"];
                     unAfiliado.Direccion = (String)lector["direccion"];
                     unAfiliado.TipoDocumento = (decimal)lector["tipo_doc"];
-                    unAfiliado.Sexo = (char)lector["sexo"];
+                    unAfiliado.Sexo = (String)lector["sexo"];
                     unAfiliado.Mail = (String)lector["mail"];
                     unAfiliado.Telefono = (decimal)lector["telefono"];
-                    unAfiliado.Cantidad_Hijos = (int)lector["cant_hijos"];
+                    unAfiliado.Cantidad_Hijos = (decimal)lector["cant_hijos"];
+                    unAfiliado.Estado_Civil = (decimal)lector["estado_civil"];
                     Lista.Add(unAfiliado);
                 }
             }
@@ -62,12 +63,21 @@ namespace Clinica_Frba.Clases
                 while (lector.Read())
                 {
                     Afiliado unAfiliado = new Afiliado();
+                    unAfiliado.Id = (decimal)lector["persona"];
                     unAfiliado.Apellido = (string)lector["apellido"];
                     unAfiliado.Nombre = (string)lector["nombre"];
                     unAfiliado.Numero_Grupo = (decimal)lector["grupo_familia"];
                     unAfiliado.Numero_Familiar = (decimal)lector["nro_familiar"];
                     unAfiliado.NumeroDocumento = (decimal)lector["documento"];
                     unAfiliado.Plan_Medico = (decimal)lector["plan_medico"];
+                    unAfiliado.FechaNacimiento = (DateTime)lector["fecha_nac"];
+                    unAfiliado.Direccion = (String)lector["direccion"];
+                    unAfiliado.TipoDocumento = (decimal)lector["tipo_doc"];
+                    unAfiliado.Sexo = (String)lector["sexo"];
+                    unAfiliado.Mail = (String)lector["mail"];
+                    unAfiliado.Telefono = (decimal)lector["telefono"];
+                    unAfiliado.Cantidad_Hijos = (decimal)lector["cant_hijos"];
+                    unAfiliado.Estado_Civil = (decimal)lector["estado_civil"];
                     listaDeAfiliados.Add(unAfiliado);
                 }
             }

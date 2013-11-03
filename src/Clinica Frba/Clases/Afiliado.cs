@@ -15,8 +15,8 @@ namespace Clinica_Frba.Clases
         public decimal Codigo_Persona { get; set; }
         public decimal Numero_Familiar { get; set; }
         public decimal Numero_Grupo { get; set; }
-        public string Estado_Civil { get; set; }
-        public int Cantidad_Hijos { get; set; }
+        public decimal Estado_Civil { get; set; }
+        public decimal Cantidad_Hijos { get; set; }
         public bool Activo { get; set; }
         public decimal Plan_Medico { get; set; }
         

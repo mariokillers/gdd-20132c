@@ -98,33 +98,25 @@ namespace Clinica_Frba.Clases
         public static List<Hora> ObtenerHorasDiasHabilesDesde()
         {
             List<Hora> lista = new List<Hora>();
-
             for (int i = 7; i <= 20; i++)
             {
                 TimeSpan unaHora = new TimeSpan(i, 00, 0);
                 string hora = unaHora.Hours.ToString() +":"+ unaHora.Minutes.ToString();
                 lista.Add(new Hora(unaHora, hora));
             }
-            /*lista.Add(new TimeSpan(7, 0, 0));
-            lista.Add(new TimeSpan(7, 30, 0));
-            lista.Add(new TimeSpan(8, 0, 0));
-            lista.Add(new TimeSpan(8, 30, 0));
-            lista.Add(new TimeSpan(9, 0, 0));
-            lista.Add(new TimeSpan(9, 30, 0));
-            lista.Add(new TimeSpan(10, 0, 0));
-            lista.Add(new TimeSpan(10, 30, 0));
-            lista.Add(new TimeSpan(11, 0, 0));
-            lista.Add(new TimeSpan(11, 30, 0));
-            lista.Add(new TimeSpan(12, 0, 0));
-            lista.Add(new TimeSpan(12, 30, 0));
-            lista.Add(new TimeSpan(13, 0, 0));
-            lista.Add(new TimeSpan(13, 30, 0));
-            lista.Add(new TimeSpan(14, 0, 0));
-            lista.Add(new TimeSpan(14, 30, 0));
-            lista.Add(new TimeSpan(15, 0, 0));
-            lista.Add(new TimeSpan(15, 0, 0));
-            lista.Add(new TimeSpan(15, 0, 0));
-            lista.Add(new TimeSpan(15, 0, 0));*/
+
+            return lista;
+        }
+
+        public static List<Hora> ObtenerHorasDiasHabilesHasta()
+        {
+            List<Hora> lista = new List<Hora>();
+            for (int i = 7; i <= 20; i++)
+            {
+                TimeSpan unaHora = new TimeSpan(i, 00, 0);
+                string hora = unaHora.Hours.ToString() + ":" + unaHora.Minutes.ToString();
+                lista.Add(new Hora(unaHora, hora));
+            }
 
             return lista;
         }
@@ -132,7 +124,6 @@ namespace Clinica_Frba.Clases
         public static List<Hora> ObtenerHorasDiasSabadosDesde()
         {
             List<Hora> lista = new List<Hora>();
-
             for (int i = 10; i <= 14; i++)
             {
                 TimeSpan unaHora = new TimeSpan(i, 00, 0);
@@ -146,16 +137,12 @@ namespace Clinica_Frba.Clases
         public static List<Hora> ObtenerHorasDiasSabadosHasta()
         {
             List<Hora> lista = new List<Hora>();
-            /*lista.Add(new TimeSpan(10, 30, 0));
-            lista.Add(new TimeSpan(11, 0, 0));
-            lista.Add(new TimeSpan(11, 30, 0));
-            lista.Add(new TimeSpan(12, 0, 0));
-            lista.Add(new TimeSpan(12, 30, 0));
-            lista.Add(new TimeSpan(13, 0, 0));
-            lista.Add(new TimeSpan(13, 30, 0));
-            lista.Add(new TimeSpan(14, 0, 0));
-            lista.Add(new TimeSpan(14, 30, 0));
-            lista.Add(new TimeSpan(15, 0, 0));*/
+            for (int i = 10; i <= 14; i++)
+            {
+                TimeSpan unaHora = new TimeSpan(i, 00, 0);
+                string hora = unaHora.Hours.ToString() + ":" + unaHora.Minutes.ToString();
+                lista.Add(new Hora(unaHora, hora));
+            }
 
             return lista;
         }

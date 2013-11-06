@@ -128,6 +128,7 @@
             this.cmbDias.Name = "cmbDias";
             this.cmbDias.Size = new System.Drawing.Size(121, 21);
             this.cmbDias.TabIndex = 8;
+            this.cmbDias.SelectedIndexChanged += new System.EventHandler(this.cmbDias_SelectedIndexChanged);
             // 
             // label2
             // 

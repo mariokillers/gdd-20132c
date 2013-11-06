@@ -26,7 +26,6 @@ namespace Clinica_Frba.Registrar_Agenda
         private void frmRegistrarAgenda_Load(object sender, EventArgs e)
         {
             grillaHorarios.AutoGenerateColumns = false;
-
             generarGrilla();
 
             //OBTENGO LOS DIAS
@@ -39,13 +38,9 @@ namespace Clinica_Frba.Registrar_Agenda
             cmbHoraDesde.ValueMember = "LaHora";
             cmbHoraDesde.DisplayMember = "HoraAMostrar";
 
-            /*SI SELECCIONO EL SABADO
-            if ((int)cmbDias.SelectedValue == 7)
-            {
-                //NO FUNCA
-                cmdHoraDesde.DataSource = Utiles.ObtenerHorasDiasSabadosDesde();
-                cmdHoraHasta.DataSource = Utiles.ObtenerHorasDiasSabadosHasta();
-            }*/
+            cmbHoraHasta.DataSource = Utiles.ObtenerHorasDiasHabilesHasta();
+            cmbHoraHasta.ValueMember = "LaHora";
+            cmbHoraHasta.DisplayMember = "HoraAMostrar";
 
             //lblNombre.Text = Profesional.Apellido + "," + Profesional.Nombre;
         }
@@ -111,6 +106,22 @@ namespace Clinica_Frba.Registrar_Agenda
                 catch { MessageBox.Show("El rango de fechas supera los 120 dias", "Error!", MessageBoxButtons.OK); }
             }
             else { MessageBox.Show("La fecha desde es superior a la fecha hasta", "Error!", MessageBoxButtons.OK); }
+        }
+
+        private void cmbDias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //SI SELECCIONO EL SABADO
+            if ((int)cmbDias.SelectedIndex ==6)
+            {
+                //SETEO LOS HORARIOS DE SABADO
+                cmbHoraDesde.DataSource = Utiles.ObtenerHorasDiasSabadosDesde();
+                cmbHoraDesde.ValueMember = "LaHora";
+                cmbHoraDesde.DisplayMember = "HoraAMostrar";
+
+                cmbHoraHasta.DataSource = Utiles.ObtenerHorasDiasSabadosHasta();
+                cmbHoraHasta.ValueMember = "LaHora";
+                cmbHoraHasta.DisplayMember = "HoraAMostrar";
+            }
         }
     }
 }

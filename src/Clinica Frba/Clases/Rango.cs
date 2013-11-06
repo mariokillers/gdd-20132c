@@ -18,5 +18,9 @@ namespace Clinica_Frba.Clases
             HoraDesde = horaDesde;
             HoraHasta = horaHasta;
         }
+
+        public Rango()
+        {
+        }
     }
 }

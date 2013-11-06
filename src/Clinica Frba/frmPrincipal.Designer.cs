@@ -49,6 +49,7 @@
             this.cmbRoles = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdIngresar = new System.Windows.Forms.Button();
+            this.consultarAgendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -161,7 +162,8 @@
             // cmdAgenda
             // 
             this.cmdAgenda.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.registrarAgendaToolStripMenuItem});
+            this.registrarAgendaToolStripMenuItem,
+            this.consultarAgendaToolStripMenuItem});
             this.cmdAgenda.Name = "cmdAgenda";
             this.cmdAgenda.Size = new System.Drawing.Size(122, 20);
             this.cmdAgenda.Text = "Agenda Profesional";
@@ -169,8 +171,8 @@
             // registrarAgendaToolStripMenuItem
             // 
             this.registrarAgendaToolStripMenuItem.Name = "registrarAgendaToolStripMenuItem";
-            this.registrarAgendaToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.registrarAgendaToolStripMenuItem.Text = "Registrar agenda";
+            this.registrarAgendaToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.registrarAgendaToolStripMenuItem.Text = "Registrar Agenda";
             this.registrarAgendaToolStripMenuItem.Click += new System.EventHandler(this.registrarAgendaToolStripMenuItem_Click);
             // 
             // cmdEstadisticas
@@ -222,6 +224,12 @@
             this.cmdIngresar.Visible = false;
             this.cmdIngresar.Click += new System.EventHandler(this.cmdIngresar_Click);
             // 
+            // consultarAgendaToolStripMenuItem
+            // 
+            this.consultarAgendaToolStripMenuItem.Name = "consultarAgendaToolStripMenuItem";
+            this.consultarAgendaToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.consultarAgendaToolStripMenuItem.Text = "Consultar Agenda";
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,6 +273,7 @@
         private System.Windows.Forms.ToolStripMenuItem cmdLogOut;
         private System.Windows.Forms.ToolStripMenuItem registrarAgendaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cmdTurnos;
+        private System.Windows.Forms.ToolStripMenuItem consultarAgendaToolStripMenuItem;
 
 
     }

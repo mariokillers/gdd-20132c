@@ -14,14 +14,6 @@ namespace Clinica_Frba.Abm_de_Profesional
         public int Matricula { get; set; }
         public List<Especialidad> Especialidades { get; set; } 
 
-        public bool RegistrarAgenda()
-        {
-            List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            //ListaParametros.Add(new SqlParameter("@dia", dia));
-
-            return Clases.BaseDeDatosSQL.EscribirEnBase("", "T", ListaParametros);
-        }
-
         public Profesional(int codigoPersona)
         {
 
@@ -46,6 +38,26 @@ namespace Clinica_Frba.Abm_de_Profesional
             ListaParametros.Add(new SqlParameter("@hasta", fechaHasta.Date));
 
             return Clases.BaseDeDatosSQL.EscribirEnBase("insert into mario_killers.Agenda ( profesional, desde , hasta) values (@profesional, @desde, @hasta)", "T", ListaParametros);
+        }
+
+        public List<Rango> ObtenerAgenda()
+        {
+            List<Rango> lista = new List<Rango>();
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@profesional", Persona));
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Rango where profesional=@profesional", "T", ListaParametros);
+            
+            if (lector.HasRows)
+            {
+                lector.Read();
+                Rango unRango = new Rango();
+                unRango.Dia = Dias.ObtenerDia((int)lector["dia"]); //FORMATO STRING
+                //unRango.HoraDesde = ;
+                //unRango.HoraHasta =;
+                lista.Add(unRango);
+            }
+            return lista;
         }
     }
 }

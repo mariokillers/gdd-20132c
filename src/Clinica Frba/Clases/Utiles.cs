@@ -19,6 +19,17 @@ namespace Clinica_Frba.Clases
             {return false;}
         }
 
+        public static bool SePasaDeHoras(List<Rango> listaDeRangos)
+        {
+            int cantHoras = 1;
+            //int cantHoras = listaDeRangos.Sum(item => (item.HoraHasta - item.HoraDesde));
+            if (cantHoras > 48)
+            {
+                return true;
+            }
+            else { return false; }
+        }
+
         public static bool SonFechasValidas(DateTime fechaDesde, DateTime fechaHasta)
         {
             try
@@ -69,7 +80,7 @@ namespace Clinica_Frba.Clases
             }
             return ((string)lector["estado"]);
         }
-
+        
         public static List<Dias> ObtenerTodosLosDias()
         {
             List<Dias> lista = new List<Dias>();
@@ -83,34 +94,24 @@ namespace Clinica_Frba.Clases
 
             return lista;
         }
-
-        public static List<TimeSpan> ObtenerHorasDiasHabiles()
+        
+        public static List<Hora> ObtenerHorasDiasHabilesDesde()
         {
-            List<TimeSpan> lista = new List<TimeSpan>();
+            List<Hora> lista = new List<Hora>();
 
-            return lista;
-        }
-
-        public static List<TimeSpan> ObtenerHorasDiasSabadosDesde()
-        {
-            List<TimeSpan> lista = new List<TimeSpan>();
-            lista.Add(new TimeSpan(10,0,0));
-            lista.Add(new TimeSpan(10, 30, 0));
-            lista.Add(new TimeSpan(11, 0, 0));
-            lista.Add(new TimeSpan(11, 30, 0));
-            lista.Add(new TimeSpan(12, 0, 0));
-            lista.Add(new TimeSpan(12, 30, 0));
-            lista.Add(new TimeSpan(13, 0, 0));
-            lista.Add(new TimeSpan(13, 30, 0));
-            lista.Add(new TimeSpan(14, 0, 0));
-            lista.Add(new TimeSpan(14, 30, 0));
-            
-            return lista;
-        }
-
-        public static List<TimeSpan> ObtenerHorasDiasSabadosHasta()
-        {
-            List<TimeSpan> lista = new List<TimeSpan>();
+            for (int i = 7; i <= 20; i++)
+            {
+                TimeSpan unaHora = new TimeSpan(i, 00, 0);
+                string hora = unaHora.Hours.ToString() +":"+ unaHora.Minutes.ToString();
+                lista.Add(new Hora(unaHora, hora));
+            }
+            /*lista.Add(new TimeSpan(7, 0, 0));
+            lista.Add(new TimeSpan(7, 30, 0));
+            lista.Add(new TimeSpan(8, 0, 0));
+            lista.Add(new TimeSpan(8, 30, 0));
+            lista.Add(new TimeSpan(9, 0, 0));
+            lista.Add(new TimeSpan(9, 30, 0));
+            lista.Add(new TimeSpan(10, 0, 0));
             lista.Add(new TimeSpan(10, 30, 0));
             lista.Add(new TimeSpan(11, 0, 0));
             lista.Add(new TimeSpan(11, 30, 0));
@@ -121,6 +122,40 @@ namespace Clinica_Frba.Clases
             lista.Add(new TimeSpan(14, 0, 0));
             lista.Add(new TimeSpan(14, 30, 0));
             lista.Add(new TimeSpan(15, 0, 0));
+            lista.Add(new TimeSpan(15, 0, 0));
+            lista.Add(new TimeSpan(15, 0, 0));
+            lista.Add(new TimeSpan(15, 0, 0));*/
+
+            return lista;
+        }
+
+        public static List<Hora> ObtenerHorasDiasSabadosDesde()
+        {
+            List<Hora> lista = new List<Hora>();
+
+            for (int i = 10; i <= 14; i++)
+            {
+                TimeSpan unaHora = new TimeSpan(i, 00, 0);
+                string hora = unaHora.Hours.ToString() + ":" + unaHora.Minutes.ToString();
+                lista.Add(new Hora(unaHora, hora));
+            }
+            
+            return lista;
+        }
+
+        public static List<Hora> ObtenerHorasDiasSabadosHasta()
+        {
+            List<Hora> lista = new List<Hora>();
+            /*lista.Add(new TimeSpan(10, 30, 0));
+            lista.Add(new TimeSpan(11, 0, 0));
+            lista.Add(new TimeSpan(11, 30, 0));
+            lista.Add(new TimeSpan(12, 0, 0));
+            lista.Add(new TimeSpan(12, 30, 0));
+            lista.Add(new TimeSpan(13, 0, 0));
+            lista.Add(new TimeSpan(13, 30, 0));
+            lista.Add(new TimeSpan(14, 0, 0));
+            lista.Add(new TimeSpan(14, 30, 0));
+            lista.Add(new TimeSpan(15, 0, 0));*/
 
             return lista;
         }

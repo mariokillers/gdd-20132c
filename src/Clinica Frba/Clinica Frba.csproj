@@ -282,6 +282,9 @@
     <EmbeddedResource Include="Registrar Agenda\frmRegistrarAgenda.resx">
       <DependentUpon>frmRegistrarAgenda.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Registrar Agenda\lstSeleccionAgenda.resx">
+      <DependentUpon>lstSeleccionAgenda.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Registro Resultado Atencion\frmAtencion.resx">
       <DependentUpon>frmAtencion.cs</DependentUpon>
     </EmbeddedResource>

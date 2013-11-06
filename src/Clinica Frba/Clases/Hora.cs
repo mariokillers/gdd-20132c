@@ -8,6 +8,12 @@ namespace Clinica_Frba.Clases
     class Hora
     {
         public string HoraAMostrar { get; set; }
-        //public TimeSpan Hora { get; set; }
+        public TimeSpan LaHora { get; set; }
+
+        public Hora(TimeSpan hora, string detalle)
+        {
+            HoraAMostrar = detalle;
+            LaHora = hora;
+        }
     }
 }

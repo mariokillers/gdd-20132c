@@ -8,11 +8,11 @@ namespace Clinica_Frba.Clases
     class Rango
     {
         public string Dia { get; set; }
-        public int HoraDesde { get; set; }
-        public int HoraHasta { get; set; }
+        public TimeSpan HoraDesde { get; set; }
+        public TimeSpan HoraHasta { get; set; }
 
         //PASAR TODO A TIMESPAN?
-        public Rango(string unDia, int horaDesde, int horaHasta)
+        public Rango(string unDia, TimeSpan horaDesde, TimeSpan horaHasta)
         {
             Dia = unDia;
             HoraDesde = horaDesde;

@@ -31,8 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmdHoraHasta = new System.Windows.Forms.ComboBox();
-            this.cmdHoraDesde = new System.Windows.Forms.ComboBox();
+            this.cmbHoraHasta = new System.Windows.Forms.ComboBox();
+            this.cmbHoraDesde = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbDias = new System.Windows.Forms.ComboBox();
@@ -42,11 +42,11 @@
             this.cmdEliminar = new System.Windows.Forms.Button();
             this.cmdFinalizar = new System.Windows.Forms.Button();
             this.groRango = new System.Windows.Forms.GroupBox();
-            this.dtpDesde = new System.Windows.Forms.DateTimePicker();
-            this.dtpHasta = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.cmdConfirmarRango = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dtpHasta = new System.Windows.Forms.DateTimePicker();
+            this.dtpDesde = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grillaHorarios)).BeginInit();
             this.groRango.SuspendLayout();
@@ -55,7 +55,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(23, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(119, 13);
             this.label1.TabIndex = 0;
@@ -72,36 +72,36 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cmdHoraHasta);
-            this.groupBox1.Controls.Add(this.cmdHoraDesde);
+            this.groupBox1.Controls.Add(this.cmbHoraHasta);
+            this.groupBox1.Controls.Add(this.cmbHoraDesde);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cmbDias);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.cmdAceptar);
-            this.groupBox1.Location = new System.Drawing.Point(15, 26);
+            this.groupBox1.Location = new System.Drawing.Point(15, 28);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(415, 82);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Registrar Dias y Horarios";
             // 
-            // cmdHoraHasta
+            // cmbHoraHasta
             // 
-            this.cmdHoraHasta.FormattingEnabled = true;
-            this.cmdHoraHasta.Location = new System.Drawing.Point(291, 31);
-            this.cmdHoraHasta.Name = "cmdHoraHasta";
-            this.cmdHoraHasta.Size = new System.Drawing.Size(102, 21);
-            this.cmdHoraHasta.TabIndex = 12;
+            this.cmbHoraHasta.FormattingEnabled = true;
+            this.cmbHoraHasta.Location = new System.Drawing.Point(291, 31);
+            this.cmbHoraHasta.Name = "cmbHoraHasta";
+            this.cmbHoraHasta.Size = new System.Drawing.Size(102, 21);
+            this.cmbHoraHasta.TabIndex = 12;
             // 
-            // cmdHoraDesde
+            // cmbHoraDesde
             // 
-            this.cmdHoraDesde.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.HistoryList;
-            this.cmdHoraDesde.FormattingEnabled = true;
-            this.cmdHoraDesde.Location = new System.Drawing.Point(174, 32);
-            this.cmdHoraDesde.Name = "cmdHoraDesde";
-            this.cmdHoraDesde.Size = new System.Drawing.Size(102, 21);
-            this.cmdHoraDesde.TabIndex = 11;
+            this.cmbHoraDesde.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.HistoryList;
+            this.cmbHoraDesde.FormattingEnabled = true;
+            this.cmbHoraDesde.Location = new System.Drawing.Point(174, 32);
+            this.cmbHoraDesde.Name = "cmbHoraDesde";
+            this.cmbHoraDesde.Size = new System.Drawing.Size(102, 21);
+            this.cmbHoraDesde.TabIndex = 11;
             // 
             // label4
             // 
@@ -190,28 +190,15 @@
             this.groRango.Text = "Registrar Rango de Fechas";
             this.groRango.Visible = false;
             // 
-            // dtpDesde
+            // cmdConfirmarRango
             // 
-            this.dtpDesde.Location = new System.Drawing.Point(154, 35);
-            this.dtpDesde.Name = "dtpDesde";
-            this.dtpDesde.Size = new System.Drawing.Size(200, 20);
-            this.dtpDesde.TabIndex = 0;
-            // 
-            // dtpHasta
-            // 
-            this.dtpHasta.Location = new System.Drawing.Point(154, 71);
-            this.dtpHasta.Name = "dtpHasta";
-            this.dtpHasta.Size = new System.Drawing.Size(200, 20);
-            this.dtpHasta.TabIndex = 1;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 41);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Fecha Desde:";
+            this.cmdConfirmarRango.Location = new System.Drawing.Point(174, 114);
+            this.cmdConfirmarRango.Name = "cmdConfirmarRango";
+            this.cmdConfirmarRango.Size = new System.Drawing.Size(75, 23);
+            this.cmdConfirmarRango.TabIndex = 4;
+            this.cmdConfirmarRango.Text = "Confirmar";
+            this.cmdConfirmarRango.UseVisualStyleBackColor = true;
+            this.cmdConfirmarRango.Click += new System.EventHandler(this.cmdConfirmarRango_Click);
             // 
             // label6
             // 
@@ -222,15 +209,28 @@
             this.label6.TabIndex = 3;
             this.label6.Text = "Fecha Hasta:";
             // 
-            // cmdConfirmarRango
+            // label5
             // 
-            this.cmdConfirmarRango.Location = new System.Drawing.Point(154, 114);
-            this.cmdConfirmarRango.Name = "cmdConfirmarRango";
-            this.cmdConfirmarRango.Size = new System.Drawing.Size(75, 23);
-            this.cmdConfirmarRango.TabIndex = 4;
-            this.cmdConfirmarRango.Text = "Confirmar";
-            this.cmdConfirmarRango.UseVisualStyleBackColor = true;
-            this.cmdConfirmarRango.Click += new System.EventHandler(this.cmdConfirmarRango_Click);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(19, 41);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Fecha Desde:";
+            // 
+            // dtpHasta
+            // 
+            this.dtpHasta.Location = new System.Drawing.Point(154, 71);
+            this.dtpHasta.Name = "dtpHasta";
+            this.dtpHasta.Size = new System.Drawing.Size(200, 20);
+            this.dtpHasta.TabIndex = 1;
+            // 
+            // dtpDesde
+            // 
+            this.dtpDesde.Location = new System.Drawing.Point(154, 35);
+            this.dtpDesde.Name = "dtpDesde";
+            this.dtpDesde.Size = new System.Drawing.Size(200, 20);
+            this.dtpDesde.TabIndex = 0;
             // 
             // frmRegistrarAgenda
             // 
@@ -270,8 +270,8 @@
         private System.Windows.Forms.Button cmdFinalizar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cmdHoraHasta;
-        private System.Windows.Forms.ComboBox cmdHoraDesde;
+        private System.Windows.Forms.ComboBox cmbHoraHasta;
+        private System.Windows.Forms.ComboBox cmbHoraDesde;
         private System.Windows.Forms.GroupBox groRango;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;

@@ -34,13 +34,18 @@ namespace Clinica_Frba.Registrar_Agenda
             cmbDias.ValueMember = "Id";
             cmbDias.DisplayMember = "Detalle";
 
-            //SI SELECCIONO EL SABADO
+            //OBTENGO LAS HORAS
+            cmbHoraDesde.DataSource = Utiles.ObtenerHorasDiasHabilesDesde();
+            cmbHoraDesde.ValueMember = "LaHora";
+            cmbHoraDesde.DisplayMember = "HoraAMostrar";
+
+            /*SI SELECCIONO EL SABADO
             if ((int)cmbDias.SelectedValue == 7)
             {
                 //NO FUNCA
                 cmdHoraDesde.DataSource = Utiles.ObtenerHorasDiasSabadosDesde();
                 cmdHoraHasta.DataSource = Utiles.ObtenerHorasDiasSabadosHasta();
-            }
+            }*/
 
             //lblNombre.Text = Profesional.Apellido + "," + Profesional.Nombre;
         }
@@ -69,9 +74,9 @@ namespace Clinica_Frba.Registrar_Agenda
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
             //FALTA AGARRAR LAS HORAS
-            Rango unRango = new Rango(Dias.ObtenerDia((int)cmbDias.SelectedValue), 1, 1);
+            //Rango unRango = new Rango(Dias.ObtenerDia((int)cmbDias.SelectedValue), 1, 1);
 
-            listaDeRangos.Add(unRango);
+            //listaDeRangos.Add(unRango);
             ActualizarGrilla();
         }
 
@@ -83,7 +88,12 @@ namespace Clinica_Frba.Registrar_Agenda
 
         private void cmdFinalizar_Click(object sender, EventArgs e)
         {
-            groRango.Visible = true;
+            //CHEQUEA SUMA DE HORAS <48
+            if (!Utiles.SePasaDeHoras(listaDeRangos))
+            {
+                groRango.Visible = true;
+            }
+            else { }    
         }
 
         private void cmdConfirmarRango_Click(object sender, EventArgs e)

@@ -15,5 +15,27 @@ namespace Clinica_Frba.Clases
             Detalle = detalle;
             Id = id;
         }
+
+        public static string ObtenerDia(int id)
+        {
+            switch (id)
+            {
+                case 1:
+                    return "Domingo";
+                case 2:
+                    return "Lunes";
+                case 3:
+                    return "Martes";
+                case 4:
+                    return "Miercoles";
+                case 5:
+                    return "Jueves";
+                case 6:
+                    return "Viernes";
+                case 7:
+                    return "Sábado";
+            }
+            return "";
+        }
     }
 }

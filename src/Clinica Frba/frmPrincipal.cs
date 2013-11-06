@@ -12,6 +12,7 @@ using Clinica_Frba.Clases;
 using Clinica_Frba.Abm_de_Afiliado;
 using Clinica_Frba.NewFolder1;
 using Clinica_Frba.NewFolder10;
+using Clinica_Frba.Registrar_Agenda;
 
 namespace Clinica_Frba
 {
@@ -155,6 +156,13 @@ namespace Clinica_Frba
             frmAfiliadoAlta formAfiliado = new frmAfiliadoAlta();
             formAfiliado.Show();
             //this.Hide();
+        }
+
+        private void registrarAgendaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRegistrarAgenda formAgenda = new frmRegistrarAgenda();
+            formAgenda.Profesional = User; //YO LE PASARIA SOLO EL PROFESIONAL
+            formAgenda.Show();
         }
     }
 }

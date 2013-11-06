@@ -19,20 +19,8 @@ namespace Clinica_Frba.Abm_de_Rol
 
         //lista de roles que voy a tener para mostrar
         private List<Funcionalidad> listaDeFuncionalidades = new List<Funcionalidad>();
+        private List<Funcionalidad> listaDeTodas = new List<Funcionalidad>();
         public Rol unRol { get; set; }
-
-        private void cmdBuscar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //me traigo todas las funcionalidades que cumplen con el filtro
-                listaDeFuncionalidades = Funcionalidades.ObtenerFuncionalidades(txtNombreFunc.Text);
-                grillaFuncionalidades.DataSource = listaDeFuncionalidades;
-                grillaFuncionalidades.ValueMember = "Id";
-                grillaFuncionalidades.DisplayMember = "Nombre";
-            }
-            catch { MessageBox.Show("Se ha producido un error", "Error!", MessageBoxButtons.OK); }
-        }
 
         private void lstSeleccionFuncionalidad_Load(object sender, EventArgs e)
         {
@@ -41,25 +29,17 @@ namespace Clinica_Frba.Abm_de_Rol
                 if (unRol != null)
                 {
                     //ME TRAIGO TODAS PARA MOSTRARLAS DESCHEACKEADAS
-                    List<Funcionalidad> listaDeTodas = Funcionalidades.ObtenerFuncionalidades();
-
+                    listaDeTodas = Funcionalidades.ObtenerFuncionalidades();
                     grillaFuncionalidades.DataSource = listaDeTodas;
                     grillaFuncionalidades.ValueMember = "Id";
                     grillaFuncionalidades.DisplayMember = "Nombre";
 
                     //ME MANDARON UN ROL ESPECIFICO -> MUESTRO SOLO LAS FUNC DE ESTE ROL
-                    List<Funcionalidad> listaDeFuncionalidades = Funcionalidades.ObtenerFuncionalidades(unRol.Id);
+                    listaDeFuncionalidades = Funcionalidades.ObtenerFuncionalidades(unRol.Id);
 
-                    //CHECKEO LAS QUE TIENE
-                    foreach (Funcionalidad unaFunc in listaDeTodas)
-                    {
-                        var probar = listaDeFuncionalidades.SingleOrDefault(fun => fun.Id == unaFunc.Id);
-                        if (probar != null)
-                        {
-                            grillaFuncionalidades.SetItemChecked(listaDeTodas.IndexOf(unaFunc), true);
-                        }
-                    }
+                    CheckearFuncionalidades();
                 }
+                txtRol.Text = unRol.Nombre;
             }
             catch
             {MessageBox.Show("Se ha producido un error,vuelva a intentarlo", "Error!", MessageBoxButtons.OK);}
@@ -67,6 +47,12 @@ namespace Clinica_Frba.Abm_de_Rol
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
+            //SI EL NOMBRE ES DISTINTO, LO MODIFCO
+            if(unRol.Nombre != txtRol.Text)
+            {
+                Roles.ModificarNombre(txtRol.Text, unRol.Id);
+            }
+
             //LISTA DE FUNCIONALIDADES QUE TIENE ESE ROL
             List<Funcionalidad> listaQueTiene = Funcionalidades.ObtenerFuncionalidades(unRol.Id);
 
@@ -90,6 +76,21 @@ namespace Clinica_Frba.Abm_de_Rol
             }
 
             MessageBox.Show("Se ha modificado el rol con éxito", "Enhorabuena!", MessageBoxButtons.OK);
+            this.Close();
+        }
+
+
+        public void CheckearFuncionalidades()
+        {
+            //CHECKEO LAS QUE TIENE
+            foreach (Funcionalidad unaFunc in listaDeTodas)
+            {
+                var probar = listaDeFuncionalidades.SingleOrDefault(fun => fun.Id == unaFunc.Id);
+                if (probar != null)
+                {
+                    grillaFuncionalidades.SetItemChecked(listaDeTodas.IndexOf(unaFunc), true);
+                }
+            }
         }
     }
 }

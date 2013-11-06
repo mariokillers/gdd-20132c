@@ -19,11 +19,11 @@ namespace Clinica_Frba.Clases
             {return false;}
         }
 
-        public static bool EsFechaValida(DateTime fecha)
+        public static bool SonFechasValidas(DateTime fechaDesde, DateTime fechaHasta)
         {
-            try { 
-                DateTime hoy = DateTime.Today;
-                if (fecha > hoy)
+            try
+            {
+                if (fechaDesde > fechaHasta)
                 {
                     return false;
                 } return true;
@@ -70,11 +70,57 @@ namespace Clinica_Frba.Clases
             return ((string)lector["estado"]);
         }
 
-        public static List<string> ObtenerTodosLosDias()
+        public static List<Dias> ObtenerTodosLosDias()
         {
-            List<string> lista = new List<string>();
+            List<Dias> lista = new List<Dias>();
+            lista.Add(new Dias(1, "Domingo"));
+            lista.Add(new Dias(2, "Lunes"));
+            lista.Add(new Dias(3, "Martes"));
+            lista.Add(new Dias(4, "Miercoles"));
+            lista.Add(new Dias(5, "Jueves"));
+            lista.Add(new Dias(6, "Viernes"));
+            lista.Add(new Dias(7, "Sábado"));
 
+            return lista;
+        }
 
+        public static List<TimeSpan> ObtenerHorasDiasHabiles()
+        {
+            List<TimeSpan> lista = new List<TimeSpan>();
+
+            return lista;
+        }
+
+        public static List<TimeSpan> ObtenerHorasDiasSabadosDesde()
+        {
+            List<TimeSpan> lista = new List<TimeSpan>();
+            lista.Add(new TimeSpan(10,0,0));
+            lista.Add(new TimeSpan(10, 30, 0));
+            lista.Add(new TimeSpan(11, 0, 0));
+            lista.Add(new TimeSpan(11, 30, 0));
+            lista.Add(new TimeSpan(12, 0, 0));
+            lista.Add(new TimeSpan(12, 30, 0));
+            lista.Add(new TimeSpan(13, 0, 0));
+            lista.Add(new TimeSpan(13, 30, 0));
+            lista.Add(new TimeSpan(14, 0, 0));
+            lista.Add(new TimeSpan(14, 30, 0));
+            
+            return lista;
+        }
+
+        public static List<TimeSpan> ObtenerHorasDiasSabadosHasta()
+        {
+            List<TimeSpan> lista = new List<TimeSpan>();
+            lista.Add(new TimeSpan(10, 30, 0));
+            lista.Add(new TimeSpan(11, 0, 0));
+            lista.Add(new TimeSpan(11, 30, 0));
+            lista.Add(new TimeSpan(12, 0, 0));
+            lista.Add(new TimeSpan(12, 30, 0));
+            lista.Add(new TimeSpan(13, 0, 0));
+            lista.Add(new TimeSpan(13, 30, 0));
+            lista.Add(new TimeSpan(14, 0, 0));
+            lista.Add(new TimeSpan(14, 30, 0));
+            lista.Add(new TimeSpan(15, 0, 0));
 
             return lista;
         }

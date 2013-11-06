@@ -44,11 +44,11 @@
             this.cmdAgenda = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarAgendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdEstadisticas = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdTurnos = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdLogOut = new System.Windows.Forms.ToolStripMenuItem();
             this.cmbRoles = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdIngresar = new System.Windows.Forms.Button();
-            this.cmdTurnos = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -171,12 +171,19 @@
             this.registrarAgendaToolStripMenuItem.Name = "registrarAgendaToolStripMenuItem";
             this.registrarAgendaToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.registrarAgendaToolStripMenuItem.Text = "Registrar agenda";
+            this.registrarAgendaToolStripMenuItem.Click += new System.EventHandler(this.registrarAgendaToolStripMenuItem_Click);
             // 
             // cmdEstadisticas
             // 
             this.cmdEstadisticas.Name = "cmdEstadisticas";
             this.cmdEstadisticas.Size = new System.Drawing.Size(79, 20);
             this.cmdEstadisticas.Text = "Estadisticas";
+            // 
+            // cmdTurnos
+            // 
+            this.cmdTurnos.Name = "cmdTurnos";
+            this.cmdTurnos.Size = new System.Drawing.Size(56, 20);
+            this.cmdTurnos.Text = "Turnos";
             // 
             // cmdLogOut
             // 
@@ -214,12 +221,6 @@
             this.cmdIngresar.UseVisualStyleBackColor = true;
             this.cmdIngresar.Visible = false;
             this.cmdIngresar.Click += new System.EventHandler(this.cmdIngresar_Click);
-            // 
-            // cmdTurnos
-            // 
-            this.cmdTurnos.Name = "cmdTurnos";
-            this.cmdTurnos.Size = new System.Drawing.Size(56, 20);
-            this.cmdTurnos.Text = "Turnos";
             // 
             // frmPrincipal
             // 

@@ -91,6 +91,7 @@ namespace Clinica_Frba.Abm_de_Rol
             if (Operacion == "Baja")
             {
                 Roles.Eliminar(unRol.Id);
+                MessageBox.Show("Se ha dado de baja el rol con éxito", "Enhorabuena!", MessageBoxButtons.OK);
                 Limpiar();
             }
             else

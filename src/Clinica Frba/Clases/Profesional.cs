@@ -37,5 +37,15 @@ namespace Clinica_Frba.Abm_de_Profesional
                 //FALTA EL TEMA DE LAS ESPECIALIDADES
             }
         }
+
+        public bool registrarAgenda(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@profesional", Persona)); //ESTA ES LA PK, NO?
+            ListaParametros.Add(new SqlParameter("@desde", fechaDesde.Date));
+            ListaParametros.Add(new SqlParameter("@hasta", fechaHasta.Date));
+
+            return Clases.BaseDeDatosSQL.EscribirEnBase("insert into mario_killers.Agenda ( profesional, desde , hasta) values (@profesional, @desde, @hasta)", "T", ListaParametros);
+        }
     }
 }

@@ -103,12 +103,14 @@
     <Compile Include="Clases\BonoConsulta.cs" />
     <Compile Include="Clases\BonoFarmacia.cs" />
     <Compile Include="Clases\Compra.cs" />
+    <Compile Include="Clases\Dias.cs" />
     <Compile Include="Clases\Especialidad.cs" />
     <Compile Include="Clases\Especialidades.cs" />
     <Compile Include="Clases\Estado.cs" />
     <Compile Include="Clases\Estados.cs" />
     <Compile Include="Clases\Funcionalidad.cs" />
     <Compile Include="Clases\Funcionalidades.cs" />
+    <Compile Include="Clases\Hora.cs" />
     <Compile Include="Clases\Medicamento.cs" />
     <Compile Include="Clases\MedicamentoEnReceta.cs" />
     <Compile Include="Clases\Medicamentos.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="Clases\Plan.cs" />
     <Compile Include="Clases\Planes.cs" />
     <Compile Include="Clases\Profesional.cs" />
+    <Compile Include="Clases\Rango.cs" />
     <Compile Include="Clases\Receta.cs" />
     <Compile Include="Clases\Rol.cs" />
     <Compile Include="Clases\Roles.cs" />

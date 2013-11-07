@@ -1,10 +1,17 @@
 CREATE SCHEMA mario_killers AUTHORIZATION gd
 GO
 
-CREATE PROCEDURE mario_killers.agregarPlanAlGrupo (@plan_medico numeric(18,0), @ret numeric(18,0) output)
+CREATE PROCEDURE mario_killers.agregarPlanAlGrupo (@plan_medico numeric(18,0), @afil_viejo numeric(18,0), @ret numeric(18,0) output)
 AS BEGIN
 	INSERT INTO mario_killers.Grupo_Familia (plan_medico) VALUES (@plan_medico)
-	SET @ret = SCOPE_IDENTITY()
+	DECLARE @aux numeric(18,0)
+	SET @aux = SCOPE_IDENTITY()
+	
+	UPDATE mario_killers.Afiliado
+	SET grupo_familia = @aux, nro_familiar = 01
+	WHERE persona = @afil_viejo
+	
+	SET @ret = @aux
 END
 GO
 
@@ -12,16 +19,6 @@ CREATE PROCEDURE mario_killers.agregarRol(@nombreRol varchar(255), @ret numeric(
 AS BEGIN
 	INSERT INTO mario_killers.Rol (nombre, activo) VALUES (@nombreRol, 1)
 	SET @ret = SCOPE_IDENTITY()
-END
-GO
-
-
-CREATE FUNCTION mario_killers.grupo_ultimo_agregado()
-RETURNS numeric(18,0)
-AS BEGIN
-	DECLARE @ret numeric(18,0)
-	SET @ret = SCOPE_IDENTITY()
-	RETURN @ret
 END
 GO
 
@@ -419,12 +416,6 @@ FROM mario_killers.Afiliado A JOIN mario_killers.Persona P ON A.persona = P.id
 							  JOIN mario_killers.Grupo_Familia GF ON A.grupo_familia = GF.codigo
 							  JOIN mario_killers.Tipo_Documento TD ON P.tipo_doc = TD.id
 WHERE A.activo = 1
-GO
-
-CREATE VIEW mario_killers.ultimo_grupo AS
-SELECT codigo
-FROM mario_killers.Grupo_Familia
-WHERE codigo = SCOPE_IDENTITY() --mario_killers.grupo_ultimo_agregado()
 GO
 
 CREATE VIEW mario_killers.ProfesionalYPersona AS

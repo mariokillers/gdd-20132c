@@ -26,7 +26,9 @@ namespace Clinica_Frba.Registrar_Agenda
         private void frmRegistrarAgenda_Load(object sender, EventArgs e)
         {
             grillaHorarios.AutoGenerateColumns = false;
+
             generarGrilla();
+            ActualizarGrilla();
 
             //OBTENGO LOS DIAS
             cmbDias.DataSource = Utiles.ObtenerTodosLosDias();
@@ -68,10 +70,12 @@ namespace Clinica_Frba.Registrar_Agenda
 
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
+            //AGARRO EL DIA
+            string dia = Dias.ObtenerDia((int)cmbDias.SelectedValue);
             //FALTA AGARRAR LAS HORAS
-            //Rango unRango = new Rango(Dias.ObtenerDia((int)cmbDias.SelectedValue), 1, 1);
+            Rango unRango = new Rango(dia, new TimeSpan(7, 0, 0), new TimeSpan(8, 30, 0));
+            listaDeRangos.Add(unRango);
 
-            //listaDeRangos.Add(unRango);
             ActualizarGrilla();
         }
 
@@ -100,7 +104,7 @@ namespace Clinica_Frba.Registrar_Agenda
             {
                 try
                 {
-                    //unProfesional.RegistrarAgenda(fechaDesde,fechaHasta;
+                    //unProfesional.RegistrarAgenda(fechaDesde,fechaHasta);
                     //VER SI YA ESTA LA VALIDACION EN LA DB -> TIRA EXCEPTION
                 }
                 catch { MessageBox.Show("El rango de fechas supera los 120 dias", "Error!", MessageBoxButtons.OK); }
@@ -122,6 +126,13 @@ namespace Clinica_Frba.Registrar_Agenda
                 cmbHoraHasta.ValueMember = "LaHora";
                 cmbHoraHasta.DisplayMember = "HoraAMostrar";
             }
+        }
+
+        private void cmdEliminar_Click(object sender, EventArgs e)
+        {
+            Rango unRango = (Rango)grillaHorarios.CurrentRow.DataBoundItem;
+            listaDeRangos.Remove(unRango);
+            ActualizarGrilla();
         }
     }
 }

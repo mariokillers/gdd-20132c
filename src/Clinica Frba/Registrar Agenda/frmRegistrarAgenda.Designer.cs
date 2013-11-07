@@ -165,6 +165,7 @@
             this.cmdEliminar.TabIndex = 4;
             this.cmdEliminar.Text = "Eliminar";
             this.cmdEliminar.UseVisualStyleBackColor = true;
+            this.cmdEliminar.Click += new System.EventHandler(this.cmdEliminar_Click);
             // 
             // cmdFinalizar
             // 

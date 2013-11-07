@@ -21,7 +21,7 @@ namespace Clinica_Frba.Registrar_Agenda
         public Profesional unProfesional { get; set; }
 
         //LISTA PARA MOSTRAR LOS RANGOS
-        List<Rango> listaDeRangos = new List<Rango>();
+        private List<Rango> listaDeRangos = new List<Rango>();
 
         private void frmRegistrarAgenda_Load(object sender, EventArgs e)
         {
@@ -50,7 +50,7 @@ namespace Clinica_Frba.Registrar_Agenda
         private void generarGrilla()
         {
             DataGridViewTextBoxColumn ColDia = new DataGridViewTextBoxColumn();
-            ColDia.DataPropertyName = "Dia";
+            ColDia.DataPropertyName = "Dia.Detalle";
             ColDia.HeaderText = "Día";
             ColDia.Width = 120;
             grillaHorarios.Columns.Add(ColDia);
@@ -71,9 +71,11 @@ namespace Clinica_Frba.Registrar_Agenda
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
             //AGARRO EL DIA
-            string dia = Dias.ObtenerDia((int)cmbDias.SelectedValue);
+            Dias unDia = new Dias((int)cmbDias.SelectedValue);
             //FALTA AGARRAR LAS HORAS
-            Rango unRango = new Rango(dia, new TimeSpan(7, 0, 0), new TimeSpan(8, 30, 0));
+            TimeSpan horaDesde = (TimeSpan)cmbHoraDesde.SelectedValue;
+            TimeSpan horaHasta = (TimeSpan)cmbHoraHasta.SelectedValue;
+            Rango unRango = new Rango(unDia, horaDesde, horaHasta);
             listaDeRangos.Add(unRango);
 
             ActualizarGrilla();
@@ -90,7 +92,7 @@ namespace Clinica_Frba.Registrar_Agenda
             //COMO ESTAN LOS CONTRAITS EN LA DB, DEBERIA DE TIRAR EXCEPTION EN CASO DE NO PODER AGREGAR
             try 
             {
-                //unProfesional.registrarAgenda(lista);
+                //if(unProfesional.registrarAgenda(lista)) else [mensaje del catch]
                 groRango.Visible = true;
             }
             catch { MessageBox.Show("La carga horaria supera las 48 hs. semanales", "Error!", MessageBoxButtons.OK); }

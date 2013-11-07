@@ -56,17 +56,32 @@ namespace Clinica_Frba.Abm_de_Profesional
         public Profesional()
         { }
 
-        public bool registrarAgenda(DateTime fechaDesde, DateTime fechaHasta)
+        public bool RegistrarAgenda(DateTime fechaDesde, DateTime fechaHasta)
         {
-            List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@profesional", Id)); //ESTA ES LA PK, NO?
-            ListaParametros.Add(new SqlParameter("@desde", fechaDesde.Date));
-            ListaParametros.Add(new SqlParameter("@hasta", fechaHasta.Date));
+            try
+            {
+                List<SqlParameter> ListaParametros = new List<SqlParameter>();
+                ListaParametros.Add(new SqlParameter("@profesional", Id)); //ESTA ES LA PK, NO?
+                ListaParametros.Add(new SqlParameter("@desde", fechaDesde.Date));
+                ListaParametros.Add(new SqlParameter("@hasta", fechaHasta.Date));
 
-            return Clases.BaseDeDatosSQL.EscribirEnBase("insert into mario_killers.Agenda ( profesional, desde , hasta) values (@profesional, @desde, @hasta)", "T", ListaParametros);
+                return Clases.BaseDeDatosSQL.EscribirEnBase("insert into mario_killers.Agenda ( profesional, desde , hasta) values (@profesional, @desde, @hasta)", "T", ListaParametros);
+            }
+            catch { return false; }
         }
 
-        private List<Rango> ObtenerAgenda()
+        public bool EliminarAgenda()
+        {
+            try
+            {
+                List<SqlParameter> ListaParametros = new List<SqlParameter>();
+                ListaParametros.Add(new SqlParameter("@profesional", Id));
+                return Clases.BaseDeDatosSQL.EscribirEnBase("delete from mario_killers.Agenda where profesional=@profesional", "T", ListaParametros);
+            }
+            catch { return false; }
+        }
+
+        public List<Rango> ObtenerAgenda()
         {
             List<Rango> lista = new List<Rango>();
 
@@ -78,9 +93,9 @@ namespace Clinica_Frba.Abm_de_Profesional
             {
                 lector.Read();
                 Rango unRango = new Rango();
-                unRango.Dia = Dias.ObtenerDia((int)lector["dia"]); //FORMATO STRING
-                //unRango.HoraDesde = ;
-                //unRango.HoraHasta =;
+                unRango.Dia = new Dias((int)lector["dia"]);
+                unRango.HoraDesde = (TimeSpan)lector["hora_desde"];
+                unRango.HoraHasta = (TimeSpan)lector["hora_hasta"];
                 lista.Add(unRango);
             }
             return lista;

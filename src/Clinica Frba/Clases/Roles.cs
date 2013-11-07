@@ -37,17 +37,25 @@ namespace Clinica_Frba.Clases
 
         public static bool Eliminar(int id)
         {
-            List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@id", id));
-            return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Rol set Activo =0 where id=@id", "T", ListaParametros);
+            try
+            {
+                List<SqlParameter> ListaParametros = new List<SqlParameter>();
+                ListaParametros.Add(new SqlParameter("@id", id));
+                return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Rol set Activo =0 where id=@id", "T", ListaParametros);
+            }
+            catch { return false; }
         }
 
         public static bool ModificarNombre(string nombre, int idRol)
         {
-            List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@id", idRol));
-            ListaParametros.Add(new SqlParameter("@nombre", nombre));
-            return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Rol set nombre =@nombre where id=@id", "T", ListaParametros);
+            try
+            {
+                List<SqlParameter> ListaParametros = new List<SqlParameter>();
+                ListaParametros.Add(new SqlParameter("@id", idRol));
+                ListaParametros.Add(new SqlParameter("@nombre", nombre));
+                return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Rol set nombre =@nombre where id=@id", "T", ListaParametros);
+            }
+            catch { return false; }
         }
 
         public static bool Agregar(string nombre, List<Funcionalidad> listaDeFunc)

@@ -165,5 +165,12 @@ namespace Clinica_Frba
             formAgenda.unProfesional = new Profesional(User.Codigo_Persona);
             formAgenda.Show();
         }
+
+        private void consultarAgendaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lstSeleccionAgenda formAgenda = new lstSeleccionAgenda();
+            formAgenda.unProfesional = new Profesional(User.Codigo_Persona);
+            formAgenda.Show();
+        }
     }
 }

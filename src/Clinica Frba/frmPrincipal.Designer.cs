@@ -43,13 +43,13 @@
             this.cmdRolBaja = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdAgenda = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarAgendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultarAgendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdEstadisticas = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdTurnos = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdLogOut = new System.Windows.Forms.ToolStripMenuItem();
             this.cmbRoles = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdIngresar = new System.Windows.Forms.Button();
-            this.consultarAgendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -175,6 +175,13 @@
             this.registrarAgendaToolStripMenuItem.Text = "Registrar Agenda";
             this.registrarAgendaToolStripMenuItem.Click += new System.EventHandler(this.registrarAgendaToolStripMenuItem_Click);
             // 
+            // consultarAgendaToolStripMenuItem
+            // 
+            this.consultarAgendaToolStripMenuItem.Name = "consultarAgendaToolStripMenuItem";
+            this.consultarAgendaToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.consultarAgendaToolStripMenuItem.Text = "Consultar Agenda";
+            this.consultarAgendaToolStripMenuItem.Click += new System.EventHandler(this.consultarAgendaToolStripMenuItem_Click);
+            // 
             // cmdEstadisticas
             // 
             this.cmdEstadisticas.Name = "cmdEstadisticas";
@@ -223,12 +230,6 @@
             this.cmdIngresar.UseVisualStyleBackColor = true;
             this.cmdIngresar.Visible = false;
             this.cmdIngresar.Click += new System.EventHandler(this.cmdIngresar_Click);
-            // 
-            // consultarAgendaToolStripMenuItem
-            // 
-            this.consultarAgendaToolStripMenuItem.Name = "consultarAgendaToolStripMenuItem";
-            this.consultarAgendaToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.consultarAgendaToolStripMenuItem.Text = "Consultar Agenda";
             // 
             // frmPrincipal
             // 

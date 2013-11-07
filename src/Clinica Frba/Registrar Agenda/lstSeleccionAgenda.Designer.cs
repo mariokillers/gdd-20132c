@@ -63,12 +63,13 @@
             // 
             // cmdEliminar
             // 
-            this.cmdEliminar.Location = new System.Drawing.Point(73, 218);
+            this.cmdEliminar.Location = new System.Drawing.Point(80, 218);
             this.cmdEliminar.Name = "cmdEliminar";
             this.cmdEliminar.Size = new System.Drawing.Size(109, 23);
             this.cmdEliminar.TabIndex = 3;
             this.cmdEliminar.Text = "Eliminar Agenda";
             this.cmdEliminar.UseVisualStyleBackColor = true;
+            this.cmdEliminar.Click += new System.EventHandler(this.cmdEliminar_Click);
             // 
             // lstSeleccionAgenda
             // 

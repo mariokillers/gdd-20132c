@@ -102,12 +102,11 @@ namespace Clinica_Frba.Clases
                     //REINICIO EL CONTADOR PORQUE ES MEDIA HORA
                     cont = 0;
                     i--;
-                    TimeSpan unaHora = new TimeSpan(i, 3, 0);
-                    string hora = unaHora.Hours.ToString() + ":" + unaHora.Minutes.ToString() + "0";
+                    TimeSpan unaHora = new TimeSpan(i, 30, 0);
+                    string hora = unaHora.Hours.ToString() + ":" + unaHora.Minutes.ToString();
                     lista.Add(new Hora(unaHora, hora));
                 }
             }
-
             return lista;
         }
 
@@ -128,8 +127,8 @@ namespace Clinica_Frba.Clases
                 {
                     cont = 0;
                     i--;
-                    TimeSpan unaHora = new TimeSpan(i, 3, 0);
-                    string hora = unaHora.Hours.ToString() + ":" + unaHora.Minutes.ToString() + "0";
+                    TimeSpan unaHora = new TimeSpan(i, 30, 0);
+                    string hora = unaHora.Hours.ToString() + ":" + unaHora.Minutes.ToString();
                     lista.Add(new Hora(unaHora, hora));
                 }
             }

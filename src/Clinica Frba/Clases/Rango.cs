@@ -7,13 +7,13 @@ namespace Clinica_Frba.Clases
 {
     class Rango
     {
-        public string Dia { get; set; }
+        public Dias Dia { get; set; }
         public TimeSpan HoraDesde { get; set; }
         public TimeSpan HoraHasta { get; set; }
 
-        public Rango(string unDia, TimeSpan horaDesde, TimeSpan horaHasta)
+        public Rango(Dias dia, TimeSpan horaDesde, TimeSpan horaHasta)
         {
-            Dia = unDia;
+            Dia = dia;
             HoraDesde = horaDesde;
             HoraHasta = horaHasta;
         }

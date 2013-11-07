@@ -19,7 +19,6 @@ namespace Clinica_Frba.Registrar_Agenda
         }
         //PARA SABER QUE PROFESIONAL ESTOY ACTUALIZANDO
         public Usuario Profesional { get; set; }
-        //public Profesional unProfesional { get; set; }
 
         //LISTA PARA MOSTRAR LOS RANGOS
         List<Rango> listaDeRangos = new List<Rango>();
@@ -105,7 +104,7 @@ namespace Clinica_Frba.Registrar_Agenda
             {
                 try
                 {
-                    unProfesional.RegistrarAgenda(fechaDesde,fechaHasta);
+                    //unProfesional.RegistrarAgenda(fechaDesde,fechaHasta);
                     //VER SI YA ESTA LA VALIDACION EN LA DB -> TIRA EXCEPTION
                 }
                 catch { MessageBox.Show("El rango de fechas supera los 120 dias", "Error!", MessageBoxButtons.OK); }

@@ -10,7 +10,6 @@ namespace Clinica_Frba.Abm_de_Profesional
 {
     class Profesional : Persona
     {
-        public Persona Persona { get; set; }
         public int Matricula { get; set; }
         public List<Especialidad> Especialidades { get; set; } 
 
@@ -25,7 +24,7 @@ namespace Clinica_Frba.Abm_de_Profesional
             {
                 lector.Read();
                 Matricula = (int)lector["matricula"];
-                Persona = new Persona((int)lector["codigoPersona"]);
+                
                 //FALTA EL TEMA DE LAS ESPECIALIDADES
             }
         }
@@ -33,7 +32,7 @@ namespace Clinica_Frba.Abm_de_Profesional
         public bool registrarAgenda(DateTime fechaDesde, DateTime fechaHasta)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@profesional", Persona.Id)); //ESTA ES LA PK, NO?
+            ListaParametros.Add(new SqlParameter("@profesional", Id)); //ESTA ES LA PK, NO?
             ListaParametros.Add(new SqlParameter("@desde", fechaDesde.Date));
             ListaParametros.Add(new SqlParameter("@hasta", fechaHasta.Date));
 
@@ -45,7 +44,7 @@ namespace Clinica_Frba.Abm_de_Profesional
             List<Rango> lista = new List<Rango>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@profesional", Persona.Id));
+            ListaParametros.Add(new SqlParameter("@profesional", Id));
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Rango where profesional=@profesional", "T", ListaParametros);
             
             if (lector.HasRows)

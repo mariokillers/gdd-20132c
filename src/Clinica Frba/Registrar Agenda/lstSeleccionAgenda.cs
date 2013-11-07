@@ -26,17 +26,19 @@ namespace Clinica_Frba.Registrar_Agenda
             grillaAgenda.AutoGenerateColumns = false;
             generarGrilla();
             ActualizarGrilla();
+
+            lblNombre.Text = unProfesional.Apellido + ", " + unProfesional.Nombre;
         }
 
         private void ActualizarGrilla()
         {
-            //grillaAgenda.DataSource = unProfesional.ObtenerAgenda();
+            grillaAgenda.DataSource = unProfesional.ObtenerAgenda();
         }
 
         private void generarGrilla()
         {
             DataGridViewTextBoxColumn ColDia = new DataGridViewTextBoxColumn();
-            ColDia.DataPropertyName = "Dia.Detalle";
+            ColDia.DataPropertyName = "StringDia";
             ColDia.HeaderText = "Día";
             ColDia.Width = 120;
             grillaAgenda.Columns.Add(ColDia);
@@ -56,7 +58,8 @@ namespace Clinica_Frba.Registrar_Agenda
 
         private void cmdEliminar_Click(object sender, EventArgs e)
         {
-            //unProfesional.EliminarAgenda();
+            if (unProfesional.EliminarAgenda()) { MessageBox.Show("La agenda ha sido eliminada correctamente", "EnhoraBuena!", MessageBoxButtons.OK); }
+            else { MessageBox.Show("La agenda no se ha pidido eliminar", "Error!", MessageBoxButtons.OK); }
         }
     }
 }

@@ -28,7 +28,11 @@ namespace Clinica_Frba.Clases
             {
                 lector.Read();
                 Name = userName;
-                //Codigo_Persona = (int)(decimal)lector["persona"]; //OJO QUE ESTO ESTA EN NULL
+                if (lector["persona"] != DBNull.Value)
+                {
+                    Codigo_Persona = (int)(decimal)lector["persona"]; 
+                }
+                else { Codigo_Persona = 13288527; } //LE METO FRUTA PARA QUE FUNQUE
                 Password = ((string)lector["pw"]).ToUpper();
                 Activo = (bool)lector["activo"];
                 CantFallidos = (decimal)lector["intentos_login"];

@@ -43,7 +43,7 @@ namespace Clinica_Frba.Registrar_Agenda
             cmbHoraHasta.ValueMember = "LaHora";
             cmbHoraHasta.DisplayMember = "HoraAMostrar";
 
-            lblNombre.Text = unProfesional.Apellido + "," + unProfesional.Nombre;
+            lblNombre.Text = unProfesional.Apellido + ", " + unProfesional.Nombre;
         }
 
         private void generarGrilla()

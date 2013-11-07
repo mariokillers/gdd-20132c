@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Clinica_Frba.Clases
 {
-    class Rango
+    public class Rango
     {
         public Dias Dia { get; set; }
         public string StringDia { get; set; }

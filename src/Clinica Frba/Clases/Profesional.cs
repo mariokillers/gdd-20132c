@@ -13,22 +13,6 @@ namespace Clinica_Frba.Abm_de_Profesional
         public int Matricula { get; set; }
         private List<Especialidad> Especialidades { get; set; } 
 
-        /*public Profesional(int codigoPersona)
-        {
-
-            List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@codigoPersona", codigoPersona));
-
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.ProfesionalYPersona where codigoPersona=@codigoPersona", "T", ListaParametros);
-            if (lector.HasRows)
-            {
-                lector.Read();
-                Matricula = (int)lector["matricula"];
-                
-                //FALTA EL TEMA DE LAS ESPECIALIDADES
-            }
-        }*/
-
         public Profesional(int personaId)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
@@ -38,7 +22,11 @@ namespace Clinica_Frba.Abm_de_Profesional
             if (lector.HasRows)
             {
                 lector.Read();
-                Matricula = (int)(decimal)lector["matricula"];
+                if (lector["matricula"] != DBNull.Value)
+                {
+                    Matricula = (int)(decimal)lector["matricula"];
+                }
+                else { Matricula = -1; } //LE PONGO EN -1 PORQUE NO TIENE MATRICULA
                 Mail = (string)lector["mail"];
                 Nombre = (string)lector["nombre"];
                 Apellido = (string)lector["apellido"];
@@ -48,7 +36,7 @@ namespace Clinica_Frba.Abm_de_Profesional
                 Direccion = (string)lector["direccion"];
                 FechaNacimiento = (DateTime)lector["fechaNac"];
                 Sexo = (string)lector["sexo"];
-                Telefono = (decimal)lector["telefono"];
+                Telefono = (int)(decimal)lector["tel"];
                 TipoDocumento = (decimal)lector["tipo_doc"];
             }
         }
@@ -81,12 +69,12 @@ namespace Clinica_Frba.Abm_de_Profesional
             catch { return false; }
         }
 
-        private static List<Rango> ObtenerAgenda()
+        public List<Rango> ObtenerAgenda()
         {
             List<Rango> lista = new List<Rango>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            //ListaParametros.Add(new SqlParameter("@profesional", this.Id));
+            ListaParametros.Add(new SqlParameter("@profesional", Id));
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Rango where profesional=@profesional", "T", ListaParametros);
             
             if (lector.HasRows)

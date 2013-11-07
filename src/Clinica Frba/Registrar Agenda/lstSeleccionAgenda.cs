@@ -30,7 +30,7 @@ namespace Clinica_Frba.Registrar_Agenda
 
         private void ActualizarGrilla()
         {
-            grillaAgenda.DataSource = unProfesional.ObtenerAgenda();
+            //grillaAgenda.DataSource = unProfesional.ObtenerAgenda();
         }
 
         private void generarGrilla()

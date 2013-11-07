@@ -19,17 +19,6 @@ namespace Clinica_Frba.Clases
             {return false;}
         }
 
-        public static bool SePasaDeHoras(List<Rango> listaDeRangos)
-        {
-            int cantHoras = 1;
-            //int cantHoras = listaDeRangos.Sum(item => (item.HoraHasta - item.HoraDesde));
-            if (cantHoras > 48)
-            {
-                return true;
-            }
-            else { return false; }
-        }
-
         public static bool SonFechasValidas(DateTime fechaDesde, DateTime fechaHasta)
         {
             try

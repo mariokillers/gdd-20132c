@@ -9,9 +9,9 @@ using System.Data.SqlTypes;
 
 namespace Clinica_Frba.Clases
 {
-    class Especialidades
+    public class Especialidades
     {
-        public static List<Especialidad> ObtenerEspecialidades()
+        private static List<Especialidad> ObtenerEspecialidades()
         {
             List<Especialidad> Lista = new List<Especialidad>();
 

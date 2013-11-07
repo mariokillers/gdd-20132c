@@ -8,12 +8,12 @@ using Clinica_Frba.Clases;
 
 namespace Clinica_Frba.Abm_de_Profesional
 {
-    class Profesional : Persona
+    public class Profesional : Persona
     {
         public int Matricula { get; set; }
-        public List<Especialidad> Especialidades { get; set; } 
+        private List<Especialidad> Especialidades { get; set; } 
 
-        public Profesional(int codigoPersona)
+        /*public Profesional(int codigoPersona)
         {
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
@@ -27,7 +27,34 @@ namespace Clinica_Frba.Abm_de_Profesional
                 
                 //FALTA EL TEMA DE LAS ESPECIALIDADES
             }
+        }*/
+
+        public Profesional(int personaId)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@persona", personaId));
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.ProfesionalYPersona where codigoPersona=@persona", "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                lector.Read();
+                Matricula = (int)(decimal)lector["matricula"];
+                Mail = (string)lector["mail"];
+                Nombre = (string)lector["nombre"];
+                Apellido = (string)lector["apellido"];
+                Id = (decimal)lector["codigoPersona"];
+                //unProfesional.Id_User = Name; VER PORQUE NO FUNCIONA
+                NumeroDocumento = (decimal)lector["documento"];
+                Direccion = (string)lector["direccion"];
+                FechaNacimiento = (DateTime)lector["fechaNac"];
+                Sexo = (string)lector["sexo"];
+                Telefono = (decimal)lector["telefono"];
+                TipoDocumento = (decimal)lector["tipo_doc"];
+            }
         }
+
+        public Profesional()
+        { }
 
         public bool registrarAgenda(DateTime fechaDesde, DateTime fechaHasta)
         {
@@ -39,7 +66,7 @@ namespace Clinica_Frba.Abm_de_Profesional
             return Clases.BaseDeDatosSQL.EscribirEnBase("insert into mario_killers.Agenda ( profesional, desde , hasta) values (@profesional, @desde, @hasta)", "T", ListaParametros);
         }
 
-        public List<Rango> ObtenerAgenda()
+        private List<Rango> ObtenerAgenda()
         {
             List<Rango> lista = new List<Rango>();
 

@@ -18,7 +18,7 @@ namespace Clinica_Frba.Registrar_Agenda
             InitializeComponent();
         }
         //PARA SABER QUE PROFESIONAL ESTOY ACTUALIZANDO
-        public Usuario Profesional { get; set; }
+        public Profesional unProfesional { get; set; }
 
         //LISTA PARA MOSTRAR LOS RANGOS
         List<Rango> listaDeRangos = new List<Rango>();
@@ -36,15 +36,15 @@ namespace Clinica_Frba.Registrar_Agenda
             cmbDias.DisplayMember = "Detalle";
 
             //OBTENGO LAS HORAS
-            cmbHoraDesde.DataSource = Utiles.ObtenerHorasDiasHabilesDesde();
+            cmbHoraDesde.DataSource = Utiles.ObtenerHorasDiasHabiles();
             cmbHoraDesde.ValueMember = "LaHora";
             cmbHoraDesde.DisplayMember = "HoraAMostrar";
 
-            cmbHoraHasta.DataSource = Utiles.ObtenerHorasDiasHabilesHasta();
+            cmbHoraHasta.DataSource = Utiles.ObtenerHorasDiasHabiles();
             cmbHoraHasta.ValueMember = "LaHora";
             cmbHoraHasta.DisplayMember = "HoraAMostrar";
 
-            //lblNombre.Text = Profesional.Apellido + "," + Profesional.Nombre;
+            lblNombre.Text = unProfesional.Apellido + "," + unProfesional.Nombre;
         }
 
         private void generarGrilla()
@@ -87,12 +87,13 @@ namespace Clinica_Frba.Registrar_Agenda
 
         private void cmdFinalizar_Click(object sender, EventArgs e)
         {
-            //CHEQUEA SUMA DE HORAS <48
-            if (!Utiles.SePasaDeHoras(listaDeRangos))
+            //COMO ESTAN LOS CONTRAITS EN LA DB, DEBERIA DE TIRAR EXCEPTION EN CASO DE NO PODER AGREGAR
+            try 
             {
+                //unProfesional.registrarAgenda(lista);
                 groRango.Visible = true;
             }
-            else { }    
+            catch { MessageBox.Show("La carga horaria supera las 48 hs. semanales", "Error!", MessageBoxButtons.OK); }
         }
 
         private void cmdConfirmarRango_Click(object sender, EventArgs e)
@@ -118,11 +119,11 @@ namespace Clinica_Frba.Registrar_Agenda
             if ((int)cmbDias.SelectedIndex ==6)
             {
                 //SETEO LOS HORARIOS DE SABADO
-                cmbHoraDesde.DataSource = Utiles.ObtenerHorasDiasSabadosDesde();
+                cmbHoraDesde.DataSource = Utiles.ObtenerHorasDiasSabados();
                 cmbHoraDesde.ValueMember = "LaHora";
                 cmbHoraDesde.DisplayMember = "HoraAMostrar";
 
-                cmbHoraHasta.DataSource = Utiles.ObtenerHorasDiasSabadosHasta();
+                cmbHoraHasta.DataSource = Utiles.ObtenerHorasDiasSabados();
                 cmbHoraHasta.ValueMember = "LaHora";
                 cmbHoraHasta.DisplayMember = "HoraAMostrar";
             }

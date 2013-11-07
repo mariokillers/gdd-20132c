@@ -11,7 +11,6 @@ namespace Clinica_Frba.Clases
         public TimeSpan HoraDesde { get; set; }
         public TimeSpan HoraHasta { get; set; }
 
-        //PASAR TODO A TIMESPAN?
         public Rango(string unDia, TimeSpan horaDesde, TimeSpan horaHasta)
         {
             Dia = unDia;

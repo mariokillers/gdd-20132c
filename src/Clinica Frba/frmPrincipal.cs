@@ -13,6 +13,7 @@ using Clinica_Frba.Abm_de_Afiliado;
 using Clinica_Frba.NewFolder1;
 using Clinica_Frba.NewFolder10;
 using Clinica_Frba.Registrar_Agenda;
+using Clinica_Frba.Abm_de_Profesional;
 
 namespace Clinica_Frba
 {
@@ -161,7 +162,7 @@ namespace Clinica_Frba
         private void registrarAgendaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmRegistrarAgenda formAgenda = new frmRegistrarAgenda();
-            formAgenda.Profesional = User; //YO LE PASARIA SOLO EL PROFESIONAL
+            formAgenda.unProfesional = new Profesional(User.Codigo_Persona);
             formAgenda.Show();
         }
     }

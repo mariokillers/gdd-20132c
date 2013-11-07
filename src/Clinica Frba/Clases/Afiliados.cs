@@ -87,37 +87,6 @@ namespace Clinica_Frba.Clases
 
         public static void Modificar(Afiliado afil)
         {
-            List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@id", afil.Id));
-            ListaParametros.Add(new SqlParameter("@estado_civil", afil.Estado_Civil));
-            ListaParametros.Add(new SqlParameter("@cant_hijos", afil.Cantidad_Hijos));
-
-            Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Afiliado SET estado_civil = @estado_civil, cant_hijos = @cant_hijos WHERE persona = @id", "T", ListaParametros);
-
-            List<SqlParameter> ListaParametros2 = new List<SqlParameter>();
-            ListaParametros2.Add(new SqlParameter("@id", afil.Id));
-            ListaParametros2.Add(new SqlParameter("@direccion", afil.Direccion));
-            ListaParametros2.Add(new SqlParameter("@mail", afil.Mail));
-            ListaParametros2.Add(new SqlParameter("@sexo", (char)afil.Sexo[0]));
-            ListaParametros2.Add(new SqlParameter("@telefono", afil.Telefono));
-
-            Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Persona SET direccion = @direccion, mail = @mail, sexo = @sexo, telefono = @telefono WHERE id = @id", "T", ListaParametros2);
-
-            List<SqlParameter> ListaParametros3 = new List<SqlParameter>();
-            ListaParametros3.Add(new SqlParameter("@plan_medico", afil.Plan_Medico));
-            ListaParametros3.Add(new SqlParameter("@grupo_familia", afil.Numero_Grupo));
-            SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.VarChar);
-            paramRet.Direction = System.Data.ParameterDirection.Output;
-            ListaParametros3.Add(paramRet);
-
-            String ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.prueba", ListaParametros);
-
-            MessageBox.Show("" + ret, "valor retorno", MessageBoxButtons.OK);
-        }
-
-        /*
-        public static void Modificar(Afiliado afil)
-        {
                 List<SqlParameter> ListaParametros = new List<SqlParameter>();
                 ListaParametros.Add(new SqlParameter("@id", afil.Id));
                 ListaParametros.Add(new SqlParameter("@estado_civil", afil.Estado_Civil));
@@ -140,12 +109,26 @@ namespace Clinica_Frba.Clases
 
                 Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Grupo_Familia SET plan_medico = @plan_medico WHERE codigo = @grupo_familia", "T", ListaParametros3);
    
-        }*/
-
+        }
         
         //VER DE HACER ESTA NEGRADA CON UNA FUNCION ASI NO HAY QUE ACCEDER DOS VECES A LA DB
         public static decimal AgregarGrupo(Afiliado afil)
         {
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@plan_medico", afil.Plan_Medico));
+            SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
+            paramRet.Direction = System.Data.ParameterDirection.Output;
+            ListaParametros.Add(paramRet);
+
+            decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.prueba", ListaParametros);
+
+            MessageBox.Show("" + ret, "valor retorno", MessageBoxButtons.OK);
+
+            return ret;
+
+
+            /*
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             //ListaParametros.Add(new SqlParameter("@id", afil.Id));
             ListaParametros.Add(new SqlParameter("@plan_medico", afil.Plan_Medico));
@@ -157,7 +140,7 @@ namespace Clinica_Frba.Clases
          
             //FALTA ACTUALIZAR EL AFILIADO CON EL NUMERO DE GRUPO AUTOGENERADO (VER COMO HACERLO) Y RETORNARLO
 
-            return 1;
+            return 1;*/
         
         }
 

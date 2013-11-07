@@ -410,6 +410,8 @@ EXEC mario_killers.agregar_funcionalidad
 EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Afiliado', @func = 'Compra de bonos';
 EXEC mario_killers.agregar_funcionalidad
+	@rol = 'Administrativo', @func = 'Compra de bonos';	
+EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Afiliado', @func = 'Pedido de turno';
 EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Administrativo', @func = 'Registro de llegada para atención médica';

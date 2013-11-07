@@ -150,6 +150,49 @@ namespace Clinica_Frba.Clases
 
             return comando.ExecuteReader();
         }
+
+        public static String ExecStoredProcedure(string commandtext, List<SqlParameter> ListaParametro, SqlTransaction trans)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = ObtenerConexion();
+            comando.CommandText = commandtext;
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Transaction = trans;
+
+            foreach (SqlParameter elemento in ListaParametro)
+            {
+                comando.Parameters.Add(elemento);
+            }
+
+            comando.ExecuteNonQuery();
+            return (String)comando.Parameters["@Ret"].Value;
+        }
+
+
+        /*
+        SqlCommand cmd = new SqlCommand("MyStoredProcedure", cn);
+        cmd.CommandType = CommandType.StoredProcedure;
+        SqlParameter parm = new SqlParameter("@pkid", SqlDbType.Int);
+        parm.Value = 1;
+        parm.Direction = ParameterDirection.Input;
+        cmd.Parameters.Add(parm);
+        SqlParameter parm2 = new SqlParameter("@ProductName", SqlDbType.VarChar);
+        parm2.Size = 50;
+        parm2.Direction = ParameterDirection.Output; // This is important!
+        cmd.Parameters.Add(parm2);
+        cn.Open();
+        cmd.ExecuteNonQuery();
+        cn.Close();
+         *         // Print the output value
+    Console.WriteLine(cmd.Parameters["@ProductName"].Value); 
+    Console.ReadLine()
+        */
+
+
+        internal static string ExecStoredProcedure(string p, List<SqlParameter> ListaParametros)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

@@ -75,6 +75,34 @@ namespace Clinica_Frba.Abm_de_Profesional
             catch { return false; }
         }
 
+        public DateTime ObtenerAgendaDesde()
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@profesional", Id));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Agenda where profesional=@profesional", "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                lector.Read();
+
+            } return (DateTime)lector["desde"];
+        }
+
+        public DateTime ObtenerAgendaHasta()
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@profesional", Id));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Agenda where profesional=@profesional", "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                lector.Read();
+
+            } return (DateTime)lector["hasta"];
+        }
+
         public bool EliminarAgenda()
         {
             try

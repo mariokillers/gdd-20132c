@@ -29,25 +29,33 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.txtNumAfil = new System.Windows.Forms.TextBox();
+            this.lblNumeroAfiliado = new System.Windows.Forms.Label();
+            this.cmdComprar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.listaBonosComprados = new System.Windows.Forms.ListView();
-            this.numero = new System.Windows.Forms.ColumnHeader();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.cmdCantBonos = new System.Windows.Forms.NumericUpDown();
+            this.rbFarmacia = new System.Windows.Forms.RadioButton();
+            this.rbConsulta = new System.Windows.Forms.RadioButton();
+            this.tlpDatos = new System.Windows.Forms.TableLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblFechaCompra = new System.Windows.Forms.Label();
+            this.lblFechaVencimiento = new System.Windows.Forms.Label();
+            this.lblGrupoFamiliar = new System.Windows.Forms.Label();
+            this.lblPlanMedico = new System.Windows.Forms.Label();
+            this.lblPrecioPorBono = new System.Windows.Forms.Label();
+            this.lblMontoAPagar = new System.Windows.Forms.Label();
+            this.grillaBonos = new System.Windows.Forms.ListView();
+            this.numero = new System.Windows.Forms.ColumnHeader();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmdCantBonos)).BeginInit();
+            this.tlpDatos.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -58,60 +66,49 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.Controls.Add(this.txtNumAfil);
+            this.splitContainer1.Panel1.Controls.Add(this.lblNumeroAfiliado);
+            this.splitContainer1.Panel1.Controls.Add(this.cmdComprar);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Panel1.Controls.Add(this.numericUpDown1);
-            this.splitContainer1.Panel1.Controls.Add(this.radioButton2);
-            this.splitContainer1.Panel1.Controls.Add(this.radioButton1);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
+            this.splitContainer1.Panel1.Controls.Add(this.cmdCantBonos);
+            this.splitContainer1.Panel1.Controls.Add(this.rbFarmacia);
+            this.splitContainer1.Panel1.Controls.Add(this.rbConsulta);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
-            this.splitContainer1.Panel2.Controls.Add(this.listaBonosComprados);
-            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
+            this.splitContainer1.Panel2.Controls.Add(this.tlpDatos);
+            this.splitContainer1.Panel2.Controls.Add(this.grillaBonos);
             this.splitContainer1.Size = new System.Drawing.Size(469, 526);
             this.splitContainer1.SplitterDistance = 157;
             this.splitContainer1.TabIndex = 0;
             // 
-            // radioButton2
+            // txtNumAfil
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(36, 142);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(93, 17);
-            this.radioButton2.TabIndex = 3;
-            this.radioButton2.Text = "Bono farmacia";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.txtNumAfil.Location = new System.Drawing.Point(29, 43);
+            this.txtNumAfil.Name = "txtNumAfil";
+            this.txtNumAfil.Size = new System.Drawing.Size(100, 20);
+            this.txtNumAfil.TabIndex = 8;
+            this.txtNumAfil.Visible = false;
             // 
-            // radioButton1
+            // lblNumeroAfiliado
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(36, 96);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(93, 17);
-            this.radioButton1.TabIndex = 2;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Bono consulta";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.lblNumeroAfiliado.AutoSize = true;
+            this.lblNumeroAfiliado.Location = new System.Drawing.Point(7, 27);
+            this.lblNumeroAfiliado.Name = "lblNumeroAfiliado";
+            this.lblNumeroAfiliado.Size = new System.Drawing.Size(148, 13);
+            this.lblNumeroAfiliado.TabIndex = 7;
+            this.lblNumeroAfiliado.Text = "Ingrese el Numero de Afiliado:";
+            this.lblNumeroAfiliado.Visible = false;
             // 
-            // numericUpDown1
+            // cmdComprar
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(22, 222);
-            this.numericUpDown1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 4;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.cmdComprar.Location = new System.Drawing.Point(29, 285);
+            this.cmdComprar.Name = "cmdComprar";
+            this.cmdComprar.Size = new System.Drawing.Size(93, 54);
+            this.cmdComprar.TabIndex = 6;
+            this.cmdComprar.Text = "Comprar";
+            this.cmdComprar.UseVisualStyleBackColor = true;
+            this.cmdComprar.Click += new System.EventHandler(this.cmdComprar_Click_1);
             // 
             // label1
             // 
@@ -121,74 +118,74 @@
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 5;
             this.label1.Text = "Cantidad";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // button1
+            // cmdCantBonos
             // 
-            this.button1.Location = new System.Drawing.Point(36, 285);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(93, 54);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Comprar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.cmdCantBonos.Location = new System.Drawing.Point(22, 222);
+            this.cmdCantBonos.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.cmdCantBonos.Name = "cmdCantBonos";
+            this.cmdCantBonos.Size = new System.Drawing.Size(120, 20);
+            this.cmdCantBonos.TabIndex = 4;
+            this.cmdCantBonos.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // listaBonosComprados
+            // rbFarmacia
             // 
-            this.listaBonosComprados.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.numero});
-            this.listaBonosComprados.Dock = System.Windows.Forms.DockStyle.Top;
-            this.listaBonosComprados.Location = new System.Drawing.Point(0, 0);
-            this.listaBonosComprados.Name = "listaBonosComprados";
-            this.listaBonosComprados.Size = new System.Drawing.Size(308, 339);
-            this.listaBonosComprados.TabIndex = 0;
-            this.listaBonosComprados.UseCompatibleStateImageBehavior = false;
-            this.listaBonosComprados.View = System.Windows.Forms.View.List;
-            this.listaBonosComprados.SelectedIndexChanged += new System.EventHandler(this.listaBonosComprados_SelectedIndexChanged);
+            this.rbFarmacia.AutoSize = true;
+            this.rbFarmacia.Location = new System.Drawing.Point(36, 142);
+            this.rbFarmacia.Name = "rbFarmacia";
+            this.rbFarmacia.Size = new System.Drawing.Size(93, 17);
+            this.rbFarmacia.TabIndex = 3;
+            this.rbFarmacia.Text = "Bono farmacia";
+            this.rbFarmacia.UseVisualStyleBackColor = true;
             // 
-            // numero
+            // rbConsulta
             // 
-            this.numero.Text = "Número de bono";
+            this.rbConsulta.AutoSize = true;
+            this.rbConsulta.Checked = true;
+            this.rbConsulta.Location = new System.Drawing.Point(36, 96);
+            this.rbConsulta.Name = "rbConsulta";
+            this.rbConsulta.Size = new System.Drawing.Size(93, 17);
+            this.rbConsulta.TabIndex = 2;
+            this.rbConsulta.TabStop = true;
+            this.rbConsulta.Text = "Bono consulta";
+            this.rbConsulta.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // tlpDatos
             // 
-            this.label2.Location = new System.Drawing.Point(3, 28);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 28);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Fecha de vencimiento";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label2.Click += new System.EventHandler(this.label2_Click_1);
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(3, 56);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(145, 28);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Grupo familiar";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(3, 112);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 28);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Precio por bono";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(3, 84);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(145, 28);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Plan médico";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            this.tlpDatos.ColumnCount = 2;
+            this.tlpDatos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpDatos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpDatos.Controls.Add(this.label6, 0, 0);
+            this.tlpDatos.Controls.Add(this.label7, 0, 5);
+            this.tlpDatos.Controls.Add(this.label2, 0, 1);
+            this.tlpDatos.Controls.Add(this.label4, 0, 4);
+            this.tlpDatos.Controls.Add(this.label5, 0, 3);
+            this.tlpDatos.Controls.Add(this.label3, 0, 2);
+            this.tlpDatos.Controls.Add(this.lblFechaVencimiento, 1, 1);
+            this.tlpDatos.Controls.Add(this.lblGrupoFamiliar, 1, 2);
+            this.tlpDatos.Controls.Add(this.lblPlanMedico, 1, 3);
+            this.tlpDatos.Controls.Add(this.lblPrecioPorBono, 1, 4);
+            this.tlpDatos.Controls.Add(this.lblMontoAPagar, 1, 5);
+            this.tlpDatos.Controls.Add(this.lblFechaCompra, 1, 0);
+            this.tlpDatos.Location = new System.Drawing.Point(3, 345);
+            this.tlpDatos.Name = "tlpDatos";
+            this.tlpDatos.RowCount = 6;
+            this.tlpDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpDatos.Size = new System.Drawing.Size(302, 169);
+            this.tlpDatos.TabIndex = 7;
             // 
             // label6
             // 
@@ -198,7 +195,6 @@
             this.label6.TabIndex = 5;
             this.label6.Text = "Fecha de compra";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
@@ -208,31 +204,118 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "Monto a pagar";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
-            // tableLayoutPanel1
+            // label2
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 345);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(302, 169);
-            this.tableLayoutPanel1.TabIndex = 7;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            this.label2.Location = new System.Drawing.Point(3, 28);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(136, 28);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Fecha de vencimiento";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(3, 112);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(136, 28);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Precio por bono";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(3, 84);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(145, 28);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Plan médico";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(3, 56);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(145, 28);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Grupo familiar";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblFechaCompra
+            // 
+            this.lblFechaCompra.AutoSize = true;
+            this.lblFechaCompra.Location = new System.Drawing.Point(154, 0);
+            this.lblFechaCompra.Name = "lblFechaCompra";
+            this.lblFechaCompra.Size = new System.Drawing.Size(35, 13);
+            this.lblFechaCompra.TabIndex = 7;
+            this.lblFechaCompra.Text = "label8";
+            this.lblFechaCompra.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // lblFechaVencimiento
+            // 
+            this.lblFechaVencimiento.AutoSize = true;
+            this.lblFechaVencimiento.Location = new System.Drawing.Point(154, 28);
+            this.lblFechaVencimiento.Name = "lblFechaVencimiento";
+            this.lblFechaVencimiento.Size = new System.Drawing.Size(35, 13);
+            this.lblFechaVencimiento.TabIndex = 8;
+            this.lblFechaVencimiento.Text = "label9";
+            this.lblFechaVencimiento.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // lblGrupoFamiliar
+            // 
+            this.lblGrupoFamiliar.AutoSize = true;
+            this.lblGrupoFamiliar.Location = new System.Drawing.Point(154, 56);
+            this.lblGrupoFamiliar.Name = "lblGrupoFamiliar";
+            this.lblGrupoFamiliar.Size = new System.Drawing.Size(41, 13);
+            this.lblGrupoFamiliar.TabIndex = 9;
+            this.lblGrupoFamiliar.Text = "label10";
+            this.lblGrupoFamiliar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // lblPlanMedico
+            // 
+            this.lblPlanMedico.AutoSize = true;
+            this.lblPlanMedico.Location = new System.Drawing.Point(154, 84);
+            this.lblPlanMedico.Name = "lblPlanMedico";
+            this.lblPlanMedico.Size = new System.Drawing.Size(41, 13);
+            this.lblPlanMedico.TabIndex = 10;
+            this.lblPlanMedico.Text = "label11";
+            this.lblPlanMedico.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // lblPrecioPorBono
+            // 
+            this.lblPrecioPorBono.AutoSize = true;
+            this.lblPrecioPorBono.Location = new System.Drawing.Point(154, 112);
+            this.lblPrecioPorBono.Name = "lblPrecioPorBono";
+            this.lblPrecioPorBono.Size = new System.Drawing.Size(41, 13);
+            this.lblPrecioPorBono.TabIndex = 11;
+            this.lblPrecioPorBono.Text = "label12";
+            this.lblPrecioPorBono.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // lblMontoAPagar
+            // 
+            this.lblMontoAPagar.AutoSize = true;
+            this.lblMontoAPagar.Location = new System.Drawing.Point(154, 140);
+            this.lblMontoAPagar.Name = "lblMontoAPagar";
+            this.lblMontoAPagar.Size = new System.Drawing.Size(41, 13);
+            this.lblMontoAPagar.TabIndex = 12;
+            this.lblMontoAPagar.Text = "label13";
+            this.lblMontoAPagar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // grillaBonos
+            // 
+            this.grillaBonos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.numero});
+            this.grillaBonos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grillaBonos.Location = new System.Drawing.Point(0, 0);
+            this.grillaBonos.Name = "grillaBonos";
+            this.grillaBonos.Size = new System.Drawing.Size(308, 339);
+            this.grillaBonos.TabIndex = 0;
+            this.grillaBonos.UseCompatibleStateImageBehavior = false;
+            this.grillaBonos.View = System.Windows.Forms.View.List;
+            // 
+            // numero
+            // 
+            this.numero.Text = "Número de bono";
             // 
             // frmBono
             // 
@@ -248,8 +331,9 @@
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cmdCantBonos)).EndInit();
+            this.tlpDatos.ResumeLayout(false);
+            this.tlpDatos.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -258,11 +342,11 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ListView listaBonosComprados;
+        private System.Windows.Forms.NumericUpDown cmdCantBonos;
+        private System.Windows.Forms.RadioButton rbFarmacia;
+        private System.Windows.Forms.RadioButton rbConsulta;
+        private System.Windows.Forms.Button cmdComprar;
+        private System.Windows.Forms.ListView grillaBonos;
         private System.Windows.Forms.ColumnHeader numero;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -270,7 +354,15 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tlpDatos;
+        private System.Windows.Forms.TextBox txtNumAfil;
+        private System.Windows.Forms.Label lblNumeroAfiliado;
+        private System.Windows.Forms.Label lblFechaCompra;
+        private System.Windows.Forms.Label lblFechaVencimiento;
+        private System.Windows.Forms.Label lblGrupoFamiliar;
+        private System.Windows.Forms.Label lblPlanMedico;
+        private System.Windows.Forms.Label lblPrecioPorBono;
+        private System.Windows.Forms.Label lblMontoAPagar;
 
 
     }

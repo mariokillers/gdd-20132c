@@ -19,8 +19,35 @@ namespace Clinica_Frba.Clases
         public decimal Cantidad_Hijos { get; set; }
         public bool Activo { get; set; }
         public decimal Plan_Medico { get; set; }
-        
 
+        public Afiliado(int codigoPersona)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@persona", codigoPersona));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.AfiliadosABM where persona=@persona", "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                lector.Read();
+                Id = (decimal)codigoPersona;
+                Apellido = (string)lector["apellido"];
+                Nombre = (string)lector["nombre"];
+                Numero_Grupo = (decimal)lector["grupo_familia"];
+                Numero_Familiar = (decimal)lector["nro_familiar"];
+                NumeroDocumento = (decimal)lector["documento"];
+                Plan_Medico = (decimal)lector["plan_medico"];
+                FechaNacimiento = (DateTime)lector["fecha_nac"];
+                Direccion = (String)lector["direccion"];
+                TipoDocumento = (decimal)lector["tipo_doc"];
+                Sexo = (String)lector["sexo"];
+                Mail = (String)lector["mail"];
+                Telefono = (decimal)lector["telefono"];
+                Cantidad_Hijos = (decimal)lector["cant_hijos"];
+                Estado_Civil = (decimal)lector["estado_civil"];
+            }
+        }
+       
         public bool Eliminar(int codigoGrupo, int numeroFamiliar)
         {
             List<SqlParameter> Lista = new List<SqlParameter>();
@@ -29,6 +56,9 @@ namespace Clinica_Frba.Clases
             Lista.Add(new SqlParameter("@numeroFamiliar", numeroFamiliar));
             return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Paciente set Activo =0 where (Codigo_Grupo=@codigoGrupo and Nro_Familiar=@numeroFamiliar)", "T", Lista);
         }
+        
+        public Afiliado()
+        { }
 
         public bool Agregar(Afiliado unAfiliado)
         {

@@ -23,11 +23,17 @@ namespace Clinica_Frba.Registrar_Agenda
 
         private void lstSeleccionAgenda_Load(object sender, EventArgs e)
         {
-            grillaAgenda.AutoGenerateColumns = false;
-            generarGrilla();
-            ActualizarGrilla();
+            try
+            {
+                lblNombre.Text = unProfesional.Apellido + ", " + unProfesional.Nombre;
+                lblDesde.Text = unProfesional.ObtenerAgendaDesde().ToShortDateString();
+                lblHasta.Text = unProfesional.ObtenerAgendaHasta().ToShortDateString();
 
-            lblNombre.Text = unProfesional.Apellido + ", " + unProfesional.Nombre;
+                grillaAgenda.AutoGenerateColumns = false;
+                generarGrilla();
+                ActualizarGrilla();       
+            }
+            catch { MessageBox.Show("No hay una agenda cargada", "Error!", MessageBoxButtons.OK); }
         }
 
         private void ActualizarGrilla()

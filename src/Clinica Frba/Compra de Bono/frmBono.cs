@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Clinica_Frba.Clases;
+using Clinica_Frba.Clase_Persona;
 
 namespace Clinica_Frba.NewFolder3
 {
@@ -15,85 +17,61 @@ namespace Clinica_Frba.NewFolder3
         {
             InitializeComponent();
         }
+        public Usuario User { get; set; }
+        public Rol RolElegido { get; set; }
+        private Afiliado afiliado { get; set; }
+        private List<Bono> listaBonos { get; set; }
 
         private void frmBono_Load(object sender, EventArgs e)
         {
-
+            lblFechaCompra.Text = DateTime.Today.ToShortDateString();
+            lblPrecioPorBono.Text = "0";
+            lblMontoAPagar.Text = "0";
+            lblFechaVencimiento.Text = "";
+            if (RolElegido.Nombre == "Afiliado")
+            {
+                afiliado = new Afiliado(User.Codigo_Persona);
+                lblGrupoFamiliar.Text = afiliado.Numero_Familiar.ToString();
+                lblNumeroAfiliado.Text = afiliado.Numero_Familiar.ToString() + afiliado.Numero_Grupo.ToString();
+                lblPlanMedico.Text = afiliado.Plan_Medico.ToString(); //ES UN NOMBRE?
+            }
+            //COMO ES ADMINISTRADOR ->TIENE QUE INGRESAR EL NUM DE AFIL DE LA PERSONA
+            else 
+            {
+                lblNumeroAfiliado.Visible = true;
+                txtNumAfil.Visible = true;
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ActualizarGrilla()
         {
-
+            //grillaBonos.DataSource = listaBonos;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void cmdComprar_Click_1(object sender, EventArgs e)
         {
-
-        }
-
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listaBonosComprados_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
+            try
+            {
+                int cantBonos = (int)cmdCantBonos.Value;
+                for (int i = 0; i < cantBonos; i++)
+                {
+                    if (rbConsulta.Checked)
+                    {
+                        BonoConsulta unBono = new BonoConsulta(afiliado);
+                        lblPrecioPorBono.Text = unBono.Precio.ToString();
+                        //listaBonos.Add(unBono); //PORQUE NO ME DEJA?
+                        //afiliado.comprar(listaBonos);
+                    }
+                    else if (rbFarmacia.Checked)
+                    {
+                        BonoFarmacia unBono = new BonoFarmacia(afiliado);
+                        lblPrecioPorBono.Text = unBono.Precio.ToString();
+                        //listaBonos.Add(unBono);
+                    }
+                }
+                ActualizarGrilla();
+            }
+            catch { MessageBox.Show("Inserte correctamente todos los campos", "Error!", MessageBoxButtons.OK); }
         }
     }
 }

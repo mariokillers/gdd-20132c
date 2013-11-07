@@ -50,6 +50,7 @@
             this.cmbRoles = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdIngresar = new System.Windows.Forms.Button();
+            this.cmdCompraDeBonos = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +63,7 @@
             this.cmdAgenda,
             this.cmdEstadisticas,
             this.cmdTurnos,
+            this.cmdCompraDeBonos,
             this.cmdLogOut});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
@@ -231,6 +233,13 @@
             this.cmdIngresar.Visible = false;
             this.cmdIngresar.Click += new System.EventHandler(this.cmdIngresar_Click);
             // 
+            // cmdCompraDeBonos
+            // 
+            this.cmdCompraDeBonos.Name = "cmdCompraDeBonos";
+            this.cmdCompraDeBonos.Size = new System.Drawing.Size(114, 20);
+            this.cmdCompraDeBonos.Text = "Compra de Bonos";
+            this.cmdCompraDeBonos.Click += new System.EventHandler(this.cmdCompraDeBonos_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -275,6 +284,7 @@
         private System.Windows.Forms.ToolStripMenuItem registrarAgendaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cmdTurnos;
         private System.Windows.Forms.ToolStripMenuItem consultarAgendaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmdCompraDeBonos;
 
 
     }

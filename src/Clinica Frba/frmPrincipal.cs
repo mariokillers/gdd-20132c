@@ -14,6 +14,7 @@ using Clinica_Frba.NewFolder1;
 using Clinica_Frba.NewFolder10;
 using Clinica_Frba.Registrar_Agenda;
 using Clinica_Frba.Abm_de_Profesional;
+using Clinica_Frba.NewFolder3;
 
 namespace Clinica_Frba
 {
@@ -26,6 +27,7 @@ namespace Clinica_Frba
 
         //para el tema de las funcionalidades
         public Usuario User { get; set; }
+        private Rol unRol { get; set; }
         private List<Rol> listaDeRoles = new List<Rol>();
 
         //SOLO FALTA COMPLETAR LO DE ABAJO
@@ -119,7 +121,7 @@ namespace Clinica_Frba
 
         private void cmdIngresar_Click(object sender, EventArgs e)
         {
-            Rol unRol = new Rol(((Rol)cmbRoles.SelectedItem).Id);
+            unRol = new Rol(((Rol)cmbRoles.SelectedItem).Id);
             List<String> listaDeFunc = Funcionalidades.ObtenerFuncionalidadesPorRol(unRol.Id);
 
             ocultar();
@@ -134,6 +136,7 @@ namespace Clinica_Frba
             cmdProfesional.Visible = listaDeFunc.Contains("ABM de profesionales");
             cmdEstadisticas.Visible = listaDeFunc.Contains("Consultar listado estadístico");
             cmdTurnos.Visible = listaDeFunc.Contains("Pedido de turno");
+            cmdCompraDeBonos.Visible = listaDeFunc.Contains("Compra de bonos");
 
             /*
 	       ('Registro de resultado para atención médica'),
@@ -141,7 +144,6 @@ namespace Clinica_Frba
 	       ('Registrar diagnóstico'),
 	       ('Cancelar atención médica'),
 	       ('Confeccionar receta médica'),
-	       ('Compra de bonos'),
              * */
         }
 
@@ -171,6 +173,14 @@ namespace Clinica_Frba
             lstSeleccionAgenda formAgenda = new lstSeleccionAgenda();
             formAgenda.unProfesional = new Profesional(User.Codigo_Persona);
             formAgenda.Show();
+        }
+
+        private void cmdCompraDeBonos_Click(object sender, EventArgs e)
+        {
+            frmBono formBono = new frmBono();
+            formBono.User = User;
+            formBono.RolElegido = unRol;
+            formBono.Show();
         }
     }
 }

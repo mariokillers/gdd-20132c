@@ -31,7 +31,7 @@ END
 GO
 
 CREATE PROCEDURE mario_killers.agregarPlanAlGrupo (@plan_medico numeric(18,0), @afil_viejo numeric(18,0), @ret numeric(18,0) output)
-AS BEGIN
+AS BEGINnumeric(18, 0)
 	INSERT INTO mario_killers.Grupo_Familia (plan_medico) VALUES (@plan_medico)
 	DECLARE @aux numeric(18,0)
 	SET @aux = SCOPE_IDENTITY()
@@ -47,6 +47,13 @@ GO
 CREATE PROCEDURE mario_killers.agregarRol(@nombreRol varchar(255), @ret numeric(18,0) output)
 AS BEGIN
 	INSERT INTO mario_killers.Rol (nombre, activo) VALUES (@nombreRol, 1)
+	SET @ret = SCOPE_IDENTITY()
+END
+GO
+
+CREATE PROCEDURE mario_killers.hacerCompra(@persona numeric(18, 0),@fecha datetime, @plan_medico numeric(18, 0) , @ret numeric(18,0) output)
+AS BEGIN
+	INSERT INTO mario_killers.Compra (fecha, persona, plan_medico) VALUES ( @fecha, @persona,@plan_medico )
 	SET @ret = SCOPE_IDENTITY()
 END
 GO

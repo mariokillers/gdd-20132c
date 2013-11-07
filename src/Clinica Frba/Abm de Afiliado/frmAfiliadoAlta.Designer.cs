@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnHijo = new System.Windows.Forms.Button();
+            this.btnConyuge = new System.Windows.Forms.Button();
             this.cmbPlanes = new System.Windows.Forms.ComboBox();
             this.label26 = new System.Windows.Forms.Label();
             this.cmbVolver = new System.Windows.Forms.Button();
             this.cmdLimpiar = new System.Windows.Forms.Button();
             this.txtDni = new System.Windows.Forms.TextBox();
             this.cmdAceptar = new System.Windows.Forms.Button();
-            this.rdNo = new System.Windows.Forms.RadioButton();
-            this.rdSi = new System.Windows.Forms.RadioButton();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.txtApellido = new System.Windows.Forms.TextBox();
@@ -79,14 +79,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnHijo);
+            this.groupBox1.Controls.Add(this.btnConyuge);
             this.groupBox1.Controls.Add(this.cmbPlanes);
             this.groupBox1.Controls.Add(this.label26);
             this.groupBox1.Controls.Add(this.cmbVolver);
             this.groupBox1.Controls.Add(this.cmdLimpiar);
             this.groupBox1.Controls.Add(this.txtDni);
             this.groupBox1.Controls.Add(this.cmdAceptar);
-            this.groupBox1.Controls.Add(this.rdNo);
-            this.groupBox1.Controls.Add(this.rdSi);
             this.groupBox1.Controls.Add(this.label25);
             this.groupBox1.Controls.Add(this.label24);
             this.groupBox1.Controls.Add(this.txtApellido);
@@ -130,7 +130,25 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Personales";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // btnHijo
+            // 
+            this.btnHijo.Location = new System.Drawing.Point(301, 251);
+            this.btnHijo.Name = "btnHijo";
+            this.btnHijo.Size = new System.Drawing.Size(75, 23);
+            this.btnHijo.TabIndex = 62;
+            this.btnHijo.Text = "Hijo";
+            this.btnHijo.UseVisualStyleBackColor = true;
+            this.btnHijo.Click += new System.EventHandler(this.btnHijo_Click);
+            // 
+            // btnConyuge
+            // 
+            this.btnConyuge.Location = new System.Drawing.Point(194, 251);
+            this.btnConyuge.Name = "btnConyuge";
+            this.btnConyuge.Size = new System.Drawing.Size(75, 23);
+            this.btnConyuge.TabIndex = 61;
+            this.btnConyuge.Text = "Conyuge";
+            this.btnConyuge.UseVisualStyleBackColor = true;
             // 
             // cmbPlanes
             // 
@@ -186,28 +204,6 @@
             this.cmdAceptar.Text = "Guardar";
             this.cmdAceptar.UseVisualStyleBackColor = true;
             this.cmdAceptar.Click += new System.EventHandler(this.cmdAceptar_Click);
-            // 
-            // rdNo
-            // 
-            this.rdNo.AutoSize = true;
-            this.rdNo.Location = new System.Drawing.Point(247, 253);
-            this.rdNo.Name = "rdNo";
-            this.rdNo.Size = new System.Drawing.Size(39, 17);
-            this.rdNo.TabIndex = 56;
-            this.rdNo.TabStop = true;
-            this.rdNo.Text = "No";
-            this.rdNo.UseVisualStyleBackColor = true;
-            // 
-            // rdSi
-            // 
-            this.rdSi.AutoSize = true;
-            this.rdSi.Location = new System.Drawing.Point(190, 253);
-            this.rdSi.Name = "rdSi";
-            this.rdSi.Size = new System.Drawing.Size(34, 17);
-            this.rdSi.TabIndex = 55;
-            this.rdSi.TabStop = true;
-            this.rdSi.Text = "Si";
-            this.rdSi.UseVisualStyleBackColor = true;
             // 
             // label25
             // 
@@ -598,14 +594,14 @@
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.RadioButton rdNo;
-        private System.Windows.Forms.RadioButton rdSi;
         private System.Windows.Forms.Button cmdAceptar;
         private System.Windows.Forms.TextBox txtDni;
         private System.Windows.Forms.Button cmdLimpiar;
         private System.Windows.Forms.Button cmbVolver;
         private System.Windows.Forms.ComboBox cmbPlanes;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button btnHijo;
+        private System.Windows.Forms.Button btnConyuge;
 
 
     }

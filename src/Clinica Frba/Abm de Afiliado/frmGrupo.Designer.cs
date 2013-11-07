@@ -34,9 +34,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmbPlanes = new System.Windows.Forms.ComboBox();
             this.label26 = new System.Windows.Forms.Label();
-            this.btnGrupo = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.cmbVolver = new System.Windows.Forms.Button();
+            this.btnGrupo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtApellido
@@ -93,15 +93,6 @@
             this.label26.TabIndex = 66;
             this.label26.Text = "Plan Medico Nuevo:";
             // 
-            // btnGrupo
-            // 
-            this.btnGrupo.Location = new System.Drawing.Point(129, 136);
-            this.btnGrupo.Name = "btnGrupo";
-            this.btnGrupo.Size = new System.Drawing.Size(99, 23);
-            this.btnGrupo.TabIndex = 69;
-            this.btnGrupo.Text = "Nuevos Afiliados";
-            this.btnGrupo.UseVisualStyleBackColor = true;
-            // 
             // btnGuardar
             // 
             this.btnGuardar.Location = new System.Drawing.Point(20, 136);
@@ -121,6 +112,15 @@
             this.cmbVolver.Text = "Volver";
             this.cmbVolver.UseVisualStyleBackColor = true;
             this.cmbVolver.Click += new System.EventHandler(this.cmbVolver_Click);
+            // 
+            // btnGrupo
+            // 
+            this.btnGrupo.Location = new System.Drawing.Point(129, 136);
+            this.btnGrupo.Name = "btnGrupo";
+            this.btnGrupo.Size = new System.Drawing.Size(99, 23);
+            this.btnGrupo.TabIndex = 69;
+            this.btnGrupo.Text = "Nuevos Afiliados";
+            this.btnGrupo.UseVisualStyleBackColor = true;
             // 
             // frmGrupo
             // 
@@ -152,8 +152,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbPlanes;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Button btnGrupo;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button cmbVolver;
+        private System.Windows.Forms.Button btnGrupo;
     }
 }

@@ -123,25 +123,32 @@ namespace Clinica_Frba.Clases
 
             decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarPlanAlGrupo", ListaParametros);
 
-            return (ret*100 + 1);
-
-
-            /*
-            List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            //ListaParametros.Add(new SqlParameter("@id", afil.Id));
-            ListaParametros.Add(new SqlParameter("@plan_medico", afil.Plan_Medico));
-            ListaParametros.Add(new SqlParameter("@ret", null));
-
-            //VER COMO USAR LA API DE URI PARA SP
-            Clases.BaseDeDatosSQL.EscribirEnBase("mario_killers.prueba", "SP", ListaParametros);
-            //Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Grupo_Familia (plan_medico) VALUES (@plan_medico)", "T", ListaParametros);
-         
-            //FALTA ACTUALIZAR EL AFILIADO CON EL NUMERO DE GRUPO AUTOGENERADO (VER COMO HACERLO) Y RETORNARLO
-
-            return 1;*/
-        
+            return (ret*100 + 1);        
         }
 
+        public static decimal AgregarAfiliado(Afiliado afil)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@nombre", afil.Nombre));
+            ListaParametros.Add(new SqlParameter("@apellido", afil.Apellido));
+            ListaParametros.Add(new SqlParameter("@fecha_nac", afil.FechaNacimiento));
+            ListaParametros.Add(new SqlParameter("@sexo", afil.Sexo));
+            ListaParametros.Add(new SqlParameter("@tipo_doc", afil.TipoDocumento));
+            ListaParametros.Add(new SqlParameter("@direccion", afil.Direccion));
+            ListaParametros.Add(new SqlParameter("@telefono", afil.Telefono));
+            ListaParametros.Add(new SqlParameter("@estado_civil", afil.Estado_Civil));
+            ListaParametros.Add(new SqlParameter("@mail", afil.Mail));
+            ListaParametros.Add(new SqlParameter("@cant_hijos", afil.Cantidad_Hijos));
+            ListaParametros.Add(new SqlParameter("@plan_medico", afil.Plan_Medico));
+            
+            SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
+            paramRet.Direction = System.Data.ParameterDirection.Output;
+            ListaParametros.Add(paramRet);
+
+            decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarAfiliado", ListaParametros);
+
+            return ret;
+        }
 
         public static bool Eliminar(decimal id)
         {

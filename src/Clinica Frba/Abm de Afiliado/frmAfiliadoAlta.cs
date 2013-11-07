@@ -19,8 +19,10 @@ namespace Clinica_Frba.NewFolder12
             InitializeComponent();
         }
 
-        public string Operacion { get; set; }
+        public String Operacion { get; set; }
         public Afiliado Afiliado { get; set; }
+        public String Miembro { get; set; }
+        public Afiliado nuevoAfil { get; set; }
 
         private void rdSi_CheckedChanged(object sender, EventArgs e)
         {
@@ -28,35 +30,19 @@ namespace Clinica_Frba.NewFolder12
             frmAfiliadoAlta a = new frmAfiliadoAlta();
             //this.Hide();
             a.ShowDialog();
-            rdSi.Enabled = false;
-            rdNo.Enabled = false;
         }
 
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (Operacion == "Modificacion")
-                {
-                    Afiliado nuevoAfil = new Afiliado();
-                    nuevoAfil.Id = Afiliado.Id;
-                    nuevoAfil.Numero_Grupo = Afiliado.Numero_Grupo;
-                    nuevoAfil.Estado_Civil = (decimal)cmbEstadoCivil.SelectedValue;
-                    nuevoAfil.Direccion = (String)txtDir.Text;
-                    nuevoAfil.Cantidad_Hijos = (decimal)decimal.Parse(txtHijos.Text);
-                    nuevoAfil.Mail = (String)txtMail.Text;
-                    nuevoAfil.Plan_Medico = (decimal)cmbPlanes.SelectedValue;
-                    nuevoAfil.Sexo = (String)cmbSexo.SelectedValue;
-                    nuevoAfil.Telefono = (decimal)decimal.Parse(txtTel.Text);
+                almacenarDatos();
 
-                    Afiliados.Modificar(nuevoAfil);
-
-                    MessageBox.Show("El Afiliado ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
+                MessageBox.Show("El Afiliado ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
                    
-                }
                 this.Hide();
             }
-            catch { MessageBox.Show("Error en la actualizacion!", "Error!", MessageBoxButtons.OK); }
+            catch { MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK); }
         }
 
         private void cmdLimpiar_Click(object sender, EventArgs e)
@@ -70,10 +56,6 @@ namespace Clinica_Frba.NewFolder12
             cmbEstadoCivil.Text = "";
             cmbSexo.Text = "";
             cmbTipoDoc.Text = "";
-            rdNo.Enabled = true;
-            rdSi.Enabled = true;
-            rdNo.Checked = false;
-            rdSi.Checked = false;
         }
 
         private void cmbVolver_Click(object sender, EventArgs e)
@@ -81,13 +63,9 @@ namespace Clinica_Frba.NewFolder12
             this.Hide();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void frmAfiliadoAlta_Load(object sender, EventArgs e)
         {
+            nuevoAfil = new Afiliado();
 
             List<Plan> listaDePlanes = Planes.ObtenerPlanes();
             cmbPlanes.DataSource = listaDePlanes;
@@ -128,8 +106,8 @@ namespace Clinica_Frba.NewFolder12
                 txtDni.Enabled = false;
 
                 label25.Hide();
-                rdNo.Hide();
-                rdSi.Hide();
+                btnConyuge.Hide();
+                btnHijo.Hide();
                 label14.Hide();
                 label24.Hide();
                 label3.Hide();
@@ -164,7 +142,63 @@ namespace Clinica_Frba.NewFolder12
                 {
                     cmbPlanes.Enabled = false;
                 }
+            }
+            if (Miembro == "Hijo")
+            {
+                btnConyuge.Hide();
+                btnHijo.Text = "Hermano";
+                txtDir.Text = Afiliado.Direccion;
+                txtTel.Text = (String)Afiliado.Telefono.ToString();
+                cmbPlanes.Text = "" + Utiles.ObtenerPlan(Afiliado.Plan_Medico);
+                cmbPlanes.Enabled = false;
+            }
+        }
 
+        public void almacenarDatos()
+        {
+            nuevoAfil.Estado_Civil = (decimal)cmbEstadoCivil.SelectedValue;
+            nuevoAfil.Direccion = (String)txtDir.Text;
+            nuevoAfil.Cantidad_Hijos = (decimal)decimal.Parse(txtHijos.Text);
+            nuevoAfil.Mail = (String)txtMail.Text;
+            nuevoAfil.Plan_Medico = (decimal)cmbPlanes.SelectedValue;
+            nuevoAfil.Sexo = (String)cmbSexo.SelectedValue;
+            nuevoAfil.Telefono = (decimal)decimal.Parse(txtTel.Text);
+
+            if (Operacion == "Modificacion")
+            {
+                nuevoAfil.Id = Afiliado.Id;
+                nuevoAfil.Numero_Grupo = Afiliado.Numero_Grupo;
+                Afiliados.Modificar(nuevoAfil);
+            }
+            else if (Operacion == "Alta")
+            {
+                nuevoAfil.Nombre = (String)txtNombre.Text;
+                nuevoAfil.Apellido = (String)txtApellido.Text;
+                nuevoAfil.TipoDocumento = (decimal)cmbTipoDoc.SelectedValue;
+                nuevoAfil.NumeroDocumento = (decimal)decimal.Parse(txtDni.Text);
+                nuevoAfil.FechaNacimiento = (DateTime)dtpFechaNacimiento.Value;
+                decimal GrupoNuevo = Afiliados.AgregarAfiliado(nuevoAfil);
+
+            }
+
+
+        }
+
+        private void btnHijo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                almacenarDatos();
+
+                frmAfiliadoAlta formHijo = new frmAfiliadoAlta();
+                formHijo.Operacion = this.Operacion;
+                formHijo.Afiliado = this.nuevoAfil;
+                formHijo.Miembro = "Hijo";
+                formHijo.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
             }
         }
     }

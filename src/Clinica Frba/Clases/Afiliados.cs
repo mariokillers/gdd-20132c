@@ -121,7 +121,7 @@ namespace Clinica_Frba.Clases
             paramRet.Direction = System.Data.ParameterDirection.Output;
             ListaParametros.Add(paramRet);
 
-            decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarPlanAGrupo", ListaParametros);
+            decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarPlanAlGrupo", ListaParametros);
 
             MessageBox.Show("" + ret, "valor retorno", MessageBoxButtons.OK);
 

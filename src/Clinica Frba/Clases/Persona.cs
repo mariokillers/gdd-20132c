@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace Clinica_Frba.Clase_Persona
 {
-    public class Persona
+    public abstract class Persona
     {
         public decimal Id { get; set; }
         public int Id_User { get; set; }

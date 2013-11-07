@@ -21,14 +21,13 @@ namespace Clinica_Frba.Registrar_Agenda
         public Profesional unProfesional { get; set; }
 
         //LISTA PARA MOSTRAR LOS RANGOS
-        private List<Rango> listaDeRangos = new List<Rango>();
+        private static List<Rango> listaDeRangos = new List<Rango>();
 
         private void frmRegistrarAgenda_Load(object sender, EventArgs e)
         {
             grillaHorarios.AutoGenerateColumns = false;
 
             generarGrilla();
-            ActualizarGrilla();
 
             //OBTENGO LOS DIAS
             cmbDias.DataSource = Utiles.ObtenerTodosLosDias();
@@ -50,7 +49,7 @@ namespace Clinica_Frba.Registrar_Agenda
         private void generarGrilla()
         {
             DataGridViewTextBoxColumn ColDia = new DataGridViewTextBoxColumn();
-            ColDia.DataPropertyName = "Dia.Detalle";
+            ColDia.DataPropertyName = "StringDia";
             ColDia.HeaderText = "Día";
             ColDia.Width = 120;
             grillaHorarios.Columns.Add(ColDia);
@@ -72,13 +71,17 @@ namespace Clinica_Frba.Registrar_Agenda
         {
             //AGARRO EL DIA
             Dias unDia = new Dias((int)cmbDias.SelectedValue);
-            //FALTA AGARRAR LAS HORAS
+            //AGARR0 LAS HORAS
             TimeSpan horaDesde = (TimeSpan)cmbHoraDesde.SelectedValue;
             TimeSpan horaHasta = (TimeSpan)cmbHoraHasta.SelectedValue;
-            Rango unRango = new Rango(unDia, horaDesde, horaHasta);
-            listaDeRangos.Add(unRango);
+            if (Utiles.EsHoraValida(horaDesde, horaHasta))
+            {
+                Rango unRango = new Rango(unDia, horaDesde, horaHasta);
+                listaDeRangos.Add(unRango);
 
-            ActualizarGrilla();
+                ActualizarGrilla(); //NO SE PORQUE NO FUNCA
+            }
+            else { MessageBox.Show("Inserte correctamente las horas", "Error!", MessageBoxButtons.OK); }
         }
 
         private void ActualizarGrilla()

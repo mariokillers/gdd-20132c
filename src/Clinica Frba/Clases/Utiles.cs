@@ -19,6 +19,12 @@ namespace Clinica_Frba.Clases
             {return false;}
         }
 
+        public static bool EsHoraValida(TimeSpan desde, TimeSpan hasta)
+        {
+            if (desde.Hours < hasta.Hours) { return true; }
+            else { return false; }
+        }
+        
         public static bool SonFechasValidas(DateTime fechaDesde, DateTime fechaHasta)
         {
             try

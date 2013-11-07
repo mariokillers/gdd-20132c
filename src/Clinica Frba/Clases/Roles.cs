@@ -62,7 +62,7 @@ namespace Clinica_Frba.Clases
         {
             try
             {
-                int idRol = -1;
+                /*int idRol = -1;
                 List<SqlParameter> ListaParametros = new List<SqlParameter>();
                 ListaParametros.Add(new SqlParameter("@nombreRol", nombre));
 
@@ -88,6 +88,27 @@ namespace Clinica_Frba.Clases
                     {
                         //AGREGO EN FUNCIONALIDAD_ROL EL ROL Y LA FUNC.
                         Funcionalidades.AgregarFuncionalidadEnRol(idRol, unaFunc);
+                    }
+                    return true;
+                }
+                else { return false; }*/
+                
+                List<SqlParameter> ListaParametros = new List<SqlParameter>();
+                ListaParametros.Add(new SqlParameter("@nombreRol", nombre));
+                SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
+                paramRet.Direction = System.Data.ParameterDirection.Output;
+                ListaParametros.Add(paramRet);
+
+                //INSERTA EL ROL EN LA BASE DE DATOS
+                int ret = (int)Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarRol", ListaParametros);
+
+                if (ret != -1)
+                {
+                    //TENGO QUE DAR DE ALTA LAS FUNCIONALIDADES DE ESE ROL
+                    foreach (Funcionalidad unaFunc in listaDeFunc)
+                    {
+                        //AGREGO EN FUNCIONALIDAD_ROL EL ROL Y LA FUNC.
+                        Funcionalidades.AgregarFuncionalidadEnRol(ret, unaFunc);
                     }
                     return true;
                 }

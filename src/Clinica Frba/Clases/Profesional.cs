@@ -81,12 +81,12 @@ namespace Clinica_Frba.Abm_de_Profesional
             catch { return false; }
         }
 
-        static List<Rango> ObtenerAgenda()
+        private static List<Rango> ObtenerAgenda()
         {
             List<Rango> lista = new List<Rango>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            //ListaParametros.Add(new SqlParameter("@profesional", Id));
+            //ListaParametros.Add(new SqlParameter("@profesional", this.Id));
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Rango where profesional=@profesional", "T", ListaParametros);
             
             if (lector.HasRows)

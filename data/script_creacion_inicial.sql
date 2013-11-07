@@ -8,6 +8,14 @@ AS BEGIN
 END
 GO
 
+CREATE PROCEDURE mario_killers.agregarRol(@nombreRol varchar(255), @ret numeric(18,0) output)
+AS BEGIN
+	INSERT INTO mario_killers.Rol (nombre, activo) VALUES (@nombreRol, 1)
+	SET @ret = SCOPE_IDENTITY()
+END
+GO
+
+
 CREATE FUNCTION mario_killers.grupo_ultimo_agregado()
 RETURNS numeric(18,0)
 AS BEGIN

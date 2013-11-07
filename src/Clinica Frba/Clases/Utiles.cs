@@ -21,7 +21,8 @@ namespace Clinica_Frba.Clases
 
         public static bool EsHoraValida(TimeSpan desde, TimeSpan hasta)
         {
-            if (desde.Hours <= hasta.Hours && desde.Minutes < hasta.Minutes) { return true; }
+            if(desde.Hours < hasta.Hours){ return true; }
+            else if (desde.Hours == hasta.Hours && desde.Minutes < hasta.Minutes) { return true; }
             else { return false; }
         }
         

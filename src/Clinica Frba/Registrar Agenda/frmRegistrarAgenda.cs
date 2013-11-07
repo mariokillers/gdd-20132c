@@ -86,7 +86,6 @@ namespace Clinica_Frba.Registrar_Agenda
 
         private void ActualizarGrilla()
         {
-            //meto el resultado en la grilla
             grillaHorarios.DataSource = listaDeRangos;
         }
 

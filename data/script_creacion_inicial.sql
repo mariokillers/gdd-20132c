@@ -1,7 +1,7 @@
 CREATE SCHEMA mario_killers AUTHORIZATION gd
 GO
 
-CREATE PROCEDURE mario_killers.agregarPlanAGrupo (@plan_medico numeric(18,0), @ret numeric(18,0) output)
+CREATE PROCEDURE mario_killers.agregarPlanAlGrupo (@plan_medico numeric(18,0), @ret numeric(18,0) output)
 AS BEGIN
 	INSERT INTO mario_killers.Grupo_Familia (plan_medico) VALUES (@plan_medico)
 	SET @ret = SCOPE_IDENTITY()

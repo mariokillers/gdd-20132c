@@ -33,7 +33,7 @@ DROP FUNCTION mario_killers.horas_por_semana,
               mario_killers.cant_medicamentos,
               mario_killers.grupo_ultimo_agregado
 
-DROP PROCEDURE mario_killers.agregar_funcionalidad, mario_killers.prueba
+DROP PROCEDURE mario_killers.agregar_funcionalidad, mario_killers.agregarPlanAlGrupo
 
 DROP VIEW mario_killers.AfiliadosABM, mario_killers.ultimo_grupo, mario_killers.ProfesionalYPersona
 

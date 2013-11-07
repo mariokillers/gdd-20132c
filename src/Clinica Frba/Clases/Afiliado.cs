@@ -75,5 +75,54 @@ namespace Clinica_Frba.Clases
             return Clases.BaseDeDatosSQL.EscribirEnBase("insert into mario_killers.Afiliado ( persona, estado_civil , grupo_familia, nro_familiar, cant_hijos, activo) values (@persona, @estado_civil, @grupo_familia, @nro_familiar, @cant_hijos, @activo)", "T", Lista);
         }
 
+        public bool ComprarBonos(Compra unaCompra)
+        {
+            try
+            {
+                List<SqlParameter> ListaParametros = new List<SqlParameter>();
+                ListaParametros.Add(new SqlParameter("@persona", Codigo_Persona));
+                ListaParametros.Add(new SqlParameter("@fecha", unaCompra.Fecha));
+                ListaParametros.Add(new SqlParameter("@plan_medico", unaCompra.Codigo_Plan));
+                SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
+                paramRet.Direction = System.Data.ParameterDirection.Output;
+                ListaParametros.Add(paramRet);
+
+                //INSERTA LA COMPRA Y TOMA EL ID QUE ACABA DE INSERTAR
+                int ret = (int)Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarRol", ListaParametros);
+
+                if (ret != -1)
+                {
+                    foreach (BonoConsulta unBono in unaCompra.BonosConsulta)
+                    {
+                        AgregarBonoConsultaEnCompra(ret, unBono);
+                    }
+                    foreach (BonoFarmacia unBono in unaCompra.BonosFarmacia)
+                    {
+                        AgregarBonoFarmaciaEnCompra(ret, unBono);
+                    }
+                    return true;
+                }
+                else { return false; }
+            }
+            catch { return false; }
+        }
+
+        public static bool AgregarBonoConsultaEnCompra(int idCompra, BonoConsulta unBono)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@compra", idCompra));
+            ListaParametros.Add(new SqlParameter("@plan_medico", unBono.Codigo_Plan));
+
+            return Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Bonos_Consulta(compra, plan_medico) VALUES (@compra, @plan_medico)", "T", ListaParametros);
+        }
+
+        public static bool AgregarBonoFarmaciaEnCompra(int idCompra, BonoFarmacia unBono)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@compra", idCompra));
+            ListaParametros.Add(new SqlParameter("@plan_medico", unBono.Codigo_Plan));
+
+            return Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Bonos_Farmacia(compra, plan_medico) VALUES (@compra, @plan_medico)", "T", ListaParametros);
+        }
     }
 }

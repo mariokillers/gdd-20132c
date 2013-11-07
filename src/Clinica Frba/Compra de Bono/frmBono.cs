@@ -52,6 +52,7 @@ namespace Clinica_Frba.NewFolder3
         {
             try
             {
+                Compra unaCompra = new Compra(afiliado);
                 int cantBonos = (int)cmdCantBonos.Value;
                 for (int i = 0; i < cantBonos; i++)
                 {
@@ -59,14 +60,14 @@ namespace Clinica_Frba.NewFolder3
                     {
                         BonoConsulta unBono = new BonoConsulta(afiliado);
                         lblPrecioPorBono.Text = unBono.Precio.ToString();
-                        //listaBonos.Add(unBono); //PORQUE NO ME DEJA?
+                        unaCompra.Bonos.Add(unBono);
                         //afiliado.comprar(listaBonos);
                     }
                     else if (rbFarmacia.Checked)
                     {
                         BonoFarmacia unBono = new BonoFarmacia(afiliado);
                         lblPrecioPorBono.Text = unBono.Precio.ToString();
-                        //listaBonos.Add(unBono);
+                        unaCompra.Bonos.Add(unBono);
                     }
                 }
                 ActualizarGrilla();

@@ -39,8 +39,8 @@ namespace Clinica_Frba.Clases
                     unAfiliado.Plan_Medico = (decimal)lector["plan_medico"];
                     unAfiliado.FechaNacimiento = (DateTime)lector["fecha_nac"];
                     unAfiliado.Direccion = (String)lector["direccion"];
-                    unAfiliado.TipoDocumento = (decimal)lector["tipo_doc"];
-                    unAfiliado.Sexo = (String)lector["sexo"];
+                    unAfiliado.TipoDocumento = (string)lector["tipo_doc"];
+                    unAfiliado.Sexo = (char)lector["sexo"];
                     unAfiliado.Mail = (String)lector["mail"];
                     unAfiliado.Telefono = (decimal)lector["telefono"];
                     unAfiliado.Cantidad_Hijos = (decimal)lector["cant_hijos"];

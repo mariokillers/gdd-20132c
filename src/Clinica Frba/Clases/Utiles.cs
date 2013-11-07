@@ -139,11 +139,11 @@ namespace Clinica_Frba.Clases
             List<Hora> lista = new List<Hora>();
             for (int i = 10; i <= 14; i++)
             {
-                TimeSpan unaHora = new TimeSpan(i, 00, 0);
+                TimeSpan unaHora = new TimeSpan(i, 0, 0);
                 string hora = unaHora.Hours.ToString() + ":" + unaHora.Minutes.ToString();
+
                 lista.Add(new Hora(unaHora, hora));
             }
-
             return lista;
         }
     }

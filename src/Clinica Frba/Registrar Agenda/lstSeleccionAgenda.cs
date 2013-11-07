@@ -58,8 +58,13 @@ namespace Clinica_Frba.Registrar_Agenda
 
         private void cmdEliminar_Click(object sender, EventArgs e)
         {
-            if (unProfesional.EliminarAgenda()) { MessageBox.Show("La agenda ha sido eliminada correctamente", "EnhoraBuena!", MessageBoxButtons.OK); }
+            if (unProfesional.EliminarAgenda()) 
+            {
+                ActualizarGrilla();
+                MessageBox.Show("La agenda ha sido eliminada correctamente", "EnhoraBuena!", MessageBoxButtons.OK);         
+            }
             else { MessageBox.Show("La agenda no se ha pidido eliminar", "Error!", MessageBoxButtons.OK); }
+            this.Close();
         }
     }
 }

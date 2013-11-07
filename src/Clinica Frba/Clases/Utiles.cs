@@ -25,7 +25,18 @@ namespace Clinica_Frba.Clases
             else if (desde.Hours == hasta.Hours && desde.Minutes < hasta.Minutes) { return true; }
             else { return false; }
         }
-        
+
+        public static bool NoSePisan(Dias dia, TimeSpan desde, TimeSpan hasta, List<Rango> lista)
+        {
+            foreach (Rango unRango in lista)
+            {
+                if ((unRango.HoraDesde <= desde && desde <= unRango.HoraHasta || unRango.HoraDesde <= hasta && hasta <= unRango.HoraHasta) && dia.Id == unRango.Dia.Id)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         public static bool SonFechasValidas(DateTime fechaDesde, DateTime fechaHasta)
         {
             try
@@ -80,7 +91,6 @@ namespace Clinica_Frba.Clases
         public static List<Dias> ObtenerTodosLosDias()
         {
             List<Dias> lista = new List<Dias>();
-            lista.Add(new Dias(1, "Domingo"));
             lista.Add(new Dias(2, "Lunes"));
             lista.Add(new Dias(3, "Martes"));
             lista.Add(new Dias(4, "Miercoles"));

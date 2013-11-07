@@ -43,13 +43,30 @@ namespace Clinica_Frba.Abm_de_Profesional
 
         public Profesional()
         { }
+        public bool RegistrarRango(List<Rango> listaDeRangos)
+        {
+            try 
+            {
+                List<SqlParameter> ListaParametros = new List<SqlParameter>();
+                ListaParametros.Add(new SqlParameter("@profesional", Id)); 
+                foreach (Rango unRango in listaDeRangos)
+                {
+                    ListaParametros.Add(new SqlParameter("@dia", unRango.Dia.Id));
+                    ListaParametros.Add(new SqlParameter("@hora_desde", unRango.HoraDesde));
+                    ListaParametros.Add(new SqlParameter("@hora_hasta", unRango.HoraHasta));
+                    Clases.BaseDeDatosSQL.EscribirEnBase("insert into mario_killers.Rango ( profesional, dia, hora_desde , hora_hasta) values (@profesional, @dia,@hora_desde, @hora_hasta)", "T", ListaParametros);
+                }
+                return true;
+            }
+            catch { return false; }
+        }
 
         public bool RegistrarAgenda(DateTime fechaDesde, DateTime fechaHasta)
         {
             try
             {
                 List<SqlParameter> ListaParametros = new List<SqlParameter>();
-                ListaParametros.Add(new SqlParameter("@profesional", Id)); //ESTA ES LA PK, NO?
+                ListaParametros.Add(new SqlParameter("@profesional", Id)); 
                 ListaParametros.Add(new SqlParameter("@desde", fechaDesde.Date));
                 ListaParametros.Add(new SqlParameter("@hasta", fechaHasta.Date));
 
@@ -64,7 +81,7 @@ namespace Clinica_Frba.Abm_de_Profesional
             {
                 List<SqlParameter> ListaParametros = new List<SqlParameter>();
                 ListaParametros.Add(new SqlParameter("@profesional", Id));
-                return Clases.BaseDeDatosSQL.EscribirEnBase("delete from mario_killers.Agenda where profesional=@profesional", "T", ListaParametros);
+                return Clases.BaseDeDatosSQL.EscribirEnBase("delete from mario_killers.Rango where profesional=@profesional", "T", ListaParametros);
             }
             catch { return false; }
         }
@@ -79,12 +96,15 @@ namespace Clinica_Frba.Abm_de_Profesional
             
             if (lector.HasRows)
             {
-                lector.Read();
-                Rango unRango = new Rango();
-                unRango.Dia = new Dias((int)lector["dia"]);
-                unRango.HoraDesde = (TimeSpan)lector["hora_desde"];
-                unRango.HoraHasta = (TimeSpan)lector["hora_hasta"];
-                lista.Add(unRango);
+                while (lector.Read())
+                {
+                    Rango unRango = new Rango();
+                    unRango.Dia = new Dias((int)(decimal)lector["dia"]);
+                    unRango.StringDia = unRango.Dia.Detalle;
+                    unRango.HoraDesde = (TimeSpan)lector["hora_desde"];
+                    unRango.HoraHasta = (TimeSpan)lector["hora_hasta"];
+                    lista.Add(unRango);
+                }
             }
             return lista;
         }

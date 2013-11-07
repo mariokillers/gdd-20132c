@@ -21,7 +21,7 @@ namespace Clinica_Frba.Registrar_Agenda
         public Profesional unProfesional { get; set; }
 
         //LISTA PARA MOSTRAR LOS RANGOS
-        private static List<Rango> listaDeRangos = new List<Rango>();
+        private List<Rango> listaDeRangos = new List<Rango>();
 
         private void frmRegistrarAgenda_Load(object sender, EventArgs e)
         {
@@ -77,26 +77,30 @@ namespace Clinica_Frba.Registrar_Agenda
             if (Utiles.EsHoraValida(horaDesde, horaHasta))
             {
                 Rango unRango = new Rango(unDia, horaDesde, horaHasta);
-                listaDeRangos.Add(unRango);
-                ActualizarGrilla(); //NO SE PORQUE NO FUNCA
+                //VALIDAR QUE NO SE PISE CON OTRA YA ASIGNADA
+                if(Utiles.NoSePisan(unDia, horaDesde,horaHasta,listaDeRangos))
+                {
+                    listaDeRangos.Add(unRango); 
+                    ActualizarGrilla(); 
+                }else{MessageBox.Show("Los horarios seleccionados se sobreponen", "Error!", MessageBoxButtons.OK);}
             }
             else { MessageBox.Show("Inserte correctamente las horas", "Error!", MessageBoxButtons.OK); }
         }
-
         private void ActualizarGrilla()
         {     
+            grillaHorarios.DataSource = null;
             grillaHorarios.DataSource = listaDeRangos;
+            
         }
 
         private void cmdFinalizar_Click(object sender, EventArgs e)
         {
-            //COMO ESTAN LOS CONTRAITS EN LA DB, DEBERIA DE TIRAR EXCEPTION EN CASO DE NO PODER AGREGAR
-            try 
+            if(unProfesional.RegistrarRango(listaDeRangos) )
             {
-                //if(unProfesional.registrarAgenda(lista)) else [mensaje del catch]
+                MessageBox.Show("La agenda ha sido insertada correctamente", "EnhoraBuena!", MessageBoxButtons.OK);
                 groRango.Visible = true;
             }
-            catch { MessageBox.Show("La carga horaria supera las 48 hs. semanales", "Error!", MessageBoxButtons.OK); }
+            else { MessageBox.Show("La carga horaria supera las 48 hs. semanales", "Error!", MessageBoxButtons.OK); }
         }
 
         private void cmdConfirmarRango_Click(object sender, EventArgs e)
@@ -106,11 +110,11 @@ namespace Clinica_Frba.Registrar_Agenda
 
             if (Utiles.SonFechasValidas(fechaDesde, fechaHasta))
             {
-                //VER SI YA ESTA LA VALIDACION EN LA DB -> TIRA EXCEPTION
                 if (unProfesional.RegistrarAgenda(fechaDesde, fechaHasta)) { MessageBox.Show("El rango de fechas ha sido insertado correctamente", "EnhoraBuena!", MessageBoxButtons.OK); }
                 else { MessageBox.Show("El rango de fechas supera los 120 dias", "Error!", MessageBoxButtons.OK); }
             }
             else { MessageBox.Show("La fecha desde es superior a la fecha hasta", "Error!", MessageBoxButtons.OK); }
+            this.Close();        
         }
 
         private void cmbDias_SelectedIndexChanged(object sender, EventArgs e)

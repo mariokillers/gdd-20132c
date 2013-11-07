@@ -78,14 +78,13 @@ namespace Clinica_Frba.Registrar_Agenda
             {
                 Rango unRango = new Rango(unDia, horaDesde, horaHasta);
                 listaDeRangos.Add(unRango);
-
                 ActualizarGrilla(); //NO SE PORQUE NO FUNCA
             }
             else { MessageBox.Show("Inserte correctamente las horas", "Error!", MessageBoxButtons.OK); }
         }
 
         private void ActualizarGrilla()
-        {
+        {     
             grillaHorarios.DataSource = listaDeRangos;
         }
 
@@ -107,12 +106,9 @@ namespace Clinica_Frba.Registrar_Agenda
 
             if (Utiles.SonFechasValidas(fechaDesde, fechaHasta))
             {
-                try
-                {
-                    //unProfesional.RegistrarAgenda(fechaDesde,fechaHasta);
-                    //VER SI YA ESTA LA VALIDACION EN LA DB -> TIRA EXCEPTION
-                }
-                catch { MessageBox.Show("El rango de fechas supera los 120 dias", "Error!", MessageBoxButtons.OK); }
+                //VER SI YA ESTA LA VALIDACION EN LA DB -> TIRA EXCEPTION
+                if (unProfesional.RegistrarAgenda(fechaDesde, fechaHasta)) { MessageBox.Show("El rango de fechas ha sido insertado correctamente", "EnhoraBuena!", MessageBoxButtons.OK); }
+                else { MessageBox.Show("El rango de fechas supera los 120 dias", "Error!", MessageBoxButtons.OK); }
             }
             else { MessageBox.Show("La fecha desde es superior a la fecha hasta", "Error!", MessageBoxButtons.OK); }
         }

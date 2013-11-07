@@ -30,7 +30,7 @@ namespace Clinica_Frba.Clases
         {
             try
             {
-                if (fechaDesde > fechaHasta)
+                if (fechaDesde >= fechaHasta)
                 {
                     return false;
                 } return true;

@@ -151,6 +151,8 @@
             // 
             // grillaHorarios
             // 
+            this.grillaHorarios.AllowUserToAddRows = false;
+            this.grillaHorarios.AllowUserToDeleteRows = false;
             this.grillaHorarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaHorarios.Location = new System.Drawing.Point(12, 114);
             this.grillaHorarios.Name = "grillaHorarios";

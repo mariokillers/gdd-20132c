@@ -110,7 +110,7 @@ namespace Clinica_Frba.Clases
             paramRet.Direction = System.Data.ParameterDirection.Output;
             ListaParametros3.Add(paramRet);
 
-            String ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.SP", ListaParametros);
+            String ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.prueba", ListaParametros);
 
             MessageBox.Show("" + ret, "valor retorno", MessageBoxButtons.OK);
         }

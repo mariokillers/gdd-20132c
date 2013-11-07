@@ -111,21 +111,19 @@ namespace Clinica_Frba.Clases
    
         }
         
-        //VER DE HACER ESTA NEGRADA CON UNA FUNCION ASI NO HAY QUE ACCEDER DOS VECES A LA DB
         public static decimal AgregarGrupo(Afiliado afil)
         {
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@plan_medico", afil.Plan_Medico));
+            ListaParametros.Add(new SqlParameter("@afil_viejo", afil.Id));
             SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
             paramRet.Direction = System.Data.ParameterDirection.Output;
             ListaParametros.Add(paramRet);
 
             decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarPlanAlGrupo", ListaParametros);
 
-            MessageBox.Show("" + ret, "valor retorno", MessageBoxButtons.OK);
-
-            return ret;
+            return (ret*100 + 1);
 
 
             /*

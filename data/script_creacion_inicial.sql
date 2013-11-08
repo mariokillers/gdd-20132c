@@ -1,37 +1,40 @@
 CREATE SCHEMA mario_killers AUTHORIZATION gd
 GO
 
-CREATE PROCEDURE mario_killers.agregarAfiliado(@nombre varchar(255), @apellido varchar(255), 
-				@fecha_nac datetime, @sexo char(1), @tipo_doc numeric(18,0), @documento numeric(18,0), 
-				@direccion varchar(255), @telefono numeric(18,0), @estado_civil numeric(18,0), 
-				@mail varchar(255), @cant_hijos numeric(18,0), @plan_medico numeric(18,0), 
-				@nro_flia numeric(18,0), @ret numeric(18,0) output)
+CREATE PROCEDURE mario_killers.agregarAfiliado(@nombre varchar(255),
+                                               @apellido varchar(255),
+                                               @fecha_nac datetime,
+                                               @sexo char(1),
+                                               @tipo_doc numeric(18,0),
+                                               @documento numeric(18,0),
+                                               @direccion varchar(255),
+                                               @telefono numeric(18,0),
+                                               @estado_civil numeric(18,0),
+                                               @mail varchar(255),
+                                               @cant_hijos numeric(18,0),
+                                               @plan_medico numeric(18,0),
+                                               @nro_flia numeric(18,0),
+                                               @ret numeric(18,0) output)
 AS BEGIN
-	INSERT INTO mario_killers.Persona (nombre, apellido, documento, fecha_nac, direccion, telefono, mail, tipo_doc, sexo) 
-	VALUES (@nombre, @apellido, @documento, @fecha_nac, @direccion, @telefono, @mail, @tipo_doc, @sexo)
-	DECLARE @pers numeric(18,0)
-	SET @pers = SCOPE_IDENTITY()
-	
-	INSERT INTO mario_killers.Grupo_Familia (plan_medico) VALUES (@plan_medico)
-	DECLARE @grupo numeric(18,0)
-	SET @grupo = SCOPE_IDENTITY()
-	
-	IF(
-	INSERT INTO mario_killers.Afiliado 
-	
-	
-
-	
-	UPDATE mario_killers.Afiliado
-	SET grupo_familia = @aux, nro_familiar = 01
-	WHERE persona = @afil_viejo
-	
-	SET @ret = @aux
+INSERT INTO mario_killers.Persona (nombre, apellido, documento,
+                                   fecha_nac, direccion, telefono,
+                                   mail, tipo_doc, sexo)
+	VALUES (@nombre, @apellido, @documento,
+			@fecha_nac, @direccion, @telefono,
+			@mail, @tipo_doc, @sexo)
+DECLARE @pers numeric(18,0)
+SET @pers = SCOPE_IDENTITY()
+INSERT INTO mario_killers.Grupo_Familia (plan_medico)
+	VALUES (@plan_medico)
+DECLARE @grupo numeric(18,0) SET @grupo = SCOPE_IDENTITY()
+IF(@nro_flia IS NULL) BEGIN SET @nro_flia = (SELECT COUNT(nro_familiar)+1 FROM mario_killers.Afiliado WHERE grupo_familia = @grupo GROUP BY nro_familiar) END
+INSERT INTO mario_killers.Afiliado (persona, estado_civil, grupo_familia, nro_familiar, cant_hijos)
+	VALUES (@pers, @estado_civil, @grupo, @nro_flia, @cant_hijos) SET @ret = @grupo
 END
 GO
 
 CREATE PROCEDURE mario_killers.agregarPlanAlGrupo (@plan_medico numeric(18,0), @afil_viejo numeric(18,0), @ret numeric(18,0) output)
-AS BEGINnumeric(18, 0)
+AS BEGIN
 	INSERT INTO mario_killers.Grupo_Familia (plan_medico) VALUES (@plan_medico)
 	DECLARE @aux numeric(18,0)
 	SET @aux = SCOPE_IDENTITY()
@@ -390,15 +393,15 @@ INSERT INTO mario_killers.Funcionalidad (nombre)
 	VALUES ('ABM de roles'),
 	       ('ABM de afiliados'),
 	       ('ABM de profesionales'),
-	       ('ABM de especialidades médicas'),
+	       ('ABM de especialidades mï¿½dicas'),
 	       ('ABM de planes'),
 	       ('Registrar agenda profesional'),
-	       ('Registro de resultado para atención médica'),
-	       ('Registro de llegada para atención médica'),
-	       ('Registrar diagnóstico'),
-	       ('Cancelar atención médica'),
-	       ('Confeccionar receta médica'),
-	       ('Consultar listado estadístico'),
+	       ('Registro de resultado para atenciï¿½n mï¿½dica'),
+	       ('Registro de llegada para atenciï¿½n mï¿½dica'),
+	       ('Registrar diagnï¿½stico'),
+	       ('Cancelar atenciï¿½n mï¿½dica'),
+	       ('Confeccionar receta mï¿½dica'),
+	       ('Consultar listado estadï¿½stico'),
 	       ('Compra de bonos'),
 	       ('Pedido de turno');
 
@@ -409,7 +412,7 @@ EXEC mario_killers.agregar_funcionalidad
 EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Administrativo', @func = 'ABM de profesionales';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'ABM de especialidades médicas';
+	@rol = 'Administrativo', @func = 'ABM de especialidades mï¿½dicas';
 EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Administrativo', @func = 'ABM de planes';
 EXEC mario_killers.agregar_funcionalidad
@@ -421,17 +424,17 @@ EXEC mario_killers.agregar_funcionalidad
 EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Afiliado', @func = 'Pedido de turno';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'Registro de llegada para atención médica';
+	@rol = 'Administrativo', @func = 'Registro de llegada para atenciï¿½n mï¿½dica';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Profesional', @func = 'Registro de resultado para atención médica';
+	@rol = 'Profesional', @func = 'Registro de resultado para atenciï¿½n mï¿½dica';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Profesional', @func = 'Cancelar atención médica';
+	@rol = 'Profesional', @func = 'Cancelar atenciï¿½n mï¿½dica';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Afiliado', @func = 'Cancelar atención médica';
+	@rol = 'Afiliado', @func = 'Cancelar atenciï¿½n mï¿½dica';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Profesional', @func = 'Confeccionar receta médica';
+	@rol = 'Profesional', @func = 'Confeccionar receta mï¿½dica';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'Consultar listado estadístico';
+	@rol = 'Administrativo', @func = 'Consultar listado estadï¿½stico';
 	
 INSERT INTO mario_killers.Usuario (nombre, pw)
 	VALUES ('admin', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),
@@ -445,6 +448,15 @@ INSERT INTO mario_killers.Rol_Usuario
 	       ('cormillot', 2),
 	       ('tomi', 3);
 	       
+GO
+
+INSERT INTO mario_killers.Persona (nombre, apellido, documento, fecha_nac, direccion, telefono, mail)
+VALUES ('Fulano', 'Mengano', 11111111, '1992-06-15', 'Calle Falsa 123', 22222222, 'fulano@mengano.com')
+GO
+
+UPDATE mario_killers.Usuario
+SET persona = (SELECT id from mario_killers.Persona WHERE documento = 11111111)
+WHERE nombre = 'admin'
 GO
 
 CREATE VIEW mario_killers.AfiliadosABM AS 

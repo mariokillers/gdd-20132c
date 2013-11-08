@@ -148,6 +148,7 @@
             this.btnConyuge.TabIndex = 61;
             this.btnConyuge.Text = "Conyuge";
             this.btnConyuge.UseVisualStyleBackColor = true;
+            this.btnConyuge.Click += new System.EventHandler(this.btnConyuge_Click);
             // 
             // cmbPlanes
             // 

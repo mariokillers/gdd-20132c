@@ -178,7 +178,7 @@ namespace Clinica_Frba.NewFolder12
                 nuevoAfil.NumeroDocumento = (decimal)decimal.Parse(txtDni.Text);
                 nuevoAfil.FechaNacimiento = (DateTime)dtpFechaNacimiento.Value;
                 decimal GrupoNuevo = Afiliados.AgregarAfiliado(nuevoAfil);
-
+                nuevoAfil.Numero_Grupo = GrupoNuevo;
             }
 
 
@@ -200,6 +200,28 @@ namespace Clinica_Frba.NewFolder12
             {
                 MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
             }
+        }
+
+        private void btnConyuge_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                nuevoAfil.Numero_Familiar = 02;
+
+                almacenarDatos();
+
+                frmAfiliadoAlta formConyuge = new frmAfiliadoAlta();
+                formConyuge.Operacion = this.Operacion;
+                formConyuge.Afiliado = this.nuevoAfil;
+                formConyuge.Miembro = "Conyuge";
+                formConyuge.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+            }
+
         }
     }
 }

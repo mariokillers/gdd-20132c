@@ -39,7 +39,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
             decimal nuevoNum = Afiliados.AgregarGrupo(nuevoAfil);
 
-            MessageBox.Show("Su nuevo numero de afiliado es:" + nuevoNum, "Aviso", MessageBoxButtons.OK);
+            MessageBox.Show("Su nuevo numero de afiliado es: " + nuevoNum, "Aviso", MessageBoxButtons.OK);
 
             this.Hide();
         }

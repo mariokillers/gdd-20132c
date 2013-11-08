@@ -188,6 +188,7 @@ namespace Clinica_Frba.NewFolder12
         {
             try
             {
+                //nuevoAfil.Numero_Familiar = null;
                 almacenarDatos();
 
                 frmAfiliadoAlta formHijo = new frmAfiliadoAlta();
@@ -208,7 +209,6 @@ namespace Clinica_Frba.NewFolder12
             {
 
                 nuevoAfil.Numero_Familiar = 02;
-
                 almacenarDatos();
 
                 frmAfiliadoAlta formConyuge = new frmAfiliadoAlta();

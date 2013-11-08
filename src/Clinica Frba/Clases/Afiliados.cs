@@ -133,21 +133,22 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(new SqlParameter("@apellido", afil.Apellido));
             ListaParametros.Add(new SqlParameter("@fecha_nac", afil.FechaNacimiento));
             ListaParametros.Add(new SqlParameter("@sexo", afil.Sexo));
-            ListaParametros.Add(new SqlParameter("@tipo_doc", afil.TipoDocumento));
+            ListaParametros.Add(new SqlParameter("@tipo_doc", (int)afil.TipoDocumento));
+            ListaParametros.Add(new SqlParameter("@documento", (int)afil.NumeroDocumento));
             ListaParametros.Add(new SqlParameter("@direccion", afil.Direccion));
-            ListaParametros.Add(new SqlParameter("@telefono", afil.Telefono));
-            ListaParametros.Add(new SqlParameter("@estado_civil", afil.Estado_Civil));
+            ListaParametros.Add(new SqlParameter("@telefono", (int)afil.Telefono));
+            ListaParametros.Add(new SqlParameter("@estado_civil", (int)afil.Estado_Civil));
             ListaParametros.Add(new SqlParameter("@mail", afil.Mail));
-            ListaParametros.Add(new SqlParameter("@cant_hijos", afil.Cantidad_Hijos));
-            ListaParametros.Add(new SqlParameter("@plan_medico", afil.Plan_Medico));
-            ListaParametros.Add(new SqlParameter("@nro_flia", afil.Numero_Familiar));
+            ListaParametros.Add(new SqlParameter("@cant_hijos", (int)afil.Cantidad_Hijos));
+            ListaParametros.Add(new SqlParameter("@plan_medico", (int)afil.Plan_Medico));
+            ListaParametros.Add(new SqlParameter("@nro_flia", (int)afil.Numero_Familiar));
             
             SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
             paramRet.Direction = System.Data.ParameterDirection.Output;
             ListaParametros.Add(paramRet);
 
             decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarAfiliado", ListaParametros);
-
+            
             return ret;
         }
 

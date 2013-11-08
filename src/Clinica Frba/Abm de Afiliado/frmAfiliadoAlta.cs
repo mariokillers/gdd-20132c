@@ -151,6 +151,20 @@ namespace Clinica_Frba.NewFolder12
                 txtTel.Text = (String)Afiliado.Telefono.ToString();
                 cmbPlanes.Text = "" + Utiles.ObtenerPlan(Afiliado.Plan_Medico);
                 cmbPlanes.Enabled = false;
+                label12.Visible = true;
+                lblGrupo.Visible = true;
+                lblGrupo.Text = nuevoAfil.Numero_Grupo.ToString();
+            }
+            else if (Miembro == "Conyuge")
+            {
+                btnConyuge.Hide();
+                txtDir.Text = Afiliado.Direccion;
+                txtTel.Text = (String)Afiliado.Telefono.ToString();
+                cmbPlanes.Text = "" + Utiles.ObtenerPlan(Afiliado.Plan_Medico);
+                cmbPlanes.Enabled = false;
+                label12.Visible = true;
+                lblGrupo.Visible = true;
+                lblGrupo.Text = nuevoAfil.Numero_Grupo.ToString();
             }
         }
 
@@ -188,6 +202,7 @@ namespace Clinica_Frba.NewFolder12
         {
             try
             {
+                Operacion = "Alta";
                 //nuevoAfil.Numero_Familiar = null;
                 almacenarDatos();
 
@@ -207,7 +222,7 @@ namespace Clinica_Frba.NewFolder12
         {
             try
             {
-
+                Operacion = "Alta";
                 nuevoAfil.Numero_Familiar = 02;
                 almacenarDatos();
 

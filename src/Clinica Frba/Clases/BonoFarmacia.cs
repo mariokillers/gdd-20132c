@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Clinica_Frba.Clases
 {
-    class BonoFarmacia:Bono
+    class BonoFarmacia
     {
         public int Id { get; set; }
         public int Codigo_Compra { get; set; }

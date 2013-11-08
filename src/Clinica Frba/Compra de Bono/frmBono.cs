@@ -20,7 +20,6 @@ namespace Clinica_Frba.NewFolder3
         public Usuario User { get; set; }
         public Rol RolElegido { get; set; }
         private Afiliado afiliado { get; set; }
-        private List<Bono> listaBonos { get; set; }
 
         private void frmBono_Load(object sender, EventArgs e)
         {
@@ -60,14 +59,14 @@ namespace Clinica_Frba.NewFolder3
                     {
                         BonoConsulta unBono = new BonoConsulta(afiliado);
                         lblPrecioPorBono.Text = unBono.Precio.ToString();
-                        unaCompra.Bonos.Add(unBono);
+                        unaCompra.BonosConsulta.Add(unBono);
                         //afiliado.comprar(listaBonos);
                     }
                     else if (rbFarmacia.Checked)
                     {
                         BonoFarmacia unBono = new BonoFarmacia(afiliado);
                         lblPrecioPorBono.Text = unBono.Precio.ToString();
-                        unaCompra.Bonos.Add(unBono);
+                        unaCompra.BonosFarmacia.Add(unBono);
                     }
                 }
                 ActualizarGrilla();

@@ -100,7 +100,6 @@
     <Compile Include="Clases\Afiliados.cs" />
     <Compile Include="Clases\Atencion.cs" />
     <Compile Include="Clases\BaseDeDatosSQL.cs" />
-    <Compile Include="Clases\Bono.cs" />
     <Compile Include="Clases\BonoConsulta.cs" />
     <Compile Include="Clases\BonoFarmacia.cs" />
     <Compile Include="Clases\Compra.cs" />

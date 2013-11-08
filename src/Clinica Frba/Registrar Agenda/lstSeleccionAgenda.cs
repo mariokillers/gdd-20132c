@@ -33,7 +33,11 @@ namespace Clinica_Frba.Registrar_Agenda
                 generarGrilla();
                 ActualizarGrilla();       
             }
-            catch { MessageBox.Show("No hay una agenda cargada", "Error!", MessageBoxButtons.OK); }
+            catch 
+            {
+                this.Close();
+                MessageBox.Show("No hay una agenda cargada", "Error!", MessageBoxButtons.OK); 
+            }
         }
 
         private void ActualizarGrilla()

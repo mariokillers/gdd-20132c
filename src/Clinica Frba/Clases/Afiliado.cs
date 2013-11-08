@@ -22,6 +22,7 @@ namespace Clinica_Frba.Clases
 
         public Afiliado(int codigoPersona)
         {
+            Codigo_Persona = codigoPersona;
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@persona", codigoPersona));
 
@@ -30,7 +31,7 @@ namespace Clinica_Frba.Clases
             if (lector.HasRows)
             {
                 lector.Read();
-                Id = (decimal)codigoPersona;
+                
                 Apellido = (string)lector["apellido"];
                 Nombre = (string)lector["nombre"];
                 Numero_Grupo = (decimal)lector["grupo_familia"];
@@ -119,7 +120,7 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(new SqlParameter("@compra", idCompra));
             ListaParametros.Add(new SqlParameter("@plan_medico", unBono.Codigo_Plan));
 
-            return Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Bonos_Consulta(compra, plan_medico) VALUES (@compra, @plan_medico)", "T", ListaParametros);
+            return Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Bono_Consulta(compra, plan_medico) VALUES (@compra, @plan_medico)", "T", ListaParametros);
         }
 
         public static bool AgregarBonoFarmaciaEnCompra(int idCompra, BonoFarmacia unBono)
@@ -128,7 +129,7 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(new SqlParameter("@compra", idCompra));
             ListaParametros.Add(new SqlParameter("@plan_medico", unBono.Codigo_Plan));
 
-            return Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Bonos_Farmacia(compra, plan_medico) VALUES (@compra, @plan_medico)", "T", ListaParametros);
+            return Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Bono_Farmacia(compra, plan_medico) VALUES (@compra, @plan_medico)", "T", ListaParametros);
         }
     }
 }

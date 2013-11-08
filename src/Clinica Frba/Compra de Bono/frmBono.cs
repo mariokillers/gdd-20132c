@@ -82,6 +82,7 @@ namespace Clinica_Frba.NewFolder3
                 unaCompra.BonosFarmacia = new List<BonoFarmacia>();
                 if (afiliado.ComprarBonos(unaCompra))
                 {
+                    MessageBox.Show("La compra se ha realizado con éxito", "EnhoraBuena!", MessageBoxButtons.OK);
                 }
                 else { MessageBox.Show("No se pudo realizar la compra", "Error!", MessageBoxButtons.OK); }
             }
@@ -98,6 +99,7 @@ namespace Clinica_Frba.NewFolder3
                 unaCompra.BonosConsulta = new List<BonoConsulta>();
                 if (afiliado.ComprarBonos(unaCompra)) 
                 {
+                    MessageBox.Show("La compra se ha realizado con éxito", "EnhoraBuena!", MessageBoxButtons.OK);
                 }
                 else { MessageBox.Show("No se pudo realizar la compra", "Error!", MessageBoxButtons.OK); }
             }

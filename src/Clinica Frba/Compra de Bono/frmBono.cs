@@ -51,27 +51,57 @@ namespace Clinica_Frba.NewFolder3
         {
             try
             {
-                Compra unaCompra = new Compra(afiliado);
-                int cantBonos = (int)cmdCantBonos.Value;
-                for (int i = 0; i < cantBonos; i++)
+                if (!txtNumAfil.Visible)
                 {
-                    if (rbConsulta.Checked)
-                    {
-                        BonoConsulta unBono = new BonoConsulta(afiliado);
-                        lblPrecioPorBono.Text = unBono.Precio.ToString();
-                        unaCompra.BonosConsulta.Add(unBono);
-                        //afiliado.comprar(listaBonos);
-                    }
-                    else if (rbFarmacia.Checked)
-                    {
-                        BonoFarmacia unBono = new BonoFarmacia(afiliado);
-                        lblPrecioPorBono.Text = unBono.Precio.ToString();
-                        unaCompra.BonosFarmacia.Add(unBono);
-                    }
+                    RealizarCompra();
                 }
-                ActualizarGrilla();
+                else
+                {
+                    //SI ES ADMINISTRATIVO -> LE HAGO UNA COMPRA PARA EL AFILIADO
+                    afiliado = new Afiliado(Int32.Parse(txtNumAfil.Text));
+                    RealizarCompra();
+                }
             }
             catch { MessageBox.Show("Inserte correctamente todos los campos", "Error!", MessageBoxButtons.OK); }
+        }
+
+        private void RealizarCompra()
+        {
+            Compra unaCompra = new Compra(afiliado);
+            int cantBonos = (int)cmdCantBonos.Value;
+            if (rbConsulta.Checked)
+            {
+                List<BonoConsulta> bonos = new List<BonoConsulta>();
+                for (int i = 0; i < cantBonos; i++)
+                {
+                    BonoConsulta unBono = new BonoConsulta(afiliado);
+                    lblPrecioPorBono.Text = unBono.Precio.ToString();
+                    bonos.Add(unBono);
+                }
+                unaCompra.BonosConsulta = bonos;
+                unaCompra.BonosFarmacia = new List<BonoFarmacia>();
+                if (afiliado.ComprarBonos(unaCompra))
+                {
+                }
+                else { MessageBox.Show("No se pudo realizar la compra", "Error!", MessageBoxButtons.OK); }
+            }
+            else if (rbFarmacia.Checked)
+            {
+                List<BonoFarmacia> bonos = new List<BonoFarmacia>();
+                for (int i = 0; i < cantBonos; i++)
+                {
+                    BonoFarmacia unBono = new BonoFarmacia(afiliado);
+                    lblPrecioPorBono.Text = unBono.Precio.ToString();
+                    bonos.Add(unBono);
+                }
+                unaCompra.BonosFarmacia = bonos;
+                unaCompra.BonosConsulta = new List<BonoConsulta>();
+                if (afiliado.ComprarBonos(unaCompra)) 
+                {
+                }
+                else { MessageBox.Show("No se pudo realizar la compra", "Error!", MessageBoxButtons.OK); }
+            }
+            //ActualizarGrilla();
         }
     }
 }

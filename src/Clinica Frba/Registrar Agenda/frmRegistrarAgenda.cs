@@ -120,7 +120,7 @@ namespace Clinica_Frba.Registrar_Agenda
         private void cmbDias_SelectedIndexChanged(object sender, EventArgs e)
         {
             //SI SELECCIONO EL SABADO
-            if ((int)cmbDias.SelectedIndex ==6)
+            if ((int)cmbDias.SelectedIndex ==5)
             {
                 //SETEO LOS HORARIOS DE SABADO
                 cmbHoraDesde.DataSource = Utiles.ObtenerHorasDiasSabados();

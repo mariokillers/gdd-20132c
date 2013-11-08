@@ -88,17 +88,23 @@ namespace Clinica_Frba.Clases
                 ListaParametros.Add(paramRet);
 
                 //INSERTA LA COMPRA Y TOMA EL ID QUE ACABA DE INSERTAR
-                int ret = (int)Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarRol", ListaParametros);
+                int ret = (int)Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.hacerCompra", ListaParametros);
 
                 if (ret != -1)
                 {
-                    foreach (BonoConsulta unBono in unaCompra.BonosConsulta)
+                    if (unaCompra.BonosConsulta.Count != 0)
                     {
-                        AgregarBonoConsultaEnCompra(ret, unBono);
+                        foreach (BonoConsulta unBono in unaCompra.BonosConsulta)
+                        {
+                            AgregarBonoConsultaEnCompra(ret, unBono);
+                        }
                     }
-                    foreach (BonoFarmacia unBono in unaCompra.BonosFarmacia)
+                    if (unaCompra.BonosFarmacia.Count != 0)
                     {
-                        AgregarBonoFarmaciaEnCompra(ret, unBono);
+                        foreach (BonoFarmacia unBono in unaCompra.BonosFarmacia)
+                        {
+                            AgregarBonoFarmaciaEnCompra(ret, unBono);
+                        }
                     }
                     return true;
                 }

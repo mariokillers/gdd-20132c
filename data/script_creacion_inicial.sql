@@ -191,15 +191,6 @@ CREATE TABLE mario_killers.Plan_Medico (
 	PRIMARY KEY (codigo)
 )
 
-CREATE TABLE mario_killers.Compra (
-	id numeric(18, 0) IDENTITY,
-	fecha datetime,
-	persona numeric(18, 0),
-	plan_medico numeric(18, 0) NOT NULL,
-	PRIMARY KEY (id),
-	FOREIGN KEY (plan_medico) REFERENCES mario_killers.Plan_Medico(codigo)
-)
-
 CREATE TABLE mario_killers.Estado_Civil (
 	id numeric(18, 0) IDENTITY,
 	estado varchar(255) NOT NULL,
@@ -317,6 +308,16 @@ CREATE TABLE mario_killers.Turno (
 	FOREIGN KEY (persona) REFERENCES mario_killers.Persona(id),
 	FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona),
 	FOREIGN KEY (especialidad) REFERENCES mario_killers.Especialidad(codigo)
+)
+
+CREATE TABLE mario_killers.Compra (
+	id numeric(18, 0) IDENTITY,
+	fecha datetime,
+	persona numeric(18, 0),
+	plan_medico numeric(18, 0) NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (plan_medico) REFERENCES mario_killers.Plan_Medico(codigo),
+	FOREIGN KEY (persona) REFERENCES mario_killers.Afiliado(persona)
 )
 
 CREATE TABLE mario_killers.Bono_Consulta (
@@ -452,8 +453,8 @@ GO
 
 
 -- ADMIN, AFILIADO Y PROFESIONAL: MENGANO (TEST)
-INSERT INTO mario_killers.Persona (nombre, apellido, documento, fecha_nac, direccion, telefono, mail, sexo)
-VALUES ('Fulano', 'Mengano', 11111111, '1992-06-15', 'Calle Falsa 123', 22222222, 'fulano@mengano.com', 'X')
+INSERT INTO mario_killers.Persona (nombre, apellido, documento, fecha_nac, direccion, telefono, mail, sexo, tipo_doc)
+VALUES ('Fulano', 'Mengano', 11111111, '1992-06-15', 'Calle Falsa 123', 22222222, 'fulano@mengano.com', 'X', 5)
 GO
 
 UPDATE mario_killers.Usuario
@@ -472,8 +473,8 @@ INSERT mario_killers.Grupo_Familia (codigo, plan_medico)
 	SELECT id, 1 FROM mario_killers.Persona WHERE documento = 11111111
 SET IDENTITY_INSERT mario_killers.Grupo_Familia OFF
 
-INSERT mario_killers.Afiliado (persona, grupo_familia, nro_familiar)
-	SELECT id, id, 1 from mario_killers.Persona WHERE documento = 11111111
+INSERT mario_killers.Afiliado (persona, grupo_familia, nro_familiar, cant_hijos, estado_civil)
+	SELECT id, id, 1, 0, 6 from mario_killers.Persona WHERE documento = 11111111
 GO
 
 -- Vistas ABM

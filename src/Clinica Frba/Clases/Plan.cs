@@ -29,5 +29,7 @@ namespace Clinica_Frba.Clases
                 Precio_Bono_Farmacia = (decimal)lector["precio_bono_farmacia"];
             }
         }
+
+        public Plan() { }
     }
 }

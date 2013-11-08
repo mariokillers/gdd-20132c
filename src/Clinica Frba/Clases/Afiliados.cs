@@ -140,6 +140,7 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(new SqlParameter("@mail", afil.Mail));
             ListaParametros.Add(new SqlParameter("@cant_hijos", afil.Cantidad_Hijos));
             ListaParametros.Add(new SqlParameter("@plan_medico", afil.Plan_Medico));
+            ListaParametros.Add(new SqlParameter("@nro_flia", afil.Numero_Familiar));
             
             SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
             paramRet.Direction = System.Data.ParameterDirection.Output;

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Clinica_Frba.Clases
 {
-    class Compra
+    public class Compra
     {
         public int Id { get; set; }
         public DateTime Fecha { get; set; }

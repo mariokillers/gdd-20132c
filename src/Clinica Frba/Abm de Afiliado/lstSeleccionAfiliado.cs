@@ -73,7 +73,6 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
             if (txtNombre.Text != "" || txtApellido.Text != "" || txtDni.Text != "" || txtNumAfiliado.Text != "" || unPlan != 0)
             {   
-                //me traigo los roles que cumplen con el filtro
                 listaDeAfiliados = Afiliados.ObtenerAfiliados(txtNombre.Text, txtApellido.Text, txtDni.Text, txtNumAfiliado.Text, unPlan);
             }
             else

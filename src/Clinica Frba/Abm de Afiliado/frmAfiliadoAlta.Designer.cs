@@ -73,7 +73,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -528,21 +527,11 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre:";
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(165, 395);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(327, 13);
-            this.label12.TabIndex = 2;
-            this.label12.Text = "FALTA VER EL RESTO DE LOS ATRIBUTOS, VER REL. EN DER";
-            // 
             // frmAfiliadoAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(654, 507);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmAfiliadoAlta";
             this.Text = "CLINICA - FRBA - Alta";
@@ -550,7 +539,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -581,7 +569,6 @@
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label18;

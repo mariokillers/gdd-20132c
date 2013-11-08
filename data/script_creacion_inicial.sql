@@ -450,10 +450,6 @@ INSERT INTO mario_killers.Rol_Usuario
 	       
 GO
 
-INSERT INTO mario_killers.Persona (nombre, apellido, documento, fecha_nac, direccion, telefono, mail)
-VALUES ('Fulano', 'Mengano', 11111111, '1992-06-15', 'Calle Falsa 123', 22222222, 'fulano@mengano.com')
-GO
-
 UPDATE mario_killers.Usuario
 SET persona = (SELECT id from mario_killers.Persona WHERE documento = 11111111)
 WHERE nombre = 'admin'

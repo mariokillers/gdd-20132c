@@ -450,6 +450,8 @@ INSERT INTO mario_killers.Rol_Usuario
 	       
 GO
 
+
+-- ADMIN, AFILIADO Y PROFESIONAL: MENGANO (TEST)
 INSERT INTO mario_killers.Persona (nombre, apellido, documento, fecha_nac, direccion, telefono, mail, sexo)
 VALUES ('Fulano', 'Mengano', 11111111, '1992-06-15', 'Calle Falsa 123', 22222222, 'fulano@mengano.com', 'X')
 GO
@@ -459,6 +461,22 @@ SET persona = (SELECT id from mario_killers.Persona WHERE documento = 11111111)
 WHERE nombre = 'admin'
 GO
 
+INSERT mario_killers.Profesional (persona)
+	SELECT id FROM mario_killers.Persona WHERE documento = 11111111
+GO
+INSERT mario_killers.Plan_Medico (codigo, descripcion, precio_bono_consulta, precio_bono_farmacia)
+	VALUES (1, 'PLAN FRUTA', 10, 10)
+	
+SET IDENTITY_INSERT mario_killers.Grupo_Familia ON
+INSERT mario_killers.Grupo_Familia (codigo, plan_medico)
+	SELECT id, 1 FROM mario_killers.Persona WHERE documento = 11111111
+SET IDENTITY_INSERT mario_killers.Grupo_Familia OFF
+
+INSERT mario_killers.Afiliado (persona, grupo_familia, nro_familiar)
+	SELECT id, id, 1 from mario_killers.Persona WHERE documento = 11111111
+GO
+
+-- Vistas ABM
 CREATE VIEW mario_killers.AfiliadosABM AS 
 SELECT A.persona AS persona, A.grupo_familia AS grupo_familia, A.nro_familiar AS nro_familiar, P.apellido AS apellido, P.nombre AS nombre, P.documento AS documento, GF.plan_medico AS plan_medico, 
 		P.direccion AS direccion, P.fecha_nac AS fecha_nac, P.mail AS mail, TD.id AS tipo_doc, P.sexo AS sexo, P.telefono AS telefono, A.cant_hijos AS cant_hijos, A.estado_civil AS estado_civil

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.menu = new System.Windows.Forms.MenuStrip();
             this.cmdAfiliado = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdAfiliadoAlta = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,7 +68,7 @@
             this.cmdLogOut});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(743, 24);
+            this.menu.Size = new System.Drawing.Size(671, 24);
             this.menu.TabIndex = 0;
             this.menu.Text = "menu";
             // 
@@ -216,7 +217,7 @@
             // cmbRoles
             // 
             this.cmbRoles.FormattingEnabled = true;
-            this.cmbRoles.Location = new System.Drawing.Point(195, 102);
+            this.cmbRoles.Location = new System.Drawing.Point(34, 56);
             this.cmbRoles.Name = "cmbRoles";
             this.cmbRoles.Size = new System.Drawing.Size(119, 21);
             this.cmbRoles.TabIndex = 1;
@@ -225,7 +226,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(208, 83);
+            this.label1.Location = new System.Drawing.Point(47, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 2;
@@ -234,7 +235,7 @@
             // 
             // cmdIngresar
             // 
-            this.cmdIngresar.Location = new System.Drawing.Point(214, 129);
+            this.cmdIngresar.Location = new System.Drawing.Point(53, 83);
             this.cmdIngresar.Name = "cmdIngresar";
             this.cmdIngresar.Size = new System.Drawing.Size(75, 23);
             this.cmdIngresar.TabIndex = 3;
@@ -247,7 +248,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(743, 270);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(671, 407);
             this.Controls.Add(this.cmdIngresar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbRoles);

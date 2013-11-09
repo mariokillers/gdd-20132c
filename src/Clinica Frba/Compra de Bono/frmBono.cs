@@ -20,11 +20,13 @@ namespace Clinica_Frba.NewFolder3
         public Usuario User { get; set; }
         public Rol RolElegido { get; set; }
         private Afiliado afiliado { get; set; }
+        private List<TipoCompraParaMostrar> ListaAMostrar { get; set; }
 
         private void frmBono_Load(object sender, EventArgs e)
         {
+            ListaAMostrar = new List<TipoCompraParaMostrar>();
             grillaBonos.AutoGenerateColumns = false;
-            //cargarGrilla();
+            cargarGrilla();
 
             lblFechaCompra.Text = DateTime.Today.ToShortDateString();
             lblMontoAPagar.Text = "0";
@@ -50,29 +52,42 @@ namespace Clinica_Frba.NewFolder3
 
         private void cargarGrilla()
         {
-            DataGridViewTextBoxColumn ColNombre = new DataGridViewTextBoxColumn();
-            ColNombre.DataPropertyName = "Nombre";
-            ColNombre.HeaderText = "Nombre Rol";
-            ColNombre.Width = 120;
-            grillaBonos.Columns.Add(ColNombre);
+            DataGridViewTextBoxColumn ColTipo = new DataGridViewTextBoxColumn();
+            ColTipo.DataPropertyName = "TipoBono";
+            ColTipo.HeaderText = "Tipo de Bono";
+            ColTipo.Width = 120;
+            grillaBonos.Columns.Add(ColTipo);
 
             DataGridViewTextBoxColumn ColCantidad = new DataGridViewTextBoxColumn();
-            ColCantidad.DataPropertyName = "Nombre";
+            ColCantidad.DataPropertyName = "Cantidad";
             ColCantidad.HeaderText = "Cantidad";
             ColCantidad.Width = 120;
             grillaBonos.Columns.Add(ColCantidad);
 
             DataGridViewTextBoxColumn ColMonto = new DataGridViewTextBoxColumn();
-            ColMonto.DataPropertyName = "Nombre";
-            ColMonto.HeaderText = "Monto";
+            ColMonto.DataPropertyName = "MontoBono";
+            ColMonto.HeaderText = "Monto por Bono";
             ColMonto.Width = 120;
             grillaBonos.Columns.Add(ColMonto);
+
+            DataGridViewTextBoxColumn ColMontoTotal = new DataGridViewTextBoxColumn();
+            ColMontoTotal.DataPropertyName = "MontoTotal";
+            ColMontoTotal.HeaderText = "Monto Total";
+            ColMontoTotal.Width = 120;
+            grillaBonos.Columns.Add(ColMontoTotal);
+
+            DataGridViewTextBoxColumn ColFechaVencimiento = new DataGridViewTextBoxColumn();
+            ColFechaVencimiento.DataPropertyName = "FechaVencimiento";
+            ColFechaVencimiento.HeaderText = "Fecha de Vencimiento";
+            ColFechaVencimiento.Width = 120;
+            grillaBonos.Columns.Add(ColFechaVencimiento);
 
         }
 
         private void ActualizarGrilla()
         {
-            //grillaBonos.DataSource = listaBonos;
+            grillaBonos.DataSource = null;
+            grillaBonos.DataSource = ListaAMostrar;
         }
 
         private void cmdComprar_Click_1(object sender, EventArgs e)
@@ -96,38 +111,31 @@ namespace Clinica_Frba.NewFolder3
         private void RealizarCompra()
         {
             Compra unaCompra = new Compra(afiliado);
-            int cantBonos = (int)cmdCantBonos.Value;
-
+            List<BonoConsulta> bonosConsulta = new List<BonoConsulta>();
+            List<BonoFarmacia> bonosFarmacia = new List<BonoFarmacia>();
             if (PuedeRealizarCompra())
             {
-                if (rbConsulta.Checked)
+                foreach (TipoCompraParaMostrar unRegistro in ListaAMostrar)
                 {
-                    List<BonoConsulta> bonos = new List<BonoConsulta>();
-                    for (int i = 0; i < cantBonos; i++)
+                    if (unRegistro.TipoBono == "Bono Farmacia")
                     {
-                        BonoConsulta unBono = new BonoConsulta(afiliado);
-                        lblPrecioPorBono.Text = unBono.Precio.ToString();
-                        bonos.Add(unBono);
+                        for (int i = 0; i < unRegistro.Cantidad; i++)
+                        {
+                            BonoConsulta unBono = new BonoConsulta(afiliado);
+                            bonosConsulta.Add(unBono);
+                        }
                     }
-                    unaCompra.BonosConsulta = bonos;
-                    unaCompra.BonosFarmacia = new List<BonoFarmacia>();
-                    if (afiliado.ComprarBonos(unaCompra))
+                    else
                     {
-                        MessageBox.Show("La compra se ha realizado con éxito", "EnhoraBuena!", MessageBoxButtons.OK);
+                        for (int i = 0; i < unRegistro.Cantidad; i++)
+                        {
+                            BonoFarmacia unBono = new BonoFarmacia(afiliado);
+                            bonosFarmacia.Add(unBono);
+                        }
                     }
-                    else { MessageBox.Show("No se pudo realizar la compra", "Error!", MessageBoxButtons.OK); }
-                }
-                else if (rbFarmacia.Checked)
-                {
-                    List<BonoFarmacia> bonos = new List<BonoFarmacia>();
-                    for (int i = 0; i < cantBonos; i++)
-                    {
-                        BonoFarmacia unBono = new BonoFarmacia(afiliado);
-                        lblPrecioPorBono.Text = unBono.Precio.ToString();
-                        bonos.Add(unBono);
-                    }
-                    unaCompra.BonosFarmacia = bonos;
-                    unaCompra.BonosConsulta = new List<BonoConsulta>();
+                    unaCompra.BonosFarmacia = bonosFarmacia;
+                    unaCompra.BonosConsulta = bonosConsulta;
+
                     if (afiliado.ComprarBonos(unaCompra))
                     {
                         MessageBox.Show("La compra se ha realizado con éxito", "EnhoraBuena!", MessageBoxButtons.OK);
@@ -136,7 +144,12 @@ namespace Clinica_Frba.NewFolder3
                 }
             }
             else { MessageBox.Show("El usuario no puede realizar la compra, se encuentra inhabilitado", "Error!", MessageBoxButtons.OK); }
-            //ActualizarGrilla();
+            LimpiarGrilla();
+        }
+
+        private void LimpiarGrilla()
+        {
+            grillaBonos.DataSource = null;
         }
 
         private bool PuedeRealizarCompra()
@@ -168,6 +181,33 @@ namespace Clinica_Frba.NewFolder3
         private void cmdCantBonos_ValueChanged(object sender, EventArgs e)
         {
             lblMontoAPagar.Text = (cmdCantBonos.Value * Int32.Parse(lblPrecioPorBono.Text)).ToString();
+        }
+
+        private void cmdAgregar_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (!txtNumAfil.Visible)
+                {
+                    TipoCompraParaMostrar unaCompra = new TipoCompraParaMostrar();
+                    unaCompra.FechaVencimiento = lblFechaVencimiento.Text;
+                    unaCompra.Cantidad = (int)cmdCantBonos.Value;
+                    unaCompra.MontoTotal = Int32.Parse(lblMontoAPagar.Text);
+                    unaCompra.MontoBono = Int32.Parse(lblPrecioPorBono.Text);
+                    if (rbFarmacia.Checked) { unaCompra.TipoBono = "Bono Farmacia"; }
+                    else { unaCompra.TipoBono = "Bono Consulta"; }
+                    ListaAMostrar.Add(unaCompra);
+                    ActualizarGrilla();
+                }
+                else
+                {
+                    //SI ES ADMINISTRATIVO -> LE HAGO UNA COMPRA PARA EL AFILIADO
+                    afiliado = new Afiliado(Int32.Parse(txtNumAfil.Text));
+                    RealizarCompra();
+                }
+            }
+            catch { MessageBox.Show("Inserte correctamente todos los campos", "Error!", MessageBoxButtons.OK); }
         }
     }
 }

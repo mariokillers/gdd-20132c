@@ -51,6 +51,7 @@
             this.lblPrecioPorBono = new System.Windows.Forms.Label();
             this.lblMontoAPagar = new System.Windows.Forms.Label();
             this.lblFechaCompra = new System.Windows.Forms.Label();
+            this.cmdAgregar = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -67,6 +68,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.cmdAgregar);
             this.splitContainer1.Panel1.Controls.Add(this.cmdConfirmar);
             this.splitContainer1.Panel1.Controls.Add(this.txtNumAfil);
             this.splitContainer1.Panel1.Controls.Add(this.lblNumeroAfiliado);
@@ -80,8 +82,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.grillaBonos);
             this.splitContainer1.Panel2.Controls.Add(this.tlpDatos);
-            this.splitContainer1.Size = new System.Drawing.Size(469, 526);
-            this.splitContainer1.SplitterDistance = 157;
+            this.splitContainer1.Size = new System.Drawing.Size(885, 526);
+            this.splitContainer1.SplitterDistance = 296;
             this.splitContainer1.TabIndex = 0;
             // 
             // cmdConfirmar
@@ -115,7 +117,7 @@
             // 
             // cmdComprar
             // 
-            this.cmdComprar.Location = new System.Drawing.Point(29, 331);
+            this.cmdComprar.Location = new System.Drawing.Point(29, 339);
             this.cmdComprar.Name = "cmdComprar";
             this.cmdComprar.Size = new System.Drawing.Size(93, 54);
             this.cmdComprar.TabIndex = 6;
@@ -135,7 +137,7 @@
             // cmdCantBonos
             // 
             this.cmdCantBonos.Location = new System.Drawing.Point(22, 265);
-            this.cmdCantBonos.Minimum = new decimal(new int[] {
+            this.cmdCantBonos.Minimum = new int(new int[] {
             1,
             0,
             0,
@@ -143,7 +145,7 @@
             this.cmdCantBonos.Name = "cmdCantBonos";
             this.cmdCantBonos.Size = new System.Drawing.Size(120, 20);
             this.cmdCantBonos.TabIndex = 4;
-            this.cmdCantBonos.Value = new decimal(new int[] {
+            this.cmdCantBonos.Value = new int(new int[] {
             1,
             0,
             0,
@@ -179,7 +181,7 @@
             this.grillaBonos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaBonos.Location = new System.Drawing.Point(3, 4);
             this.grillaBonos.Name = "grillaBonos";
-            this.grillaBonos.Size = new System.Drawing.Size(305, 335);
+            this.grillaBonos.Size = new System.Drawing.Size(579, 335);
             this.grillaBonos.TabIndex = 8;
             // 
             // tlpDatos
@@ -325,12 +327,22 @@
             this.lblFechaCompra.Text = "label8";
             this.lblFechaCompra.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
+            // cmdAgregar
+            // 
+            this.cmdAgregar.Location = new System.Drawing.Point(47, 300);
+            this.cmdAgregar.Name = "cmdAgregar";
+            this.cmdAgregar.Size = new System.Drawing.Size(75, 23);
+            this.cmdAgregar.TabIndex = 10;
+            this.cmdAgregar.Text = "button1";
+            this.cmdAgregar.UseVisualStyleBackColor = true;
+            this.cmdAgregar.Click += new System.EventHandler(this.cmdAgregar_Click);
+            // 
             // frmBono
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(469, 526);
+            this.ClientSize = new System.Drawing.Size(885, 526);
             this.Controls.Add(this.splitContainer1);
             this.Name = "frmBono";
             this.Text = "Compra de bonos";
@@ -372,6 +384,7 @@
         private System.Windows.Forms.Label lblMontoAPagar;
         private System.Windows.Forms.Button cmdConfirmar;
         private System.Windows.Forms.DataGridView grillaBonos;
+        private System.Windows.Forms.Button cmdAgregar;
 
 
     }

@@ -12,13 +12,13 @@ namespace Clinica_Frba.Clases
 {
     public class Afiliado: Persona
     {
-        public decimal Codigo_Persona { get; set; }
-        public decimal Numero_Familiar { get; set; }
-        public decimal Numero_Grupo { get; set; }
-        public decimal Estado_Civil { get; set; }
-        public decimal Cantidad_Hijos { get; set; }
+        public int Codigo_Persona { get; set; }
+        public int Numero_Familiar { get; set; }
+        public int Numero_Grupo { get; set; }
+        public int Estado_Civil { get; set; }
+        public int Cantidad_Hijos { get; set; }
         public bool Activo { get; set; }
-        public decimal Plan_Medico { get; set; }
+        public int Plan_Medico { get; set; }
 
         public Afiliado(int codigoPersona)
         {
@@ -26,26 +26,27 @@ namespace Clinica_Frba.Clases
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@persona", codigoPersona));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.AfiliadosABM where persona=@persona", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Afiliado where persona=@persona", "T", ListaParametros);
 
             if (lector.HasRows)
             {
                 lector.Read();
                 
-                Apellido = (string)lector["apellido"];
-                Nombre = (string)lector["nombre"];
-                Numero_Grupo = (decimal)lector["grupo_familia"];
-                Numero_Familiar = (decimal)lector["nro_familiar"];
-                NumeroDocumento = (decimal)lector["documento"];
-                Plan_Medico = (decimal)lector["plan_medico"];
-                FechaNacimiento = (DateTime)lector["fecha_nac"];
-                Direccion = (String)lector["direccion"];
-                TipoDocumento = (decimal)lector["tipo_doc"];
-                Sexo = (String)lector["sexo"];
-                Mail = (String)lector["mail"];
-                Telefono = (decimal)lector["telefono"];
-                Cantidad_Hijos = (decimal)lector["cant_hijos"];
-                Estado_Civil = (decimal)lector["estado_civil"];
+                //Apellido = (string)lector["apellido"];
+                //Nombre = (string)lector["nombre"];
+                Numero_Grupo = (int)lector["grupo_familia"];
+                Numero_Familiar = (int)lector["nro_familiar"];
+                //NumeroDocumento = (int)lector["documento"];
+                //Plan_Medico = (int)lector["plan_medico"];
+                //FechaNacimiento = (DateTime)lector["fecha_nac"];
+                //Direccion = (String)lector["direccion"];
+                //TipoDocumento = (int)lector["tipo_doc"];
+                //Sexo = (String)lector["sexo"];
+                //Mail = (String)lector["mail"];
+                //Telefono = (int)lector["telefono"];
+                Cantidad_Hijos = (int)lector["cant_hijos"];
+                Estado_Civil = (int)lector["estado_civil"];
+                Activo = (bool)lector["activo"];
             }
         }
        
@@ -84,7 +85,7 @@ namespace Clinica_Frba.Clases
                 ListaParametros.Add(new SqlParameter("@persona", Codigo_Persona));
                 ListaParametros.Add(new SqlParameter("@fecha", unaCompra.Fecha));
                 ListaParametros.Add(new SqlParameter("@plan_medico", unaCompra.Codigo_Plan));
-                SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
+                SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.int);
                 paramRet.Direction = System.Data.ParameterDirection.Output;
                 ListaParametros.Add(paramRet);
 

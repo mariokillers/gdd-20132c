@@ -34,6 +34,12 @@ namespace Clinica_Frba.Abm_de_Rol
                     grillaFuncionalidades.ValueMember = "Id";
                     grillaFuncionalidades.DisplayMember = "Nombre";
 
+                    if (unRol.Habilitado )
+                    {
+                        cbHabilitado.Checked = true;
+                    }
+                    else { cbHabilitado.Checked = false; }
+
                     //ME MANDARON UN ROL ESPECIFICO -> MUESTRO SOLO LAS FUNC DE ESTE ROL
                     listaDeFuncionalidades = Funcionalidades.ObtenerFuncionalidades(unRol.Id);
 
@@ -52,6 +58,7 @@ namespace Clinica_Frba.Abm_de_Rol
             {
                 Roles.ModificarNombre(txtRol.Text, unRol.Id);
             }
+            Roles.CambiarEstado(unRol.Id, cbHabilitado.Checked);
 
             //LISTA DE FUNCIONALIDADES QUE TIENE ESE ROL
             List<Funcionalidad> listaQueTiene = Funcionalidades.ObtenerFuncionalidades(unRol.Id);

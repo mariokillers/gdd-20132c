@@ -52,15 +52,20 @@ namespace Clinica_Frba.Abm_de_Rol
 
         public void ActualizarGrilla()
         {
-            if (txtNombre.Text != "")
+            if (txtNombre.Text != "" && Operacion == "Baja")
             {
                 //me traigo los roles que cumplen con el filtro
+                listaDeRoles = Roles.ObtenerRolesActivo(txtNombre.Text);
+            }
+            else if (txtNombre.Text == "" && Operacion == "Baja")
+            {
+                listaDeRoles = Roles.ObtenerTodosActivos();
+            }
+            else if (Operacion != "Baja" && txtNombre.Text != "")
+            {
                 listaDeRoles = Roles.ObtenerRoles(txtNombre.Text);
             }
-            else
-            {
-                listaDeRoles = Roles.ObtenerTodos();
-            }
+            else { listaDeRoles = Roles.ObtenerTodos(); }
             
             //meto el resultado en la grilla
             grillaRoles.DataSource = listaDeRoles;
@@ -104,6 +109,7 @@ namespace Clinica_Frba.Abm_de_Rol
                     formFunc.Show();
                 }
             }
+            this.Close();
         }
     }
 }

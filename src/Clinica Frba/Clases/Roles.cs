@@ -18,7 +18,7 @@ namespace Clinica_Frba.Clases
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@txt", "%" + filtro + "%"));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id, nombre FROM mario_killers.Rol WHERE activo = 1 AND nombre like @txt", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id, nombre FROM mario_killers.Rol WHERE nombre like @txt", "T", ListaParametros);
 
             if (lector.HasRows)
             {
@@ -28,7 +28,31 @@ namespace Clinica_Frba.Clases
                     Rol unRol = new Rol();
                     unRol.Id = (int)(decimal)lector["id"];
                     unRol.Nombre = (string)lector["nombre"];
-                    unRol.Habilitado = true;
+                    unRol.Habilitado = (bool)lector["activo"];
+                    listaDeRoles.Add(unRol);
+                }
+            }
+            return listaDeRoles;
+        }
+
+        public static List<Rol> ObtenerRolesActivo(string filtro)
+        {
+            List<Rol> listaDeRoles = new List<Rol>();
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@txt", "%" + filtro + "%"));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id, nombre FROM mario_killers.Rol WHERE activo=1AND nombre like @txt", "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                while (lector.Read())
+                {
+                    //FALTA TRAER LAS FUNCIONALIDADES POR ROL
+                    Rol unRol = new Rol();
+                    unRol.Id = (int)(decimal)lector["id"];
+                    unRol.Nombre = (string)lector["nombre"];
+                    unRol.Habilitado = (bool)lector["activo"];
                     listaDeRoles.Add(unRol);
                 }
             }
@@ -54,6 +78,18 @@ namespace Clinica_Frba.Clases
                 ListaParametros.Add(new SqlParameter("@id", idRol));
                 ListaParametros.Add(new SqlParameter("@nombre", nombre));
                 return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Rol set nombre =@nombre where id=@id", "T", ListaParametros);
+            }
+            catch { return false; }
+        }
+
+        public static bool CambiarEstado(int idRol, bool estado)
+        {
+            try
+            {
+                List<SqlParameter> ListaParametros = new List<SqlParameter>();
+                ListaParametros.Add(new SqlParameter("@id", idRol));
+                ListaParametros.Add(new SqlParameter("@estado", estado));
+                return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Rol set activo =@estado where id=@id", "T", ListaParametros);
             }
             catch { return false; }
         }
@@ -123,17 +159,38 @@ namespace Clinica_Frba.Clases
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id, nombre FROM mario_killers.Rol WHERE activo = 1", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id, nombre, activo FROM mario_killers.Rol", "T", ListaParametros);
 
             if (lector.HasRows)
             {
                 while (lector.Read())
                 {
-                    //FALTA TRAER LAS FUNCIONALIDADES POR ROL
                     Rol unRol = new Rol();
                     unRol.Id = ((int)(decimal)lector["id"]);
                     unRol.Nombre = (string)lector["nombre"];
-                    unRol.Habilitado = true;
+                    unRol.Habilitado = (bool)lector["activo"];
+                    listaDeRoles.Add(unRol);
+                }
+            }
+            return listaDeRoles; ;
+        }
+
+        public static List<Rol> ObtenerTodosActivos()
+        {
+            List<Rol> listaDeRoles = new List<Rol>();
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id, nombre, activo FROM mario_killers.Rol WHERE activo=1", "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                while (lector.Read())
+                {
+                    Rol unRol = new Rol();
+                    unRol.Id = ((int)(decimal)lector["id"]);
+                    unRol.Nombre = (string)lector["nombre"];
+                    unRol.Habilitado = (bool)lector["activo"];
                     listaDeRoles.Add(unRol);
                 }
             }

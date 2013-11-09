@@ -48,5 +48,13 @@ namespace Clinica_Frba.Abm_de_Afiliado
         {
             this.Hide();
         }
+
+        private void btnGrupoExistente_Click(object sender, EventArgs e)
+        {
+            lstSeleccionGrupo lstSelect = new lstSeleccionGrupo();
+            lstSelect.unAfiliado = unAfiliado;
+            lstSelect.Show();
+            this.Close();
+        }
     }
 }

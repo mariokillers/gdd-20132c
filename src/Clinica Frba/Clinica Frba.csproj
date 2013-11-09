@@ -84,6 +84,12 @@
     <Compile Include="Abm de Afiliado\lstSeleccionAfiliado.Designer.cs">
       <DependentUpon>lstSeleccionAfiliado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm de Afiliado\lstSeleccionGrupo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm de Afiliado\lstSeleccionGrupo.Designer.cs">
+      <DependentUpon>lstSeleccionGrupo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm de Rol\lstSeleccionFuncionalidad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,8 @@
     <Compile Include="Clases\Estados.cs" />
     <Compile Include="Clases\Funcionalidad.cs" />
     <Compile Include="Clases\Funcionalidades.cs" />
+    <Compile Include="Clases\Grupo.cs" />
+    <Compile Include="Clases\Grupos.cs" />
     <Compile Include="Clases\Hora.cs" />
     <Compile Include="Clases\Medicamento.cs" />
     <Compile Include="Clases\MedicamentoEnReceta.cs" />
@@ -237,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm de Afiliado\lstSeleccionAfiliado.resx">
       <DependentUpon>lstSeleccionAfiliado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm de Afiliado\lstSeleccionGrupo.resx">
+      <DependentUpon>lstSeleccionGrupo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm de Especialidades Medicas%28NO%29\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

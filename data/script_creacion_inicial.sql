@@ -1,6 +1,39 @@
 CREATE SCHEMA mario_killers AUTHORIZATION gd
 GO
 
+CREATE PROCEDURE mario_killers.agregarAfiliadoFamilia(@nombre varchar(255),
+                                               @apellido varchar(255),
+                                               @fecha_nac datetime,
+                                               @sexo char(1),
+                                               @tipo_doc numeric(18,0),
+                                               @documento numeric(18,0),
+                                               @direccion varchar(255),
+                                               @telefono numeric(18,0),
+                                               @estado_civil numeric(18,0),
+                                               @mail varchar(255),
+                                               @cant_hijos numeric(18,0),
+                                               @plan_medico numeric(18,0),
+                                               @nro_flia numeric(18,0),
+                                               @grupo_familia numeric(18,0),
+                                               @ret numeric(18,0) output)
+AS BEGIN
+INSERT INTO mario_killers.Persona (nombre, apellido, documento,
+                                   fecha_nac, direccion, telefono,
+                                   mail, tipo_doc, sexo)
+	VALUES (@nombre, @apellido, @documento,
+			@fecha_nac, @direccion, @telefono,
+			@mail, @tipo_doc, @sexo)
+DECLARE @pers numeric(18,0)
+SET @pers = SCOPE_IDENTITY()
+
+IF(@nro_flia = 0) BEGIN SET @nro_flia = (SELECT COUNT(nro_familiar)+1 FROM mario_killers.Afiliado WHERE grupo_familia = @grupo_familia) END
+
+INSERT INTO mario_killers.Afiliado (persona, estado_civil, grupo_familia, nro_familiar, cant_hijos)
+	VALUES (@pers, @estado_civil, @grupo_familia, @nro_flia, @cant_hijos) SET @ret = @grupo_familia
+END
+GO
+
+
 CREATE PROCEDURE mario_killers.agregarAfiliado(@nombre varchar(255),
                                                @apellido varchar(255),
                                                @fecha_nac datetime,
@@ -27,7 +60,6 @@ SET @pers = SCOPE_IDENTITY()
 INSERT INTO mario_killers.Grupo_Familia (plan_medico)
 	VALUES (@plan_medico)
 DECLARE @grupo numeric(18,0) SET @grupo = SCOPE_IDENTITY()
-IF(@nro_flia IS NULL) BEGIN SET @nro_flia = (SELECT COUNT(nro_familiar)+1 FROM mario_killers.Afiliado WHERE grupo_familia = @grupo GROUP BY nro_familiar) END
 INSERT INTO mario_killers.Afiliado (persona, estado_civil, grupo_familia, nro_familiar, cant_hijos)
 	VALUES (@pers, @estado_civil, @grupo, @nro_flia, @cant_hijos) SET @ret = @grupo
 END

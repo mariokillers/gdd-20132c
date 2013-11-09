@@ -36,7 +36,7 @@
             this.label26 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.cmbVolver = new System.Windows.Forms.Button();
-            this.btnGrupo = new System.Windows.Forms.Button();
+            this.btnGrupoExistente = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtApellido
@@ -105,7 +105,7 @@
             // 
             // cmbVolver
             // 
-            this.cmbVolver.Location = new System.Drawing.Point(254, 136);
+            this.cmbVolver.Location = new System.Drawing.Point(129, 136);
             this.cmbVolver.Name = "cmbVolver";
             this.cmbVolver.Size = new System.Drawing.Size(75, 23);
             this.cmbVolver.TabIndex = 70;
@@ -113,14 +113,15 @@
             this.cmbVolver.UseVisualStyleBackColor = true;
             this.cmbVolver.Click += new System.EventHandler(this.cmbVolver_Click);
             // 
-            // btnGrupo
+            // btnGrupoExistente
             // 
-            this.btnGrupo.Location = new System.Drawing.Point(129, 136);
-            this.btnGrupo.Name = "btnGrupo";
-            this.btnGrupo.Size = new System.Drawing.Size(99, 23);
-            this.btnGrupo.TabIndex = 69;
-            this.btnGrupo.Text = "Nuevos Afiliados";
-            this.btnGrupo.UseVisualStyleBackColor = true;
+            this.btnGrupoExistente.Location = new System.Drawing.Point(20, 177);
+            this.btnGrupoExistente.Name = "btnGrupoExistente";
+            this.btnGrupoExistente.Size = new System.Drawing.Size(184, 23);
+            this.btnGrupoExistente.TabIndex = 69;
+            this.btnGrupoExistente.Text = "Unirse a Grupo Existente";
+            this.btnGrupoExistente.UseVisualStyleBackColor = true;
+            this.btnGrupoExistente.Click += new System.EventHandler(this.btnGrupoExistente_Click);
             // 
             // frmGrupo
             // 
@@ -128,7 +129,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(417, 350);
             this.Controls.Add(this.cmbVolver);
-            this.Controls.Add(this.btnGrupo);
+            this.Controls.Add(this.btnGrupoExistente);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.cmbPlanes);
             this.Controls.Add(this.label26);
@@ -154,6 +155,6 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button cmbVolver;
-        private System.Windows.Forms.Button btnGrupo;
+        private System.Windows.Forms.Button btnGrupoExistente;
     }
 }

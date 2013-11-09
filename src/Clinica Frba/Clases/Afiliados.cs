@@ -85,6 +85,17 @@ namespace Clinica_Frba.Clases
             return listaDeAfiliados; ;
         }
 
+        public static void ModificarGrupo(Afiliado afil, Grupo grupo)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@id", (int)afil.Id));
+            ListaParametros.Add(new SqlParameter("@grupo_familia", (int)grupo.nroGrupo));
+
+            MessageBox.Show("prueba: " + afil.Id + " " + grupo.nroGrupo, "Error!", MessageBoxButtons.OK);
+
+            Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Afiliado SET grupo_familia = @grupo_familia WHERE persona = @id", "T", ListaParametros);
+        }
+
         public static void Modificar(Afiliado afil)
         {
                 List<SqlParameter> ListaParametros = new List<SqlParameter>();
@@ -144,12 +155,22 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(new SqlParameter("@nro_flia", (int)afil.Numero_Familiar));
             
             SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
-            paramRet.Direction = System.Data.ParameterDirection.Output;
-            ListaParametros.Add(paramRet);
+            paramRet.Direction = System.Data.ParameterDirection.Output;            
 
-            decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarAfiliado", ListaParametros);
-            
-            return ret;
+            if (afil.Numero_Grupo != 0)
+            {
+                ListaParametros.Add(new SqlParameter("@grupo_familia", (int)afil.Numero_Grupo));
+                ListaParametros.Add(paramRet);
+                return Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarAfiliadoFamilia", ListaParametros);
+
+            }
+            else
+            {
+                ListaParametros.Add(paramRet);
+                decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarAfiliado", ListaParametros);
+
+                return ret;
+            }
         }
 
         public static bool Eliminar(decimal id)

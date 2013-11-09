@@ -65,8 +65,6 @@ namespace Clinica_Frba.NewFolder12
 
         private void frmAfiliadoAlta_Load(object sender, EventArgs e)
         {
-            nuevoAfil = new Afiliado();
-
             List<Plan> listaDePlanes = Planes.ObtenerPlanes();
             cmbPlanes.DataSource = listaDePlanes;
             cmbPlanes.ValueMember = "Codigo";
@@ -96,6 +94,7 @@ namespace Clinica_Frba.NewFolder12
 
         private void cargarCampos()
         {
+            nuevoAfil = new Afiliado();
             if (Operacion == "Modificacion")
             {
                 txtNombre.Text = Afiliado.Nombre;
@@ -127,7 +126,6 @@ namespace Clinica_Frba.NewFolder12
                 //dtpFechaNacimiento.Value.Date =     VER TEMA DE TIPOS, SINO YA FUE
                 dtpFechaNacimiento.Enabled = false;
 
-                //cmbSexo.Text = ""+Afiliado.Sexo;
                 cmbTipoDoc.Text = "" + Utiles.ObtenerTipoDoc(Afiliado.TipoDocumento);
 
                 txtDir.Text = Afiliado.Direccion;
@@ -153,7 +151,9 @@ namespace Clinica_Frba.NewFolder12
                 cmbPlanes.Enabled = false;
                 label12.Visible = true;
                 lblGrupo.Visible = true;
-                lblGrupo.Text = nuevoAfil.Numero_Grupo.ToString();
+                lblGrupo.Text = Afiliado.Numero_Grupo.ToString();
+                nuevoAfil.Numero_Grupo = Afiliado.Numero_Grupo;
+                nuevoAfil.Numero_Familiar = 0;
             }
             else if (Miembro == "Conyuge")
             {
@@ -164,7 +164,14 @@ namespace Clinica_Frba.NewFolder12
                 cmbPlanes.Enabled = false;
                 label12.Visible = true;
                 lblGrupo.Visible = true;
-                lblGrupo.Text = nuevoAfil.Numero_Grupo.ToString();
+                lblGrupo.Text = Afiliado.Numero_Grupo.ToString();
+                nuevoAfil.Numero_Grupo = Afiliado.Numero_Grupo;
+                nuevoAfil.Numero_Familiar = 02;
+            }
+            else
+            {
+                nuevoAfil.Numero_Grupo = 0;
+                nuevoAfil.Numero_Familiar = 01;
             }
         }
 
@@ -194,8 +201,6 @@ namespace Clinica_Frba.NewFolder12
                 decimal GrupoNuevo = Afiliados.AgregarAfiliado(nuevoAfil);
                 nuevoAfil.Numero_Grupo = GrupoNuevo;
             }
-
-
         }
 
         private void btnHijo_Click(object sender, EventArgs e)
@@ -203,14 +208,14 @@ namespace Clinica_Frba.NewFolder12
             try
             {
                 Operacion = "Alta";
-                //nuevoAfil.Numero_Familiar = null;
                 almacenarDatos();
-
                 frmAfiliadoAlta formHijo = new frmAfiliadoAlta();
                 formHijo.Operacion = this.Operacion;
                 formHijo.Afiliado = this.nuevoAfil;
+                formHijo.Afiliado.Numero_Grupo = nuevoAfil.Numero_Grupo;
                 formHijo.Miembro = "Hijo";
                 formHijo.Show();
+                this.Close();
             }
             catch
             {
@@ -223,14 +228,14 @@ namespace Clinica_Frba.NewFolder12
             try
             {
                 Operacion = "Alta";
-                nuevoAfil.Numero_Familiar = 02;
                 almacenarDatos();
-
                 frmAfiliadoAlta formConyuge = new frmAfiliadoAlta();
                 formConyuge.Operacion = this.Operacion;
                 formConyuge.Afiliado = this.nuevoAfil;
+                formConyuge.Afiliado.Numero_Grupo = nuevoAfil.Numero_Grupo;
                 formConyuge.Miembro = "Conyuge";
                 formConyuge.Show();
+                this.Close();
             }
             catch
             {

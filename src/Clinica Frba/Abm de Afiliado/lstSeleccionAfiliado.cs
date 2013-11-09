@@ -46,11 +46,9 @@ namespace Clinica_Frba.Abm_de_Afiliado
         {
             try 
             {
-                //string test = "1";
-                //MessageBox.Show("" + Convert.ToInt32(test), "test", MessageBoxButtons.OK);
                 ActualizarGrilla();
             }
-            catch { MessageBox.Show("no actualiza grilla papa", "Error!", MessageBoxButtons.OK); }
+            catch { MessageBox.Show("no actualiza grilla", "Error!", MessageBoxButtons.OK); }
         }
 
         private void cmdLimpiar_Click(object sender, EventArgs e)
@@ -155,7 +153,6 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 {
                     if (Operacion == "Modificacion")
                     {
-                        //ABRO UN NUEVO FORM CON LAS FUNC DE ESE ROL
                         frmAfiliadoAlta formAfil = new frmAfiliadoAlta();
                         formAfil.Operacion = this.Operacion;
                         formAfil.Afiliado = unAfiliado;

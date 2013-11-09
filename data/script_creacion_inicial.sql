@@ -9,6 +9,7 @@ CREATE PROCEDURE mario_killers.registrarCambioPlan(@grupo numeric(18,0),
 AS BEGIN
 INSERT INTO mario_killers.Modificaciones_Grupo (grupo_familia, plan_medico, fecha, motivo)
 	VALUES (@grupo, @plan, @date, @desc)
+	SET @ret = @grupo
 END
 GO
 

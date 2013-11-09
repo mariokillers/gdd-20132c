@@ -144,7 +144,6 @@ namespace Clinica_Frba.NewFolder12
                 cmbPlanes.Text = "" + Utiles.ObtenerPlan(Afiliado.Plan_Medico);
                 cmbEstadoCivil.Text = "" + Utiles.ObtenerEstado(Afiliado.Estado_Civil);
                 lblMotivo.Visible = true;
-                lbl26.Visible = true;
                 txtMotivo.Visible = true;
 
                 if (Afiliado.Numero_Familiar != 1)

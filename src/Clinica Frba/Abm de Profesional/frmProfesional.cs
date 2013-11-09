@@ -80,25 +80,33 @@ namespace Clinica_Frba.NewFolder13
 
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
-            unProfesional.Nombre = txtNombre.Text;
-            unProfesional.Apellido = txtApellido.Text;
-            unProfesional.TipoDocumento = (decimal)cmbTipoDoc.SelectedValue;
-            unProfesional.NumeroDocumento = (decimal)decimal.Parse(txtDni.Text);
-            unProfesional.Direccion = txtDir.Text;
-            unProfesional.FechaNacimiento = (DateTime)dtpFechaNacimiento.Value;
-            unProfesional.Telefono = (decimal)decimal.Parse(txtTel.Text);
-            unProfesional.Mail = txtMail.Text;
-            unProfesional.Sexo = (String)cmbSexo.SelectedValue;
-            unProfesional.Matricula = (int)int.Parse(txtMatricula.Text);
-
-            unProfesional.Especialidades = new List<Especialidad>();
-
-            foreach (Especialidad unaEsp in grillaEspecialidades.CheckedItems)
+            try
             {
-                unProfesional.Especialidades.Add(unaEsp);
-            }
 
-            Profesionales.AgregarProfesional(unProfesional);
+                unProfesional.Nombre = txtNombre.Text;
+                unProfesional.Apellido = txtApellido.Text;
+                unProfesional.TipoDocumento = (decimal)cmbTipoDoc.SelectedValue;
+                unProfesional.NumeroDocumento = (decimal)decimal.Parse(txtDni.Text);
+                unProfesional.Direccion = txtDir.Text;
+                unProfesional.FechaNacimiento = (DateTime)dtpFechaNacimiento.Value;
+                unProfesional.Telefono = (decimal)decimal.Parse(txtTel.Text);
+                unProfesional.Mail = txtMail.Text;
+                unProfesional.Sexo = (String)cmbSexo.SelectedValue;
+                unProfesional.Matricula = (int)int.Parse(txtMatricula.Text);
+
+                unProfesional.Especialidades = new List<Especialidad>();
+
+                foreach (Especialidad unaEsp in grillaEspecialidades.CheckedItems)
+                {
+                    unProfesional.Especialidades.Add(unaEsp);
+                }
+
+                Profesionales.AgregarProfesional(unProfesional);
+            }
+            catch
+            {
+                MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+            }
         }
     }
 }

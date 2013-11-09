@@ -29,10 +29,10 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(paramRet);
             decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarProfesional", ListaParametros);
 
-
-
-
-
+            foreach (Especialidad unaEsp in pro.Especialidades)
+            {
+                Especialidades.AgregarEspecialidadEnProfesional(ret, unaEsp);
+            }
 
             return ret;
 

@@ -126,6 +126,7 @@
     <Compile Include="Clases\Plan.cs" />
     <Compile Include="Clases\Planes.cs" />
     <Compile Include="Clases\Profesional.cs" />
+    <Compile Include="Clases\Profesionales.cs" />
     <Compile Include="Clases\Rango.cs" />
     <Compile Include="Clases\Receta.cs" />
     <Compile Include="Clases\Rol.cs" />

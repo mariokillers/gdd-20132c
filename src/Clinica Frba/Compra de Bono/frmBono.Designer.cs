@@ -137,7 +137,7 @@
             // cmdCantBonos
             // 
             this.cmdCantBonos.Location = new System.Drawing.Point(22, 265);
-            this.cmdCantBonos.Minimum = new int(new int[] {
+            this.cmdCantBonos.Minimum = new decimal(new int[] {
             1,
             0,
             0,
@@ -145,7 +145,7 @@
             this.cmdCantBonos.Name = "cmdCantBonos";
             this.cmdCantBonos.Size = new System.Drawing.Size(120, 20);
             this.cmdCantBonos.TabIndex = 4;
-            this.cmdCantBonos.Value = new int(new int[] {
+            this.cmdCantBonos.Value = new decimal(new int[] {
             1,
             0,
             0,

@@ -133,6 +133,7 @@
     <Compile Include="Clases\Roles.cs" />
     <Compile Include="Clases\Sexo.cs" />
     <Compile Include="Clases\Sintoma.cs" />
+    <Compile Include="Clases\TipoCompraParaMostrar.cs" />
     <Compile Include="Clases\TipoDoc.cs" />
     <Compile Include="Clases\TipoEspecialidad.cs" />
     <Compile Include="Clases\TiposDoc.cs" />

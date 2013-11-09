@@ -133,15 +133,15 @@ namespace Clinica_Frba.NewFolder3
                             bonosFarmacia.Add(unBono);
                         }
                     }
-                    unaCompra.BonosFarmacia = bonosFarmacia;
-                    unaCompra.BonosConsulta = bonosConsulta;
-
-                    if (afiliado.ComprarBonos(unaCompra))
-                    {
-                        MessageBox.Show("La compra se ha realizado con éxito", "EnhoraBuena!", MessageBoxButtons.OK);
-                    }
-                    else { MessageBox.Show("No se pudo realizar la compra", "Error!", MessageBoxButtons.OK); }
                 }
+                unaCompra.BonosFarmacia = bonosFarmacia;
+                unaCompra.BonosConsulta = bonosConsulta;
+
+                if (afiliado.ComprarBonos(unaCompra))
+                {
+                    MessageBox.Show("La compra se ha realizado con éxito", "EnhoraBuena!", MessageBoxButtons.OK);
+                }
+                else { MessageBox.Show("No se pudo realizar la compra", "Error!", MessageBoxButtons.OK); }
             }
             else { MessageBox.Show("El usuario no puede realizar la compra, se encuentra inhabilitado", "Error!", MessageBoxButtons.OK); }
             LimpiarGrilla();

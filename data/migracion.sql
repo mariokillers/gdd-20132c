@@ -82,6 +82,13 @@ CREATE VIEW mario_killers.Bonos_Farmacia AS
 	GROUP BY Bono_Farmacia_Numero, Paciente_Dni
 GO
 
+CREATE VIEW mario_killers.Especialidades_Profesional AS
+	SELECT DISTINCT Medico_Dni, Especialidad_Codigo
+	FROM gd_esquema.Maestra
+	WHERE Medico_Dni IS NOT NULL
+	      AND Especialidad_Codigo IS NOT NULL
+GO
+
 -- Personas
 SET IDENTITY_INSERT mario_killers.Persona ON
 INSERT INTO mario_killers.Persona (id, nombre, apellido, documento, fecha_nac, direccion, telefono, mail, sexo, tipo_doc)
@@ -139,7 +146,11 @@ INSERT INTO mario_killers.Profesional (persona)
 	SELECT id
 	FROM mario_killers.Persona
 	WHERE documento IN (SELECT Medico_Dni FROM mario_killers.Medicos)
-   
+
+INSERT INTO mario_killers.Especialidad_Profesional (profesional, especialidad)
+	SELECT Medico_Dni, Especialidad_Codigo
+	FROM mario_killers.Especialidades_Profesional
+
 -- Medicamentos
 INSERT INTO mario_killers.Medicamento (detalle)
 	SELECT Bono_Farmacia_Medicamento FROM mario_killers.Medicamentos

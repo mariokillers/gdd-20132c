@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cmdConfirmar = new System.Windows.Forms.Button();
             this.txtNumAfil = new System.Windows.Forms.TextBox();
             this.lblNumeroAfiliado = new System.Windows.Forms.Label();
             this.cmdComprar = new System.Windows.Forms.Button();
@@ -36,6 +37,7 @@
             this.cmdCantBonos = new System.Windows.Forms.NumericUpDown();
             this.rbFarmacia = new System.Windows.Forms.RadioButton();
             this.rbConsulta = new System.Windows.Forms.RadioButton();
+            this.grillaBonos = new System.Windows.Forms.DataGridView();
             this.tlpDatos = new System.Windows.Forms.TableLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -43,18 +45,17 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lblFechaCompra = new System.Windows.Forms.Label();
             this.lblFechaVencimiento = new System.Windows.Forms.Label();
             this.lblGrupoFamiliar = new System.Windows.Forms.Label();
             this.lblPlanMedico = new System.Windows.Forms.Label();
             this.lblPrecioPorBono = new System.Windows.Forms.Label();
             this.lblMontoAPagar = new System.Windows.Forms.Label();
-            this.grillaBonos = new System.Windows.Forms.ListView();
-            this.numero = new System.Windows.Forms.ColumnHeader();
+            this.lblFechaCompra = new System.Windows.Forms.Label();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmdCantBonos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grillaBonos)).BeginInit();
             this.tlpDatos.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,6 +67,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.cmdConfirmar);
             this.splitContainer1.Panel1.Controls.Add(this.txtNumAfil);
             this.splitContainer1.Panel1.Controls.Add(this.lblNumeroAfiliado);
             this.splitContainer1.Panel1.Controls.Add(this.cmdComprar);
@@ -76,11 +78,22 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.tlpDatos);
             this.splitContainer1.Panel2.Controls.Add(this.grillaBonos);
+            this.splitContainer1.Panel2.Controls.Add(this.tlpDatos);
             this.splitContainer1.Size = new System.Drawing.Size(469, 526);
             this.splitContainer1.SplitterDistance = 157;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // cmdConfirmar
+            // 
+            this.cmdConfirmar.Location = new System.Drawing.Point(47, 69);
+            this.cmdConfirmar.Name = "cmdConfirmar";
+            this.cmdConfirmar.Size = new System.Drawing.Size(75, 23);
+            this.cmdConfirmar.TabIndex = 9;
+            this.cmdConfirmar.Text = "button1";
+            this.cmdConfirmar.UseVisualStyleBackColor = true;
+            this.cmdConfirmar.Visible = false;
+            this.cmdConfirmar.Click += new System.EventHandler(this.cmdConfirmar_Click);
             // 
             // txtNumAfil
             // 
@@ -102,7 +115,7 @@
             // 
             // cmdComprar
             // 
-            this.cmdComprar.Location = new System.Drawing.Point(29, 285);
+            this.cmdComprar.Location = new System.Drawing.Point(29, 331);
             this.cmdComprar.Name = "cmdComprar";
             this.cmdComprar.Size = new System.Drawing.Size(93, 54);
             this.cmdComprar.TabIndex = 6;
@@ -113,7 +126,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(57, 206);
+            this.label1.Location = new System.Drawing.Point(57, 249);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 5;
@@ -121,7 +134,7 @@
             // 
             // cmdCantBonos
             // 
-            this.cmdCantBonos.Location = new System.Drawing.Point(22, 222);
+            this.cmdCantBonos.Location = new System.Drawing.Point(22, 265);
             this.cmdCantBonos.Minimum = new decimal(new int[] {
             1,
             0,
@@ -135,28 +148,39 @@
             0,
             0,
             0});
+            this.cmdCantBonos.ValueChanged += new System.EventHandler(this.cmdCantBonos_ValueChanged);
             // 
             // rbFarmacia
             // 
             this.rbFarmacia.AutoSize = true;
-            this.rbFarmacia.Location = new System.Drawing.Point(36, 142);
+            this.rbFarmacia.Location = new System.Drawing.Point(36, 185);
             this.rbFarmacia.Name = "rbFarmacia";
             this.rbFarmacia.Size = new System.Drawing.Size(93, 17);
             this.rbFarmacia.TabIndex = 3;
             this.rbFarmacia.Text = "Bono farmacia";
             this.rbFarmacia.UseVisualStyleBackColor = true;
+            this.rbFarmacia.CheckedChanged += new System.EventHandler(this.rbFarmacia_CheckedChanged);
             // 
             // rbConsulta
             // 
             this.rbConsulta.AutoSize = true;
             this.rbConsulta.Checked = true;
-            this.rbConsulta.Location = new System.Drawing.Point(36, 96);
+            this.rbConsulta.Location = new System.Drawing.Point(36, 139);
             this.rbConsulta.Name = "rbConsulta";
             this.rbConsulta.Size = new System.Drawing.Size(93, 17);
             this.rbConsulta.TabIndex = 2;
             this.rbConsulta.TabStop = true;
             this.rbConsulta.Text = "Bono consulta";
             this.rbConsulta.UseVisualStyleBackColor = true;
+            this.rbConsulta.CheckedChanged += new System.EventHandler(this.rbConsulta_CheckedChanged);
+            // 
+            // grillaBonos
+            // 
+            this.grillaBonos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaBonos.Location = new System.Drawing.Point(3, 4);
+            this.grillaBonos.Name = "grillaBonos";
+            this.grillaBonos.Size = new System.Drawing.Size(305, 335);
+            this.grillaBonos.TabIndex = 8;
             // 
             // tlpDatos
             // 
@@ -241,16 +265,6 @@
             this.label3.Text = "Grupo familiar";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblFechaCompra
-            // 
-            this.lblFechaCompra.AutoSize = true;
-            this.lblFechaCompra.Location = new System.Drawing.Point(154, 0);
-            this.lblFechaCompra.Name = "lblFechaCompra";
-            this.lblFechaCompra.Size = new System.Drawing.Size(35, 13);
-            this.lblFechaCompra.TabIndex = 7;
-            this.lblFechaCompra.Text = "label8";
-            this.lblFechaCompra.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
             // lblFechaVencimiento
             // 
             this.lblFechaVencimiento.AutoSize = true;
@@ -301,21 +315,15 @@
             this.lblMontoAPagar.Text = "label13";
             this.lblMontoAPagar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // grillaBonos
+            // lblFechaCompra
             // 
-            this.grillaBonos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.numero});
-            this.grillaBonos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.grillaBonos.Location = new System.Drawing.Point(0, 0);
-            this.grillaBonos.Name = "grillaBonos";
-            this.grillaBonos.Size = new System.Drawing.Size(308, 339);
-            this.grillaBonos.TabIndex = 0;
-            this.grillaBonos.UseCompatibleStateImageBehavior = false;
-            this.grillaBonos.View = System.Windows.Forms.View.List;
-            // 
-            // numero
-            // 
-            this.numero.Text = "Número de bono";
+            this.lblFechaCompra.AutoSize = true;
+            this.lblFechaCompra.Location = new System.Drawing.Point(154, 0);
+            this.lblFechaCompra.Name = "lblFechaCompra";
+            this.lblFechaCompra.Size = new System.Drawing.Size(35, 13);
+            this.lblFechaCompra.TabIndex = 7;
+            this.lblFechaCompra.Text = "label8";
+            this.lblFechaCompra.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // frmBono
             // 
@@ -332,6 +340,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cmdCantBonos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grillaBonos)).EndInit();
             this.tlpDatos.ResumeLayout(false);
             this.tlpDatos.PerformLayout();
             this.ResumeLayout(false);
@@ -346,8 +355,6 @@
         private System.Windows.Forms.RadioButton rbFarmacia;
         private System.Windows.Forms.RadioButton rbConsulta;
         private System.Windows.Forms.Button cmdComprar;
-        private System.Windows.Forms.ListView grillaBonos;
-        private System.Windows.Forms.ColumnHeader numero;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -363,6 +370,8 @@
         private System.Windows.Forms.Label lblPlanMedico;
         private System.Windows.Forms.Label lblPrecioPorBono;
         private System.Windows.Forms.Label lblMontoAPagar;
+        private System.Windows.Forms.Button cmdConfirmar;
+        private System.Windows.Forms.DataGridView grillaBonos;
 
 
     }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cmdAgregar = new System.Windows.Forms.Button();
             this.cmdConfirmar = new System.Windows.Forms.Button();
             this.txtNumAfil = new System.Windows.Forms.TextBox();
             this.lblNumeroAfiliado = new System.Windows.Forms.Label();
@@ -51,7 +52,6 @@
             this.lblPrecioPorBono = new System.Windows.Forms.Label();
             this.lblMontoAPagar = new System.Windows.Forms.Label();
             this.lblFechaCompra = new System.Windows.Forms.Label();
-            this.cmdAgregar = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -85,6 +85,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(885, 526);
             this.splitContainer1.SplitterDistance = 296;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // cmdAgregar
+            // 
+            this.cmdAgregar.Location = new System.Drawing.Point(47, 300);
+            this.cmdAgregar.Name = "cmdAgregar";
+            this.cmdAgregar.Size = new System.Drawing.Size(75, 23);
+            this.cmdAgregar.TabIndex = 10;
+            this.cmdAgregar.Text = "button1";
+            this.cmdAgregar.UseVisualStyleBackColor = true;
+            this.cmdAgregar.Click += new System.EventHandler(this.cmdAgregar_Click);
             // 
             // cmdConfirmar
             // 
@@ -215,42 +225,47 @@
             // 
             // label6
             // 
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Location = new System.Drawing.Point(3, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(141, 28);
+            this.label6.Size = new System.Drawing.Size(145, 28);
             this.label6.TabIndex = 5;
             this.label6.Text = "Fecha de compra";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7
             // 
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.Location = new System.Drawing.Point(3, 140);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(136, 27);
+            this.label7.Size = new System.Drawing.Size(145, 29);
             this.label7.TabIndex = 6;
             this.label7.Text = "Monto a pagar";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Location = new System.Drawing.Point(3, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 28);
+            this.label2.Size = new System.Drawing.Size(145, 28);
             this.label2.TabIndex = 0;
             this.label2.Text = "Fecha de vencimiento";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Location = new System.Drawing.Point(3, 112);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 28);
+            this.label4.Size = new System.Drawing.Size(145, 28);
             this.label4.TabIndex = 2;
             this.label4.Text = "Precio por bono";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Location = new System.Drawing.Point(3, 84);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(145, 28);
@@ -260,6 +275,7 @@
             // 
             // label3
             // 
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Location = new System.Drawing.Point(3, 56);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(145, 28);
@@ -270,9 +286,10 @@
             // lblFechaVencimiento
             // 
             this.lblFechaVencimiento.AutoSize = true;
+            this.lblFechaVencimiento.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblFechaVencimiento.Location = new System.Drawing.Point(154, 28);
             this.lblFechaVencimiento.Name = "lblFechaVencimiento";
-            this.lblFechaVencimiento.Size = new System.Drawing.Size(35, 13);
+            this.lblFechaVencimiento.Size = new System.Drawing.Size(145, 28);
             this.lblFechaVencimiento.TabIndex = 8;
             this.lblFechaVencimiento.Text = "label9";
             this.lblFechaVencimiento.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -280,9 +297,10 @@
             // lblGrupoFamiliar
             // 
             this.lblGrupoFamiliar.AutoSize = true;
+            this.lblGrupoFamiliar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblGrupoFamiliar.Location = new System.Drawing.Point(154, 56);
             this.lblGrupoFamiliar.Name = "lblGrupoFamiliar";
-            this.lblGrupoFamiliar.Size = new System.Drawing.Size(41, 13);
+            this.lblGrupoFamiliar.Size = new System.Drawing.Size(145, 28);
             this.lblGrupoFamiliar.TabIndex = 9;
             this.lblGrupoFamiliar.Text = "label10";
             this.lblGrupoFamiliar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -290,9 +308,10 @@
             // lblPlanMedico
             // 
             this.lblPlanMedico.AutoSize = true;
+            this.lblPlanMedico.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPlanMedico.Location = new System.Drawing.Point(154, 84);
             this.lblPlanMedico.Name = "lblPlanMedico";
-            this.lblPlanMedico.Size = new System.Drawing.Size(41, 13);
+            this.lblPlanMedico.Size = new System.Drawing.Size(145, 28);
             this.lblPlanMedico.TabIndex = 10;
             this.lblPlanMedico.Text = "label11";
             this.lblPlanMedico.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -300,9 +319,10 @@
             // lblPrecioPorBono
             // 
             this.lblPrecioPorBono.AutoSize = true;
+            this.lblPrecioPorBono.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPrecioPorBono.Location = new System.Drawing.Point(154, 112);
             this.lblPrecioPorBono.Name = "lblPrecioPorBono";
-            this.lblPrecioPorBono.Size = new System.Drawing.Size(41, 13);
+            this.lblPrecioPorBono.Size = new System.Drawing.Size(145, 28);
             this.lblPrecioPorBono.TabIndex = 11;
             this.lblPrecioPorBono.Text = "label12";
             this.lblPrecioPorBono.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -310,9 +330,10 @@
             // lblMontoAPagar
             // 
             this.lblMontoAPagar.AutoSize = true;
+            this.lblMontoAPagar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMontoAPagar.Location = new System.Drawing.Point(154, 140);
             this.lblMontoAPagar.Name = "lblMontoAPagar";
-            this.lblMontoAPagar.Size = new System.Drawing.Size(41, 13);
+            this.lblMontoAPagar.Size = new System.Drawing.Size(145, 29);
             this.lblMontoAPagar.TabIndex = 12;
             this.lblMontoAPagar.Text = "label13";
             this.lblMontoAPagar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -320,22 +341,13 @@
             // lblFechaCompra
             // 
             this.lblFechaCompra.AutoSize = true;
+            this.lblFechaCompra.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblFechaCompra.Location = new System.Drawing.Point(154, 0);
             this.lblFechaCompra.Name = "lblFechaCompra";
-            this.lblFechaCompra.Size = new System.Drawing.Size(35, 13);
+            this.lblFechaCompra.Size = new System.Drawing.Size(145, 28);
             this.lblFechaCompra.TabIndex = 7;
             this.lblFechaCompra.Text = "label8";
             this.lblFechaCompra.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // cmdAgregar
-            // 
-            this.cmdAgregar.Location = new System.Drawing.Point(47, 300);
-            this.cmdAgregar.Name = "cmdAgregar";
-            this.cmdAgregar.Size = new System.Drawing.Size(75, 23);
-            this.cmdAgregar.TabIndex = 10;
-            this.cmdAgregar.Text = "button1";
-            this.cmdAgregar.UseVisualStyleBackColor = true;
-            this.cmdAgregar.Click += new System.EventHandler(this.cmdAgregar_Click);
             // 
             // frmBono
             // 

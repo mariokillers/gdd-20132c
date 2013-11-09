@@ -15,5 +15,10 @@ namespace Clinica_Frba.NewFolder9
         {
             InitializeComponent();
         }
+
+        private void frmListadosEstadisticos_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

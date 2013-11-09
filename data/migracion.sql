@@ -202,7 +202,8 @@ DROP VIEW mario_killers.Pacientes
          ,mario_killers.Bonos_Consulta
          ,mario_killers.Turnos
          ,mario_killers.Compras
-         ,mario_killers.Bonos_Farmacia
+         ,mario_killers.Bonos_Farmacia,
+         mario_killers.Especialidades_Profesional
 
 ---------------------- Constraints post-migracion ----------------------
 

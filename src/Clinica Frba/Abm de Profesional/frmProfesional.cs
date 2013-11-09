@@ -43,6 +43,44 @@ namespace Clinica_Frba.NewFolder13
             cmbSexo.DataSource = listaDeSexos;
             cmbSexo.ValueMember = "Id";
             cmbSexo.DisplayMember = "Id";
+
+            if (Operacion == "Modificacion")
+            {
+                label14.Hide();
+                label24.Hide();
+                label3.Hide();
+                label17.Hide();
+                label20.Hide();
+                label11.Hide();
+                label15.Hide();
+                label16.Hide();
+                label19.Hide();
+                label18.Hide();
+                label22.Hide();
+                label13.Hide();
+                label12.Hide();
+                cmdLimpiar.Hide();
+
+                txtNombre.Text = unProfesional.Nombre;
+                txtNombre.Enabled = false;
+                txtApellido.Text = unProfesional.Apellido;
+                txtApellido.Enabled = false;
+                txtDni.Text = unProfesional.NumeroDocumento.ToString();
+                txtDni.Enabled = false;
+                txtMatricula.Text = unProfesional.Matricula.ToString();
+                txtMatricula.Enabled = false;
+
+                cmbTipoDoc.Enabled = false;
+                //dtpFechaNacimiento.Value.Date =     VER TEMA DE TIPOS, SINO YA FUE
+                dtpFechaNacimiento.Enabled = false;
+
+                cmbTipoDoc.Text = "" + Utiles.ObtenerTipoDoc(unProfesional.TipoDocumento);
+                txtDir.Text = unProfesional.Direccion;
+                txtMail.Text = unProfesional.Mail;
+                txtTel.Text = unProfesional.Telefono.ToString();
+                cmbSexo.Text = unProfesional.Sexo;
+
+            }
         }
 
         private void cmdLimpiar_Click(object sender, EventArgs e)

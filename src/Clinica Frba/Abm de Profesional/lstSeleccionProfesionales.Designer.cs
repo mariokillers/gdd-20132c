@@ -75,6 +75,7 @@
             this.cmdBuscar.TabIndex = 8;
             this.cmdBuscar.Text = "Buscar";
             this.cmdBuscar.UseVisualStyleBackColor = true;
+            this.cmdBuscar.Click += new System.EventHandler(this.cmdBuscar_Click);
             // 
             // cmdLimpiar
             // 

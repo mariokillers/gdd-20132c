@@ -42,7 +42,7 @@ namespace Clinica_Frba.Abm_de_Profesional
         }
 
         public Profesional()
-        { }
+        { Especialidades = new List<Especialidad>();}
         public bool RegistrarRango(List<Rango> listaDeRangos)
         {
             try 

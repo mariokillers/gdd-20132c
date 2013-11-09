@@ -139,5 +139,15 @@ namespace Clinica_Frba.Abm_de_Profesional
                 MessageBox.Show("No se selecciono ningun profesional", "Error!", MessageBoxButtons.OK);
             }
         }
+
+        private void cmdBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ActualizarGrilla();
+            }
+            catch { MessageBox.Show("no actualiza grilla", "Error!", MessageBoxButtons.OK); 
+            }
+        }
     }
 }

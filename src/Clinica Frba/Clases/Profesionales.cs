@@ -49,7 +49,19 @@ namespace Clinica_Frba.Clases
             if (numeroMatricula != "") ListaParametros.Add(new SqlParameter("@matricula", "%" + numeroMatricula + "%")); else ListaParametros.Add(new SqlParameter("@matricula", "%%"));
             if (especialidad != 0) ListaParametros.Add(new SqlParameter("@especialidad", "%" + especialidad + "%")); else ListaParametros.Add(new SqlParameter("@especialidad", 0));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.AfiliadosABM WHERE grupo_familia * 100 + nro_familiar LIKE @numeroAfiliado AND apellido LIKE @apellido AND nombre LIKE @nombre AND documento LIKE @dni AND plan_medico LIKE @codigoPlan", "T", ListaParametros);
+            String query = @"SELECT PRO.persona AS persona, PRO.matricula AS matricula, P.nombre AS nombre, P.apellido AS apellido, 
+                   P.documento AS documento, p.direccion AS direccion, P.fecha_nac AS fecha_nac, P.mail AS mail, TD.id AS tipo_doc, 
+                   P.sexo AS sexo, P.telefono AS telefono 
+                   FROM mario_killers.Profesional PRO JOIN mario_killers.Persona P ON PRO.persona = P.id 
+                                                      JOIN mario_killers.Especialidad_Profesional EP ON EP.profesional = PRO.persona 
+                                                      JOIN mario_killers.Especialidad E ON E.codigo = EP.especialidad 
+                                                      JOIN mario_killers.Tipo_Documento TD ON TD.id = P.tipo_doc 
+                   WHERE PRO.activo = 1 AND apellido LIKE @apellido AND nombre LIKE @nombre AND documento LIKE @dni AND 
+                         (matricula LIKE @matricula OR matricula IS NULL) AND E.codigo LIKE @especialidad 
+                   GROUP BY PRO.persona, PRO.matricula, P.nombre, P.apellido, P.documento, P.direccion, P.fecha_nac, P.mail, 
+                            TD.id, P.sexo, P.telefono";
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader(query, "T", ListaParametros);
 
             if (lector.HasRows)
             {
@@ -59,7 +71,14 @@ namespace Clinica_Frba.Clases
                     unProfesional.Id = (int)(decimal)lector["persona"];
                     unProfesional.Apellido = (string)lector["apellido"];
                     unProfesional.Nombre = (string)lector["nombre"];
-                    unProfesional.Matricula = (int)(decimal)lector["matricula"];
+                    if (DBNull.Value != lector["matricula"])
+                    {
+                        unProfesional.Matricula = (int)(decimal)lector["matricula"];
+                    }
+                    else
+                    {
+                        unProfesional.Matricula = -1;
+                    }
                     unProfesional.NumeroDocumento = (decimal)lector["documento"];
                     unProfesional.FechaNacimiento = (DateTime)lector["fecha_nac"];
                     unProfesional.Direccion = (String)lector["direccion"];
@@ -67,9 +86,37 @@ namespace Clinica_Frba.Clases
                     unProfesional.Sexo = (string)lector["sexo"];
                     unProfesional.Mail = (String)lector["mail"];
                     unProfesional.Telefono = (decimal)lector["telefono"];
+
+
+                    //ARMO LA LISTA DE ESPECIALIDADES
+                    List<SqlParameter> ListaParametros2 = new List<SqlParameter>();
+                    if (nombre != "") ListaParametros2.Add(new SqlParameter("@nombre", "%" + nombre + "%")); else ListaParametros2.Add(new SqlParameter("@nombre", "%%"));
+                    if (apellido != "") ListaParametros2.Add(new SqlParameter("@apellido", "%" + apellido + "%")); else ListaParametros2.Add(new SqlParameter("@apellido", "%%"));
+                    if (dni != "") ListaParametros2.Add(new SqlParameter("@dni", "%" + dni + "%")); else ListaParametros2.Add(new SqlParameter("@dni", "%%"));
+                    if (numeroMatricula != "") ListaParametros2.Add(new SqlParameter("@matricula", "%" + numeroMatricula + "%")); else ListaParametros2.Add(new SqlParameter("@matricula", "%%"));
+                    if (especialidad != 0) ListaParametros2.Add(new SqlParameter("@especialidad", "%" + especialidad + "%")); else ListaParametros2.Add(new SqlParameter("@especialidad", 0));
+                    
+                    String queryEsp = @"SELECT E.codigo AS codigo, E.descripcion AS descripcion, E.tipo AS tipo
+                                        FROM mario_killers.Profesional PRO JOIN mario_killers.Persona P ON PRO.persona = P.id 
+                                                      JOIN mario_killers.Especialidad_Profesional EP ON EP.profesional = PRO.persona 
+                                                      JOIN mario_killers.Especialidad E ON E.codigo = EP.especialidad 
+                                        WHERE PRO.activo = 1 AND apellido LIKE @apellido AND nombre LIKE @nombre AND documento LIKE @dni AND 
+                                                (matricula LIKE @matricula OR matricula IS NULL) AND E.codigo LIKE @especialidad";
+                    SqlDataReader lectorEsp = Clases.BaseDeDatosSQL.ObtenerDataReader(queryEsp, "T", ListaParametros2);
+
+                    while (lectorEsp.Read())
+                    {
+                        Especialidad unaEspecialidad = new Especialidad();
+                        unaEspecialidad.Codigo = (decimal)lectorEsp["codigo"];
+                        unaEspecialidad.Descripcion = (string)lectorEsp["descripcion"];
+                        unaEspecialidad.Tipo_Especialidad = (decimal)lectorEsp["tipo"];
+
+                        unProfesional.Especialidades.Add(unaEspecialidad);
+                    }
                     Lista.Add(unProfesional);
                 }
             }
+
             return Lista;
         }
 

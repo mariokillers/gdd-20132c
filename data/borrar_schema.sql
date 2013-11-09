@@ -41,6 +41,6 @@ DROP PROCEDURE mario_killers.agregar_funcionalidad,
                mario_killers.hacerCompra,
                mario_killers.agregarProfesional
 
-DROP VIEW mario_killers.AfiliadosABM, mario_killers.ProfesionalYPersona
+DROP VIEW mario_killers.AfiliadosABM, mario_killers.ProfesionalYPersona, mario_killers.ProfesionalABM
 
 DROP SCHEMA mario_killers

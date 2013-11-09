@@ -21,13 +21,18 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(new SqlParameter("@direccion", pro.Direccion));
             ListaParametros.Add(new SqlParameter("@telefono", (int)pro.Telefono));
             ListaParametros.Add(new SqlParameter("@mail", pro.Mail));
-            ListaParametros.Add(new SqlParameter("@matricul", (int)pro.Matricula));
+            ListaParametros.Add(new SqlParameter("@matricula", (int)pro.Matricula));
 
             SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
             paramRet.Direction = System.Data.ParameterDirection.Output;
 
             ListaParametros.Add(paramRet);
-            decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarAfiliado", ListaParametros);
+            decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarProfesional", ListaParametros);
+
+
+
+
+
 
             return ret;
 

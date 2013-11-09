@@ -37,5 +37,70 @@ namespace Clinica_Frba.Clases
             return ret;
 
         }
+
+        public static List<Profesional> ObtenerProfesionales(String nombre, String apellido, String dni, String numeroMatricula, decimal especialidad)
+        {
+            List<Profesional> Lista = new List<Profesional>();
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            if (nombre != "") ListaParametros.Add(new SqlParameter("@nombre", "%" + nombre + "%")); else ListaParametros.Add(new SqlParameter("@nombre", "%%"));
+            if (apellido != "") ListaParametros.Add(new SqlParameter("@apellido", "%" + apellido + "%")); else ListaParametros.Add(new SqlParameter("@apellido", "%%"));
+            if (dni != "") ListaParametros.Add(new SqlParameter("@dni", "%" + dni + "%")); else ListaParametros.Add(new SqlParameter("@dni", "%%"));
+            if (numeroMatricula != "") ListaParametros.Add(new SqlParameter("@matricula", "%" + numeroMatricula + "%")); else ListaParametros.Add(new SqlParameter("@matricula", "%%"));
+            if (especialidad != 0) ListaParametros.Add(new SqlParameter("@especialidad", "%" + especialidad + "%")); else ListaParametros.Add(new SqlParameter("@especialidad", 0));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.AfiliadosABM WHERE grupo_familia * 100 + nro_familiar LIKE @numeroAfiliado AND apellido LIKE @apellido AND nombre LIKE @nombre AND documento LIKE @dni AND plan_medico LIKE @codigoPlan", "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                while (lector.Read())
+                {
+                    Profesional unProfesional = new Profesional();
+                    unProfesional.Id = (int)(decimal)lector["persona"];
+                    unProfesional.Apellido = (string)lector["apellido"];
+                    unProfesional.Nombre = (string)lector["nombre"];
+                    unProfesional.Matricula = (int)(decimal)lector["matricula"];
+                    unProfesional.NumeroDocumento = (decimal)lector["documento"];
+                    unProfesional.FechaNacimiento = (DateTime)lector["fecha_nac"];
+                    unProfesional.Direccion = (String)lector["direccion"];
+                    unProfesional.TipoDocumento = (decimal)lector["tipo_doc"];
+                    unProfesional.Sexo = (string)lector["sexo"];
+                    unProfesional.Mail = (String)lector["mail"];
+                    unProfesional.Telefono = (decimal)lector["telefono"];
+                    Lista.Add(unProfesional);
+                }
+            }
+            return Lista;
+        }
+
+        public static List<Profesional> ObtenerTodos()
+        {
+            List<Profesional> listaDeProfesionales = new List<Profesional>();
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.ProfesionalesABM", "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                while (lector.Read())
+                {
+                    Profesional unProfesional = new Profesional();
+                    unProfesional.Id = (int)(decimal)lector["persona"];
+                    unProfesional.Apellido = (string)lector["apellido"];
+                    unProfesional.Nombre = (string)lector["nombre"];
+                    unProfesional.Matricula = (int)(decimal)lector["matricula"];
+                    unProfesional.NumeroDocumento = (decimal)lector["documento"];
+                    unProfesional.FechaNacimiento = (DateTime)lector["fecha_nac"];
+                    unProfesional.Direccion = (String)lector["direccion"];
+                    unProfesional.TipoDocumento = (decimal)lector["tipo_doc"];
+                    unProfesional.Sexo = (string)lector["sexo"];
+                    unProfesional.Mail = (String)lector["mail"];
+                    unProfesional.Telefono = (decimal)lector["telefono"];
+                    listaDeProfesionales.Add(unProfesional);
+                }
+            }
+            return listaDeProfesionales;
+        }
     }
 }

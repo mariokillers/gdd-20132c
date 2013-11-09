@@ -559,7 +559,7 @@ GO
 CREATE VIEW mario_killers.ProfesionalABM AS
 SELECT PRO.persona AS persona, PRO.matricula AS matricula, P.nombre AS nombre, P.apellido AS apellido, P.documento AS documento, 
 		p.direccion AS direccion, P.fecha_nac AS fecha_nac, P.mail AS mail, TD.id AS tipo_doc, P.sexo AS sexo, P.telefono AS telefono,
-		E.codigo AS especialidad
+		--E.codigo AS especialidad
 FROM mario_killers.Profesional PRO JOIN mario_killers.Persona P ON PRO.persona = P.id
 									JOIN mario_killers.Especialidad_Profesional EP ON EP.profesional = PRO.persona
 									JOIN mario_killers.Especialidad E ON E.codigo = EP.especialidad

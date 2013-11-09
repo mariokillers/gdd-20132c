@@ -90,6 +90,12 @@
     <Compile Include="Abm de Afiliado\lstSeleccionGrupo.Designer.cs">
       <DependentUpon>lstSeleccionGrupo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm de Profesional\lstSeleccionProfesionales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm de Profesional\lstSeleccionProfesionales.Designer.cs">
+      <DependentUpon>lstSeleccionProfesionales.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm de Rol\lstSeleccionFuncionalidad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm de Profesional\frmProfesional.resx">
       <DependentUpon>frmProfesional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm de Profesional\lstSeleccionProfesionales.resx">
+      <DependentUpon>lstSeleccionProfesionales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm de Rol\frmRol.resx">
       <DependentUpon>frmRol.cs</DependentUpon>

@@ -189,5 +189,19 @@ namespace Clinica_Frba
             frmProfesional frmPro = new frmProfesional();
             frmPro.Show();
         }
+
+        private void cmdProfMod_Click(object sender, EventArgs e)
+        {
+            lstSeleccionProfesionales lstPro = new lstSeleccionProfesionales();
+            lstPro.Operacion = "Modificacion";
+            lstPro.Show();
+        }
+
+        private void cmdProfBaja_Click(object sender, EventArgs e)
+        {
+            lstSeleccionProfesionales lstPro = new lstSeleccionProfesionales();
+            lstPro.Operacion = "Baja";
+            lstPro.Show();
+        }
     }
 }

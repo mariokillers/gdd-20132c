@@ -124,12 +124,14 @@
             this.cmdProfMod.Name = "cmdProfMod";
             this.cmdProfMod.Size = new System.Drawing.Size(152, 22);
             this.cmdProfMod.Text = "Modificacion";
+            this.cmdProfMod.Click += new System.EventHandler(this.cmdProfMod_Click);
             // 
             // cmdProfBaja
             // 
             this.cmdProfBaja.Name = "cmdProfBaja";
             this.cmdProfBaja.Size = new System.Drawing.Size(152, 22);
             this.cmdProfBaja.Text = "Baja";
+            this.cmdProfBaja.Click += new System.EventHandler(this.cmdProfBaja_Click);
             // 
             // cmdRol
             // 

@@ -11,7 +11,7 @@ namespace Clinica_Frba.Abm_de_Profesional
     public class Profesional : Persona
     {
         public int Matricula { get; set; }
-        private List<Especialidad> Especialidades { get; set; } 
+        public List<Especialidad> Especialidades { get; set; } 
 
         public Profesional(int personaId)
         {

@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmdSeleccionarTodo = new System.Windows.Forms.Button();
+            this.grillaEspecialidades = new System.Windows.Forms.CheckedListBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtMatricula = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.cmbVolver = new System.Windows.Forms.Button();
             this.cmdLimpiar = new System.Windows.Forms.Button();
             this.txtDni = new System.Windows.Forms.TextBox();
@@ -64,12 +70,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtMatricula = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.cmdSeleccionarTodo = new System.Windows.Forms.Button();
-            this.grillaEspecialidades = new System.Windows.Forms.CheckedListBox();
-            this.label22 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,6 +124,59 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Personales";
             // 
+            // cmdSeleccionarTodo
+            // 
+            this.cmdSeleccionarTodo.Location = new System.Drawing.Point(130, 410);
+            this.cmdSeleccionarTodo.Name = "cmdSeleccionarTodo";
+            this.cmdSeleccionarTodo.Size = new System.Drawing.Size(98, 23);
+            this.cmdSeleccionarTodo.TabIndex = 66;
+            this.cmdSeleccionarTodo.Text = "Seleccionar todo";
+            this.cmdSeleccionarTodo.UseVisualStyleBackColor = true;
+            this.cmdSeleccionarTodo.Click += new System.EventHandler(this.cmdSeleccionarTodo_Click);
+            // 
+            // grillaEspecialidades
+            // 
+            this.grillaEspecialidades.FormattingEnabled = true;
+            this.grillaEspecialidades.Location = new System.Drawing.Point(130, 205);
+            this.grillaEspecialidades.Name = "grillaEspecialidades";
+            this.grillaEspecialidades.Size = new System.Drawing.Size(215, 199);
+            this.grillaEspecialidades.TabIndex = 65;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(6, 205);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(81, 13);
+            this.label22.TabIndex = 64;
+            this.label22.Text = "Especialidades:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(547, 180);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(11, 13);
+            this.label12.TabIndex = 63;
+            this.label12.Text = "*";
+            // 
+            // txtMatricula
+            // 
+            this.txtMatricula.Location = new System.Drawing.Point(408, 177);
+            this.txtMatricula.Name = "txtMatricula";
+            this.txtMatricula.Size = new System.Drawing.Size(137, 20);
+            this.txtMatricula.TabIndex = 62;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(307, 177);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(53, 13);
+            this.label21.TabIndex = 61;
+            this.label21.Text = "Matricula:";
+            // 
             // cmbVolver
             // 
             this.cmbVolver.Location = new System.Drawing.Point(535, 471);
@@ -132,6 +185,7 @@
             this.cmbVolver.TabIndex = 60;
             this.cmbVolver.Text = "Volver";
             this.cmbVolver.UseVisualStyleBackColor = true;
+            this.cmbVolver.Click += new System.EventHandler(this.cmbVolver_Click);
             // 
             // cmdLimpiar
             // 
@@ -141,6 +195,7 @@
             this.cmdLimpiar.TabIndex = 59;
             this.cmdLimpiar.Text = "Limpiar";
             this.cmdLimpiar.UseVisualStyleBackColor = true;
+            this.cmdLimpiar.Click += new System.EventHandler(this.cmdLimpiar_Click);
             // 
             // txtDni
             // 
@@ -157,6 +212,7 @@
             this.cmdAceptar.TabIndex = 57;
             this.cmdAceptar.Text = "Guardar";
             this.cmdAceptar.UseVisualStyleBackColor = true;
+            this.cmdAceptar.Click += new System.EventHandler(this.cmdAceptar_Click);
             // 
             // label24
             // 
@@ -436,58 +492,6 @@
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(547, 180);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(11, 13);
-            this.label12.TabIndex = 63;
-            this.label12.Text = "*";
-            // 
-            // txtMatricula
-            // 
-            this.txtMatricula.Location = new System.Drawing.Point(408, 177);
-            this.txtMatricula.Name = "txtMatricula";
-            this.txtMatricula.Size = new System.Drawing.Size(137, 20);
-            this.txtMatricula.TabIndex = 62;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(307, 177);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(53, 13);
-            this.label21.TabIndex = 61;
-            this.label21.Text = "Matricula:";
-            // 
-            // cmdSeleccionarTodo
-            // 
-            this.cmdSeleccionarTodo.Location = new System.Drawing.Point(130, 410);
-            this.cmdSeleccionarTodo.Name = "cmdSeleccionarTodo";
-            this.cmdSeleccionarTodo.Size = new System.Drawing.Size(98, 23);
-            this.cmdSeleccionarTodo.TabIndex = 66;
-            this.cmdSeleccionarTodo.Text = "Seleccionar todo";
-            this.cmdSeleccionarTodo.UseVisualStyleBackColor = true;
-            // 
-            // grillaEspecialidades
-            // 
-            this.grillaEspecialidades.FormattingEnabled = true;
-            this.grillaEspecialidades.Location = new System.Drawing.Point(130, 205);
-            this.grillaEspecialidades.Name = "grillaEspecialidades";
-            this.grillaEspecialidades.Size = new System.Drawing.Size(215, 199);
-            this.grillaEspecialidades.TabIndex = 65;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(6, 205);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(81, 13);
-            this.label22.TabIndex = 64;
-            this.label22.Text = "Especialidades:";
             // 
             // frmProfesional
             // 

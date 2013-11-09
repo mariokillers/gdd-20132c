@@ -20,6 +20,7 @@ namespace Clinica_Frba.NewFolder13
 
         public List<Especialidad> listaDeEspecialidades = new List<Especialidad>();
         public Profesional unProfesional = new Profesional();
+        public String Operacion { get; set; }
 
         private void frmProfesional_Load(object sender, EventArgs e)
         {
@@ -102,6 +103,10 @@ namespace Clinica_Frba.NewFolder13
                 }
 
                 Profesionales.AgregarProfesional(unProfesional);
+
+                MessageBox.Show("El Profesional ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
+
+                this.Close();
             }
             catch
             {

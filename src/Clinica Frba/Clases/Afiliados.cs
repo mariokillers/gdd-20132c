@@ -91,8 +91,6 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(new SqlParameter("@id", (int)afil.Id));
             ListaParametros.Add(new SqlParameter("@grupo_familia", (int)grupo.nroGrupo));
 
-            MessageBox.Show("prueba: " + afil.Id + " " + grupo.nroGrupo, "Error!", MessageBoxButtons.OK);
-
             Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Afiliado SET grupo_familia = @grupo_familia WHERE persona = @id", "T", ListaParametros);
         }
 

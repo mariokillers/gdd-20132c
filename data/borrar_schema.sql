@@ -37,6 +37,7 @@ DROP PROCEDURE mario_killers.agregar_funcionalidad,
                mario_killers.agregarRol,
                mario_killers.agregarAfiliado,
                mario_killers.agregarAfiliadoFamilia,
+               mario_killers.registrarCambioPlan,
                mario_killers.hacerCompra   
 
 DROP VIEW mario_killers.AfiliadosABM, mario_killers.ProfesionalYPersona

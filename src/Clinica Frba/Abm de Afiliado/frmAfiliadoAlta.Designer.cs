@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblGrupo = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.btnHijo = new System.Windows.Forms.Button();
             this.btnConyuge = new System.Windows.Forms.Button();
             this.cmbPlanes = new System.Windows.Forms.ComboBox();
@@ -64,7 +66,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.Nuevo = new System.Windows.Forms.Button();
             this.lblFechaNac = new System.Windows.Forms.Label();
             this.txtDir = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -73,13 +74,17 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.lblGrupo = new System.Windows.Forms.Label();
+            this.lbl26 = new System.Windows.Forms.Label();
+            this.txtMotivo = new System.Windows.Forms.TextBox();
+            this.lblMotivo = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lbl26);
+            this.groupBox1.Controls.Add(this.txtMotivo);
+            this.groupBox1.Controls.Add(this.lblMotivo);
             this.groupBox1.Controls.Add(this.lblGrupo);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.btnHijo);
@@ -117,7 +122,6 @@
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.Nuevo);
             this.groupBox1.Controls.Add(this.lblFechaNac);
             this.groupBox1.Controls.Add(this.txtDir);
             this.groupBox1.Controls.Add(this.label9);
@@ -129,14 +133,36 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(15, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(627, 360);
+            this.groupBox1.Size = new System.Drawing.Size(627, 395);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Personales";
             // 
+            // lblGrupo
+            // 
+            this.lblGrupo.AutoSize = true;
+            this.lblGrupo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGrupo.Location = new System.Drawing.Point(405, 207);
+            this.lblGrupo.Name = "lblGrupo";
+            this.lblGrupo.Size = new System.Drawing.Size(35, 13);
+            this.lblGrupo.TabIndex = 7;
+            this.lblGrupo.Text = "XXXX";
+            this.lblGrupo.Visible = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(307, 207);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(77, 13);
+            this.label12.TabIndex = 6;
+            this.label12.Text = "Grupo Familiar:";
+            this.label12.Visible = false;
+            // 
             // btnHijo
             // 
-            this.btnHijo.Location = new System.Drawing.Point(301, 251);
+            this.btnHijo.Location = new System.Drawing.Point(301, 257);
             this.btnHijo.Name = "btnHijo";
             this.btnHijo.Size = new System.Drawing.Size(75, 23);
             this.btnHijo.TabIndex = 62;
@@ -146,7 +172,7 @@
             // 
             // btnConyuge
             // 
-            this.btnConyuge.Location = new System.Drawing.Point(194, 251);
+            this.btnConyuge.Location = new System.Drawing.Point(194, 257);
             this.btnConyuge.Name = "btnConyuge";
             this.btnConyuge.Size = new System.Drawing.Size(75, 23);
             this.btnConyuge.TabIndex = 61;
@@ -174,7 +200,7 @@
             // 
             // cmbVolver
             // 
-            this.cmbVolver.Location = new System.Drawing.Point(439, 302);
+            this.cmbVolver.Location = new System.Drawing.Point(439, 308);
             this.cmbVolver.Name = "cmbVolver";
             this.cmbVolver.Size = new System.Drawing.Size(75, 23);
             this.cmbVolver.TabIndex = 60;
@@ -184,7 +210,7 @@
             // 
             // cmdLimpiar
             // 
-            this.cmdLimpiar.Location = new System.Drawing.Point(254, 302);
+            this.cmdLimpiar.Location = new System.Drawing.Point(254, 308);
             this.cmdLimpiar.Name = "cmdLimpiar";
             this.cmdLimpiar.Size = new System.Drawing.Size(75, 23);
             this.cmdLimpiar.TabIndex = 59;
@@ -201,7 +227,7 @@
             // 
             // cmdAceptar
             // 
-            this.cmdAceptar.Location = new System.Drawing.Point(153, 302);
+            this.cmdAceptar.Location = new System.Drawing.Point(153, 308);
             this.cmdAceptar.Name = "cmdAceptar";
             this.cmdAceptar.Size = new System.Drawing.Size(75, 23);
             this.cmdAceptar.TabIndex = 57;
@@ -212,7 +238,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(6, 255);
+            this.label25.Location = new System.Drawing.Point(6, 261);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(176, 13);
             this.label25.TabIndex = 54;
@@ -411,7 +437,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Trebuchet MS", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(251, 277);
+            this.label13.Location = new System.Drawing.Point(251, 283);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(87, 13);
             this.label13.TabIndex = 31;
@@ -452,15 +478,6 @@
             this.label14.Size = new System.Drawing.Size(11, 13);
             this.label14.TabIndex = 2;
             this.label14.Text = "*";
-            // 
-            // Nuevo
-            // 
-            this.Nuevo.Location = new System.Drawing.Point(395, 360);
-            this.Nuevo.Name = "Nuevo";
-            this.Nuevo.Size = new System.Drawing.Size(104, 23);
-            this.Nuevo.TabIndex = 22;
-            this.Nuevo.Text = "Limpiar campos";
-            this.Nuevo.UseVisualStyleBackColor = true;
             // 
             // lblFechaNac
             // 
@@ -532,27 +549,34 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre:";
             // 
-            // label12
+            // lbl26
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(307, 207);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(77, 13);
-            this.label12.TabIndex = 6;
-            this.label12.Text = "Grupo Familiar:";
-            this.label12.Visible = false;
+            this.lbl26.AutoSize = true;
+            this.lbl26.Location = new System.Drawing.Point(596, 234);
+            this.lbl26.Name = "lbl26";
+            this.lbl26.Size = new System.Drawing.Size(11, 13);
+            this.lbl26.TabIndex = 63;
+            this.lbl26.Text = "*";
+            this.lbl26.Visible = false;
             // 
-            // lblGrupo
+            // txtMotivo
             // 
-            this.lblGrupo.AutoSize = true;
-            this.lblGrupo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGrupo.Location = new System.Drawing.Point(405, 207);
-            this.lblGrupo.Name = "lblGrupo";
-            this.lblGrupo.Size = new System.Drawing.Size(35, 13);
-            this.lblGrupo.TabIndex = 7;
-            this.lblGrupo.Text = "XXXX";
-            this.lblGrupo.Visible = false;
+            this.txtMotivo.Location = new System.Drawing.Point(132, 231);
+            this.txtMotivo.Name = "txtMotivo";
+            this.txtMotivo.Size = new System.Drawing.Size(458, 20);
+            this.txtMotivo.TabIndex = 65;
+            this.txtMotivo.Visible = false;
+            // 
+            // lblMotivo
+            // 
+            this.lblMotivo.AutoSize = true;
+            this.lblMotivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMotivo.Location = new System.Drawing.Point(6, 236);
+            this.lblMotivo.Name = "lblMotivo";
+            this.lblMotivo.Size = new System.Drawing.Size(104, 13);
+            this.lblMotivo.TabIndex = 64;
+            this.lblMotivo.Text = "Motivo Cambio Plan:";
+            this.lblMotivo.Visible = false;
             // 
             // frmAfiliadoAlta
             // 
@@ -576,7 +600,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button Nuevo;
         private System.Windows.Forms.Label lblFechaNac;
         private System.Windows.Forms.TextBox txtDir;
         private System.Windows.Forms.Label label9;
@@ -618,6 +641,9 @@
         private System.Windows.Forms.Button btnConyuge;
         private System.Windows.Forms.Label lblGrupo;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lbl26;
+        private System.Windows.Forms.TextBox txtMotivo;
+        private System.Windows.Forms.Label lblMotivo;
 
 
     }

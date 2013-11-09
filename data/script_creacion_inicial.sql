@@ -1,6 +1,17 @@
 CREATE SCHEMA mario_killers AUTHORIZATION gd
 GO
 
+CREATE PROCEDURE mario_killers.registrarCambioPlan(@grupo numeric(18,0),
+												   @plan numeric(18,0),
+												   @date datetime,
+												   @desc varchar(255),
+												   @ret numeric(18,0) output)
+AS BEGIN
+INSERT INTO mario_killers.Modificaciones_Grupo (grupo_familia, plan_medico, fecha, motivo)
+	VALUES (@grupo, @plan, @date, @desc)
+END
+GO
+
 CREATE PROCEDURE mario_killers.agregarAfiliadoFamilia(@nombre varchar(255),
                                                @apellido varchar(255),
                                                @fecha_nac datetime,

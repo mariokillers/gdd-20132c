@@ -173,11 +173,30 @@ namespace Clinica_Frba.Clases
             }
         }
 
-        public static bool Eliminar(decimal id)
+        public static void RegistrarCambioPlan(Afiliado afil, String desc)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@grupo", afil.Numero_Grupo));
+            ListaParametros.Add(new SqlParameter("@plan", afil.Plan_Medico));
+            ListaParametros.Add(new SqlParameter("@date", (DateTime)System.DateTime.Now.Date));
+            ListaParametros.Add(new SqlParameter("@desc", (String)desc));
+            SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
+            paramRet.Direction = System.Data.ParameterDirection.Output;
+            ListaParametros.Add(paramRet);
+
+            Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.registrarCambioPlan", ListaParametros);
+        }
+
+        public static void Eliminar(decimal id)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@id", id));
-            return Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Afiliado SET Activo =0 where persona = @id", "T", ListaParametros);
+            ListaParametros.Add(new SqlParameter("@date", (DateTime)System.DateTime.Now.Date));
+            Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Bajas_Afiliado (persona, fecha) VALUES (@id, @date)", "T", ListaParametros);
+
+            List<SqlParameter> ListaParametros2 = new List<SqlParameter>();
+            ListaParametros2.Add(new SqlParameter("@id", id));
+            Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Afiliado SET Activo =0 where persona = @id", "T", ListaParametros2);
         }
     }
 }

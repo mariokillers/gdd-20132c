@@ -38,6 +38,14 @@ namespace Clinica_Frba.NewFolder12
             {
                 almacenarDatos();
 
+                if (Operacion == "Modificacion")
+                {
+                    if (Afiliado.Plan_Medico != (decimal)cmbPlanes.SelectedValue)
+                    {
+                        Afiliados.RegistrarCambioPlan(Afiliado, txtMotivo.Text);
+                    }
+                }
+
                 MessageBox.Show("El Afiliado ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
                    
                 this.Hide();
@@ -135,10 +143,14 @@ namespace Clinica_Frba.NewFolder12
                 cmbSexo.Text = Afiliado.Sexo;
                 cmbPlanes.Text = "" + Utiles.ObtenerPlan(Afiliado.Plan_Medico);
                 cmbEstadoCivil.Text = "" + Utiles.ObtenerEstado(Afiliado.Estado_Civil);
+                lblMotivo.Visible = true;
+                lbl26.Visible = true;
+                txtMotivo.Visible = true;
 
                 if (Afiliado.Numero_Familiar != 1)
                 {
                     cmbPlanes.Enabled = false;
+                    txtMotivo.Visible = true;
                 }
             }
             if (Miembro == "Hijo")

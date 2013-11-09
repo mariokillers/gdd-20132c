@@ -68,7 +68,7 @@
             this.txtMatricula = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.cmdSeleccionarTodo = new System.Windows.Forms.Button();
-            this.cmbEspecialidades = new System.Windows.Forms.CheckedListBox();
+            this.grillaEspecialidades = new System.Windows.Forms.CheckedListBox();
             this.label22 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +76,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.cmdSeleccionarTodo);
-            this.groupBox1.Controls.Add(this.cmbEspecialidades);
+            this.groupBox1.Controls.Add(this.grillaEspecialidades);
             this.groupBox1.Controls.Add(this.label22);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.txtMatricula);
@@ -472,13 +472,13 @@
             this.cmdSeleccionarTodo.Text = "Seleccionar todo";
             this.cmdSeleccionarTodo.UseVisualStyleBackColor = true;
             // 
-            // cmbEspecialidades
+            // grillaEspecialidades
             // 
-            this.cmbEspecialidades.FormattingEnabled = true;
-            this.cmbEspecialidades.Location = new System.Drawing.Point(130, 205);
-            this.cmbEspecialidades.Name = "cmbEspecialidades";
-            this.cmbEspecialidades.Size = new System.Drawing.Size(215, 199);
-            this.cmbEspecialidades.TabIndex = 65;
+            this.grillaEspecialidades.FormattingEnabled = true;
+            this.grillaEspecialidades.Location = new System.Drawing.Point(130, 205);
+            this.grillaEspecialidades.Name = "grillaEspecialidades";
+            this.grillaEspecialidades.Size = new System.Drawing.Size(215, 199);
+            this.grillaEspecialidades.TabIndex = 65;
             // 
             // label22
             // 
@@ -497,6 +497,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "frmProfesional";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.frmProfesional_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -545,7 +546,7 @@
         private System.Windows.Forms.TextBox txtMatricula;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button cmdSeleccionarTodo;
-        private System.Windows.Forms.CheckedListBox cmbEspecialidades;
+        private System.Windows.Forms.CheckedListBox grillaEspecialidades;
         private System.Windows.Forms.Label label22;
     }
 }

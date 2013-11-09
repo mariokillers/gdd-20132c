@@ -11,24 +11,24 @@ namespace Clinica_Frba.Clases
 {
     public class Especialidades
     {
-        private static List<Especialidad> ObtenerEspecialidades()
+        public static List<Especialidad> ObtenerEspecialidades()
         {
             List<Especialidad> Lista = new List<Especialidad>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Especialidad", "T", ListaParametros);
 
             if (lector.HasRows)
             {
                 while (lector.Read())
                 {
                     //instancio un tipo
-                    TipoEspecialidad tipoEsp = new TipoEspecialidad((int)lector["tipo"]);
+                   // TipoEspecialidad tipoEsp = new TipoEspecialidad((decimal)lector["tipo"]);
                    
                     Especialidad unaEspecialidad = new Especialidad();
-                    unaEspecialidad.Codigo = 0;//me lo devuelve la consulta
-                    unaEspecialidad.Descripcion = (string)lector["desripcion"];
-                    unaEspecialidad.Tipo_Especialidad = tipoEsp.Descripcion;
+                    unaEspecialidad.Codigo = (decimal)lector["codigo"];
+                    unaEspecialidad.Descripcion = (string)lector["descripcion"];
+                    unaEspecialidad.Tipo_Especialidad = (decimal)lector["tipo"];
                     Lista.Add(unaEspecialidad);
                 }
             }

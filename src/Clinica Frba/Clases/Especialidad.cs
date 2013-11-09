@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Clinica_Frba.Clases
 {
-    class Especialidad
+    public class Especialidad
     {
-        public int Codigo { get; set; }
+        public decimal Codigo { get; set; }
         public string Descripcion { get; set; }
-        public string Tipo_Especialidad { get; set; }
+        public decimal Tipo_Especialidad { get; set; }
     }
 }

@@ -46,11 +46,11 @@
             this.consultarAgendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdEstadisticas = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdTurnos = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdCompraDeBonos = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdLogOut = new System.Windows.Forms.ToolStripMenuItem();
             this.cmbRoles = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdIngresar = new System.Windows.Forms.Button();
-            this.cmdCompraDeBonos = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,19 +115,20 @@
             // cmdProfAlta
             // 
             this.cmdProfAlta.Name = "cmdProfAlta";
-            this.cmdProfAlta.Size = new System.Drawing.Size(144, 22);
+            this.cmdProfAlta.Size = new System.Drawing.Size(152, 22);
             this.cmdProfAlta.Text = "Alta";
+            this.cmdProfAlta.Click += new System.EventHandler(this.cmdProfAlta_Click);
             // 
             // cmdProfMod
             // 
             this.cmdProfMod.Name = "cmdProfMod";
-            this.cmdProfMod.Size = new System.Drawing.Size(144, 22);
+            this.cmdProfMod.Size = new System.Drawing.Size(152, 22);
             this.cmdProfMod.Text = "Modificacion";
             // 
             // cmdProfBaja
             // 
             this.cmdProfBaja.Name = "cmdProfBaja";
-            this.cmdProfBaja.Size = new System.Drawing.Size(144, 22);
+            this.cmdProfBaja.Size = new System.Drawing.Size(152, 22);
             this.cmdProfBaja.Text = "Baja";
             // 
             // cmdRol
@@ -196,6 +197,13 @@
             this.cmdTurnos.Size = new System.Drawing.Size(56, 20);
             this.cmdTurnos.Text = "Turnos";
             // 
+            // cmdCompraDeBonos
+            // 
+            this.cmdCompraDeBonos.Name = "cmdCompraDeBonos";
+            this.cmdCompraDeBonos.Size = new System.Drawing.Size(114, 20);
+            this.cmdCompraDeBonos.Text = "Compra de Bonos";
+            this.cmdCompraDeBonos.Click += new System.EventHandler(this.cmdCompraDeBonos_Click);
+            // 
             // cmdLogOut
             // 
             this.cmdLogOut.Name = "cmdLogOut";
@@ -232,13 +240,6 @@
             this.cmdIngresar.UseVisualStyleBackColor = true;
             this.cmdIngresar.Visible = false;
             this.cmdIngresar.Click += new System.EventHandler(this.cmdIngresar_Click);
-            // 
-            // cmdCompraDeBonos
-            // 
-            this.cmdCompraDeBonos.Name = "cmdCompraDeBonos";
-            this.cmdCompraDeBonos.Size = new System.Drawing.Size(114, 20);
-            this.cmdCompraDeBonos.Text = "Compra de Bonos";
-            this.cmdCompraDeBonos.Click += new System.EventHandler(this.cmdCompraDeBonos_Click);
             // 
             // frmPrincipal
             // 

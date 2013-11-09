@@ -15,6 +15,7 @@ using Clinica_Frba.NewFolder10;
 using Clinica_Frba.Registrar_Agenda;
 using Clinica_Frba.Abm_de_Profesional;
 using Clinica_Frba.NewFolder3;
+using Clinica_Frba.NewFolder13;
 
 namespace Clinica_Frba
 {
@@ -181,6 +182,12 @@ namespace Clinica_Frba
             formBono.User = User;
             formBono.RolElegido = unRol;
             formBono.Show();
+        }
+
+        private void cmdProfAlta_Click(object sender, EventArgs e)
+        {
+            frmProfesional frmPro = new frmProfesional();
+            frmPro.Show();
         }
     }
 }

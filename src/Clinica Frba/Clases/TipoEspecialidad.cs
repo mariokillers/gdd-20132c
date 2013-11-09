@@ -14,7 +14,7 @@ namespace Clinica_Frba.Clases
         public int Codigo { get; set; }
         public string Descripcion { get; set; }
 
-        public TipoEspecialidad(int codigo)
+        public TipoEspecialidad(decimal codigo)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@codigo", codigo));

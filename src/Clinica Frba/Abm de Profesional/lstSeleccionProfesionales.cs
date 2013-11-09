@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using Clinica_Frba.Clases;
+using Clinica_Frba.NewFolder13;
 
 namespace Clinica_Frba.Abm_de_Profesional
 {
@@ -38,6 +39,11 @@ namespace Clinica_Frba.Abm_de_Profesional
         }
 
         private void cmdLimpiar_Click(object sender, EventArgs e)
+        {
+            this.Limpiar();
+        }
+
+        public void Limpiar()
         {
             txtApellido.Text = "";
             txtDni.Text = "";
@@ -103,6 +109,34 @@ namespace Clinica_Frba.Abm_de_Profesional
             else
             {
                 btnAction.Text = "Modificar";
+            }
+        }
+
+        private void btnAction_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                unProfesional = (Profesional)grillaProfesionales.CurrentRow.DataBoundItem;
+
+                if (Operacion == "Baja")
+                {
+                 //   Profesionales.Eliminar(unProfesional.Id);   ---->TODO
+                    Limpiar();
+                }
+                else
+                {
+                    if (Operacion == "Modificacion")
+                    {
+                        frmProfesional formProf = new frmProfesional();
+                        formProf.Operacion = this.Operacion;
+                        formProf.unProfesional = unProfesional;
+                        formProf.Show();
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("No se selecciono ningun profesional", "Error!", MessageBoxButtons.OK);
             }
         }
     }

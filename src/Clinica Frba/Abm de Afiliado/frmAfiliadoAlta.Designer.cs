@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbl26 = new System.Windows.Forms.Label();
+            this.txtMotivo = new System.Windows.Forms.TextBox();
+            this.lblMotivo = new System.Windows.Forms.Label();
             this.lblGrupo = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.btnHijo = new System.Windows.Forms.Button();
@@ -74,9 +77,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lbl26 = new System.Windows.Forms.Label();
-            this.txtMotivo = new System.Windows.Forms.TextBox();
-            this.lblMotivo = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -137,6 +137,35 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Personales";
+            // 
+            // lbl26
+            // 
+            this.lbl26.AutoSize = true;
+            this.lbl26.Location = new System.Drawing.Point(596, 234);
+            this.lbl26.Name = "lbl26";
+            this.lbl26.Size = new System.Drawing.Size(11, 13);
+            this.lbl26.TabIndex = 63;
+            this.lbl26.Text = "*";
+            this.lbl26.Visible = false;
+            // 
+            // txtMotivo
+            // 
+            this.txtMotivo.Location = new System.Drawing.Point(132, 231);
+            this.txtMotivo.Name = "txtMotivo";
+            this.txtMotivo.Size = new System.Drawing.Size(458, 20);
+            this.txtMotivo.TabIndex = 65;
+            this.txtMotivo.Visible = false;
+            // 
+            // lblMotivo
+            // 
+            this.lblMotivo.AutoSize = true;
+            this.lblMotivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMotivo.Location = new System.Drawing.Point(6, 236);
+            this.lblMotivo.Name = "lblMotivo";
+            this.lblMotivo.Size = new System.Drawing.Size(104, 13);
+            this.lblMotivo.TabIndex = 64;
+            this.lblMotivo.Text = "Motivo Cambio Plan:";
+            this.lblMotivo.Visible = false;
             // 
             // lblGrupo
             // 
@@ -549,40 +578,11 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre:";
             // 
-            // lbl26
-            // 
-            this.lbl26.AutoSize = true;
-            this.lbl26.Location = new System.Drawing.Point(596, 234);
-            this.lbl26.Name = "lbl26";
-            this.lbl26.Size = new System.Drawing.Size(11, 13);
-            this.lbl26.TabIndex = 63;
-            this.lbl26.Text = "*";
-            this.lbl26.Visible = false;
-            // 
-            // txtMotivo
-            // 
-            this.txtMotivo.Location = new System.Drawing.Point(132, 231);
-            this.txtMotivo.Name = "txtMotivo";
-            this.txtMotivo.Size = new System.Drawing.Size(458, 20);
-            this.txtMotivo.TabIndex = 65;
-            this.txtMotivo.Visible = false;
-            // 
-            // lblMotivo
-            // 
-            this.lblMotivo.AutoSize = true;
-            this.lblMotivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMotivo.Location = new System.Drawing.Point(6, 236);
-            this.lblMotivo.Name = "lblMotivo";
-            this.lblMotivo.Size = new System.Drawing.Size(104, 13);
-            this.lblMotivo.TabIndex = 64;
-            this.lblMotivo.Text = "Motivo Cambio Plan:";
-            this.lblMotivo.Visible = false;
-            // 
             // frmAfiliadoAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(654, 507);
+            this.ClientSize = new System.Drawing.Size(649, 413);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmAfiliadoAlta";
             this.Text = "CLINICA - FRBA - Alta";

@@ -92,7 +92,7 @@
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(75, 23);
             this.cmdAgregar.TabIndex = 10;
-            this.cmdAgregar.Text = "button1";
+            this.cmdAgregar.Text = "Agregar";
             this.cmdAgregar.UseVisualStyleBackColor = true;
             this.cmdAgregar.Click += new System.EventHandler(this.cmdAgregar_Click);
             // 
@@ -102,7 +102,7 @@
             this.cmdConfirmar.Name = "cmdConfirmar";
             this.cmdConfirmar.Size = new System.Drawing.Size(75, 23);
             this.cmdConfirmar.TabIndex = 9;
-            this.cmdConfirmar.Text = "button1";
+            this.cmdConfirmar.Text = "Aceptar";
             this.cmdConfirmar.UseVisualStyleBackColor = true;
             this.cmdConfirmar.Visible = false;
             this.cmdConfirmar.Click += new System.EventHandler(this.cmdConfirmar_Click);
@@ -118,7 +118,7 @@
             // lblNumeroAfiliado
             // 
             this.lblNumeroAfiliado.AutoSize = true;
-            this.lblNumeroAfiliado.Location = new System.Drawing.Point(7, 27);
+            this.lblNumeroAfiliado.Location = new System.Drawing.Point(10, 27);
             this.lblNumeroAfiliado.Name = "lblNumeroAfiliado";
             this.lblNumeroAfiliado.Size = new System.Drawing.Size(148, 13);
             this.lblNumeroAfiliado.TabIndex = 7;
@@ -127,7 +127,7 @@
             // 
             // cmdComprar
             // 
-            this.cmdComprar.Location = new System.Drawing.Point(29, 339);
+            this.cmdComprar.Location = new System.Drawing.Point(39, 339);
             this.cmdComprar.Name = "cmdComprar";
             this.cmdComprar.Size = new System.Drawing.Size(93, 54);
             this.cmdComprar.TabIndex = 6;

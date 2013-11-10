@@ -62,6 +62,39 @@ namespace Clinica_Frba.Clases
         public Afiliado()
         { }
 
+        public Afiliado(string numeroAfiliado)
+        {
+            int numGrupo = Int32.Parse(numeroAfiliado.Remove(numeroAfiliado.Length - 2));
+            int numFamiliar = Int32.Parse(Utiles.ObtenerUltimos(numeroAfiliado, 2));
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@grupo_familia", numGrupo));
+            ListaParametros.Add(new SqlParameter("@nro_familiar", numFamiliar));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.AfiliadosParaCompra WHERE grupo_familia=@grupo_familia AND nro_familiar= @nro_familiar", "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                lector.Read();
+                Apellido = (string)lector["apellido"];
+                Codigo_Persona = (int)(decimal)lector["persona"];
+                Nombre = (string)lector["nombre"];
+                Numero_Grupo = numGrupo;
+                Numero_Familiar = numFamiliar;
+                NumeroDocumento = (decimal)lector["documento"];
+                Plan_Medico = (decimal)lector["plan_medico"];
+                FechaNacimiento = (DateTime)lector["fecha_nac"];
+                Direccion = (String)lector["direccion"];
+                TipoDocumento = (decimal)lector["tipo_doc"];
+                Sexo = (String)lector["sexo"];
+                Mail = (String)lector["mail"];
+                Telefono = (decimal)lector["telefono"];
+                Cantidad_Hijos = (decimal)lector["cant_hijos"];
+                Estado_Civil = (decimal)lector["estado_civil"];
+                Activo = (bool)lector["activo"];
+            }
+        }
+
         public bool Agregar(Afiliado unAfiliado)
         {
             //ANTES DE DAR UNA ALTA DE AFILIADO,HAY QUE DAR DE ALTA LA PERSONA

@@ -47,6 +47,12 @@ namespace Clinica_Frba.NewFolder3
                 cmdConfirmar.Visible = true;
                 grillaBonos.Visible = false;
                 tlpDatos.Visible = false;
+                cmdCantBonos.Visible = false;
+                cmdAgregar.Visible = false;
+                cmdComprar.Visible = false;
+                rbConsulta.Visible = false;
+                rbFarmacia.Visible = false;
+                label1.Visible = false;
             }
         }
 
@@ -101,7 +107,7 @@ namespace Clinica_Frba.NewFolder3
                 else
                 {
                     //SI ES ADMINISTRATIVO -> LE HAGO UNA COMPRA PARA EL AFILIADO
-                    afiliado = new Afiliado(Int32.Parse(txtNumAfil.Text));
+                    //afiliado = new Afiliado(Int32.Parse(txtNumAfil.Text));
                     RealizarCompra();
                 }
             }
@@ -161,7 +167,24 @@ namespace Clinica_Frba.NewFolder3
         {
             try
             {
-                afiliado = new Afiliado();
+                afiliado = new Afiliado(txtNumAfil.Text);
+
+                lblNumeroAfiliado.Visible = false;
+                txtNumAfil.Visible = false;
+                cmdConfirmar.Visible = false;
+                grillaBonos.Visible = true;
+                tlpDatos.Visible = true;
+                cmdCantBonos.Visible = true;
+                cmdAgregar.Visible = true;
+                cmdComprar.Visible = true;
+                rbConsulta.Visible = true;
+                rbFarmacia.Visible = true;
+                label1.Visible = true;
+
+                lblGrupoFamiliar.Text = afiliado.Numero_Familiar.ToString();
+                lblPrecioPorBono.Text = (new BonoConsulta(afiliado)).Precio.ToString();
+                lblNumeroAfiliado.Text = afiliado.Numero_Familiar.ToString() + afiliado.Numero_Grupo.ToString();
+                lblPlanMedico.Text = afiliado.Plan_Medico.ToString(); //ES UN NOMBRE?
             }
             catch { MessageBox.Show("El afiliado no existe", "Error!", MessageBoxButtons.OK); }
         }

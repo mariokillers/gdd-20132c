@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace Clinica_Frba.Clases
 {
-    class Utiles
+    static class Utiles
     {
         public static bool EsNumerico(string numero)
         {
@@ -17,6 +17,13 @@ namespace Clinica_Frba.Clases
             }
             catch (Exception)
             {return false;}
+        }
+
+        public static string ObtenerUltimos(this string cadena, int cantidad)
+        {
+            if (cantidad >= cadena.Length)
+                return cadena;
+            return cadena.Substring(cadena.Length - cantidad);
         }
 
         public static bool EsHoraValida(TimeSpan desde, TimeSpan hasta)

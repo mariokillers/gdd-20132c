@@ -31,6 +31,46 @@ namespace Clinica_Frba.NewFolder4
             cmbEspecialidades.DataSource = listaDeEspecialidades;
             cmbEspecialidades.ValueMember = "Codigo";
             cmbEspecialidades.DisplayMember = "Descripcion";
+
+            DataGridViewTextBoxColumn ColPersona = new DataGridViewTextBoxColumn();
+            ColPersona.DataPropertyName = "Id";
+            ColPersona.HeaderText = "Persona";
+            ColPersona.Width = 120;
+            grillaProfesionales.Columns.Add(ColPersona);
+
+            DataGridViewTextBoxColumn ColApellido = new DataGridViewTextBoxColumn();
+            ColApellido.DataPropertyName = "Apellido";
+            ColApellido.HeaderText = "Apellido";
+            ColApellido.Width = 120;
+            grillaProfesionales.Columns.Add(ColApellido);
+
+            DataGridViewTextBoxColumn ColNombre = new DataGridViewTextBoxColumn();
+            ColNombre.DataPropertyName = "Nombre";
+            ColNombre.HeaderText = "Nombre";
+            ColNombre.Width = 120;
+            grillaProfesionales.Columns.Add(ColNombre);
+
+            DataGridViewTextBoxColumn ColMatr = new DataGridViewTextBoxColumn();
+            ColMatr.DataPropertyName = "Matricula";
+            ColMatr.HeaderText = "Matricula";
+            ColMatr.Width = 120;
+            grillaProfesionales.Columns.Add(ColMatr);
+
+            DataGridViewTextBoxColumn ColDoc = new DataGridViewTextBoxColumn();
+            ColDoc.DataPropertyName = "NumeroDocumento";
+            ColDoc.HeaderText = "Documento";
+            ColDoc.Width = 120;
+            grillaProfesionales.Columns.Add(ColDoc);
+        }
+
+        private void cmdBuscar_Click(object sender, EventArgs e)
+        {
+            decimal unaEspecialidad = (decimal)cmbEspecialidades.SelectedValue;
+
+            listaDeProfesionales = Profesionales.ObtenerProfesionales("", "", "", "", unaEspecialidad);
+
+            grillaProfesionales.DataSource = listaDeProfesionales;
+
         }
     }
 }

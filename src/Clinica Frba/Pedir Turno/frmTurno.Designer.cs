@@ -65,6 +65,7 @@
             this.cmdBuscar.TabIndex = 13;
             this.cmdBuscar.Text = "Buscar";
             this.cmdBuscar.UseVisualStyleBackColor = true;
+            this.cmdBuscar.Click += new System.EventHandler(this.cmdBuscar_Click);
             // 
             // groupBox1
             // 
@@ -82,7 +83,7 @@
             this.cmbEspecialidades.FormattingEnabled = true;
             this.cmbEspecialidades.Location = new System.Drawing.Point(106, 28);
             this.cmbEspecialidades.Name = "cmbEspecialidades";
-            this.cmbEspecialidades.Size = new System.Drawing.Size(121, 21);
+            this.cmbEspecialidades.Size = new System.Drawing.Size(217, 21);
             this.cmbEspecialidades.TabIndex = 4;
             // 
             // label5

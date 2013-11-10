@@ -52,6 +52,8 @@
             this.cmbRoles = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdIngresar = new System.Windows.Forms.Button();
+            this.cmdRegistrarLlegada = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdAtencion = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,10 +67,12 @@
             this.cmdEstadisticas,
             this.cmdTurnos,
             this.cmdCompraDeBonos,
-            this.cmdLogOut});
+            this.cmdRegistrarLlegada,
+            this.cmdLogOut,
+            this.cmdAtencion});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(671, 24);
+            this.menu.Size = new System.Drawing.Size(957, 24);
             this.menu.TabIndex = 0;
             this.menu.Text = "menu";
             // 
@@ -246,13 +250,25 @@
             this.cmdIngresar.Visible = false;
             this.cmdIngresar.Click += new System.EventHandler(this.cmdIngresar_Click);
             // 
+            // cmdRegistrarLlegada
+            // 
+            this.cmdRegistrarLlegada.Name = "cmdRegistrarLlegada";
+            this.cmdRegistrarLlegada.Size = new System.Drawing.Size(109, 20);
+            this.cmdRegistrarLlegada.Text = "Registrar Llegada";
+            // 
+            // cmdAtencion
+            // 
+            this.cmdAtencion.Name = "cmdAtencion";
+            this.cmdAtencion.Size = new System.Drawing.Size(109, 20);
+            this.cmdAtencion.Text = "Atención Médica";
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(671, 407);
+            this.ClientSize = new System.Drawing.Size(957, 407);
             this.Controls.Add(this.cmdIngresar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbRoles);
@@ -293,6 +309,8 @@
         private System.Windows.Forms.ToolStripMenuItem cmdTurnos;
         private System.Windows.Forms.ToolStripMenuItem consultarAgendaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cmdCompraDeBonos;
+        private System.Windows.Forms.ToolStripMenuItem cmdRegistrarLlegada;
+        private System.Windows.Forms.ToolStripMenuItem cmdAtencion;
 
 
     }

@@ -62,6 +62,14 @@ namespace Clinica_Frba.Clases
         public Afiliado()
         { }
 
+        /*public Turno ObtenerProximoTurno()
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@persona", Id));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Turno WHERE persona=@persona", "T", ListaParametros);
+
+        }*/
         public Afiliado(string numeroAfiliado)
         {
             int numGrupo = Int32.Parse(numeroAfiliado.Remove(numeroAfiliado.Length - 2));

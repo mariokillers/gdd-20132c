@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Clinica_Frba.Clases;
 
 namespace Clinica_Frba.NewFolder6
 {
@@ -14,6 +15,15 @@ namespace Clinica_Frba.NewFolder6
         public frmAtencion()
         {
             InitializeComponent();
+        }
+        //A QUE AFILIADO CORRESPONDE LA ATENCION
+        private Afiliado afiliado { get; set; }
+
+        private void frmAtencion_Load(object sender, EventArgs e)
+        {
+            cmbHoraDesde.DataSource = Utiles.ObtenerHorasDiasHabiles();
+            cmbHoraDesde.ValueMember = "LaHora";
+            cmbHoraDesde.DisplayMember = "HoraAMostrar";
         }
     }
 }

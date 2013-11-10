@@ -30,7 +30,7 @@ namespace Clinica_Frba.Abm_de_Profesional
                 Mail = (string)lector["mail"];
                 Nombre = (string)lector["nombre"];
                 Apellido = (string)lector["apellido"];
-                Id = (int)lector["codigoPersona"];
+                Id = (int)(decimal)lector["codigoPersona"];
                 //unProfesional.Id_User = Name; VER PORQUE NO FUNCIONA
                 NumeroDocumento = (decimal)lector["documento"];
                 Direccion = (string)lector["direccion"];

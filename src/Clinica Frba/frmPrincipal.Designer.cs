@@ -116,21 +116,21 @@
             // cmdProfAlta
             // 
             this.cmdProfAlta.Name = "cmdProfAlta";
-            this.cmdProfAlta.Size = new System.Drawing.Size(152, 22);
+            this.cmdProfAlta.Size = new System.Drawing.Size(144, 22);
             this.cmdProfAlta.Text = "Alta";
             this.cmdProfAlta.Click += new System.EventHandler(this.cmdProfAlta_Click);
             // 
             // cmdProfMod
             // 
             this.cmdProfMod.Name = "cmdProfMod";
-            this.cmdProfMod.Size = new System.Drawing.Size(152, 22);
+            this.cmdProfMod.Size = new System.Drawing.Size(144, 22);
             this.cmdProfMod.Text = "Modificacion";
             this.cmdProfMod.Click += new System.EventHandler(this.cmdProfMod_Click);
             // 
             // cmdProfBaja
             // 
             this.cmdProfBaja.Name = "cmdProfBaja";
-            this.cmdProfBaja.Size = new System.Drawing.Size(152, 22);
+            this.cmdProfBaja.Size = new System.Drawing.Size(144, 22);
             this.cmdProfBaja.Text = "Baja";
             this.cmdProfBaja.Click += new System.EventHandler(this.cmdProfBaja_Click);
             // 
@@ -226,6 +226,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(47, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);

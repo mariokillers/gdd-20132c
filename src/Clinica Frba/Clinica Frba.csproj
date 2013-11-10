@@ -110,6 +110,7 @@
     </Compile>
     <Compile Include="Clases\Afiliado.cs" />
     <Compile Include="Clases\Afiliados.cs" />
+    <Compile Include="Clases\Agenda.cs" />
     <Compile Include="Clases\Atencion.cs" />
     <Compile Include="Clases\BaseDeDatosSQL.cs" />
     <Compile Include="Clases\BonoConsulta.cs" />
@@ -158,6 +159,12 @@
     </Compile>
     <Compile Include="Login\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pedir Turno\frmTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pedir Turno\frmTurno.Designer.cs">
+      <DependentUpon>frmTurno.cs</DependentUpon>
     </Compile>
     <Compile Include="Registrar Agenda\frmRegistrarAgenda.cs">
       <SubType>Form</SubType>
@@ -213,11 +220,11 @@
     <Compile Include="Compra de Bono\frmBono.Designer.cs">
       <DependentUpon>frmBono.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pedir Turno\frmTurno.cs">
+    <Compile Include="Pedir Turno\lstTurno.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pedir Turno\frmTurno.Designer.cs">
-      <DependentUpon>frmTurno.cs</DependentUpon>
+    <Compile Include="Pedir Turno\lstTurno.Designer.cs">
+      <DependentUpon>lstTurno.cs</DependentUpon>
     </Compile>
     <Compile Include="Registro Resultado Atencion\frmAtencion.cs">
       <SubType>Form</SubType>
@@ -295,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pedir Turno\frmTurno.resx">
       <DependentUpon>frmTurno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pedir Turno\lstTurno.resx">
+      <DependentUpon>lstTurno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -208,7 +208,7 @@ namespace Clinica_Frba
 
         private void cmdTurnos_Click(object sender, EventArgs e)
         {
-            frmTurno frmTurno = new frmTurno();
+            lstTurno frmTurno = new lstTurno();
             frmTurno.unUser = this.User;
             frmTurno.Show();
         }

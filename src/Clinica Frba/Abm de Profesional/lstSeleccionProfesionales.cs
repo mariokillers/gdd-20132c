@@ -120,7 +120,7 @@ namespace Clinica_Frba.Abm_de_Profesional
 
                 if (Operacion == "Baja")
                 {
-                 //   Profesionales.Eliminar(unProfesional.Id);   ---->TODO
+                    Profesionales.EliminarProfesional(unProfesional.Id);
                     Limpiar();
                 }
                 else

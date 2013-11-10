@@ -16,6 +16,7 @@ using Clinica_Frba.Registrar_Agenda;
 using Clinica_Frba.Abm_de_Profesional;
 using Clinica_Frba.NewFolder3;
 using Clinica_Frba.NewFolder13;
+using Clinica_Frba.NewFolder4;
 
 namespace Clinica_Frba
 {
@@ -203,6 +204,13 @@ namespace Clinica_Frba
             lstSeleccionProfesionales lstPro = new lstSeleccionProfesionales();
             lstPro.Operacion = "Baja";
             lstPro.Show();
+        }
+
+        private void cmdTurnos_Click(object sender, EventArgs e)
+        {
+            frmTurno frmTurno = new frmTurno();
+            frmTurno.unUser = this.User;
+            frmTurno.Show();
         }
     }
 }

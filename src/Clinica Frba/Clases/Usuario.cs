@@ -39,6 +39,8 @@ namespace Clinica_Frba.Clases
             }
         }
 
+        public Usuario() { }
+
         public bool ActualizarFallidos()
         {
             List<SqlParameter> Lista = new List<SqlParameter>();

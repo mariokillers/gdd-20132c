@@ -41,6 +41,7 @@ DROP PROCEDURE mario_killers.agregar_funcionalidad,
                mario_killers.agregarAfiliadoFamilia,
                mario_killers.registrarCambioPlan,
                mario_killers.hacerCompra,
-               mario_killers.agregarProfesional
+               mario_killers.agregarProfesional,
+               mario_killers.modificarProfesional
 
 DROP SCHEMA mario_killers

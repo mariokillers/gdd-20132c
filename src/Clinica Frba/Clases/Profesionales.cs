@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Clinica_Frba.Abm_de_Profesional;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Clinica_Frba.Clases
 {
@@ -36,6 +37,36 @@ namespace Clinica_Frba.Clases
 
             return ret;
 
+        }
+
+        public static void ModificarProfesional(Profesional pro)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@id", pro.Id));
+            ListaParametros.Add(new SqlParameter("@sexo", pro.Sexo));
+            ListaParametros.Add(new SqlParameter("@direccion", pro.Direccion));
+            ListaParametros.Add(new SqlParameter("@telefono", (int)pro.Telefono));
+            ListaParametros.Add(new SqlParameter("@mail", pro.Mail));
+            ListaParametros.Add(new SqlParameter("@matricula", (int)pro.Matricula));
+
+            SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
+            paramRet.Direction = System.Data.ParameterDirection.Output;
+            ListaParametros.Add(paramRet);
+
+            decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.modificarProfesional", ListaParametros);
+
+            foreach (Especialidad unaEsp in pro.Especialidades)
+            {
+                Especialidades.AgregarEspecialidadEnProfesional(pro.Id, unaEsp);
+            }
+        }
+
+        public static void EliminarEspecialidades(Profesional pro, List<Especialidad> list)
+        {
+            foreach (Especialidad unaEsp in list)
+            {
+                Especialidades.EliminarEspecialidadEnProfesional(pro.Id, unaEsp);
+            }
         }
 
         public static List<Profesional> ObtenerProfesionales(String nombre, String apellido, String dni, String numeroMatricula, decimal especialidad)
@@ -90,18 +121,19 @@ namespace Clinica_Frba.Clases
 
                     //ARMO LA LISTA DE ESPECIALIDADES
                     List<SqlParameter> ListaParametros2 = new List<SqlParameter>();
-                    if (nombre != "") ListaParametros2.Add(new SqlParameter("@nombre", "%" + nombre + "%")); else ListaParametros2.Add(new SqlParameter("@nombre", "%%"));
-                    if (apellido != "") ListaParametros2.Add(new SqlParameter("@apellido", "%" + apellido + "%")); else ListaParametros2.Add(new SqlParameter("@apellido", "%%"));
-                    if (dni != "") ListaParametros2.Add(new SqlParameter("@dni", "%" + dni + "%")); else ListaParametros2.Add(new SqlParameter("@dni", "%%"));
-                    if (numeroMatricula != "") ListaParametros2.Add(new SqlParameter("@matricula", "%" + numeroMatricula + "%")); else ListaParametros2.Add(new SqlParameter("@matricula", "%%"));
-                    if (especialidad != 0) ListaParametros2.Add(new SqlParameter("@especialidad", "%" + especialidad + "%")); else ListaParametros2.Add(new SqlParameter("@especialidad", 0));
+                    ListaParametros2.Add(new SqlParameter("@nombre", "%" + unProfesional.Nombre + "%"));
+                    ListaParametros2.Add(new SqlParameter("@apellido", "%" + unProfesional.Apellido + "%"));
+                    ListaParametros2.Add(new SqlParameter("@dni", "%" + unProfesional.NumeroDocumento + "%"));
+                    ListaParametros2.Add(new SqlParameter("@matricula", "%" + unProfesional.Matricula + "%"));
+                    //if (especialidad != 0) ListaParametros2.Add(new SqlParameter("@especialidad", "%" + especialidad + "%")); else ListaParametros2.Add(new SqlParameter("@especialidad", 0));
                     
                     String queryEsp = @"SELECT E.codigo AS codigo, E.descripcion AS descripcion, E.tipo AS tipo
                                         FROM mario_killers.Profesional PRO JOIN mario_killers.Persona P ON PRO.persona = P.id 
                                                       JOIN mario_killers.Especialidad_Profesional EP ON EP.profesional = PRO.persona 
                                                       JOIN mario_killers.Especialidad E ON E.codigo = EP.especialidad 
                                         WHERE PRO.activo = 1 AND apellido LIKE @apellido AND nombre LIKE @nombre AND documento LIKE @dni AND 
-                                                (matricula LIKE @matricula OR matricula IS NULL) AND E.codigo LIKE @especialidad";
+                                                (matricula LIKE @matricula OR matricula IS NULL)
+                                        GROUP BY E.codigo, E.descripcion, E.tipo";
                     SqlDataReader lectorEsp = Clases.BaseDeDatosSQL.ObtenerDataReader(queryEsp, "T", ListaParametros2);
 
                     while (lectorEsp.Read())
@@ -111,8 +143,11 @@ namespace Clinica_Frba.Clases
                         unaEspecialidad.Descripcion = (string)lectorEsp["descripcion"];
                         unaEspecialidad.Tipo_Especialidad = (decimal)lectorEsp["tipo"];
 
+                        //MessageBox.Show("Profesional: "+ unProfesional.Apellido + ", Especialidad: " + unaEspecialidad.Descripcion, "Prueba", MessageBoxButtons.OK);
+
                         unProfesional.Especialidades.Add(unaEspecialidad);
                     }
+
                     Lista.Add(unProfesional);
                 }
             }

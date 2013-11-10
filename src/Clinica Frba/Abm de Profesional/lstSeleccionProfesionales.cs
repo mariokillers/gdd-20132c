@@ -130,6 +130,7 @@ namespace Clinica_Frba.Abm_de_Profesional
                         frmProfesional formProf = new frmProfesional();
                         formProf.Operacion = this.Operacion;
                         formProf.unProfesional = unProfesional;
+                        formProf.listaVieja = unProfesional.Especialidades;
                         formProf.Show();
                     }
                 }

@@ -187,6 +187,7 @@ namespace Clinica_Frba
         private void cmdProfAlta_Click(object sender, EventArgs e)
         {
             frmProfesional frmPro = new frmProfesional();
+            frmPro.Operacion = "Alta";
             frmPro.Show();
         }
 

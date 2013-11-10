@@ -1,6 +1,22 @@
 CREATE SCHEMA mario_killers AUTHORIZATION gd
 GO
 
+CREATE PROCEDURE mario_killers.modificarProfesional(@id numeric(18,0),
+													@sexo char(1),
+												   @direccion varchar(255),
+												   @telefono numeric(18,0),
+												   @mail varchar(255),
+												   @matricula numeric(18,0),
+												   @ret numeric(18,0) output)
+AS BEGIN
+UPDATE mario_killers.Persona SET sexo = @sexo, direccion = @direccion, telefono = @telefono, mail = @mail
+WHERE id = @id
+UPDATE mario_killers.Profesional SET matricula = @matricula
+WHERE persona = @id
+SET @ret = @id
+END
+GO
+
 CREATE PROCEDURE mario_killers.agregarProfesional(@nombre varchar(255),
 												   @apellido varchar(255),
 												   @fecha_nac datetime,

@@ -562,6 +562,18 @@ INSERT mario_killers.Afiliado (persona, grupo_familia, nro_familiar, cant_hijos,
 	SELECT id, id, 1, 0, 6 from mario_killers.Persona WHERE documento = 11111111
 GO
 
+SET IDENTITY_INSERT mario_killers.Tipo_Especialidad ON
+INSERT mario_killers.Tipo_Especialidad(codigo, descripcion) VALUES (1, 'Tipo Fruta')
+SET IDENTITY_INSERT mario_killers.Tipo_Especialidad OFF
+GO
+
+SET IDENTITY_INSERT mario_killers.Especialidad ON
+INSERT mario_killers.Especialidad(codigo, descripcion, tipo) VALUES (1, 'Especial Fruta', 1)
+SET IDENTITY_INSERT mario_killers.Especialidad OFF
+GO
+
+INSERT mario_killers.Especialidad_Profesional (profesional, especialidad) VALUES (1, 1)
+GO
 -- Vistas ABM
 CREATE VIEW mario_killers.AfiliadosABM AS 
 SELECT A.persona AS persona, A.grupo_familia AS grupo_familia, A.nro_familiar AS nro_familiar, P.apellido AS apellido, P.nombre AS nombre, P.documento AS documento, GF.plan_medico AS plan_medico, 

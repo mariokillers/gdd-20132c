@@ -175,7 +175,7 @@ BEGIN
 	RETURN (
 		SELECT COUNT(1)
 		FROM mario_killers.Rango r1 JOIN mario_killers.Rango r2 ON r1.dia = r2.dia
-		WHERE r1.hora_desde <= r2.hora_hasta AND r2.hora_desde <= r1.hora_hasta
+		WHERE r1.hora_desde < r2.hora_hasta AND r2.hora_desde < r1.hora_hasta
 		      AND r1.id <> r2.id
 	)
 END

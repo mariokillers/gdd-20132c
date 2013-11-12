@@ -63,10 +63,20 @@ CREATE VIEW mario_killers.Bonos_Consulta AS
 	GROUP BY Bono_Consulta_Numero, Paciente_Dni
 GO
 
+CREATE FUNCTION mario_killers.Turno_Valido(@fecha datetime)
+RETURNS BIT
+AS BEGIN
+	IF DATEPART(weekday, @fecha) = 1
+		RETURN 0
+	RETURN 1
+END
+GO
+
 CREATE VIEW mario_killers.Turnos AS
 	SELECT DISTINCT Turno_Numero, Paciente_Dni, Medico_Dni, Turno_Fecha, Especialidad_Codigo,
 	                MAX(Consulta_Sintomas) Consulta_Sintomas,
-	                MAX(Consulta_Enfermedades) Consulta_Enfermedades
+	                MAX(Consulta_Enfermedades) Consulta_Enfermedades,
+	                mario_killers.Turno_Valido(Turno_Fecha) AS Turno_Activo
 	FROM gd_esquema.Maestra
 	WHERE Turno_Numero IS NOT NULL
 	GROUP BY Turno_Numero, Paciente_Dni, Medico_Dni, Turno_Fecha, Especialidad_Codigo
@@ -162,10 +172,11 @@ INSERT INTO mario_killers.Compra (fecha, persona, plan_medico)
 
 -- Turnos
 SET IDENTITY_INSERT mario_killers.Turno ON
-INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad, sintomas, diagnostico)
+INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad, sintomas, diagnostico, activo)
 	SELECT Turno_Numero, Paciente_Dni,
 	       Medico_Dni, Turno_Fecha, Especialidad_Codigo,
-	       Consulta_Sintomas, Consulta_Enfermedades
+	       Consulta_Sintomas, Consulta_Enfermedades,
+	       Turno_Activo
 	FROM mario_killers.Turnos
 SET IDENTITY_INSERT mario_killers.Turno OFF
 GO

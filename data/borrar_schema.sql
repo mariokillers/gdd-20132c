@@ -2,6 +2,7 @@
 DROP VIEW mario_killers.AfiliadosABM, mario_killers.ProfesionalYPersona, mario_killers.ProfesionalABM, mario_killers.AfiliadosParaCompra
 
 DROP TABLE
+	mario_killers.Historia_Clinica,
 	mario_killers.Medicamento_Turno,
     mario_killers.Medicamento,
     mario_killers.Bono_Farmacia,

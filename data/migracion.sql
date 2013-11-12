@@ -172,14 +172,18 @@ INSERT INTO mario_killers.Compra (fecha, persona, plan_medico)
 
 -- Turnos
 SET IDENTITY_INSERT mario_killers.Turno ON
-INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad, sintomas, diagnostico, activo)
+INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad, activo, horario_llegada)
 	SELECT Turno_Numero, Paciente_Dni,
 	       Medico_Dni, Turno_Fecha, Especialidad_Codigo,
-	       Consulta_Sintomas, Consulta_Enfermedades,
-	       Turno_Activo
+	       Turno_Activo, Turno_Fecha
 	FROM mario_killers.Turnos
 SET IDENTITY_INSERT mario_killers.Turno OFF
 GO
+
+-- Historia clinica
+INSERT INTO mario_killers.Historia_Clinica (afiliado, profesional, horario_atencion, sintomas, diagnostico)
+	SELECT Paciente_Dni, Medico_Dni, Turno_Fecha, Consulta_Sintomas, Consulta_Enfermedades
+	FROM mario_killers.Turnos
 
 -- Bonos consulta
 INSERT INTO mario_killers.Bono_Consulta (compra, turno, plan_medico)
@@ -223,3 +227,6 @@ ALTER TABLE mario_killers.Turno WITH NOCHECK
 	
 ALTER TABLE mario_killers.Medicamento_Turno WITH NOCHECK
 	ADD CONSTRAINT max_5_receta CHECK ( mario_killers.cant_medicamentos(turno) <= 5)
+	
+ALTER TABLE mario_killers.Turno WITH NOCHECK
+	ADD CONSTRAINT horario_valido CHECK (mario_killers.Turno_Valido(horario) = 1)

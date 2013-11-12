@@ -387,12 +387,20 @@ CREATE TABLE mario_killers.Turno (
 	activo bit
 		CONSTRAINT turno_activo DEFAULT 1,
 	horario_llegada datetime,
-	sintomas text,
-	diagnostico text,
 	PRIMARY KEY (id),
 	FOREIGN KEY (persona) REFERENCES mario_killers.Persona(id),
 	FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona),
 	FOREIGN KEY (especialidad) REFERENCES mario_killers.Especialidad(codigo)
+)
+
+CREATE TABLE mario_killers.Historia_Clinica (
+	afiliado numeric(18, 0) NOT NULL,
+	profesional numeric(18, 0) NOT NULL,
+	horario_atencion datetime NOT NULL,
+	sintomas text,
+	diagnostico text,
+	FOREIGN KEY (afiliado) REFERENCES mario_killers.Afiliado(persona),
+	FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona)
 )
 
 CREATE TABLE mario_killers.Compra (

@@ -63,7 +63,7 @@ namespace Clinica_Frba.Clases
         public Afiliado()
         { }
 
-        public bool ActualizarHistoriaClinica(Profesional unProfesional, TimeSpan hora, string sintomas, string diagnosticos)
+        public bool ActualizarHistoriaClinica(Profesional unProfesional, DateTime hora, string sintomas, string diagnosticos)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@afiliado", this.Id));
@@ -72,7 +72,7 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(new SqlParameter("@diagnostico", diagnosticos));
             ListaParametros.Add(new SqlParameter("@sintomas", sintomas));
 
-            return Clases.BaseDeDatosSQL.EscribirEnBase("insert into mario_killers.Historia_Clinica (afiliado,profesional,hora_atencion, diagnostico, sintomas) values (@afiliado,@profesional, @hora_atencion, @diagnostico, @sintomas)", "T", ListaParametros);
+            return Clases.BaseDeDatosSQL.EscribirEnBase("insert into mario_killers.Historia_Clinica (afiliado, profesional, horario_atencion, diagnostico, sintomas) values (@afiliado,@profesional, @hora_atencion, @diagnostico, @sintomas)", "T", ListaParametros);
         }
 
         public Afiliado(string numeroAfiliado)
@@ -110,8 +110,6 @@ namespace Clinica_Frba.Clases
 
         public bool Agregar(Afiliado unAfiliado)
         {
-            //ANTES DE DAR UNA ALTA DE AFILIADO,HAY QUE DAR DE ALTA LA PERSONA
-
             List<SqlParameter> Lista = new List<SqlParameter>();
             Lista.Add(new SqlParameter("@persona", unAfiliado.Codigo_Persona));
             Lista.Add(new SqlParameter("@estado_civil", unAfiliado.Estado_Civil));

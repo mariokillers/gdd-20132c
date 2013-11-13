@@ -34,8 +34,9 @@ namespace Clinica_Frba.NewFolder6
         {
             try
             {
-                fecha = dtpFechaAtencion.Value;
+                fecha = dtpFechaAtencion.Value.Date;
                 hora = (TimeSpan)cmbHora.SelectedValue;
+                fecha = fecha.Add(hora);
 
                 gpHistoriaClinica.Visible = true;
             }
@@ -46,13 +47,26 @@ namespace Clinica_Frba.NewFolder6
         {
             if (txtDiagnostico.Text != "" && txtSintomas.Text != "")
             {
-                if(afiliado.ActualizarHistoriaClinica(profesional,hora,txtSintomas.Text,txtDiagnostico.Text))
+                if(afiliado.ActualizarHistoriaClinica(profesional,fecha,txtSintomas.Text,txtDiagnostico.Text))
                 {
                     gpRecetas.Visible = true;
+                    Limpiar();
                     MessageBox.Show("Se ha actualizado correctamente la historia clinica del paciente", "EnHoraBuena!", MessageBoxButtons.OK);
                 }
             }
             else { MessageBox.Show("Complete correctamente todos los campos", "Error!", MessageBoxButtons.OK); }
+        }
+
+        private void Limpiar()
+        {
+            txtDiagnostico.Text = "";
+            txtSintomas.Text = "";
+            txtSintomas.Enabled = false;
+            txtSintomas.Enabled = false;
+            cmbHora.Enabled = false;
+            dtpFechaAtencion.Enabled = false;
+            cmdAceptar.Enabled = false;
+            cmdConfirmarSintomas.Enabled = false;
         }
     }
 }

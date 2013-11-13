@@ -10,6 +10,8 @@ using Clinica_Frba.Clases;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using Clinica_Frba.NewFolder12;
+using Clinica_Frba.Abm_de_Profesional;
+using Clinica_Frba.NewFolder6;
 
 namespace Clinica_Frba.Abm_de_Afiliado
 {
@@ -26,6 +28,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
         private List<SqlParameter> ListaDeParametros = new List<SqlParameter>();
         //PARA SABER SI ES MODIFICACION O BAJA
         public string Operacion { get; set; }
+        public Profesional profesional { get; set; }
 
         public Afiliado unAfiliado = new Afiliado();
 
@@ -38,8 +41,13 @@ namespace Clinica_Frba.Abm_de_Afiliado
             cmbPlanes.ValueMember = "Codigo";
             cmbPlanes.DisplayMember = "Descripcion";
 
-            cargarGrilla();           
-            
+            cargarGrilla();
+
+            if (Operacion == "Seleccion")
+            {
+                btnAction.Text = "Seleccionar";
+                btnGrupoFlia.Visible = false;
+            }   
         }
 
         private void cmdBuscar_Click(object sender, EventArgs e)
@@ -149,14 +157,22 @@ namespace Clinica_Frba.Abm_de_Afiliado
                     Afiliados.Eliminar(unAfiliado.Id);
                     Limpiar();
                 }
+                else if (Operacion == "Modificacion")
+                {
+                    frmAfiliadoAlta formAfil = new frmAfiliadoAlta();
+                    formAfil.Operacion = this.Operacion;
+                    formAfil.Afiliado = unAfiliado;
+                    formAfil.Show();
+                }
                 else
                 {
-                    if (Operacion == "Modificacion")
+                    if (Operacion == "Seleccion")
                     {
-                        frmAfiliadoAlta formAfil = new frmAfiliadoAlta();
-                        formAfil.Operacion = this.Operacion;
-                        formAfil.Afiliado = unAfiliado;
-                        formAfil.Show();
+                        frmAtencion formAtencion = new frmAtencion();
+                        formAtencion.afiliado = unAfiliado;
+                        formAtencion.profesional = profesional;
+                        formAtencion.Show();
+                        this.Close();
                     }
                 }
             }
@@ -180,16 +196,6 @@ namespace Clinica_Frba.Abm_de_Afiliado
             {
                 MessageBox.Show("No se selecciono ningun afiliado", "Error!", MessageBoxButtons.OK);
             }
-
-        }
-
-        private void txtNumAfiliado_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
 
         }
     }

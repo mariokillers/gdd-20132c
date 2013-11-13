@@ -140,8 +140,8 @@ namespace Clinica_Frba
             cmdTurnos.Visible = listaDeFunc.Contains("Pedido de turno");
             cmdCompraDeBonos.Visible = listaDeFunc.Contains("Compra de bonos");
             cmdRegistrarLlegada.Visible = listaDeFunc.Contains("Registro de llegada para atención médica");
-            cmdAtencion.Visible = listaDeFunc.Contains("Registro de resultado para atención médica");
-            
+            //cmdAtencion.Visible = listaDeFunc.Contains("Registro de resultado para atención médica");
+            cmdAtencion.Visible = true;
             /*
 	       ('Registrar diagnóstico'),
 	       ('Cancelar atención médica'),
@@ -211,6 +211,14 @@ namespace Clinica_Frba
             lstTurno frmTurno = new lstTurno();
             frmTurno.unUser = this.User;
             frmTurno.Show();
+        }
+
+        private void cmdAtencion_Click(object sender, EventArgs e)
+        {
+            lstSeleccionAfiliado formAfil = new lstSeleccionAfiliado();
+            formAfil.Operacion = "Seleccion";
+            formAfil.profesional = new Profesional(User.Codigo_Persona);
+            formAfil.Show();
         }
     }
 }

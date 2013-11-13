@@ -94,7 +94,6 @@
             this.txtNumAfiliado.Name = "txtNumAfiliado";
             this.txtNumAfiliado.Size = new System.Drawing.Size(100, 20);
             this.txtNumAfiliado.TabIndex = 5;
-            this.txtNumAfiliado.TextChanged += new System.EventHandler(this.txtNumAfiliado_TextChanged);
             // 
             // cmbPlanes
             // 
@@ -153,7 +152,6 @@
             this.label1.Size = new System.Drawing.Size(99, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Numero de Afiliado:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // cmdLimpiar
             // 

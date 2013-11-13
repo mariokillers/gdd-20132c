@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Clinica_Frba.Clases
 {
-    class Hora
+    public class Hora
     {
         public string HoraAMostrar { get; set; }
         public TimeSpan LaHora { get; set; }

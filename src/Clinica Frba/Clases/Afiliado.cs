@@ -7,6 +7,7 @@ using System.Data.OleDb;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using Clinica_Frba.Abm_de_Profesional;
 
 namespace Clinica_Frba.Clases
 {
@@ -62,14 +63,18 @@ namespace Clinica_Frba.Clases
         public Afiliado()
         { }
 
-        /*public Turno ObtenerProximoTurno()
+        public bool ActualizarHistoriaClinica(Profesional unProfesional, TimeSpan hora, string sintomas, string diagnosticos)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@persona", Id));
+            ListaParametros.Add(new SqlParameter("@afiliado", this.Id));
+            ListaParametros.Add(new SqlParameter("@profesional", unProfesional.Id));
+            ListaParametros.Add(new SqlParameter("@hora_atencion", hora));
+            ListaParametros.Add(new SqlParameter("@diagnostico", diagnosticos));
+            ListaParametros.Add(new SqlParameter("@sintomas", sintomas));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Turno WHERE persona=@persona", "T", ListaParametros);
+            return Clases.BaseDeDatosSQL.EscribirEnBase("insert into mario_killers.Historia_Clinica (afiliado,profesional,hora_atencion, diagnostico, sintomas) values (@afiliado,@profesional, @hora_atencion, @diagnostico, @sintomas)", "T", ListaParametros);
+        }
 
-        }*/
         public Afiliado(string numeroAfiliado)
         {
             int numGrupo = Int32.Parse(numeroAfiliado.Remove(numeroAfiliado.Length - 2));

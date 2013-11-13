@@ -48,12 +48,12 @@
             this.cmdEstadisticas = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdTurnos = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdCompraDeBonos = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdRegistrarLlegada = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdLogOut = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdAtencion = new System.Windows.Forms.ToolStripMenuItem();
             this.cmbRoles = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdIngresar = new System.Windows.Forms.Button();
-            this.cmdRegistrarLlegada = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmdAtencion = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,8 +68,8 @@
             this.cmdTurnos,
             this.cmdCompraDeBonos,
             this.cmdRegistrarLlegada,
-            this.cmdLogOut,
-            this.cmdAtencion});
+            this.cmdAtencion,
+            this.cmdLogOut});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(957, 24);
@@ -212,12 +212,25 @@
             this.cmdCompraDeBonos.Text = "Compra de Bonos";
             this.cmdCompraDeBonos.Click += new System.EventHandler(this.cmdCompraDeBonos_Click);
             // 
+            // cmdRegistrarLlegada
+            // 
+            this.cmdRegistrarLlegada.Name = "cmdRegistrarLlegada";
+            this.cmdRegistrarLlegada.Size = new System.Drawing.Size(109, 20);
+            this.cmdRegistrarLlegada.Text = "Registrar Llegada";
+            // 
             // cmdLogOut
             // 
             this.cmdLogOut.Name = "cmdLogOut";
             this.cmdLogOut.Size = new System.Drawing.Size(87, 20);
             this.cmdLogOut.Text = "Cerrar sesion";
             this.cmdLogOut.Click += new System.EventHandler(this.cmdLogOut_Click);
+            // 
+            // cmdAtencion
+            // 
+            this.cmdAtencion.Name = "cmdAtencion";
+            this.cmdAtencion.Size = new System.Drawing.Size(109, 20);
+            this.cmdAtencion.Text = "Atención Médica";
+            this.cmdAtencion.Click += new System.EventHandler(this.cmdAtencion_Click);
             // 
             // cmbRoles
             // 
@@ -249,18 +262,6 @@
             this.cmdIngresar.UseVisualStyleBackColor = true;
             this.cmdIngresar.Visible = false;
             this.cmdIngresar.Click += new System.EventHandler(this.cmdIngresar_Click);
-            // 
-            // cmdRegistrarLlegada
-            // 
-            this.cmdRegistrarLlegada.Name = "cmdRegistrarLlegada";
-            this.cmdRegistrarLlegada.Size = new System.Drawing.Size(109, 20);
-            this.cmdRegistrarLlegada.Text = "Registrar Llegada";
-            // 
-            // cmdAtencion
-            // 
-            this.cmdAtencion.Name = "cmdAtencion";
-            this.cmdAtencion.Size = new System.Drawing.Size(109, 20);
-            this.cmdAtencion.Text = "Atención Médica";
             // 
             // frmPrincipal
             // 

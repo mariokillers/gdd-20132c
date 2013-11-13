@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Clinica_Frba.Clases
 {
-    class Turno
+    public class Turno
     {
         public decimal Id { get; set; }
         public decimal Codigo_Persona { get; set; }
@@ -13,6 +13,9 @@ namespace Clinica_Frba.Clases
         public DateTime Fecha { get; set; }
         public decimal Codigo_Especialidad { get; set; }
         public bool Estado { get; set; }
+        public string Diagnostico { get; set; }
+        public string Sintomas { get; set; }
         public DateTime Horario_Llegada { get; set; }
+        public DateTime Horario_Atencion { get; set; }
     }
 }

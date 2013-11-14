@@ -77,6 +77,7 @@ namespace Clinica_Frba.Pedir_Turno
 
                     foreach (Turno turno in listaCompleta)
                     {
+                //        MessageBox.Show("fecha: " + turno.Fecha, "test", MessageBoxButtons.OK);
                         if(Turnos.VerificarTurnoLibre(turno)) listaTurnos.Add(turno);
                     }
 

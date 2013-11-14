@@ -56,5 +56,52 @@ namespace Clinica_Frba.Clases
             }
             return listaListado2;
         }
+
+        public static List<Listado1> ObtenerEspecialidadesMasCancelaciones(DateTime año, int semestre)
+        {
+            List<Listado1> listaListado2 = new List<Listado1>();
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@año", año));
+            ListaParametros.Add(new SqlParameter("@semestre", semestre));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("", "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                while (lector.Read())
+                {
+                    Listado1 unRegistro = new Listado1();
+                    unRegistro.EspecialidadMedica = (string)lector["especialidad"];
+                    unRegistro.CantCancelaciones = (int)lector["cantidad"];
+                    listaListado2.Add(unRegistro);
+                }
+            }
+            return listaListado2;
+        }
+
+        public static List<Listado2> ObtenerAfiliadosQueUsaronBonosQueNoCompraron(DateTime año, int semestre)
+        {
+            List<Listado2> listaListado2 = new List<Listado2>();
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@año", año));
+            ListaParametros.Add(new SqlParameter("@semestre", semestre));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("", "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                while (lector.Read())
+                {
+                    Listado2 unRegistro = new Listado2();
+                    unRegistro.Apellido = (string)lector["apellido"];
+                    unRegistro.Nombre = (string)lector["nombre"];
+                    unRegistro.CantBonos = (int)lector["cantidad"];
+                    listaListado2.Add(unRegistro);
+                }
+            }
+            return listaListado2;
+        }
     }
 }

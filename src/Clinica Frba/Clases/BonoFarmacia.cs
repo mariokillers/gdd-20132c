@@ -56,7 +56,10 @@ namespace Clinica_Frba.Clases
         public bool PuedeUsarlo(int codigoPersona)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@codigo", codigoPersona));
+            ListaParametros.Add(new SqlParameter("@codigoPersona", codigoPersona));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.BonoPorUsuario where persona=@codigoPersona", "T", ListaParametros);
+
         }
     }
 }

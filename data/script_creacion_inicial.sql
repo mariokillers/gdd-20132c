@@ -651,7 +651,7 @@ FROM mario_killers.Afiliado A JOIN mario_killers.Persona P ON A.persona = P.id
 GO
 
 CREATE VIEW mario_killers.BonoPorUsuario AS
-SELECT a.grupo_familia, bf.codigo
+SELECT a.grupo_familia AS grupo_familia, bf.codigo AS codigo_bono, p.id AS persona
 FROM mario_killers.Bono_Farmacia bf
 	JOIN mario_killers.Compra c ON c.id = bf.compra
 	JOIN mario_killers.Persona p ON p.id = c.persona

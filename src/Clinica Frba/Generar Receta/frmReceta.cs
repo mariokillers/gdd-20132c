@@ -26,13 +26,6 @@ namespace Clinica_Frba.NewFolder5
 
         private void frmRegistroLlegada_Load(object sender, EventArgs e)
         {
-
-            /*List<Medicamento> listaDeMedicamentos = Medicamentos.ObtenerMedicamentos();
-            cmbMedicamentos.DataSource = listaDeMedicamentos;
-            cmbMedicamentos.ValueMember = "Detalle";
-            cmbMedicamentos.DisplayMember = "Detalle";*/
-
-
             NecesitaBono = true;
 
             cmdCant.Enabled = false;
@@ -111,6 +104,8 @@ namespace Clinica_Frba.NewFolder5
                             listaDeBonos.Add(unBono);
                             ActualizarGrillaBonos();
                             receta = new Receta(Int32.Parse(txtNumeroBono.Text));
+                            receta.Codigo_Bono_Farmacia = unBono.Id;
+
                             cmdCant.Enabled = true;
                             cmdSeleccionarMed.Enabled = true;
                             cmdAgregarMedicamento.Enabled = true;
@@ -165,17 +160,21 @@ namespace Clinica_Frba.NewFolder5
                     {
                         if (!receta.ListaMedicamentos.Any(p => p.Detalle == medicamento.Detalle))
                         {
-                            medicamento.Codigo_Bono_Farmacia = Int32.Parse(txtNumeroBono.Text);
                             medicamento.Cantidad = (int)cmdCant.Value;
                             medicamento.CantidadEnLetras = Utiles.DameEnLetras(medicamento.Cantidad);
                             receta.ListaMedicamentos = AgregarAListaMedicamentos(medicamento);
+
                             ActualizarGrillaRecetas();
+
                             if (receta.ListaMedicamentos.Count >= 5)
                             {
                                 NecesitaBono = true;
                                 txtNumeroBono.Text = "";
                                 txtNumeroBono.Enabled = true;
                                 cmdAceptar.Enabled = true;
+
+                                listaDeRecetas.Add(receta);
+                                receta = null;
                             }
                             cmdSeleccionarMed.Enabled = true;
                         }

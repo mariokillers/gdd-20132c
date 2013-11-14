@@ -66,7 +66,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel2.Controls.Add(this.grillaRecetas);
-            this.splitContainer1.Size = new System.Drawing.Size(712, 531);
+            this.splitContainer1.Size = new System.Drawing.Size(564, 531);
             this.splitContainer1.SplitterDistance = 185;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -180,7 +180,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 531);
+            this.ClientSize = new System.Drawing.Size(564, 531);
             this.Controls.Add(this.splitContainer1);
             this.Name = "frmReceta";
             this.Text = "Receta médica";

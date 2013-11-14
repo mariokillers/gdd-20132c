@@ -52,5 +52,11 @@ namespace Clinica_Frba.Clases
         {
             return (FechaVencimiento.Date < hoy.Date);
         }
+
+        public bool PuedeUsarlo(int codigoPersona)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@codigo", codigoPersona));
+        }
     }
 }

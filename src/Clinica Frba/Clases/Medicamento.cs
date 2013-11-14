@@ -10,7 +10,5 @@ namespace Clinica_Frba.Clases
         public string Detalle { get; set; }
         public int Cantidad { get; set; }
         public string CantidadEnLetras { get; set; }
-        //provisorio
-        public int Codigo_Bono_Farmacia { get; set; }
     }
 }

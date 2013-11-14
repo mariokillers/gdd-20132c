@@ -649,3 +649,11 @@ FROM mario_killers.Afiliado A JOIN mario_killers.Persona P ON A.persona = P.id
          JOIN mario_killers.Grupo_Familia GF ON A.grupo_familia = GF.codigo
          JOIN mario_killers.Tipo_Documento TD ON P.tipo_doc = TD.id
 GO
+
+CREATE VIEW mario_killers.BonoPorUsuario AS
+SELECT a.grupo_familia
+FROM mario_killers.Bono_Farmacia bf
+	JOIN mario_killers.Compra c ON c.id = bf.compra
+	JOIN mario_killers.Persona p ON p.id = c.persona
+	JOIN mario_killers.Afiliado a ON a.persona = p.id
+GO

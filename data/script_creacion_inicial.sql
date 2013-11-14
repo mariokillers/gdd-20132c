@@ -582,6 +582,18 @@ GO
 
 INSERT mario_killers.Especialidad_Profesional (profesional, especialidad) VALUES (1, 1)
 GO
+
+SET IDENTITY_INSERT mario_killers.Rango ON
+INSERT INTO mario_killers.Rango (id, dia, profesional, hora_desde, hora_hasta) VALUES (1, 2, 1, '7:00', '10:00')
+INSERT INTO mario_killers.Rango (id, dia, profesional, hora_desde, hora_hasta) VALUES (2, 2, 1, '15:00', '18:00')
+INSERT INTO mario_killers.Rango (id, dia, profesional, hora_desde, hora_hasta) VALUES (3, 3, 1, '7:00', '10:00')
+INSERT INTO mario_killers.Rango (id, dia, profesional, hora_desde, hora_hasta) VALUES (4, 4, 1, '15:00', '18:00')
+SET IDENTITY_INSERT mario_killers.Rango OFF
+GO
+
+INSERT INTO mario_killers.Agenda (profesional, desde, hasta) VALUES (1, '01/01/2014', '04/01/2014')
+GO
+
 -- Vistas ABM
 CREATE VIEW mario_killers.AfiliadosABM AS 
 SELECT A.persona AS persona, A.grupo_familia AS grupo_familia, A.nro_familiar AS nro_familiar, P.apellido AS apellido, P.nombre AS nombre, P.documento AS documento, GF.plan_medico AS plan_medico, 

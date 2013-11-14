@@ -18,7 +18,7 @@ namespace Clinica_Frba.Clases
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@txt", "%" + filtro + "%"));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id, nombre FROM mario_killers.Rol WHERE nombre like @txt", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id, nombre, activo FROM mario_killers.Rol WHERE nombre like @txt", "T", ListaParametros);
 
             if (lector.HasRows)
             {

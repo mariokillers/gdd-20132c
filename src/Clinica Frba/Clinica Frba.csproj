@@ -126,6 +126,10 @@
     <Compile Include="Clases\Grupo.cs" />
     <Compile Include="Clases\Grupos.cs" />
     <Compile Include="Clases\Hora.cs" />
+    <Compile Include="Clases\Listado1.cs" />
+    <Compile Include="Clases\Listado2.cs" />
+    <Compile Include="Clases\Listado3.cs" />
+    <Compile Include="Clases\Listados.cs" />
     <Compile Include="Clases\Medicamento.cs" />
     <Compile Include="Clases\Medicamentos.cs" />
     <Compile Include="Clases\Persona.cs" />

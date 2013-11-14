@@ -9,7 +9,9 @@ namespace Clinica_Frba.Clases
     {
         public decimal Id { get; set; }
         public decimal Codigo_Persona { get; set; }
+        public String Nombre_Persona { get; set; }
         public decimal Codigo_Profesional { get; set; }
+        public String Nombre_Profesional { get; set; }
         public DateTime Fecha { get; set; }
         public TimeSpan Horario { get; set; }
         public decimal Codigo_Especialidad { get; set; }

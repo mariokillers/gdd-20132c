@@ -656,3 +656,10 @@ FROM mario_killers.Bono_Farmacia bf
 	join mario_killers.Compra c on c.id = bf.compra
 	join mario_killers.Afiliado a on a.persona = c.persona
 GO
+
+CREATE VIEW mario_killers.TurnosPorPaciente AS
+SELECT T.id AS id, T.persona AS paciente_id, PA.nombre + ' ' + PA.apellido AS paciente, 
+	   T.profesional AS profesional_id, PP.nombre + ' ' + PP.apellido AS profesional, T.horario AS fecha, T.especialidad AS especialidad
+FROM mario_killers.Turno T JOIN mario_killers.Persona PA ON T.persona = PA.id
+						   JOIN mario_killers.Persona PP ON T.profesional = PP.id
+GO

@@ -46,6 +46,7 @@
             this.btnAction.TabIndex = 12;
             this.btnAction.Text = "Confirmar";
             this.btnAction.UseVisualStyleBackColor = true;
+            this.btnAction.Click += new System.EventHandler(this.btnAction_Click);
             // 
             // grillaTurnos
             // 

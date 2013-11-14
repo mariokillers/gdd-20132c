@@ -145,6 +145,7 @@
     <Compile Include="Clases\TipoEspecialidad.cs" />
     <Compile Include="Clases\TiposDoc.cs" />
     <Compile Include="Clases\Turno.cs" />
+    <Compile Include="Clases\Turnos.cs" />
     <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Clases\Usuarios.cs" />
     <Compile Include="Clases\Utiles.cs" />

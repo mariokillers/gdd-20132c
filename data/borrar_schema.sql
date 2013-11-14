@@ -1,5 +1,5 @@
 -- Esto NO es parte de la entrega, solo es para testear el script
-DROP VIEW mario_killers.AfiliadosABM, mario_killers.ProfesionalYPersona, mario_killers.ProfesionalABM, mario_killers.AfiliadosParaCompra, mario_killers.BonoYcompra
+DROP VIEW mario_killers.AfiliadosABM, mario_killers.ProfesionalYPersona, mario_killers.ProfesionalABM, mario_killers.AfiliadosParaCompra, mario_killers.BonoYcompra, mario_killers.TurnosPorPaciente
 
 DROP TABLE
 	mario_killers.Cancelacion,

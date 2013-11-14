@@ -53,13 +53,24 @@ namespace Clinica_Frba.Clases
             return (FechaVencimiento.Date < hoy.Date);
         }
 
-        public bool PuedeUsarlo(int codigoPersona)
+        public bool PuedeUsarlo(Afiliado unAfiliado)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@codigoPersona", codigoPersona));
+            ListaParametros.Add(new SqlParameter("@codigoPersona", unAfiliado.Id));
 
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.BonoPorUsuario where persona=@codigoPersona", "T", ListaParametros);
 
+            if (lector.HasRows)
+            {
+                lector.Read();
+                int codigoFlia = (int)(decimal)lector["grupo_familia"];
+                if (codigoFlia == unAfiliado.Numero_Grupo)
+                {
+                    return true;
+                }
+                else { return false; }
+            }
+            else { return false; }
         }
     }
 }

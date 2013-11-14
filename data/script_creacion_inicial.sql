@@ -464,6 +464,22 @@ CREATE TABLE mario_killers.Medicamento_Turno (
 	FOREIGN KEY (medicamento) REFERENCES mario_killers.Medicamento(detalle),
 	CONSTRAINT max_3_medicamento CHECK (cantidad <= 3)
 )
+GO
+
+CREATE TABLE mario_killers.Tipo_Cancelacion (
+	id numeric(18,0),
+	descripcion varchar(255),
+	PRIMARY KEY (id)
+)
+GO
+
+CREATE TABLE mario_killers.Cancelacion (
+	tipo numeric(18,0),
+	motivo varchar(255),
+	persona numeric(18,0),
+	FOREIGN KEY (persona) REFERENCES mario_killers.Persona
+)
+GO
 
 --------------------------------- DATOS INICIALES -----------------------------
 
@@ -592,6 +608,12 @@ SET IDENTITY_INSERT mario_killers.Rango OFF
 GO
 
 INSERT INTO mario_killers.Agenda (profesional, desde, hasta) VALUES (1, '01/01/2014', '04/01/2014')
+GO
+
+INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (1, 'Evento Imprevisto')
+INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (2, 'Problemas Laborales')
+INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (3, 'Problema Personal')
+INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (4, 'Factor Climatico')
 GO
 
 -- Vistas ABM

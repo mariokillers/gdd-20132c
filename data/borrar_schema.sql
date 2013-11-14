@@ -2,6 +2,8 @@
 DROP VIEW mario_killers.AfiliadosABM, mario_killers.ProfesionalYPersona, mario_killers.ProfesionalABM, mario_killers.AfiliadosParaCompra
 
 DROP TABLE
+	mario_killers.Cancelacion,
+	mario_killers.Tipo_Cancelacion,
 	mario_killers.Historia_Clinica,
 	mario_killers.Medicamento_Turno,
     mario_killers.Medicamento,
@@ -33,8 +35,8 @@ DROP FUNCTION mario_killers.horas_por_semana,
               mario_killers.horas_se_pisan,
               mario_killers.horario_atencion,
               mario_killers.roles_usuario,
-              mario_killers.cant_medicamentos,
-              mario_killers.Turno_Valido
+              mario_killers.cant_medicamentos
+              --mario_killers.Turno_Valido
 
 DROP PROCEDURE mario_killers.agregar_funcionalidad,
                mario_killers.agregarPlanAlGrupo,

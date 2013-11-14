@@ -167,6 +167,15 @@ AS BEGIN
 END
 GO
 
+CREATE FUNCTION mario_killers.Turno_Valido(@fecha datetime)
+RETURNS BIT
+AS BEGIN
+	IF DATEPART(weekday, @fecha) = 1
+		RETURN 0
+	RETURN 1
+END
+GO
+
 CREATE FUNCTION mario_killers.horario_atencion(@hora datetime) returns numeric(18, 0)
 AS BEGIN
 	DECLARE @result numeric(18, 0)
@@ -415,11 +424,13 @@ CREATE TABLE mario_killers.Turno (
 )
 
 CREATE TABLE mario_killers.Historia_Clinica (
+	id numeric(18, 0) IDENTITY,
 	afiliado numeric(18, 0) NOT NULL,
 	profesional numeric(18, 0) NOT NULL,
 	horario_atencion datetime NOT NULL,
 	sintomas text,
 	diagnostico text,
+	PRIMARY KEY (id),
 	FOREIGN KEY (afiliado) REFERENCES mario_killers.Afiliado(persona),
 	FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona)
 )
@@ -462,25 +473,26 @@ CREATE TABLE mario_killers.Medicamento (
 )
 GO
 
-CREATE FUNCTION mario_killers.cant_medicamentos(@turno_id numeric(18, 0)) returns int
+CREATE FUNCTION mario_killers.cant_medicamentos(@historia_id numeric(18, 0)) returns int
 AS BEGIN
 	RETURN (
 			SELECT COUNT(DISTINCT medicamento)
-			FROM mario_killers.Medicamento_Turno
-			GROUP BY turno
+			FROM mario_killers.Medicamento_HistoriaClinica
+			WHERE historia_clinica = @historia_id
+			GROUP BY historia_clinica
 			HAVING COUNT(DISTINCT medicamento) > 5
 	)
 END
 GO
 
-CREATE TABLE mario_killers.Medicamento_Turno (
+CREATE TABLE mario_killers.Medicamento_HistoriaClinica (
 	medicamento varchar(255),
-	turno numeric(18, 0),
+	historia_clinica numeric(18, 0),
 	cantidad numeric(18, 0)
 		CONSTRAINT default_1_med DEFAULT 1,
 	bono_farmacia numeric(18, 0),
-	PRIMARY KEY (medicamento, turno),
-	FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id),
+	PRIMARY KEY (medicamento, historia_clinica),
+	FOREIGN KEY (historia_clinica) REFERENCES mario_killers.Historia_Clinica(id),
 	FOREIGN KEY (bono_farmacia) REFERENCES mario_killers.Bono_Farmacia(codigo),
 	FOREIGN KEY (medicamento) REFERENCES mario_killers.Medicamento(detalle),
 	CONSTRAINT max_3_medicamento CHECK (cantidad <= 3)

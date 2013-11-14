@@ -4,8 +4,8 @@ DROP VIEW mario_killers.AfiliadosABM, mario_killers.ProfesionalYPersona, mario_k
 DROP TABLE
 	mario_killers.Cancelacion,
 	mario_killers.Tipo_Cancelacion,
+	mario_killers.Medicamento_HistoriaClinica,
 	mario_killers.Historia_Clinica,
-	mario_killers.Medicamento_Turno,
     mario_killers.Medicamento,
     mario_killers.Bono_Farmacia,
     mario_killers.Bono_Consulta,

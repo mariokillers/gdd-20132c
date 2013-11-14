@@ -38,7 +38,7 @@ CREATE VIEW mario_killers.Medicamentos AS
 	WHERE Bono_Farmacia_Medicamento IS NOT NULL
 GO
 
-CREATE VIEW mario_killers.Medicamentos_Turno AS
+CREATE VIEW mario_killers.Medicamentos_HistoriaClinica AS
 	SELECT Bono_Farmacia_Medicamento, Turno_Numero, Bono_Farmacia_Numero
 	FROM gd_esquema.Maestra
 	WHERE Bono_Farmacia_Medicamento IS NOT NULL AND Turno_Numero IS NOT NULL
@@ -61,15 +61,6 @@ CREATE VIEW mario_killers.Bonos_Consulta AS
 	FROM gd_esquema.Maestra
 	WHERE Bono_Consulta_Numero IS NOT NULL
 	GROUP BY Bono_Consulta_Numero, Paciente_Dni
-GO
-
-CREATE FUNCTION mario_killers.Turno_Valido(@fecha datetime)
-RETURNS BIT
-AS BEGIN
-	IF DATEPART(weekday, @fecha) = 1
-		RETURN 0
-	RETURN 1
-END
 GO
 
 CREATE VIEW mario_killers.Turnos AS
@@ -181,9 +172,12 @@ SET IDENTITY_INSERT mario_killers.Turno OFF
 GO
 
 -- Historia clinica
-INSERT INTO mario_killers.Historia_Clinica (afiliado, profesional, horario_atencion, sintomas, diagnostico)
-	SELECT Paciente_Dni, Medico_Dni, Turno_Fecha, Consulta_Sintomas, Consulta_Enfermedades
+-- Inicialmente los ID de historia clinica son los numeros de turno
+SET IDENTITY_INSERT mario_killers.Historia_Clinica ON
+INSERT INTO mario_killers.Historia_Clinica (id, afiliado, profesional, horario_atencion, sintomas, diagnostico)
+	SELECT Turno_Numero, Paciente_Dni, Medico_Dni, Turno_Fecha, Consulta_Sintomas, Consulta_Enfermedades
 	FROM mario_killers.Turnos
+SET IDENTITY_INSERT mario_killers.Historia_Clinica OFF
 
 -- Bonos consulta
 INSERT INTO mario_killers.Bono_Consulta (compra, turno, plan_medico)
@@ -204,16 +198,17 @@ INSERT INTO mario_killers.Bono_Farmacia (codigo, compra, plan_medico, turno)
 SET IDENTITY_INSERT mario_killers.Bono_Farmacia OFF
 
 -- Medicamentos por turno
-INSERT INTO mario_killers.Medicamento_Turno (medicamento, turno, bono_farmacia)
+-- Inicialmente los ID de historia clinica son los numeros de turno
+INSERT INTO mario_killers.Medicamento_HistoriaClinica (medicamento, historia_clinica, bono_farmacia)
 	SELECT Bono_Farmacia_Medicamento, Turno_Numero, Bono_Farmacia_Numero
-	FROM mario_killers.Medicamentos_Turno
+	FROM mario_killers.Medicamentos_HistoriaClinica
 
 DROP VIEW mario_killers.Pacientes
          ,mario_killers.Medicos
          ,mario_killers.Especialidades
          ,mario_killers.Planes_Medicos
          ,mario_killers.Medicamentos
-         ,mario_killers.Medicamentos_Turno
+         ,mario_killers.Medicamentos_HistoriaClinica
          ,mario_killers.Bonos_Consulta
          ,mario_killers.Turnos
          ,mario_killers.Compras
@@ -225,8 +220,8 @@ DROP VIEW mario_killers.Pacientes
 ALTER TABLE mario_killers.Turno WITH NOCHECK
 	ADD CONSTRAINT fecha_turno CHECK (mario_killers.horario_atencion(horario) = 1)
 	
-ALTER TABLE mario_killers.Medicamento_Turno WITH NOCHECK
-	ADD CONSTRAINT max_5_receta CHECK ( mario_killers.cant_medicamentos(turno) <= 5)
+ALTER TABLE mario_killers.Medicamento_HistoriaClinica WITH NOCHECK
+	ADD CONSTRAINT max_5_receta CHECK ( mario_killers.cant_medicamentos(historia_clinica) <= 5)
 	
 ALTER TABLE mario_killers.Turno WITH NOCHECK
 	ADD CONSTRAINT horario_valido CHECK (mario_killers.Turno_Valido(horario) = 1)

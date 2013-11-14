@@ -9,6 +9,7 @@ namespace Clinica_Frba.Clases
     public class BonoFarmacia
     {
         public int Id { get; set; }
+        public string Detalle { get; set; }
         public int Codigo_Compra { get; set; }
         public int Codigo_Receta { get; set; }
         public int Codigo_Plan { get; set; }
@@ -20,6 +21,7 @@ namespace Clinica_Frba.Clases
         {
             Precio = (int)(new Plan((int)unAfiliado.Plan_Medico)).Precio_Bono_Farmacia;
             Codigo_Plan = (int)unAfiliado.Plan_Medico;
+            Detalle = "Bono Farmacia";
         }
 
         public BonoFarmacia(int codigo)
@@ -33,11 +35,16 @@ namespace Clinica_Frba.Clases
             if (lector.HasRows)
             {
                 lector.Read();
-                Codigo_Turno = (int)lector["turno"];
-                Codigo_Plan = (int)lector["plan_medico"];
-                Codigo_Compra = (int)lector ["compra"];
+                if (lector["turno"] != DBNull.Value)
+                {
+                    Codigo_Turno = (int)(decimal)lector["matricula"];
+                }
+                else { Codigo_Turno = -1; }
+                Codigo_Plan = (int)(decimal)lector["plan_medico"];
+                Codigo_Compra = (int)(decimal)lector["compra"];
                 Compra unaCompra = new Compra(Codigo_Compra);
                 FechaVencimiento = unaCompra.Fecha.AddDays(60);
+                Detalle = "Bono Farmacia";
             }
         }
 

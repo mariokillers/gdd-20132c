@@ -34,8 +34,8 @@ namespace Clinica_Frba.Clases
             {
                 lector.Read();
                 Fecha= (DateTime)lector["fecha"];
-                Codigo_Plan = (int)lector["plan_medico"];
-                Codigo_Persona = (int)lector["persona"];
+                Codigo_Plan = (int)(decimal)lector["plan_medico"];
+                Codigo_Persona = (int)(decimal)lector["persona"];
             }
         }
     }

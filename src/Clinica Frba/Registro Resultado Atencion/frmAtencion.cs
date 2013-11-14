@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Clinica_Frba.Clases;
 using Clinica_Frba.Abm_de_Profesional;
+using Clinica_Frba.NewFolder5;
 
 namespace Clinica_Frba.NewFolder6
 {
@@ -71,6 +72,14 @@ namespace Clinica_Frba.NewFolder6
 
         private void cmdFinalizar_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void cmdGeneraReceta_Click(object sender, EventArgs e)
+        {
+            frmReceta formReceta = new frmReceta();
+            formReceta.afiliado = afiliado;
+            formReceta.Show();
             this.Close();
         }
     }

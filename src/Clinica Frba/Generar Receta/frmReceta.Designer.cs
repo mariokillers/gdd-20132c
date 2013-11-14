@@ -1,6 +1,6 @@
 ﻿namespace Clinica_Frba.NewFolder5
 {
-    partial class frmRegistroLlegada
+    partial class frmReceta
     {
         /// <summary>
         /// Required designer variable.
@@ -29,16 +29,17 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.grillaBonos = new System.Windows.Forms.DataGridView();
+            this.txtNumeroBono = new System.Windows.Forms.TextBox();
+            this.lblNumeroAfiliado = new System.Windows.Forms.Label();
+            this.cmdAceptar = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.grillaRecetas = new System.Windows.Forms.DataGridView();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grillaBonos)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grillaRecetas)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +53,10 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel1);
+            this.splitContainer1.Panel1.Controls.Add(this.grillaBonos);
+            this.splitContainer1.Panel1.Controls.Add(this.txtNumeroBono);
+            this.splitContainer1.Panel1.Controls.Add(this.lblNumeroAfiliado);
+            this.splitContainer1.Panel1.Controls.Add(this.cmdAceptar);
             // 
             // splitContainer1.Panel2
             // 
@@ -61,38 +65,39 @@
             this.splitContainer1.SplitterDistance = 159;
             this.splitContainer1.TabIndex = 0;
             // 
-            // tableLayoutPanel1
+            // grillaBonos
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.66667F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(535, 143);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.grillaBonos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaBonos.Location = new System.Drawing.Point(13, 48);
+            this.grillaBonos.Name = "grillaBonos";
+            this.grillaBonos.Size = new System.Drawing.Size(541, 108);
+            this.grillaBonos.TabIndex = 10;
             // 
-            // label1
+            // txtNumeroBono
             // 
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(261, 61);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Número de turno";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.txtNumeroBono.Location = new System.Drawing.Point(200, 9);
+            this.txtNumeroBono.Name = "txtNumeroBono";
+            this.txtNumeroBono.Size = new System.Drawing.Size(100, 20);
+            this.txtNumeroBono.TabIndex = 9;
             // 
-            // label2
+            // lblNumeroAfiliado
             // 
-            this.label2.Location = new System.Drawing.Point(3, 61);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(261, 82);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Bono farmacia";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblNumeroAfiliado.AutoSize = true;
+            this.lblNumeroAfiliado.Location = new System.Drawing.Point(31, 9);
+            this.lblNumeroAfiliado.Name = "lblNumeroAfiliado";
+            this.lblNumeroAfiliado.Size = new System.Drawing.Size(131, 13);
+            this.lblNumeroAfiliado.TabIndex = 8;
+            this.lblNumeroAfiliado.Text = "Ingrese  Numero de Bono:";
+            // 
+            // cmdAceptar
+            // 
+            this.cmdAceptar.Location = new System.Drawing.Point(339, 7);
+            this.cmdAceptar.Name = "cmdAceptar";
+            this.cmdAceptar.Size = new System.Drawing.Size(75, 23);
+            this.cmdAceptar.TabIndex = 0;
+            this.cmdAceptar.Text = "Agregar";
+            this.cmdAceptar.UseVisualStyleBackColor = true;
+            this.cmdAceptar.Click += new System.EventHandler(this.cmdAceptar_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -125,19 +130,20 @@
             this.grillaRecetas.Size = new System.Drawing.Size(529, 235);
             this.grillaRecetas.TabIndex = 2;
             // 
-            // frmRegistroLlegada
+            // frmReceta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(559, 455);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "frmRegistroLlegada";
+            this.Name = "frmReceta";
             this.Text = "Receta médica";
             this.Load += new System.EventHandler(this.frmRegistroLlegada_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grillaBonos)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grillaRecetas)).EndInit();
             this.ResumeLayout(false);
@@ -149,10 +155,11 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView grillaRecetas;
+        private System.Windows.Forms.Button cmdAceptar;
+        private System.Windows.Forms.TextBox txtNumeroBono;
+        private System.Windows.Forms.Label lblNumeroAfiliado;
+        private System.Windows.Forms.DataGridView grillaBonos;
 
 
     }

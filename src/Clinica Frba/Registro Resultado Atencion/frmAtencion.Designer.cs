@@ -185,6 +185,7 @@
             this.cmdGeneraReceta.TabIndex = 57;
             this.cmdGeneraReceta.Text = "Si";
             this.cmdGeneraReceta.UseVisualStyleBackColor = true;
+            this.cmdGeneraReceta.Click += new System.EventHandler(this.cmdGeneraReceta_Click);
             // 
             // label25
             // 

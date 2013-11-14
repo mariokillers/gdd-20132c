@@ -620,7 +620,7 @@ INSERT INTO mario_killers.Agenda (profesional, desde, hasta) VALUES (1, '01/01/2
 GO
 
 SET IDENTITY_INSERT mario_killers.Turno ON
-INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad, activo) VALUES (1, 1, 1, '2014-01-06 07:00:00.000', 1, 1)
+INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad, activo) VALUES (1, 1, 1, '2014-01-06 07:00', 1, 1)
 SET IDENTITY_INSERT mario_killers.Turno OFF
 GO
 

@@ -54,8 +54,6 @@ namespace Clinica_Frba.Pedir_Turno
             ColHora.HeaderText = "Horario";
             ColHora.Width = 120;
             grillaHorarios.Columns.Add(ColHora);
-
-            cargarGrillaFechas();
         }
 
         private void cmdBuscar_Click(object sender, EventArgs e)
@@ -77,7 +75,7 @@ namespace Clinica_Frba.Pedir_Turno
 
                     foreach (Turno turno in listaCompleta)
                     {
-                //        MessageBox.Show("fecha: " + turno.Fecha, "test", MessageBoxButtons.OK);
+        //                MessageBox.Show("fecha string: " + turno.Fecha.ToString("yyyyMMdd") + turno.Horario.ToString(), "test", MessageBoxButtons.OK);
                         if(Turnos.VerificarTurnoLibre(turno)) listaTurnos.Add(turno);
                     }
 
@@ -95,11 +93,6 @@ namespace Clinica_Frba.Pedir_Turno
         {
             grillaHorarios.DataSource = listaVacia;
             listaTurnos = new List<Turno>();
-        }
-
-        public void cargarGrillaFechas()
-        {
-
         }
     }
 }

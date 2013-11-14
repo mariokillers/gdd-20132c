@@ -94,19 +94,26 @@ namespace Clinica_Frba.Clases
 
         public static decimal ExecStoredProcedure(string commandtext, List<SqlParameter> ListaParametro)
         {
-            SqlCommand comando = new SqlCommand();
-            comando.Connection = ObtenerConexion();
-            comando.CommandText = commandtext;
-            comando.CommandType = CommandType.StoredProcedure;
-
-            foreach (SqlParameter elemento in ListaParametro)
+            try
             {
-                comando.Parameters.Add(elemento);
-            }
+                SqlCommand comando = new SqlCommand();
+                comando.Connection = ObtenerConexion();
+                comando.CommandText = commandtext;
+                comando.CommandType = CommandType.StoredProcedure;
 
-            comando.ExecuteNonQuery();
-            return (decimal)comando.Parameters["@ret"].Value;
-        }
+                foreach (SqlParameter elemento in ListaParametro)
+                {
+                    comando.Parameters.Add(elemento);
+                }
+
+                comando.ExecuteNonQuery();
+                return (decimal)comando.Parameters["@ret"].Value;
+            }
+            catch
+            {
+                return 0;
+            }
+         }
 
     }
 

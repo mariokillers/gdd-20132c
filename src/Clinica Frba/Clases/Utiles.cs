@@ -212,6 +212,8 @@ namespace Clinica_Frba.Clases
                     foreach (Turno unTurno in unRango.TurnosDentro)
                     {
                         unTurno.Fecha = fecha;
+                        unTurno.Fecha.AddHours(unTurno.Horario.Hours);
+                        unTurno.Fecha.AddMinutes(unTurno.Horario.Minutes);
                         unTurno.Codigo_Profesional = unaAgenda.Profesional;
                     }
                     listaTurnos.AddRange(unRango.TurnosDentro);

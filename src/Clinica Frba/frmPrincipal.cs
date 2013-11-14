@@ -128,6 +128,7 @@ namespace Clinica_Frba
             cmdRegistrarLlegada.Visible = listaDeFunc.Contains("Registro de llegada para atención médica");
             cmdAtencion.Visible = listaDeFunc.Contains("Registro de resultado para atención médica");
             cmdEstadisticas.Visible = true;
+            
             /*,
 	       ('Cancelar atención médica'),
              * */

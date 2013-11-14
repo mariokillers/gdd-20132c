@@ -69,7 +69,7 @@ namespace Clinica_Frba.NewFolder7
             {
                 unTurno = (Turno)grillaTurnos.CurrentRow.DataBoundItem;
 
-                if ((System.DateTime.Today.Date.DayOfYear - unTurno.Fecha.Date.DayOfYear) >= 1)
+                if (((DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date.DayOfYear - unTurno.Fecha.Date.DayOfYear) >= 1))
                 {
                     Turnos.Cancelar(unTurno, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
                 }

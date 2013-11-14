@@ -28,7 +28,7 @@ namespace Clinica_Frba.NewFolder3
             grillaBonos.AutoGenerateColumns = false;
             cargarGrilla();
 
-            lblFechaCompra.Text = DateTime.Today.ToShortDateString();
+            lblFechaCompra.Text = DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).ToShortDateString();
             lblMontoAPagar.Text = "0";
             lblFechaVencimiento.Text = "";
             if (RolElegido.Nombre == "Afiliado")
@@ -198,7 +198,7 @@ namespace Clinica_Frba.NewFolder3
         private void rbFarmacia_CheckedChanged(object sender, EventArgs e)
         {
             lblPrecioPorBono.Text = (new BonoFarmacia(afiliado)).Precio.ToString();
-            lblFechaVencimiento.Text = (DateTime.Today.AddDays(60)).ToShortDateString();
+            lblFechaVencimiento.Text = (DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).AddDays(60)).ToShortDateString();
         }
 
         private void cmdCantBonos_ValueChanged(object sender, EventArgs e)

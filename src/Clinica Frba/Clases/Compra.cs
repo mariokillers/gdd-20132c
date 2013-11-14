@@ -17,7 +17,7 @@ namespace Clinica_Frba.Clases
 
         public Compra(Afiliado unAfiliado)
         {
-            Fecha = DateTime.Today;
+            Fecha = DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]);
             Codigo_Persona = (int)unAfiliado.Id;
             Codigo_Plan = (int)unAfiliado.Plan_Medico;
         }

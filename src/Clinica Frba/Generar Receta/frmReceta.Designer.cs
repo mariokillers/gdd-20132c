@@ -33,13 +33,13 @@
             this.txtNumeroBono = new System.Windows.Forms.TextBox();
             this.lblNumeroAfiliado = new System.Windows.Forms.Label();
             this.cmdAceptar = new System.Windows.Forms.Button();
+            this.cmdRecetar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmdSeleccionarMed = new System.Windows.Forms.Button();
             this.cmdAgregarMedicamento = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdCant = new System.Windows.Forms.NumericUpDown();
             this.grillaRecetas = new System.Windows.Forms.DataGridView();
-            this.cmdRecetar = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -62,6 +62,7 @@
             this.splitContainer1.Panel1.Controls.Add(this.txtNumeroBono);
             this.splitContainer1.Panel1.Controls.Add(this.lblNumeroAfiliado);
             this.splitContainer1.Panel1.Controls.Add(this.cmdAceptar);
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 
@@ -105,6 +106,16 @@
             this.cmdAceptar.Text = "Agregar";
             this.cmdAceptar.UseVisualStyleBackColor = true;
             this.cmdAceptar.Click += new System.EventHandler(this.cmdAceptar_Click);
+            // 
+            // cmdRecetar
+            // 
+            this.cmdRecetar.Location = new System.Drawing.Point(191, 299);
+            this.cmdRecetar.Name = "cmdRecetar";
+            this.cmdRecetar.Size = new System.Drawing.Size(75, 23);
+            this.cmdRecetar.TabIndex = 12;
+            this.cmdRecetar.Text = "Recetar";
+            this.cmdRecetar.UseVisualStyleBackColor = true;
+            this.cmdRecetar.Click += new System.EventHandler(this.cmdRecetar_Click);
             // 
             // groupBox1
             // 
@@ -177,16 +188,6 @@
             this.grillaRecetas.Name = "grillaRecetas";
             this.grillaRecetas.Size = new System.Drawing.Size(541, 150);
             this.grillaRecetas.TabIndex = 0;
-            // 
-            // cmdRecetar
-            // 
-            this.cmdRecetar.Location = new System.Drawing.Point(191, 299);
-            this.cmdRecetar.Name = "cmdRecetar";
-            this.cmdRecetar.Size = new System.Drawing.Size(75, 23);
-            this.cmdRecetar.TabIndex = 12;
-            this.cmdRecetar.Text = "Recetar";
-            this.cmdRecetar.UseVisualStyleBackColor = true;
-            this.cmdRecetar.Click += new System.EventHandler(this.cmdRecetar_Click);
             // 
             // frmReceta
             // 

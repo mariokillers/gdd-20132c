@@ -37,9 +37,7 @@ namespace Clinica_Frba.NewFolder10
                     {
                         //ACTUALIZAR CANT FALLIDOS
                         user.ActualizarFallidos(); MessageBox.Show("Usuario y contraseña no validos", "Error!", MessageBoxButtons.OK);
-                       
                     }
-
 
                     //VALIDAR EL USER
                     if (!user.Activo)
@@ -57,14 +55,10 @@ namespace Clinica_Frba.NewFolder10
                     formPrincipal.Show();
                 }
                 else
-                {
-                    MessageBox.Show("Complete todos los campos", "Error!", MessageBoxButtons.OK);
-                }
+                {   MessageBox.Show("Complete todos los campos", "Error!", MessageBoxButtons.OK);}
             }
             catch
-            {
-                MessageBox.Show("Usuario y contraseña no validos", "Error!", MessageBoxButtons.OK);
-            }
+            { MessageBox.Show("Usuario y contraseña no validos", "Error!", MessageBoxButtons.OK);}
         }
 
         //funcion para transformar lo hasheado a string

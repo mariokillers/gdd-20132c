@@ -97,7 +97,8 @@ namespace Clinica_Frba.NewFolder5
                 if (NecesitaBono)
                 {
                     BonoFarmacia unBono = new BonoFarmacia(Int32.Parse(txtNumeroBono.Text));
-                    if (!unBono.EstasVencido(DateTime.Today))
+                    BonoFarmacia bonoComparacion = new BonoFarmacia(afiliado);
+                    if (!unBono.EstasVencido(DateTime.Today) && unBono.PuedeUsarlo(bonoComparacion))
                     {
                         if (!listaDeBonos.Any(p => p.Id == unBono.Id))
                         {

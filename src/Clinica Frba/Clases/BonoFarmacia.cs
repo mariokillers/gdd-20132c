@@ -14,6 +14,7 @@ namespace Clinica_Frba.Clases
         public int Codigo_Receta { get; set; }
         public int Codigo_Plan { get; set; }
         public int Codigo_Turno { get; set; }
+        public int Grupo_Flia { get; set; }
         public int Precio { get; set; }
         public DateTime FechaVencimiento { get; set; }
 
@@ -22,6 +23,7 @@ namespace Clinica_Frba.Clases
             Precio = (int)(new Plan((int)unAfiliado.Plan_Medico)).Precio_Bono_Farmacia;
             Codigo_Plan = (int)unAfiliado.Plan_Medico;
             Detalle = "Bono Farmacia";
+            Grupo_Flia = (int)unAfiliado.Numero_Grupo;
         }
 
         public BonoFarmacia(int codigo)
@@ -53,22 +55,11 @@ namespace Clinica_Frba.Clases
             return (FechaVencimiento.Date < hoy.Date);
         }
 
-        public bool PuedeUsarlo(Afiliado unAfiliado)
+        public bool PuedeUsarlo(BonoFarmacia unBono)
         {
-            List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@codigoPersona", unAfiliado.Id));
-
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.BonoPorUsuario where persona=@codigoPersona", "T", ListaParametros);
-
-            if (lector.HasRows)
+            if (unBono.Grupo_Flia == Grupo_Flia)
             {
-                lector.Read();
-                int codigoFlia = (int)(decimal)lector["grupo_familia"];
-                if (codigoFlia == unAfiliado.Numero_Grupo)
-                {
-                    return true;
-                }
-                else { return false; }
+                return true;
             }
             else { return false; }
         }

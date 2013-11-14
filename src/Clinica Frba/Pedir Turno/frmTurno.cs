@@ -24,6 +24,7 @@ namespace Clinica_Frba.Pedir_Turno
         public List<Turno> listaTurnos = new List<Turno>();
         public List<Turno> listaVacia = new List<Turno>();
         public Turno unTurno = new Turno();
+        public List<Turno> listaCompleta = new List<Turno>();
 
         private void frmTurno_Load(object sender, EventArgs e)
         {
@@ -70,7 +71,14 @@ namespace Clinica_Frba.Pedir_Turno
                 }
                 else
                 {
-                    listaTurnos = Utiles.ObtenerTurnosAgenda(unaAgenda, dtpFechas.Value);
+                    limpiarGrilla();
+
+                    listaCompleta = Utiles.ObtenerTurnosAgenda(unaAgenda, dtpFechas.Value);
+
+                    foreach (Turno turno in listaCompleta)
+                    {
+                        if(Turnos.VerificarTurnoLibre(turno)) listaTurnos.Add(turno);
+                    }
 
                     grillaHorarios.DataSource = listaTurnos;
                 }
@@ -85,6 +93,7 @@ namespace Clinica_Frba.Pedir_Turno
         public void limpiarGrilla()
         {
             grillaHorarios.DataSource = listaVacia;
+            listaTurnos = new List<Turno>();
         }
 
         public void cargarGrillaFechas()

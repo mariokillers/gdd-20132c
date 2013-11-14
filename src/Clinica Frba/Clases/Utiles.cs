@@ -213,7 +213,6 @@ namespace Clinica_Frba.Clases
                     {
                         unTurno.Fecha = fecha;
                         unTurno.Codigo_Profesional = unaAgenda.Profesional;
-                        unTurno.Horario = fecha.TimeOfDay;
                     }
                     listaTurnos.AddRange(unRango.TurnosDentro);
                 }

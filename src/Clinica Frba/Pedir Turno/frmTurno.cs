@@ -22,33 +22,18 @@ namespace Clinica_Frba.Pedir_Turno
         public Profesional unProfesional = new Profesional();
         public Agenda unaAgenda = new Agenda();
         public List<Turno> listaTurnos = new List<Turno>();
+        public List<Turno> listaVacia = new List<Turno>();
 
         private void frmTurno_Load(object sender, EventArgs e)
         {
             unaAgenda.armarAgenda(unProfesional.Id);
 
+            dtpFechas.MinDate = unaAgenda.FechaDesde;
+            dtpFechas.MaxDate = unaAgenda.FechaHasta;
+
             //MessageBox.Show("Desde: " + unaAgenda.FechaDesde + ", Hasta: " + unaAgenda.FechaHasta, "test", MessageBoxButtons.OK);
 
-            grillaFechas.AutoGenerateColumns = false;
             grillaHorarios.AutoGenerateColumns = false;
-
-         /*   DataGridViewTextBoxColumn ColFecha = new DataGridViewTextBoxColumn();
-            ColFecha.DataPropertyName = "Fecha";
-            ColFecha.HeaderText = "Fecha";
-            ColFecha.Width = 120;
-            grillaHorarios.Columns.Add(ColFecha);*/
-
-            DataGridViewTextBoxColumn ColDiaString = new DataGridViewTextBoxColumn();
-            ColDiaString.DataPropertyName = "Fecha";
-            ColDiaString.HeaderText = "Fecha";
-            ColDiaString.Width = 120;
-            grillaFechas.Columns.Add(ColDiaString);
-
-            DataGridViewTextBoxColumn ColFecha = new DataGridViewTextBoxColumn();
-            ColFecha.DataPropertyName = "StringDia";
-            ColFecha.HeaderText = "Dia";
-            ColFecha.Width = 120;
-            grillaFechas.Columns.Add(ColFecha);
 
             DataGridViewTextBoxColumn ColDia = new DataGridViewTextBoxColumn();
             ColDia.DataPropertyName = "DiaString";
@@ -56,20 +41,54 @@ namespace Clinica_Frba.Pedir_Turno
             ColDia.Width = 120;
             grillaHorarios.Columns.Add(ColDia);
 
+            /*   DataGridViewTextBoxColumn ColFecha = new DataGridViewTextBoxColumn();
+               ColFecha.DataPropertyName = "Fecha";
+               ColFecha.HeaderText = "Fecha";
+               ColFecha.Width = 120;
+               grillaHorarios.Columns.Add(ColFecha);*/
+
             DataGridViewTextBoxColumn ColHora = new DataGridViewTextBoxColumn();
             ColHora.DataPropertyName = "Horario";
             ColHora.HeaderText = "Horario";
             ColHora.Width = 120;
-            grillaHorarios.Columns.Add(ColHora);            
+            grillaHorarios.Columns.Add(ColHora);
+
+            cargarGrillaFechas();
         }
 
         private void cmdBuscar_Click(object sender, EventArgs e)
         {
-            /*--VER COMO CARAJO ARMAR LOS TURNOS DIVIDIENDO LOS RANGOS--*/
+            /*---FALTA EL FILTRO DE LA FECHA SELECCIONADA Y SI ES UN TURNO ACTIVO---*/
+            try
+            {
+                if (!Utiles.ObtenerDiasHabilesAgenda(unaAgenda).Contains(new Dias(dtpFechas.Value.DayOfWeek).Id))
+                {
+                    MessageBox.Show("La fecha seleccionada no esta disponible, por favor seleccione otra", "Aviso", MessageBoxButtons.OK);
+                    //MessageBox.Show("La fecha seleccionada es: " + (new Dias(dtpFechas.Value.DayOfWeek)).Detalle, "Aviso", MessageBoxButtons.OK);
+                    limpiarGrilla();
+                }
+                else
+                {
+                    listaTurnos = Utiles.ObtenerTurnosAgenda(unaAgenda);
 
-            listaTurnos = Utiles.ObtenerTurnosAgenda(unaAgenda);
+                    grillaHorarios.DataSource = listaTurnos;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("La fecha seleccionada no esta disponible, por favor seleccione otra", "Aviso", MessageBoxButtons.OK);
+                limpiarGrilla();
+            }
+        }
 
-            grillaHorarios.DataSource = listaTurnos;
+        public void limpiarGrilla()
+        {
+            grillaHorarios.DataSource = listaVacia;
+        }
+
+        public void cargarGrillaFechas()
+        {
+
         }
     }
 }

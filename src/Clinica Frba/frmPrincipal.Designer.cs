@@ -208,7 +208,6 @@
             this.cmdTurnos.Name = "cmdTurnos";
             this.cmdTurnos.Size = new System.Drawing.Size(56, 20);
             this.cmdTurnos.Text = "Turnos";
-            this.cmdTurnos.Click += new System.EventHandler(this.cmdTurnos_Click);
             // 
             // cmdCompraDeBonos
             // 

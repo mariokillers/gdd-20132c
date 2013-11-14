@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Clinica_Frba.Clases
 {
@@ -211,15 +212,15 @@ namespace Clinica_Frba.Clases
             return listaTurnos;
         }
 
-        public static List<Dias> ObtenerDiasHabilesAgenda(Agenda unaAgenda)
+        public static List<int> ObtenerDiasHabilesAgenda(Agenda unaAgenda)
         {
-            List<Dias> listaDias = new List<Dias>();
+            List<int> listaDias = new List<int>();
 
             foreach (Rango unRango in unaAgenda.Rangos)
             {
-                if (!listaDias.Contains(unRango.Dia))
+                if (!listaDias.Contains(unRango.Dia.Id))
                 {
-                    listaDias.Add(unRango.Dia);
+                    listaDias.Add(unRango.Dia.Id);
                 }
             }
             return listaDias;

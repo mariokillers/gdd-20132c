@@ -62,7 +62,6 @@
             this.splitContainer1.Panel1.Controls.Add(this.txtNumeroBono);
             this.splitContainer1.Panel1.Controls.Add(this.lblNumeroAfiliado);
             this.splitContainer1.Panel1.Controls.Add(this.cmdAceptar);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 

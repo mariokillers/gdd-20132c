@@ -18,6 +18,7 @@ using Clinica_Frba.NewFolder3;
 using Clinica_Frba.NewFolder13;
 using Clinica_Frba.NewFolder4;
 using Clinica_Frba.NewFolder7;
+using Clinica_Frba.NewFolder9;
 
 namespace Clinica_Frba
 {
@@ -126,7 +127,7 @@ namespace Clinica_Frba
             cmdCompraDeBonos.Visible = listaDeFunc.Contains("Compra de bonos");
             cmdRegistrarLlegada.Visible = listaDeFunc.Contains("Registro de llegada para atención médica");
             cmdAtencion.Visible = listaDeFunc.Contains("Registro de resultado para atención médica");
-
+            cmdEstadisticas.Visible = true;
             /*,
 	       ('Cancelar atención médica'),
              * */
@@ -208,6 +209,12 @@ namespace Clinica_Frba
             frmCancelarAtencion cancel = new frmCancelarAtencion();
             cancel.unUsuario = this.User;
             cancel.Show();
+        }
+
+        private void cmdEstadisticas_Click(object sender, EventArgs e)
+        {
+            frmListadosEstadisticos formEstadisticas = new frmListadosEstadisticos();
+            formEstadisticas.Show();
         }
     }
 }

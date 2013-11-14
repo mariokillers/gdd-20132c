@@ -108,7 +108,7 @@
             // 
             // cmdRecetar
             // 
-            this.cmdRecetar.Location = new System.Drawing.Point(191, 299);
+            this.cmdRecetar.Location = new System.Drawing.Point(200, 299);
             this.cmdRecetar.Name = "cmdRecetar";
             this.cmdRecetar.Size = new System.Drawing.Size(75, 23);
             this.cmdRecetar.TabIndex = 12;

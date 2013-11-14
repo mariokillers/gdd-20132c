@@ -47,6 +47,8 @@
             this.consultarAgendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdEstadisticas = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdTurnos = new System.Windows.Forms.ToolStripMenuItem();
+            this.cancelarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdCompraDeBonos = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdRegistrarLlegada = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdAtencion = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,8 +56,6 @@
             this.cmbRoles = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdIngresar = new System.Windows.Forms.Button();
-            this.cancelarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -199,6 +199,7 @@
             this.cmdEstadisticas.Name = "cmdEstadisticas";
             this.cmdEstadisticas.Size = new System.Drawing.Size(79, 20);
             this.cmdEstadisticas.Text = "Estadisticas";
+            this.cmdEstadisticas.Click += new System.EventHandler(this.cmdEstadisticas_Click);
             // 
             // cmdTurnos
             // 
@@ -208,6 +209,20 @@
             this.cmdTurnos.Name = "cmdTurnos";
             this.cmdTurnos.Size = new System.Drawing.Size(56, 20);
             this.cmdTurnos.Text = "Turnos";
+            // 
+            // cancelarToolStripMenuItem
+            // 
+            this.cancelarToolStripMenuItem.Name = "cancelarToolStripMenuItem";
+            this.cancelarToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.cancelarToolStripMenuItem.Text = "Cancelar";
+            this.cancelarToolStripMenuItem.Click += new System.EventHandler(this.cancelarToolStripMenuItem_Click);
+            // 
+            // nuevoToolStripMenuItem
+            // 
+            this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.nuevoToolStripMenuItem.Text = "Nuevo";
+            this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
             // 
             // cmdCompraDeBonos
             // 
@@ -266,20 +281,6 @@
             this.cmdIngresar.UseVisualStyleBackColor = true;
             this.cmdIngresar.Visible = false;
             this.cmdIngresar.Click += new System.EventHandler(this.cmdIngresar_Click);
-            // 
-            // cancelarToolStripMenuItem
-            // 
-            this.cancelarToolStripMenuItem.Name = "cancelarToolStripMenuItem";
-            this.cancelarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.cancelarToolStripMenuItem.Text = "Cancelar";
-            this.cancelarToolStripMenuItem.Click += new System.EventHandler(this.cancelarToolStripMenuItem_Click);
-            // 
-            // nuevoToolStripMenuItem
-            // 
-            this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.nuevoToolStripMenuItem.Text = "Nuevo";
-            this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
             // 
             // frmPrincipal
             // 

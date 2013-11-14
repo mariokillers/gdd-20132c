@@ -24,7 +24,10 @@ namespace Clinica_Frba.NewFolder9
             grillaListado4.AutoGenerateColumns = false;
             grillaListado1.AutoGenerateColumns = false;
 
-            //TODOS LOS GENERAR GRILLA
+            generarGrillaListado1();
+            generarGrillaListado2();
+            generarGrillaListado3();
+            generarGrillaListado4();
         }
 
         private void generarGrillaListado4()
@@ -33,19 +36,19 @@ namespace Clinica_Frba.NewFolder9
             ColNombre.DataPropertyName = "Nombre";
             ColNombre.HeaderText = "Nombre";
             ColNombre.Width = 120;
-            grillaListado2.Columns.Add(ColNombre);
+            grillaListado4.Columns.Add(ColNombre);
 
             DataGridViewTextBoxColumn ColApellido = new DataGridViewTextBoxColumn();
             ColApellido.DataPropertyName = "Apellido";
             ColApellido.HeaderText = "Apellido";
             ColApellido.Width = 120;
-            grillaListado2.Columns.Add(ColApellido);
+            grillaListado4.Columns.Add(ColApellido);
 
             DataGridViewTextBoxColumn ColCant = new DataGridViewTextBoxColumn();
             ColCant.DataPropertyName = "CantBonos";
             ColCant.HeaderText = "Bonos Farmacia Vencidos";
             ColCant.Width = 120;
-            grillaListado2.Columns.Add(ColCant);
+            grillaListado4.Columns.Add(ColCant);
         }
 
         private void generarGrillaListado2()
@@ -109,22 +112,22 @@ namespace Clinica_Frba.NewFolder9
                 if (rdPrimerSemestre.Checked)
                 {
                     desde = new DateTime(dtpAño.Value.Year, 1, 1);
-                    hasta = desde.AddMonths(5).AddMilliseconds(-1);
+                    hasta = desde.AddMonths(6).AddMilliseconds(-1);
                     hasta = hasta.AddMilliseconds(-1);
                 }
                 if (rdSegundoSemestre.Checked)
                 {
                     desde = new DateTime(dtpAño.Value.Year, 7, 1);
-                    hasta = desde.AddMonths(5).AddMilliseconds(-1);
+                    hasta = desde.AddMonths(6).AddMilliseconds(-1);
                     hasta = hasta.AddMilliseconds(-1);
                 }
 
-                grillaListado1.DataSource = Listados.ObtenerEspecialidadesMasCancelaciones(desde, hasta);
+                //grillaListado1.DataSource = Listados.ObtenerEspecialidadesMasCancelaciones(desde, hasta);
                 grillaListado2.DataSource = Listados.ObtenerCantBonosVencidosPorAfiliado(desde, hasta);
-                grillaListado3.DataSource = Listados.ObtenerEspecialidadesConMasBonosRecetados(desde, hasta);
-                grillaListado4.DataSource = Listados.ObtenerAfiliadosQueUsaronBonosQueNoCompraron(desde, hasta);
+                //grillaListado3.DataSource = Listados.ObtenerEspecialidadesConMasBonosRecetados(desde, hasta);
+                //grillaListado4.DataSource = Listados.ObtenerAfiliadosQueUsaronBonosQueNoCompraron(desde, hasta);
             }
-            catch { }
+            catch { MessageBox.Show("No se ha podido realizar las estadisticas. Vuelva a intentarlo", "Error!", MessageBoxButtons.OK); }
         }
     }
 }

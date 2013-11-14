@@ -199,5 +199,16 @@ namespace Clinica_Frba.Clases
             }
             return list;
         }
+
+        public static List<Turno> ObtenerTurnosAgenda(Agenda unaAgenda)
+        {
+            List<Turno> listaTurnos = new List<Turno>();
+
+            foreach (Rango unRango in unaAgenda.Rangos)
+            {
+                listaTurnos.AddRange(unRango.TurnosDentro);
+            }
+            return listaTurnos;
+        }
     }
 }

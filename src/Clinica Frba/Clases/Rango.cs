@@ -20,20 +20,45 @@ namespace Clinica_Frba.Clases
             StringDia = dia.Detalle;
             HoraDesde = horaDesde;
             HoraHasta = horaHasta;
+            this.armarTurnos();
         }
-        /*
+
         public void armarTurnos ()
         {
-            for(TimeSpan i = HoraDesde; i.Hours < HoraHasta.Hours; i = new TimeSpan(i.Hours + 1,0,0)){
-                for(int j = i.Minutes; j < i.Minutes; j++){
+            int cantTurnos = (HoraHasta.Hours - HoraDesde.Hours) * 2;
+
+            if (HoraDesde.Minutes != 0 && HoraHasta.Minutes == 0)
+            {
+                cantTurnos --;
+            }
+            else if (HoraDesde.Minutes == 0 && HoraHasta.Minutes != 0)
+            {
+                cantTurnos++;
+            }
+
+            /*--- PARA EL CASO QUE EMPIECE EN HORA CLAVADA---*/
+            if (HoraDesde.Minutes == 0)
+            {
+                for (int i = 0; i < cantTurnos; i++)
+                {
+                    TimeSpan horario = new TimeSpan(HoraDesde.Hours + (i / 2), (i % 2) * 30, 0);
                     Turno turno = new Turno();
-
-                    turno.Horario.Hours = i;
-
-                    
+                    turno.Horario = horario;
+                    TurnosDentro.Add(turno);
                 }
             }
-        }*/
+            /*--- PARA EL CASO QUE EMPIECE EN HORA Y MEDIA---*/
+            else
+            {
+                for (int i = 1; i <= cantTurnos; i++)
+                {
+                    TimeSpan horario = new TimeSpan(HoraDesde.Hours + (i / 2), (i % 2) * 30, 0);
+                    Turno turno = new Turno();
+                    turno.Horario = horario;
+                    TurnosDentro.Add(turno);
+                }
+            }
+        }
 
         public Rango()
         {

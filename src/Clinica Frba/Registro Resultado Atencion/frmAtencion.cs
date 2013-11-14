@@ -68,5 +68,10 @@ namespace Clinica_Frba.NewFolder6
             cmdAceptar.Enabled = false;
             cmdConfirmarSintomas.Enabled = false;
         }
+
+        private void cmdFinalizar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

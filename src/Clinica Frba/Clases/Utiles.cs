@@ -26,6 +26,25 @@ namespace Clinica_Frba.Clases
             return cadena.Substring(cadena.Length - cantidad);
         }
 
+        public static string DameEnLetras(int numero)
+        {
+            switch (numero)
+            {
+                case 1:
+                    return "UNO";
+                case 2:
+                    return "DOS";
+                case 3:
+                    return "TRES";
+                case 4:
+                    return "CUATRO";
+                case 5:
+                    return "CINCO";
+                default:
+                    return "";
+            }
+        }
+
         public static bool EsHoraValida(TimeSpan desde, TimeSpan hasta)
         {
             if(desde.Hours < hasta.Hours){ return true; }

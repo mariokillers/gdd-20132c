@@ -203,6 +203,7 @@
             this.cmdFinalizar.TabIndex = 58;
             this.cmdFinalizar.Text = "Finalizar";
             this.cmdFinalizar.UseVisualStyleBackColor = true;
+            this.cmdFinalizar.Click += new System.EventHandler(this.cmdFinalizar_Click);
             // 
             // frmAtencion
             // 

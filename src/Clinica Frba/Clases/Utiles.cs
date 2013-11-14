@@ -210,5 +210,19 @@ namespace Clinica_Frba.Clases
             }
             return listaTurnos;
         }
+
+        public static List<Dias> ObtenerDiasHabilesAgenda(Agenda unaAgenda)
+        {
+            List<Dias> listaDias = new List<Dias>();
+
+            foreach (Rango unRango in unaAgenda.Rangos)
+            {
+                if (!listaDias.Contains(unRango.Dia))
+                {
+                    listaDias.Add(unRango.Dia);
+                }
+            }
+            return listaDias;
+        }
     }
 }

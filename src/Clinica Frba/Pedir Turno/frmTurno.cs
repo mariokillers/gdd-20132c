@@ -51,16 +51,16 @@ namespace Clinica_Frba.Pedir_Turno
             grillaFechas.Columns.Add(ColFecha);
 
             DataGridViewTextBoxColumn ColDia = new DataGridViewTextBoxColumn();
-            ColDia.DataPropertyName = "Horario";
-            ColDia.HeaderText = "Horario";
+            ColDia.DataPropertyName = "DiaString";
+            ColDia.HeaderText = "Dia";
             ColDia.Width = 120;
             grillaHorarios.Columns.Add(ColDia);
 
-           /* DataGridViewTextBoxColumn ColHora = new DataGridViewTextBoxColumn();
-            ColHora.DataPropertyName = "HoraDesde";
+            DataGridViewTextBoxColumn ColHora = new DataGridViewTextBoxColumn();
+            ColHora.DataPropertyName = "Horario";
             ColHora.HeaderText = "Horario";
             ColHora.Width = 120;
-            grillaHorarios.Columns.Add(ColHora);*/
+            grillaHorarios.Columns.Add(ColHora);            
         }
 
         private void cmdBuscar_Click(object sender, EventArgs e)

@@ -44,6 +44,8 @@ namespace Clinica_Frba.Clases
                     TimeSpan horario = new TimeSpan(HoraDesde.Hours + (i / 2), (i % 2) * 30, 0);
                     Turno turno = new Turno();
                     turno.Horario = horario;
+                    turno.Dia = this.Dia;
+                    turno.DiaString = this.StringDia;
                     TurnosDentro.Add(turno);
                 }
             }
@@ -55,6 +57,8 @@ namespace Clinica_Frba.Clases
                     TimeSpan horario = new TimeSpan(HoraDesde.Hours + (i / 2), (i % 2) * 30, 0);
                     Turno turno = new Turno();
                     turno.Horario = horario;
+                    turno.Dia = this.Dia;
+                    turno.DiaString = this.StringDia;
                     TurnosDentro.Add(turno);
                 }
             }

@@ -20,9 +20,16 @@ namespace Clinica_Frba.NewFolder5
         public Afiliado afiliado { get; set; }
         private List<BonoFarmacia> listaDeBonos { get; set; }
         private bool EsNecesarioMas { get; set; }
+        public Medicamento medicamento { get; set; }
 
         private void frmRegistroLlegada_Load(object sender, EventArgs e)
         {
+
+            /*List<Medicamento> listaDeMedicamentos = Medicamentos.ObtenerMedicamentos();
+            cmbMedicamentos.DataSource = listaDeMedicamentos;
+            cmbMedicamentos.ValueMember = "Detalle";
+            cmbMedicamentos.DisplayMember = "Detalle";*/
+
             listaDeBonos = new List<BonoFarmacia>();
 
             grillaRecetas.AutoGenerateColumns = false;
@@ -51,6 +58,12 @@ namespace Clinica_Frba.NewFolder5
             ColCantLetras.HeaderText = "Cantidad";
             ColCantLetras.Width = 120;
             grillaRecetas.Columns.Add(ColCantLetras);
+
+            DataGridViewTextBoxColumn ColBonoFarmacia = new DataGridViewTextBoxColumn();
+            ColBonoFarmacia.DataPropertyName = "Codigo_Bono_Farmacia";
+            ColBonoFarmacia.HeaderText = "Bono Farmacia";
+            ColBonoFarmacia.Width = 120;
+            grillaRecetas.Columns.Add(ColBonoFarmacia);
         }
 
         private void generarGrillaBonos()

@@ -8,8 +8,7 @@ namespace Clinica_Frba.Clases
     class Receta
     {
         public int Id { get; set; }
-        public int Codigo_Atencion { get; set; }
-        public List<MedicamentoEnReceta> ListaMedicamentos { get; set; }
-
+        public int Codigo_Bono_Farmacia { get; set; }
+        public List<Medicamento> ListaMedicamentos { get; set; }
     }
 }

@@ -16,14 +16,36 @@ namespace Clinica_Frba.Clases
             List<Medicamento> Lista = new List<Medicamento>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("select * from mario_killers.Medicamento", "T", ListaParametros);
 
             if (lector.HasRows)
             {
-                Medicamento unMedicamento = new Medicamento();
-                unMedicamento.Id = (int) lector ["id"];
-                unMedicamento.Detalle = (string)lector["detalle"];
-                Lista.Add(unMedicamento);
+                while (lector.Read())
+                {
+                    Medicamento unMedicamento = new Medicamento();
+                    unMedicamento.Detalle = (string)lector["detalle"];
+                    Lista.Add(unMedicamento);
+                }
+            }
+            return Lista;
+        }
+
+        public static List<Medicamento> ObtenerMedicamentos(string filtro)
+        {
+            List<Medicamento> Lista = new List<Medicamento>();
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@detalle", "%" + filtro + "%"));
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("select * from mario_killers.Medicamento where detalle like @detalle", "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                while (lector.Read())
+                {
+                    Medicamento unMedicamento = new Medicamento();
+                    unMedicamento.Detalle = (string)lector["detalle"];
+                    Lista.Add(unMedicamento);
+                }
             }
             return Lista;
         }

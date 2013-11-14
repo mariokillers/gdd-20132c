@@ -38,7 +38,7 @@ namespace Clinica_Frba.Abm_de_Rol
             {
                 ActualizarGrilla();
             }
-            catch{ MessageBox.Show("", "Error!", MessageBoxButtons.OK);}
+            catch{ MessageBox.Show("No existe rol con esas caracteristicas", "Error!", MessageBoxButtons.OK);}
         }
 
         private void lstSeleccionRol_Load(object sender, EventArgs e)

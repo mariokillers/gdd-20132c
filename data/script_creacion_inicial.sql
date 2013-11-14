@@ -619,6 +619,11 @@ GO
 INSERT INTO mario_killers.Agenda (profesional, desde, hasta) VALUES (1, '01/01/2014', '04/01/2014')
 GO
 
+SET IDENTITY_INSERT mario_killers.Turno ON
+INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad, activo) VALUES (1, 1, 1, '2014-01-06 07:00:00.000', 1, 1)
+SET IDENTITY_INSERT mario_killers.Turno OFF
+GO
+
 INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (1, 'Evento Imprevisto')
 INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (2, 'Problemas Laborales')
 INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (3, 'Problema Personal')

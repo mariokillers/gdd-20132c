@@ -27,28 +27,64 @@ namespace Clinica_Frba.NewFolder9
             //TODOS LOS GENERAR GRILLA
         }
 
-        private void generarGrillaBonosAfiliado()
+        private void generarGrillaListado4()
         {
             DataGridViewTextBoxColumn ColNombre = new DataGridViewTextBoxColumn();
-            ColNombre.DataPropertyName = "TipoBono";
+            ColNombre.DataPropertyName = "Nombre";
             ColNombre.HeaderText = "Nombre";
             ColNombre.Width = 120;
             grillaListado2.Columns.Add(ColNombre);
 
-            DataGridViewTextBoxColumn ColApellido= new DataGridViewTextBoxColumn();
-            ColApellido.DataPropertyName = "Cantidad";
+            DataGridViewTextBoxColumn ColApellido = new DataGridViewTextBoxColumn();
+            ColApellido.DataPropertyName = "Apellido";
             ColApellido.HeaderText = "Apellido";
             ColApellido.Width = 120;
             grillaListado2.Columns.Add(ColApellido);
 
             DataGridViewTextBoxColumn ColCant = new DataGridViewTextBoxColumn();
-            ColCant.DataPropertyName = "MontoBono";
+            ColCant.DataPropertyName = "CantBonos";
             ColCant.HeaderText = "Bonos Farmacia Vencidos";
             ColCant.Width = 120;
             grillaListado2.Columns.Add(ColCant);
         }
 
-        private void generarGrillaCancelacionesEspecialidad()
+        private void generarGrillaListado2()
+        {
+            DataGridViewTextBoxColumn ColNombre = new DataGridViewTextBoxColumn();
+            ColNombre.DataPropertyName = "Nombre";
+            ColNombre.HeaderText = "Nombre";
+            ColNombre.Width = 120;
+            grillaListado2.Columns.Add(ColNombre);
+
+            DataGridViewTextBoxColumn ColApellido= new DataGridViewTextBoxColumn();
+            ColApellido.DataPropertyName = "Apellido";
+            ColApellido.HeaderText = "Apellido";
+            ColApellido.Width = 120;
+            grillaListado2.Columns.Add(ColApellido);
+
+            DataGridViewTextBoxColumn ColCant = new DataGridViewTextBoxColumn();
+            ColCant.DataPropertyName = "CantBonos";
+            ColCant.HeaderText = "Bonos Farmacia Vencidos";
+            ColCant.Width = 120;
+            grillaListado2.Columns.Add(ColCant);
+        }
+
+        private void generarGrillaListado3()
+        {
+            DataGridViewTextBoxColumn ColNombre = new DataGridViewTextBoxColumn();
+            ColNombre.DataPropertyName = "EspecialidadMedica";
+            ColNombre.HeaderText = "Especialidad Médica";
+            ColNombre.Width = 120;
+            grillaListado3.Columns.Add(ColNombre);
+
+            DataGridViewTextBoxColumn ColCant = new DataGridViewTextBoxColumn();
+            ColCant.DataPropertyName = "CantBonos";
+            ColCant.HeaderText = "Bonos Farmacia Recetados";
+            ColCant.Width = 120;
+            grillaListado3.Columns.Add(ColCant);
+        }
+
+        private void generarGrillaListado1()
         {
             DataGridViewTextBoxColumn ColNombre = new DataGridViewTextBoxColumn();
             ColNombre.DataPropertyName = "EspecialidadMedica";

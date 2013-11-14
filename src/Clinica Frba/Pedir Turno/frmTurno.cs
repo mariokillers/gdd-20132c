@@ -29,10 +29,7 @@ namespace Clinica_Frba.Pedir_Turno
 
             //MessageBox.Show("Desde: " + unaAgenda.FechaDesde + ", Hasta: " + unaAgenda.FechaHasta, "test", MessageBoxButtons.OK);
 
-            dtpFecha.MinDate = unaAgenda.FechaDesde;
-            dtpFecha.MaxDate = unaAgenda.FechaHasta;
-
-
+            grillaFechas.AutoGenerateColumns = false;
             grillaHorarios.AutoGenerateColumns = false;
 
          /*   DataGridViewTextBoxColumn ColFecha = new DataGridViewTextBoxColumn();
@@ -40,6 +37,18 @@ namespace Clinica_Frba.Pedir_Turno
             ColFecha.HeaderText = "Fecha";
             ColFecha.Width = 120;
             grillaHorarios.Columns.Add(ColFecha);*/
+
+            DataGridViewTextBoxColumn ColDiaString = new DataGridViewTextBoxColumn();
+            ColDiaString.DataPropertyName = "Fecha";
+            ColDiaString.HeaderText = "Fecha";
+            ColDiaString.Width = 120;
+            grillaFechas.Columns.Add(ColDiaString);
+
+            DataGridViewTextBoxColumn ColFecha = new DataGridViewTextBoxColumn();
+            ColFecha.DataPropertyName = "StringDia";
+            ColFecha.HeaderText = "Dia";
+            ColFecha.Width = 120;
+            grillaFechas.Columns.Add(ColFecha);
 
             DataGridViewTextBoxColumn ColDia = new DataGridViewTextBoxColumn();
             ColDia.DataPropertyName = "StringDia";

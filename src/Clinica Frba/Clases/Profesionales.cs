@@ -88,7 +88,7 @@ namespace Clinica_Frba.Clases
             if (apellido != "") ListaParametros.Add(new SqlParameter("@apellido", "%" + apellido + "%")); else ListaParametros.Add(new SqlParameter("@apellido", "%%"));
             if (dni != "") ListaParametros.Add(new SqlParameter("@dni", "%" + dni + "%")); else ListaParametros.Add(new SqlParameter("@dni", "%%"));
             if (numeroMatricula != "") ListaParametros.Add(new SqlParameter("@matricula", "%" + numeroMatricula + "%")); else ListaParametros.Add(new SqlParameter("@matricula", "%%"));
-            if (especialidad != 0) ListaParametros.Add(new SqlParameter("@especialidad", "%" + especialidad + "%")); else ListaParametros.Add(new SqlParameter("@especialidad", 0));
+            if (especialidad != 0) ListaParametros.Add(new SqlParameter("@especialidad", especialidad)); else ListaParametros.Add(new SqlParameter("@especialidad", 0));
 
             String query = @"SELECT PRO.persona AS persona, PRO.matricula AS matricula, P.nombre AS nombre, P.apellido AS apellido, 
                    P.documento AS documento, p.direccion AS direccion, P.fecha_nac AS fecha_nac, P.mail AS mail, TD.id AS tipo_doc, 

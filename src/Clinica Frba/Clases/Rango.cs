@@ -21,6 +21,19 @@ namespace Clinica_Frba.Clases
             HoraDesde = horaDesde;
             HoraHasta = horaHasta;
         }
+        /*
+        public void armarTurnos ()
+        {
+            for(TimeSpan i = HoraDesde; i.Hours < HoraHasta.Hours; i = new TimeSpan(i.Hours + 1,0,0)){
+                for(int j = i.Minutes; j < i.Minutes; j++){
+                    Turno turno = new Turno();
+
+                    turno.Horario.Hours = i;
+
+                    
+                }
+            }
+        }*/
 
         public Rango()
         {

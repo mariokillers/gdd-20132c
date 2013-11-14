@@ -11,6 +11,7 @@ namespace Clinica_Frba.Clases
         public decimal Codigo_Persona { get; set; }
         public decimal Codigo_Profesional { get; set; }
         public DateTime Fecha { get; set; }
+        public TimeSpan Horario { get; set; }
         public decimal Codigo_Especialidad { get; set; }
         public bool Estado { get; set; }
         public string Diagnostico { get; set; }

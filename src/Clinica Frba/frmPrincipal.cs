@@ -33,32 +33,22 @@ namespace Clinica_Frba
         private Rol unRol { get; set; }
         private List<Rol> listaDeRoles = new List<Rol>();
 
-        //SOLO FALTA COMPLETAR LO DE ABAJO
         private void cmdAfiliadoAlta_Click(object sender, EventArgs e)
         {
             frmAfiliadoAlta formAf = new frmAfiliadoAlta();
             formAf.Show();
-            //this.Hide();
-        }
-        private void cmdRolModificacion_Click(object sender, EventArgs e)
-        {
-           /* lstSeleccionRol formRol = new lstSeleccionRol(Utiles.Operacion.Modificacion);
-            formRol.Show();
-            this.Hide();*/
         }
 
         private void cmdRolBaja_Click(object sender, EventArgs e)
         {
             lstSeleccionRol formRol = new lstSeleccionRol();
             formRol.Show();
-            //this.Hide();
         }
 
         private void cmdRolAlta_Click(object sender, EventArgs e)
         {
             frmRol formRol = new frmRol();
             formRol.Show();
-            //this.Hide();
         }
 
         private void frmPrincipal_Load(object sender, EventArgs e)
@@ -78,9 +68,7 @@ namespace Clinica_Frba
             }
 
             // OBTENER FUNCIONALIDADES POR ESTE ROL Y VER ESTE TEMA
-            cmdAfiliado.Visible = true; // listaDeFuncionalidades.Contains("ABM afiliado");
-            /*cmdProfesional.Visible =
-            cmdRol.Visible=*/
+            cmdAfiliado.Visible = true;
         }
 
         private void cmdAfiliadoModificacion_Click(object sender, EventArgs e)
@@ -88,7 +76,6 @@ namespace Clinica_Frba
             lstSeleccionAfiliado formAfil = new lstSeleccionAfiliado();
             formAfil.Operacion = "Modificacion";
             formAfil.Show();
-            //this.Hide();
         }
 
         private void cmdAfiliadoBaja_Click(object sender, EventArgs e)
@@ -96,7 +83,6 @@ namespace Clinica_Frba
             lstSeleccionAfiliado formAfil = new lstSeleccionAfiliado();
             formAfil.Operacion = "Baja";
             formAfil.Show();
-            //this.Hide();
         }
 
         private void cmdRolModificacion_Click_1(object sender, EventArgs e)
@@ -104,7 +90,6 @@ namespace Clinica_Frba
             lstSeleccionRol formRol = new lstSeleccionRol();
             formRol.Operacion = "Modificacion";
             formRol.Show();
-            //this.Hide();
         }
 
         private void cmdRolBaja_Click_1(object sender, EventArgs e)
@@ -112,7 +97,6 @@ namespace Clinica_Frba
             lstSeleccionRol formRol = new lstSeleccionRol();
             formRol.Operacion = "Baja";
             formRol.Show();
-            //this.Hide();
         }
 
         public void ocultar()
@@ -159,7 +143,6 @@ namespace Clinica_Frba
         {
             frmAfiliadoAlta formAfiliado = new frmAfiliadoAlta();
             formAfiliado.Show();
-            //this.Hide();
         }
 
         private void registrarAgendaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -203,11 +186,6 @@ namespace Clinica_Frba
             lstSeleccionProfesionales lstPro = new lstSeleccionProfesionales();
             lstPro.Operacion = "Baja";
             lstPro.Show();
-        }
-
-        private void cmdTurnos_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void cmdAtencion_Click(object sender, EventArgs e)

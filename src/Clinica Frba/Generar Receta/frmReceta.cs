@@ -193,10 +193,7 @@ namespace Clinica_Frba.NewFolder5
                         }
                     }
                 }
-                else 
-                {
-                    MessageBox.Show("Necesita adquirir mas bonos para poder agregar el medicamento", "Error!", MessageBoxButtons.OK);
-                }
+                else {MessageBox.Show("Necesita adquirir mas bonos para poder agregar el medicamento", "Error!", MessageBoxButtons.OK);}
             }
             catch { MessageBox.Show("Seleccione un medicamento", "Error!", MessageBoxButtons.OK); }
         }

@@ -60,10 +60,14 @@ namespace Clinica_Frba.Generar_Receta
 
         private void cmdSeleccionar_Click(object sender, EventArgs e)
         {
-            Medicamento unMedicamento = (Medicamento)grillaMedicamentos.CurrentRow.DataBoundItem;
-            formReceta.medicamento = unMedicamento;
-            formReceta.Show(); 
-            this.Close();
+            try
+            {
+                Medicamento unMedicamento = (Medicamento)grillaMedicamentos.CurrentRow.DataBoundItem;
+                formReceta.medicamento = unMedicamento;
+                formReceta.Show();
+                this.Close();
+            }
+            catch { MessageBox.Show("Debe seleccionar algun medicamento", "Error!", MessageBoxButtons.OK); }
         }
     }
 }

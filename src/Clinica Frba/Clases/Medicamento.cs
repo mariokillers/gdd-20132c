@@ -9,6 +9,7 @@ namespace Clinica_Frba.Clases
     {
         public string Detalle { get; set; }
         public int Cantidad { get; set; }
+        public int BonoFarmacia { get; set; }
         public string CantidadEnLetras { get; set; }
     }
 }

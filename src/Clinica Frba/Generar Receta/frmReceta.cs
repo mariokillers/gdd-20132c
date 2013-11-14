@@ -21,6 +21,7 @@ namespace Clinica_Frba.NewFolder5
         public Afiliado afiliado { get; set; }
         private List<Receta> listaDeRecetas { get; set; }
         private List<BonoFarmacia> listaDeBonos { get; set; }
+        private List<Medicamento> listaAMostrar { get; set; }
         private bool NecesitaBono { get; set; }
         public Medicamento medicamento { get; set; }
 
@@ -32,6 +33,7 @@ namespace Clinica_Frba.NewFolder5
             cmdSeleccionarMed.Enabled = false;
             cmdAgregarMedicamento.Enabled = false;
 
+            listaAMostrar = new List<Medicamento>();
             listaDeBonos = new List<BonoFarmacia>();
             listaDeRecetas = new List<Receta>();
 
@@ -63,7 +65,7 @@ namespace Clinica_Frba.NewFolder5
             grillaRecetas.Columns.Add(ColCantLetras);
 
             DataGridViewTextBoxColumn ColBonoFarmacia = new DataGridViewTextBoxColumn();
-            ColBonoFarmacia.DataPropertyName = "Codigo_Bono_Farmacia";
+            ColBonoFarmacia.DataPropertyName = "BonoFarmacia";
             ColBonoFarmacia.HeaderText = "Bono Farmacia";
             ColBonoFarmacia.Width = 120;
             grillaRecetas.Columns.Add(ColBonoFarmacia);
@@ -98,23 +100,27 @@ namespace Clinica_Frba.NewFolder5
                 {
                     BonoFarmacia unBono = new BonoFarmacia(Int32.Parse(txtNumeroBono.Text));
                     BonoFarmacia bonoComparacion = new BonoFarmacia(afiliado);
-                    if (!unBono.EstasVencido(DateTime.Today) && unBono.PuedeUsarlo(bonoComparacion))
+                    if (!unBono.EstasVencido(DateTime.Today) )
                     {
-                        if (!listaDeBonos.Any(p => p.Id == unBono.Id))
-                        {
-                            listaDeBonos.Add(unBono);
-                            ActualizarGrillaBonos();
-                            receta = new Receta(Int32.Parse(txtNumeroBono.Text));
-                            receta.Codigo_Bono_Farmacia = unBono.Id;
+                        /*if (unBono.PuedeUsarlo(bonoComparacion))
+                        {*/
+                            if (!listaDeBonos.Any(p => p.Id == unBono.Id))
+                            {
+                                listaDeBonos.Add(unBono);
+                                ActualizarGrillaBonos();
+                                receta = new Receta(Int32.Parse(txtNumeroBono.Text));
+                                receta.Codigo_Bono_Farmacia = unBono.Id;
 
-                            cmdCant.Enabled = true;
-                            cmdSeleccionarMed.Enabled = true;
-                            cmdAgregarMedicamento.Enabled = true;
-                            cmdAceptar.Enabled = false;
-                            NecesitaBono = false;
-                            txtNumeroBono.Enabled = false;
-                        }
-                        else { MessageBox.Show("Ya esta ingresado ese bono", "Error!", MessageBoxButtons.OK); }
+                                cmdCant.Enabled = true;
+                                cmdSeleccionarMed.Enabled = true;
+                                cmdAgregarMedicamento.Enabled = true;
+                                cmdAceptar.Enabled = false;
+                                NecesitaBono = false;
+                                txtNumeroBono.Enabled = false;
+                            }
+                            else { MessageBox.Show("Ya esta ingresado ese bono", "Error!", MessageBoxButtons.OK); }
+                        /*}
+                        else { MessageBox.Show("El bono no puede ser usado por el afiliado", "Error!", MessageBoxButtons.OK); }*/
                     }
                     else { MessageBox.Show("El bono esta vencido", "Error!", MessageBoxButtons.OK); }
                 }else { MessageBox.Show("No es necesario que agrege mas bonos farmacia hasta el momento", "Error!", MessageBoxButtons.OK); }            }
@@ -130,7 +136,7 @@ namespace Clinica_Frba.NewFolder5
         private void ActualizarGrillaRecetas()
         {
             grillaRecetas.DataSource = null;
-            grillaRecetas.DataSource = receta.ListaMedicamentos;
+            grillaRecetas.DataSource = listaAMostrar;
         }
 
         private void cmdSeleccionarMed_Click(object sender, EventArgs e)
@@ -163,7 +169,9 @@ namespace Clinica_Frba.NewFolder5
                         {
                             medicamento.Cantidad = (int)cmdCant.Value;
                             medicamento.CantidadEnLetras = Utiles.DameEnLetras(medicamento.Cantidad);
+                            medicamento.BonoFarmacia = Int32.Parse(txtNumeroBono.Text);
                             receta.ListaMedicamentos = AgregarAListaMedicamentos(medicamento);
+                            listaAMostrar.Add(medicamento);
 
                             ActualizarGrillaRecetas();
 

@@ -13,7 +13,6 @@ namespace Clinica_Frba.Clases
         public int Codigo_Compra { get; set; }
         public int Codigo_Receta { get; set; }
         public int Codigo_Plan { get; set; }
-        public int Codigo_Turno { get; set; }
         public int Grupo_Flia { get; set; }
         public int Precio { get; set; }
         public DateTime FechaVencimiento { get; set; }
@@ -32,20 +31,16 @@ namespace Clinica_Frba.Clases
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@codigo", codigo));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Bono_Farmacia where codigo=@codigo", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.BonoYcompra where codigo=@codigo", "T", ListaParametros);
 
             if (lector.HasRows)
             {
                 lector.Read();
-                if (lector["turno"] != DBNull.Value)
-                {
-                    Codigo_Turno = (int)(decimal)lector["matricula"];
-                }
-                else { Codigo_Turno = -1; }
                 Codigo_Plan = (int)(decimal)lector["plan_medico"];
                 Codigo_Compra = (int)(decimal)lector["compra"];
                 Compra unaCompra = new Compra(Codigo_Compra);
                 FechaVencimiento = unaCompra.Fecha.AddDays(60);
+                Grupo_Flia = (int)(decimal)lector["grupo"];
                 Detalle = "Bono Farmacia";
             }
         }

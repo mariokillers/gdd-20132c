@@ -614,6 +614,7 @@ INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (1, 'Evento 
 INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (2, 'Problemas Laborales')
 INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (3, 'Problema Personal')
 INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (4, 'Factor Climatico')
+INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (5, 'Otro')
 GO
 
 -- Vistas ABM

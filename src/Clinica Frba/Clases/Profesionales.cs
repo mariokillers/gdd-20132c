@@ -42,11 +42,11 @@ namespace Clinica_Frba.Clases
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@id", pro));
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("UPDATE mario_killers.Profesional SET activo = 0 WHERE persona = @id", "T", ListaParametros);
+            Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Profesional SET activo = 0 WHERE persona = @id", "T", ListaParametros);
 
             List<SqlParameter> ListaParametros2 = new List<SqlParameter>();
             ListaParametros2.Add(new SqlParameter("@id", pro));
-            SqlDataReader lector2 = Clases.BaseDeDatosSQL.ObtenerDataReader("UPDATE mario_killers.Turno SET activo = 0 WHERE profesional = @id", "T", ListaParametros2);
+            Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Turno SET activo = 0 WHERE profesional = @id", "T", ListaParametros2);
         }
 
         public static void ModificarProfesional(Profesional pro)

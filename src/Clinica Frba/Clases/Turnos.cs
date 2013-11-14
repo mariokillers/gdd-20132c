@@ -37,7 +37,16 @@ namespace Clinica_Frba.Clases
 
         public static void Cancelar(Turno turno, decimal tipoCanc, String motivo)
         {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@id", turno.Id));
+            Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Turno SET activo = 0 WHERE id = @id", "T", ListaParametros);
 
+            List<SqlParameter> ListaParametros2 = new List<SqlParameter>();            
+            ListaParametros2.Add(new SqlParameter("@tipo", tipoCanc));
+            ListaParametros2.Add(new SqlParameter("@motivo", motivo));
+            ListaParametros2.Add(new SqlParameter("@persona", turno.Codigo_Persona));
+
+            Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Cancelacion (tipo, motivo, persona) VALUES (@tipo, @motivo, @persona)", "T", ListaParametros2);
         }
     }
 }

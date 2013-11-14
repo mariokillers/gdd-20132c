@@ -65,15 +65,22 @@ namespace Clinica_Frba.NewFolder7
 
         private void btnAction_Click(object sender, EventArgs e)
         {
-            unTurno = (Turno)grillaTurnos.CurrentRow.DataBoundItem;
+            try
+            {
+                unTurno = (Turno)grillaTurnos.CurrentRow.DataBoundItem;
 
-            if ((System.DateTime.Today.Date.DayOfYear - unTurno.Fecha.Date.DayOfYear) >= 1)
-            {
-                Turnos.Cancelar(unTurno, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
+                if ((System.DateTime.Today.Date.DayOfYear - unTurno.Fecha.Date.DayOfYear) >= 1)
+                {
+                    Turnos.Cancelar(unTurno, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
+                }
+                else
+                {
+                    MessageBox.Show("El turno no puede cancelarse", "Aviso", MessageBoxButtons.OK);
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("El turno no puede cancelarse", "Aviso", MessageBoxButtons.OK);
+                MessageBox.Show("No se ha seleccionado ningun turno o tiene campos sin completar!", "Error", MessageBoxButtons.OK);
             }
         }
     }

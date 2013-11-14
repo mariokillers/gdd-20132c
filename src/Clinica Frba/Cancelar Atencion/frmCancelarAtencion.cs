@@ -27,7 +27,7 @@ namespace Clinica_Frba.NewFolder7
             cmbCancelacion.ValueMember = "id";
             cmbCancelacion.DisplayMember = "descripcion";
 
-            --cargarGrilla();
+            //cargarGrilla();
         }
     }
 }

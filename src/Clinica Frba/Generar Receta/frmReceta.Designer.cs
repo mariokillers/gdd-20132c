@@ -34,15 +34,17 @@
             this.lblNumeroAfiliado = new System.Windows.Forms.Label();
             this.cmdAceptar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmdSeleccionarMed = new System.Windows.Forms.Button();
             this.cmdAgregarMedicamento = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmdCantBonos = new System.Windows.Forms.NumericUpDown();
+            this.cmdCant = new System.Windows.Forms.NumericUpDown();
             this.grillaRecetas = new System.Windows.Forms.DataGridView();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grillaBonos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdCantBonos)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmdCant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaRecetas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,9 +65,6 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer1.Panel2.Controls.Add(this.cmdAgregarMedicamento);
-            this.splitContainer1.Panel2.Controls.Add(this.label1);
-            this.splitContainer1.Panel2.Controls.Add(this.cmdCantBonos);
             this.splitContainer1.Panel2.Controls.Add(this.grillaRecetas);
             this.splitContainer1.Size = new System.Drawing.Size(712, 531);
             this.splitContainer1.SplitterDistance = 185;
@@ -107,48 +106,63 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmdSeleccionarMed);
+            this.groupBox1.Controls.Add(this.cmdAgregarMedicamento);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.cmdCant);
             this.groupBox1.Location = new System.Drawing.Point(13, 14);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(520, 100);
+            this.groupBox1.Size = new System.Drawing.Size(520, 123);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Medicamento";
             // 
+            // cmdSeleccionarMed
+            // 
+            this.cmdSeleccionarMed.Location = new System.Drawing.Point(148, 19);
+            this.cmdSeleccionarMed.Name = "cmdSeleccionarMed";
+            this.cmdSeleccionarMed.Size = new System.Drawing.Size(139, 23);
+            this.cmdSeleccionarMed.TabIndex = 0;
+            this.cmdSeleccionarMed.Text = "Seleccionar Medicamento";
+            this.cmdSeleccionarMed.UseVisualStyleBackColor = true;
+            this.cmdSeleccionarMed.Click += new System.EventHandler(this.cmdSeleccionarMed_Click);
+            // 
             // cmdAgregarMedicamento
             // 
-            this.cmdAgregarMedicamento.Location = new System.Drawing.Point(519, 188);
+            this.cmdAgregarMedicamento.Location = new System.Drawing.Point(118, 87);
             this.cmdAgregarMedicamento.Name = "cmdAgregarMedicamento";
             this.cmdAgregarMedicamento.Size = new System.Drawing.Size(190, 23);
             this.cmdAgregarMedicamento.TabIndex = 10;
             this.cmdAgregarMedicamento.Text = "Agregar Medicamento a Receta";
             this.cmdAgregarMedicamento.UseVisualStyleBackColor = true;
+            this.cmdAgregarMedicamento.Click += new System.EventHandler(this.cmdAgregarMedicamento_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(585, 146);
+            this.label1.Location = new System.Drawing.Point(184, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 7;
             this.label1.Text = "Cantidad";
             // 
-            // cmdCantBonos
+            // cmdCant
             // 
-            this.cmdCantBonos.Location = new System.Drawing.Point(553, 162);
-            this.cmdCantBonos.Maximum = new decimal(new int[] {
+            this.cmdCant.Location = new System.Drawing.Point(152, 61);
+            this.cmdCant.Maximum = new decimal(new int[] {
             3,
             0,
             0,
             0});
-            this.cmdCantBonos.Minimum = new decimal(new int[] {
+            this.cmdCant.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.cmdCantBonos.Name = "cmdCantBonos";
-            this.cmdCantBonos.Size = new System.Drawing.Size(120, 20);
-            this.cmdCantBonos.TabIndex = 6;
-            this.cmdCantBonos.Value = new decimal(new int[] {
+            this.cmdCant.Name = "cmdCant";
+            this.cmdCant.Size = new System.Drawing.Size(120, 20);
+            this.cmdCant.TabIndex = 6;
+            this.cmdCant.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -174,10 +188,11 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grillaBonos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdCantBonos)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmdCant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaRecetas)).EndInit();
             this.ResumeLayout(false);
 
@@ -192,9 +207,10 @@
         private System.Windows.Forms.DataGridView grillaBonos;
         private System.Windows.Forms.DataGridView grillaRecetas;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown cmdCantBonos;
+        private System.Windows.Forms.NumericUpDown cmdCant;
         private System.Windows.Forms.Button cmdAgregarMedicamento;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button cmdSeleccionarMed;
 
 
     }

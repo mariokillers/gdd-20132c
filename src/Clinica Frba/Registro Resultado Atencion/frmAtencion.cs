@@ -62,7 +62,7 @@ namespace Clinica_Frba.NewFolder6
         {
             txtDiagnostico.Text = "";
             txtSintomas.Text = "";
-            txtSintomas.Enabled = false;
+            txtDiagnostico.Enabled = false;
             txtSintomas.Enabled = false;
             cmbHora.Enabled = false;
             dtpFechaAtencion.Enabled = false;

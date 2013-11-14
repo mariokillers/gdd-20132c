@@ -7,15 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Clinica_Frba.Clases;
+using Clinica_Frba.NewFolder5;
 
 namespace Clinica_Frba.Generar_Receta
 {
-    public partial class BusquedaMedicamento : Form
+    public partial class frmBusquedaMedicamento : Form
     {
-        public BusquedaMedicamento()
+        public frmBusquedaMedicamento()
         {
             InitializeComponent();
         }
+
+        public frmReceta formReceta { get; set; }
 
         private List<Medicamento> listaDeMedicamentos = new List<Medicamento>();
 
@@ -53,6 +56,14 @@ namespace Clinica_Frba.Generar_Receta
             else { listaDeMedicamentos = Medicamentos.ObtenerMedicamentos(); }
 
             grillaMedicamentos.DataSource = listaDeMedicamentos;
+        }
+
+        private void cmdSeleccionar_Click(object sender, EventArgs e)
+        {
+            Medicamento unMedicamento = (Medicamento)grillaMedicamentos.CurrentRow.DataBoundItem;
+            formReceta.medicamento = unMedicamento;
+            formReceta.Show(); 
+            this.Close();
         }
     }
 }

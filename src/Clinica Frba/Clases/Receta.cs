@@ -10,5 +10,11 @@ namespace Clinica_Frba.Clases
         public int Id { get; set; }
         public int Codigo_Bono_Farmacia { get; set; }
         public List<Medicamento> ListaMedicamentos { get; set; }
+
+        public Receta(int codigoBono)
+        {
+            Codigo_Bono_Farmacia = codigoBono;
+            ListaMedicamentos = new List<Medicamento>();
+        }
     }
 }

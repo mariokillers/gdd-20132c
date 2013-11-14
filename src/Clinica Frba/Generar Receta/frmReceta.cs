@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Clinica_Frba.Clases;
+using Clinica_Frba.Generar_Receta;
 
 namespace Clinica_Frba.NewFolder5
 {
@@ -16,10 +17,11 @@ namespace Clinica_Frba.NewFolder5
         {
             InitializeComponent();
         }
-
+        private Receta receta { get; set; }
         public Afiliado afiliado { get; set; }
+        private List<Receta> listaDeRecetas { get; set; }
         private List<BonoFarmacia> listaDeBonos { get; set; }
-        private bool EsNecesarioMas { get; set; }
+        private bool NecesitaBono { get; set; }
         public Medicamento medicamento { get; set; }
 
         private void frmRegistroLlegada_Load(object sender, EventArgs e)
@@ -30,7 +32,15 @@ namespace Clinica_Frba.NewFolder5
             cmbMedicamentos.ValueMember = "Detalle";
             cmbMedicamentos.DisplayMember = "Detalle";*/
 
+
+            NecesitaBono = true;
+
+            cmdCant.Enabled = false;
+            cmdSeleccionarMed.Enabled = false;
+            cmdAgregarMedicamento.Enabled = false;
+
             listaDeBonos = new List<BonoFarmacia>();
+            listaDeRecetas = new List<Receta>();
 
             grillaRecetas.AutoGenerateColumns = false;
             grillaBonos.AutoGenerateColumns = false;
@@ -91,7 +101,7 @@ namespace Clinica_Frba.NewFolder5
         {
             try
             {
-                if (EsNecesarioMas)
+                if (NecesitaBono)
                 {
                     BonoFarmacia unBono = new BonoFarmacia(Int32.Parse(txtNumeroBono.Text));
                     if (!unBono.EstasVencido(DateTime.Today))
@@ -99,7 +109,14 @@ namespace Clinica_Frba.NewFolder5
                         if (!listaDeBonos.Any(p => p.Id == unBono.Id))
                         {
                             listaDeBonos.Add(unBono);
-                            ActualizarGrilla();
+                            ActualizarGrillaBonos();
+                            receta = new Receta(Int32.Parse(txtNumeroBono.Text));
+                            cmdCant.Enabled = true;
+                            cmdSeleccionarMed.Enabled = true;
+                            cmdAgregarMedicamento.Enabled = true;
+                            cmdAceptar.Enabled = false;
+                            NecesitaBono = false;
+                            txtNumeroBono.Enabled = false;
                         }
                         else { MessageBox.Show("Ya esta ingresado ese bono", "Error!", MessageBoxButtons.OK); }
                     }
@@ -108,10 +125,80 @@ namespace Clinica_Frba.NewFolder5
             catch { MessageBox.Show("No existe un Bono Farmacia con ese codigo", "Error!", MessageBoxButtons.OK); }
         }
 
-        private void ActualizarGrilla()
+        private void ActualizarGrillaBonos()
         {
             grillaBonos.DataSource = null;
             grillaBonos.DataSource = listaDeBonos;
+        }
+
+        private void ActualizarGrillaRecetas()
+        {
+            grillaRecetas.DataSource = null;
+            grillaRecetas.DataSource = receta.ListaMedicamentos;
+        }
+
+        private void cmdSeleccionarMed_Click(object sender, EventArgs e)
+        {
+            frmBusquedaMedicamento formMedicamento = new frmBusquedaMedicamento();
+            formMedicamento.Show();
+            formMedicamento.formReceta = this;
+            cmdSeleccionarMed.Enabled = false;
+            cmdCant.Enabled = true;
+            this.Hide();
+        }
+
+        private void cmdAgregarMedicamento_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!NecesitaBono)
+                {
+                    if (receta.ListaMedicamentos.Count >= 5)
+                    {
+                        NecesitaBono = true;
+                        MessageBox.Show("Necesita adquirir mas bonos para poder agregar el medicamento", "Error!", MessageBoxButtons.OK);
+                        cmdAceptar.Enabled = true;
+                        txtNumeroBono.Text = "";
+                        txtNumeroBono.Enabled = true;
+                    }
+                    else
+                    {
+                        if (!receta.ListaMedicamentos.Any(p => p.Detalle == medicamento.Detalle))
+                        {
+                            medicamento.Codigo_Bono_Farmacia = Int32.Parse(txtNumeroBono.Text);
+                            medicamento.Cantidad = (int)cmdCant.Value;
+                            medicamento.CantidadEnLetras = Utiles.DameEnLetras(medicamento.Cantidad);
+                            receta.ListaMedicamentos = AgregarAListaMedicamentos(medicamento);
+                            ActualizarGrillaRecetas();
+                            if (receta.ListaMedicamentos.Count >= 5)
+                            {
+                                NecesitaBono = true;
+                                txtNumeroBono.Text = "";
+                                txtNumeroBono.Enabled = true;
+                                cmdAceptar.Enabled = true;
+                            }
+                            cmdSeleccionarMed.Enabled = true;
+                        }
+                        else 
+                        {
+                            MessageBox.Show("Ya se ha ingresado ese medicamento", "Error!", MessageBoxButtons.OK);
+                            cmdSeleccionarMed.Enabled = true;
+                        }
+                    }
+                }
+                else 
+                {
+                    MessageBox.Show("Necesita adquirir mas bonos para poder agregar el medicamento", "Error!", MessageBoxButtons.OK);
+                }
+            }
+            catch { MessageBox.Show("Seleccione un medicamento", "Error!", MessageBoxButtons.OK); }
+        }
+
+        private List<Medicamento> AgregarAListaMedicamentos(Medicamento unMedicamento)
+        {
+            List<Medicamento> aux = receta.ListaMedicamentos;
+            aux.Add(medicamento);
+            return aux;
         }
     }
 }

@@ -4,3 +4,4 @@ FROM mario_killers.Bono_Farmacia
      JOIN mario_killers.Especialidad ON Turno.especialidad = Especialidad.codigo
 GROUP BY Especialidad.descripcion
 ORDER BY COUNT(Bono_Farmacia.codigo) DESC
+

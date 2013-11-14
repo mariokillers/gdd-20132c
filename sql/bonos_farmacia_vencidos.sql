@@ -3,6 +3,6 @@ FROM mario_killers.Bono_Farmacia
      JOIN mario_killers.Compra ON Bono_Farmacia.compra = Compra.id
      JOIN mario_killers.Afiliado ON Compra.persona = Afiliado.persona
      JOIN mario_killers.Persona ON Afiliado.persona = Persona.id
-WHERE Compra.fecha + 60 < GETDATE() -- TODO: Usar fecha del sistema en vez de GETDATE
+WHERE Compra.fecha + 60 < @ano
 GROUP BY Persona.nombre, Persona.apellido
 ORDER BY COUNT(Bono_Farmacia.codigo) DESC

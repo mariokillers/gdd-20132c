@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Clinica_Frba.Clases
 {
-    class Medicamento
+    public class Medicamento
     {
         public string Detalle { get; set; }
         public int Cantidad { get; set; }

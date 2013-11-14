@@ -112,7 +112,7 @@
             this.groupBox1.Size = new System.Drawing.Size(520, 100);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Busqueda de medicamento";
+            this.groupBox1.Text = "Medicamento";
             // 
             // cmdAgregarMedicamento
             // 

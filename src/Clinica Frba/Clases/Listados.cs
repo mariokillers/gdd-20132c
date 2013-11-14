@@ -8,15 +8,15 @@ namespace Clinica_Frba.Clases
 {
     class Listados
     {
-        //FALTAN LOS QUERIES A TODAS
+        //FALTAN LOS QUERIES A TODAS MENOS EL 2
 
-        public static List<Listado3> ObtenerEspecialidadesConMasBonosRecetados(DateTime año, int semestre)
+        public static List<Listado3> ObtenerEspecialidadesConMasBonosRecetados(DateTime desde, DateTime hasta)
         {
             List<Listado3> listaListado3 = new List<Listado3>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@año", año));
-            ListaParametros.Add(new SqlParameter("@semestre", semestre));
+            ListaParametros.Add(new SqlParameter("@año", desde));
+            ListaParametros.Add(new SqlParameter("@semestre", hasta));
 
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("", "T", ListaParametros);
             
@@ -33,15 +33,15 @@ namespace Clinica_Frba.Clases
             return listaListado3;
         }
 
-        public static List<Listado2> ObtenerCantBonosVencidosPorAfiliado(DateTime año, int semestre)
+        public static List<Listado2> ObtenerCantBonosVencidosPorAfiliado(DateTime desde, DateTime hasta)
         {
             List<Listado2> listaListado2 = new List<Listado2>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@año", año));
-            ListaParametros.Add(new SqlParameter("@semestre", semestre));
+            ListaParametros.Add(new SqlParameter("@año", desde));
+            ListaParametros.Add(new SqlParameter("@semestre", hasta));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT TOP 5 Persona.nombre AS nombre, Persona.apellido AS apellido, COUNT(Bono_Farmacia.codigo) AS cantidad FROM mario_killers.Bono_Farmacia JOIN mario_killers.Compra ON Bono_Farmacia.compra = Compra.id JOIN mario_killers.Afiliado ON Compra.persona = Afiliado.persona JOIN mario_killers.Persona ON Afiliado.persona = Persona.id WHERE Compra.fecha + 60 between @desde and @hasta GROUP BY Persona.nombre, Persona.apellido ORDER BY COUNT(Bono_Farmacia.codigo) DESC", "T", ListaParametros);
 
             if (lector.HasRows)
             {
@@ -57,13 +57,13 @@ namespace Clinica_Frba.Clases
             return listaListado2;
         }
 
-        public static List<Listado1> ObtenerEspecialidadesMasCancelaciones(DateTime año, int semestre)
+        public static List<Listado1> ObtenerEspecialidadesMasCancelaciones(DateTime desde, DateTime hasta)
         {
             List<Listado1> listaListado2 = new List<Listado1>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@año", año));
-            ListaParametros.Add(new SqlParameter("@semestre", semestre));
+            ListaParametros.Add(new SqlParameter("@año", desde));
+            ListaParametros.Add(new SqlParameter("@semestre", hasta));
 
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("", "T", ListaParametros);
 
@@ -80,13 +80,13 @@ namespace Clinica_Frba.Clases
             return listaListado2;
         }
 
-        public static List<Listado2> ObtenerAfiliadosQueUsaronBonosQueNoCompraron(DateTime año, int semestre)
+        public static List<Listado2> ObtenerAfiliadosQueUsaronBonosQueNoCompraron(DateTime desde, DateTime hasta)
         {
             List<Listado2> listaListado2 = new List<Listado2>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@año", año));
-            ListaParametros.Add(new SqlParameter("@semestre", semestre));
+            ListaParametros.Add(new SqlParameter("@desde", desde));
+            ListaParametros.Add(new SqlParameter("@hasta", hasta));
 
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("", "T", ListaParametros);
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Clinica_Frba.Clases
 {
@@ -11,7 +12,7 @@ namespace Clinica_Frba.Clases
         public static Boolean VerificarTurnoLibre(Turno turno)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@fecha", turno.Fecha.Date.ToString("yyyyMMdd") + turno.Horario.ToString()));
+            ListaParametros.Add(new SqlParameter("@fecha", turno.Fecha.Date.ToString("yyyy-MM-dd HH:mm:ss.fff")));
             ListaParametros.Add(new SqlParameter("@profesional", turno.Codigo_Profesional));
 
             SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
@@ -62,6 +63,22 @@ namespace Clinica_Frba.Clases
             ListaParametros2.Add(new SqlParameter("@persona", turno.Codigo_Persona));
 
             Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Cancelacion (tipo, motivo, persona) VALUES (@tipo, @motivo, @persona)", "T", ListaParametros2);
+        }
+
+        public static void AgregarTurno(Turno turno)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+
+            ListaParametros.Add(new SqlParameter("@persona", turno.Codigo_Persona));
+            ListaParametros.Add(new SqlParameter("@profesional", turno.Codigo_Profesional));
+            ListaParametros.Add(new SqlParameter("@horario", turno.Fecha.Date.ToString("yyyy-MM-dd HH:mm:ss.fff")));
+            ListaParametros.Add(new SqlParameter("@especialidad", turno.Codigo_Especialidad));
+
+            SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
+            paramRet.Direction = System.Data.ParameterDirection.Output;
+            ListaParametros.Add(paramRet);
+
+            Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarTurno", ListaParametros);
         }
     }
 }

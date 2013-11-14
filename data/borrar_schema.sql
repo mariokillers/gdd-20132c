@@ -47,6 +47,7 @@ DROP PROCEDURE mario_killers.agregar_funcionalidad,
                mario_killers.hacerCompra,
                mario_killers.agregarProfesional,
                mario_killers.modificarProfesional,
-               mario_killers.verificarTurno
+               mario_killers.verificarTurno,
+               mario_killers.agregarTurno
 
 DROP SCHEMA mario_killers

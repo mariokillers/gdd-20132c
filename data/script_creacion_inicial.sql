@@ -1,6 +1,18 @@
 CREATE SCHEMA mario_killers AUTHORIZATION gd
 GO
 
+CREATE PROCEDURE mario_killers.agregarTurno(@persona numeric(18,0),
+											@profesional numeric(18,0),
+											@horario varchar(255),
+											@especialidad numeric(18,0),
+											@ret numeric(18,0) output)
+AS BEGIN
+	INSERT INTO mario_killers.Turno(persona, profesional, horario, especialidad)
+			VALUES (@persona, @profesional, CONVERT(DATETIME, @horario), @especialidad)
+	SET @ret = @persona
+END
+GO
+
 CREATE PROCEDURE mario_killers.verificarTurno(@fecha varchar(255),
 											  @profesional numeric(18,0),
 											  @ret numeric(18,0) output)

@@ -80,6 +80,7 @@ namespace Clinica_Frba.NewFolder4
             {
                 frmTurno frmTurno = new frmTurno();
                 frmTurno.unProfesional = (Profesional)grillaProfesionales.CurrentRow.DataBoundItem;
+                frmTurno.unaEspecialidad = (decimal)cmbEspecialidades.SelectedValue;
                 frmTurno.unUsuario = this.unUser;
                 frmTurno.Show();
                 this.Close();

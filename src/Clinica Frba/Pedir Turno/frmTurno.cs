@@ -25,7 +25,7 @@ namespace Clinica_Frba.Pedir_Turno
         public List<Turno> listaVacia = new List<Turno>();
         public Turno unTurno = new Turno();
         public List<Turno> listaCompleta = new List<Turno>();
-
+        public decimal unaEspecialidad { get; set; }
         private void frmTurno_Load(object sender, EventArgs e)
         {
             unaAgenda.armarAgenda(unProfesional.Id);
@@ -93,6 +93,31 @@ namespace Clinica_Frba.Pedir_Turno
         {
             grillaHorarios.DataSource = listaVacia;
             listaTurnos = new List<Turno>();
+        }
+
+        private void btnAction_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                unTurno = (Turno)grillaHorarios.CurrentRow.DataBoundItem;
+                unTurno.Codigo_Profesional = unProfesional.Id;
+                unTurno.Codigo_Especialidad = unaEspecialidad;
+                unTurno.Codigo_Persona = unUsuario.Codigo_Persona;
+                unTurno.Fecha.AddHours(unTurno.Horario.Hours);
+                unTurno.Fecha.AddMinutes(unTurno.Horario.Minutes);
+
+                MessageBox.Show("fecha: " + unTurno.Fecha, "Aviso", MessageBoxButtons.OK);
+
+                Turnos.AgregarTurno(unTurno);
+
+                MessageBox.Show("El turno se ha registrado con exito!", "Aviso", MessageBoxButtons.OK);
+
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("No se ha seleccionado ningun turno, por favor seleccione uno", "Aviso", MessageBoxButtons.OK);
+            }
         }
     }
 }

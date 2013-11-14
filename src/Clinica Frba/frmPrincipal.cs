@@ -17,6 +17,7 @@ using Clinica_Frba.Abm_de_Profesional;
 using Clinica_Frba.NewFolder3;
 using Clinica_Frba.NewFolder13;
 using Clinica_Frba.NewFolder4;
+using Clinica_Frba.NewFolder7;
 
 namespace Clinica_Frba
 {
@@ -208,9 +209,7 @@ namespace Clinica_Frba
 
         private void cmdTurnos_Click(object sender, EventArgs e)
         {
-            lstTurno frmTurno = new lstTurno();
-            frmTurno.unUser = this.User;
-            frmTurno.Show();
+
         }
 
         private void cmdAtencion_Click(object sender, EventArgs e)
@@ -219,6 +218,20 @@ namespace Clinica_Frba
             formAfil.Operacion = "Seleccion";
             formAfil.profesional = new Profesional(User.Codigo_Persona);
             formAfil.Show();
+        }
+
+        private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lstTurno frmTurno = new lstTurno();
+            frmTurno.unUser = this.User;
+            frmTurno.Show();
+        }
+
+        private void cancelarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCancelarAtencion cancel = new frmCancelarAtencion();
+            cancel.unUsuario = this.User;
+            cancel.Show();
         }
     }
 }

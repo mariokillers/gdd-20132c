@@ -178,5 +178,26 @@ namespace Clinica_Frba.Clases
             
             return lista;
         }
+
+        public static List<TipoCancelacion> ObtenerTiposCancelacion()
+        {
+            List<TipoCancelacion> list = new List<TipoCancelacion>();
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Tipo_Cancelacion", "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                while (lector.Read())
+                {
+                    TipoCancelacion unTipo = new TipoCancelacion();
+                    unTipo.id = (decimal)lector["id"];
+                    unTipo.descripcion = (string)lector["descripcion"];
+                    list.Add(unTipo);
+                }
+            }
+            return list;
+        }
     }
 }

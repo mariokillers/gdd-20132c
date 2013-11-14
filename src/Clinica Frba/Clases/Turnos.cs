@@ -12,7 +12,6 @@ namespace Clinica_Frba.Clases
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@fecha", turno.Fecha.Date));
-            ListaParametros.Add(new SqlParameter("@hora", turno.Horario));
             ListaParametros.Add(new SqlParameter("@profesional", turno.Codigo_Profesional));
 
             SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);

@@ -36,7 +36,7 @@ DROP FUNCTION mario_killers.horas_por_semana,
               mario_killers.horario_atencion,
               mario_killers.roles_usuario,
               mario_killers.cant_medicamentos
-              --mario_killers.Turno_Valido
+             -- , mario_killers.Turno_Valido
 
 DROP PROCEDURE mario_killers.agregar_funcionalidad,
                mario_killers.agregarPlanAlGrupo,
@@ -46,6 +46,7 @@ DROP PROCEDURE mario_killers.agregar_funcionalidad,
                mario_killers.registrarCambioPlan,
                mario_killers.hacerCompra,
                mario_killers.agregarProfesional,
-               mario_killers.modificarProfesional
+               mario_killers.modificarProfesional,
+               mario_killers.verificarTurno
 
 DROP SCHEMA mario_killers

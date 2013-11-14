@@ -1,6 +1,15 @@
 CREATE SCHEMA mario_killers AUTHORIZATION gd
 GO
 
+CREATE PROCEDURE mario_killers.verificarTurno(@fecha datetime,
+											  @profesional numeric(18,0),
+											  @ret numeric(18,0) output)
+AS BEGIN
+	IF(EXISTS(SELECT * FROM mario_killers.Turno WHERE profesional = @profesional AND horario = @fecha)) BEGIN SET @ret = 0 END
+	ELSE BEGIN SET @ret = 1 END
+END
+GO
+
 CREATE PROCEDURE mario_killers.modificarProfesional(@id numeric(18,0),
 													@sexo char(1),
 												   @direccion varchar(255),

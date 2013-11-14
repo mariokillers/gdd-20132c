@@ -23,6 +23,7 @@ namespace Clinica_Frba.Pedir_Turno
         public Agenda unaAgenda = new Agenda();
         public List<Turno> listaTurnos = new List<Turno>();
         public List<Turno> listaVacia = new List<Turno>();
+        public Turno unTurno = new Turno();
 
         private void frmTurno_Load(object sender, EventArgs e)
         {
@@ -41,11 +42,11 @@ namespace Clinica_Frba.Pedir_Turno
             ColDia.Width = 120;
             grillaHorarios.Columns.Add(ColDia);
 
-            /*   DataGridViewTextBoxColumn ColFecha = new DataGridViewTextBoxColumn();
-               ColFecha.DataPropertyName = "Fecha";
-               ColFecha.HeaderText = "Fecha";
-               ColFecha.Width = 120;
-               grillaHorarios.Columns.Add(ColFecha);*/
+            DataGridViewTextBoxColumn ColFecha = new DataGridViewTextBoxColumn();
+            ColFecha.DataPropertyName = "Fecha";
+            ColFecha.HeaderText = "Fecha";
+            ColFecha.Width = 120;
+            grillaHorarios.Columns.Add(ColFecha);
 
             DataGridViewTextBoxColumn ColHora = new DataGridViewTextBoxColumn();
             ColHora.DataPropertyName = "Horario";
@@ -69,7 +70,7 @@ namespace Clinica_Frba.Pedir_Turno
                 }
                 else
                 {
-                    listaTurnos = Utiles.ObtenerTurnosAgenda(unaAgenda);
+                    listaTurnos = Utiles.ObtenerTurnosAgenda(unaAgenda, dtpFechas.Value);
 
                     grillaHorarios.DataSource = listaTurnos;
                 }

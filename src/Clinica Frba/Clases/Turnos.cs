@@ -8,6 +8,22 @@ namespace Clinica_Frba.Clases
 {
     public class Turnos
     {
+        public static Boolean VerificarTurnoLibre(Turno turno)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@fecha", turno.Fecha.Date));
+            ListaParametros.Add(new SqlParameter("@hora", turno.Horario));
+            ListaParametros.Add(new SqlParameter("@profesional", turno.Codigo_Profesional));
+
+            SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
+            paramRet.Direction = System.Data.ParameterDirection.Output;
+
+            ListaParametros.Add(paramRet);
+            decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.verificarTurno", ListaParametros);
+            if (ret == 1) return true; else return false;
+        }
+
+
         public static List<Turno> ObtenerTurnos(int persona)
         {
             List<Turno> listTurno = new List<Turno>();

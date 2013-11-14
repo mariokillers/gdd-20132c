@@ -201,13 +201,22 @@ namespace Clinica_Frba.Clases
             return list;
         }
 
-        public static List<Turno> ObtenerTurnosAgenda(Agenda unaAgenda)
+        public static List<Turno> ObtenerTurnosAgenda(Agenda unaAgenda, DateTime fecha)
         {
             List<Turno> listaTurnos = new List<Turno>();
 
             foreach (Rango unRango in unaAgenda.Rangos)
             {
-                listaTurnos.AddRange(unRango.TurnosDentro);
+                if (unRango.Dia.Id == ((new Dias(fecha.DayOfWeek)).Id))
+                {
+                    foreach (Turno unTurno in unRango.TurnosDentro)
+                    {
+                        unTurno.Fecha = fecha;
+                        unTurno.Codigo_Profesional = unaAgenda.Profesional;
+                        unTurno.Horario = fecha.TimeOfDay;
+                    }
+                    listaTurnos.AddRange(unRango.TurnosDentro);
+                }
             }
             return listaTurnos;
         }

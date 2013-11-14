@@ -50,9 +50,9 @@ namespace Clinica_Frba.Clases
             return (FechaVencimiento.Date < hoy.Date);
         }
 
-        public bool PuedeUsarlo(BonoFarmacia unBono)
+        public bool PuedeUsarlo(int grupo)
         {
-            if (unBono.Grupo_Flia == Grupo_Flia)
+            if (grupo == Grupo_Flia)
             {
                 return true;
             }

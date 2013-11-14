@@ -30,31 +30,32 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.grillaTopEspecialidades = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.grillaTopBonosAfiliado = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.grillaTopBonosEspecialidad = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.grillaTopBonosTerceros = new System.Windows.Forms.DataGridView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.cmbAno = new System.Windows.Forms.NumericUpDown();
+            this.rdSegundoTrimestre = new System.Windows.Forms.RadioButton();
+            this.rdPrimerSemestre = new System.Windows.Forms.RadioButton();
+            this.cmdConsultar = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grillaTopEspecialidades)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grillaTopBonosAfiliado)).BeginInit();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grillaTopBonosEspecialidad)).BeginInit();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grillaTopBonosTerceros)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbAno)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -72,7 +73,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.grillaTopEspecialidades);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -81,18 +82,18 @@
             this.tabPage1.Text = "Cancelaciones por especialidad";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // grillaTopEspecialidades
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(610, 303);
-            this.dataGridView1.TabIndex = 0;
+            this.grillaTopEspecialidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaTopEspecialidades.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grillaTopEspecialidades.Location = new System.Drawing.Point(3, 3);
+            this.grillaTopEspecialidades.Name = "grillaTopEspecialidades";
+            this.grillaTopEspecialidades.Size = new System.Drawing.Size(610, 303);
+            this.grillaTopEspecialidades.TabIndex = 0;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.dataGridView2);
+            this.tabPage2.Controls.Add(this.grillaTopBonosAfiliado);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -101,9 +102,18 @@
             this.tabPage2.Text = "Bonos farmacia por afiliado";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // grillaTopBonosAfiliado
+            // 
+            this.grillaTopBonosAfiliado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaTopBonosAfiliado.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grillaTopBonosAfiliado.Location = new System.Drawing.Point(3, 3);
+            this.grillaTopBonosAfiliado.Name = "grillaTopBonosAfiliado";
+            this.grillaTopBonosAfiliado.Size = new System.Drawing.Size(610, 303);
+            this.grillaTopBonosAfiliado.TabIndex = 0;
+            // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.dataGridView3);
+            this.tabPage3.Controls.Add(this.grillaTopBonosEspecialidad);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -112,9 +122,18 @@
             this.tabPage3.Text = "Bonos farmacia por especialidad";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // grillaTopBonosEspecialidad
+            // 
+            this.grillaTopBonosEspecialidad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaTopBonosEspecialidad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grillaTopBonosEspecialidad.Location = new System.Drawing.Point(3, 3);
+            this.grillaTopBonosEspecialidad.Name = "grillaTopBonosEspecialidad";
+            this.grillaTopBonosEspecialidad.Size = new System.Drawing.Size(610, 303);
+            this.grillaTopBonosEspecialidad.TabIndex = 1;
+            // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.dataGridView4);
+            this.tabPage4.Controls.Add(this.grillaTopBonosTerceros);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -122,6 +141,15 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Bonos usados por terceros";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // grillaTopBonosTerceros
+            // 
+            this.grillaTopBonosTerceros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaTopBonosTerceros.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grillaTopBonosTerceros.Location = new System.Drawing.Point(3, 3);
+            this.grillaTopBonosTerceros.Name = "grillaTopBonosTerceros";
+            this.grillaTopBonosTerceros.Size = new System.Drawing.Size(610, 303);
+            this.grillaTopBonosTerceros.TabIndex = 1;
             // 
             // splitContainer1
             // 
@@ -132,10 +160,11 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.cmdConsultar);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Panel1.Controls.Add(this.numericUpDown1);
-            this.splitContainer1.Panel1.Controls.Add(this.radioButton2);
-            this.splitContainer1.Panel1.Controls.Add(this.radioButton1);
+            this.splitContainer1.Panel1.Controls.Add(this.cmbAno);
+            this.splitContainer1.Panel1.Controls.Add(this.rdSegundoTrimestre);
+            this.splitContainer1.Panel1.Controls.Add(this.rdPrimerSemestre);
             // 
             // splitContainer1.Panel2
             // 
@@ -153,77 +182,58 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Año a consultar";
             // 
-            // numericUpDown1
+            // cmbAno
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(118, 55);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.cmbAno.Location = new System.Drawing.Point(118, 55);
+            this.cmbAno.Maximum = new decimal(new int[] {
             2020,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.cmbAno.Minimum = new decimal(new int[] {
             1920,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 2;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.cmbAno.Name = "cmbAno";
+            this.cmbAno.Size = new System.Drawing.Size(120, 20);
+            this.cmbAno.TabIndex = 2;
+            this.cmbAno.Value = new decimal(new int[] {
             2013,
             0,
             0,
             0});
             // 
-            // radioButton2
+            // rdSegundoTrimestre
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(302, 76);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(113, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Segundo semestre";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rdSegundoTrimestre.AutoSize = true;
+            this.rdSegundoTrimestre.Location = new System.Drawing.Point(302, 76);
+            this.rdSegundoTrimestre.Name = "rdSegundoTrimestre";
+            this.rdSegundoTrimestre.Size = new System.Drawing.Size(113, 17);
+            this.rdSegundoTrimestre.TabIndex = 1;
+            this.rdSegundoTrimestre.TabStop = true;
+            this.rdSegundoTrimestre.Text = "Segundo semestre";
+            this.rdSegundoTrimestre.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rdPrimerSemestre
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(302, 53);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(99, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Primer semestre";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rdPrimerSemestre.AutoSize = true;
+            this.rdPrimerSemestre.Location = new System.Drawing.Point(302, 53);
+            this.rdPrimerSemestre.Name = "rdPrimerSemestre";
+            this.rdPrimerSemestre.Size = new System.Drawing.Size(99, 17);
+            this.rdPrimerSemestre.TabIndex = 0;
+            this.rdPrimerSemestre.TabStop = true;
+            this.rdPrimerSemestre.Text = "Primer semestre";
+            this.rdPrimerSemestre.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // cmdConsultar
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(610, 303);
-            this.dataGridView2.TabIndex = 0;
-            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView3.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(610, 303);
-            this.dataGridView3.TabIndex = 1;
-            // 
-            // dataGridView4
-            // 
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView4.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(610, 303);
-            this.dataGridView4.TabIndex = 1;
+            this.cmdConsultar.Location = new System.Drawing.Point(494, 70);
+            this.cmdConsultar.Name = "cmdConsultar";
+            this.cmdConsultar.Size = new System.Drawing.Size(75, 23);
+            this.cmdConsultar.TabIndex = 4;
+            this.cmdConsultar.Text = "Consultar";
+            this.cmdConsultar.UseVisualStyleBackColor = true;
             // 
             // frmListadosEstadisticos
             // 
@@ -236,18 +246,18 @@
             this.Load += new System.EventHandler(this.frmListadosEstadisticos_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grillaTopEspecialidades)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grillaTopBonosAfiliado)).EndInit();
             this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grillaTopBonosEspecialidad)).EndInit();
             this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grillaTopBonosTerceros)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbAno)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -261,12 +271,13 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.NumericUpDown cmbAno;
+        private System.Windows.Forms.RadioButton rdSegundoTrimestre;
+        private System.Windows.Forms.RadioButton rdPrimerSemestre;
+        private System.Windows.Forms.DataGridView grillaTopEspecialidades;
+        private System.Windows.Forms.DataGridView grillaTopBonosAfiliado;
+        private System.Windows.Forms.DataGridView grillaTopBonosEspecialidad;
+        private System.Windows.Forms.DataGridView grillaTopBonosTerceros;
+        private System.Windows.Forms.Button cmdConsultar;
     }
 }

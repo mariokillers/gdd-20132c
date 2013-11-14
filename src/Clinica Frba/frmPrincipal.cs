@@ -141,12 +141,10 @@ namespace Clinica_Frba
             cmdTurnos.Visible = listaDeFunc.Contains("Pedido de turno");
             cmdCompraDeBonos.Visible = listaDeFunc.Contains("Compra de bonos");
             cmdRegistrarLlegada.Visible = listaDeFunc.Contains("Registro de llegada para atención médica");
-            //cmdAtencion.Visible = listaDeFunc.Contains("Registro de resultado para atención médica");
-            cmdAtencion.Visible = true;
-            /*
-	       ('Registrar diagnóstico'),
+            cmdAtencion.Visible = listaDeFunc.Contains("Registro de resultado para atención médica");
+
+            /*,
 	       ('Cancelar atención médica'),
-	       ('Confeccionar receta médica'),
              * */
         }
 

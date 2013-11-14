@@ -39,6 +39,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmdCant = new System.Windows.Forms.NumericUpDown();
             this.grillaRecetas = new System.Windows.Forms.DataGridView();
+            this.cmdRecetar = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -64,6 +65,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.cmdRecetar);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel2.Controls.Add(this.grillaRecetas);
             this.splitContainer1.Size = new System.Drawing.Size(564, 531);
@@ -176,6 +178,16 @@
             this.grillaRecetas.Size = new System.Drawing.Size(541, 150);
             this.grillaRecetas.TabIndex = 0;
             // 
+            // cmdRecetar
+            // 
+            this.cmdRecetar.Location = new System.Drawing.Point(191, 299);
+            this.cmdRecetar.Name = "cmdRecetar";
+            this.cmdRecetar.Size = new System.Drawing.Size(75, 23);
+            this.cmdRecetar.TabIndex = 12;
+            this.cmdRecetar.Text = "Recetar";
+            this.cmdRecetar.UseVisualStyleBackColor = true;
+            this.cmdRecetar.Click += new System.EventHandler(this.cmdRecetar_Click);
+            // 
             // frmReceta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -211,6 +223,7 @@
         private System.Windows.Forms.Button cmdAgregarMedicamento;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button cmdSeleccionarMed;
+        private System.Windows.Forms.Button cmdRecetar;
 
 
     }

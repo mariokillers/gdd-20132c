@@ -208,5 +208,10 @@ namespace Clinica_Frba.NewFolder5
             aux.Add(medicamento);
             return aux;
         }
+
+        private void cmdRecetar_Click(object sender, EventArgs e)
+        {
+            //DAR DE ALTA TODAS LAS RECETAS listaDeRecetas
+        }
     }
 }

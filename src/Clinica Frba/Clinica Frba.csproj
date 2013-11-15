@@ -108,6 +108,12 @@
     <Compile Include="Abm de Rol\lstSeleccionRol.Designer.cs">
       <DependentUpon>lstSeleccionRol.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cancelar Atencion\frmCancelarDias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cancelar Atencion\frmCancelarDias.Designer.cs">
+      <DependentUpon>frmCancelarDias.cs</DependentUpon>
+    </Compile>
     <Compile Include="Clases\Afiliado.cs" />
     <Compile Include="Clases\Afiliados.cs" />
     <Compile Include="Clases\Agenda.cs" />
@@ -188,6 +194,12 @@
     </Compile>
     <Compile Include="Registrar Agenda\lstSeleccionAgenda.Designer.cs">
       <DependentUpon>lstSeleccionAgenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registrar Llegada\frmRegistrarLlegada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registrar Llegada\frmRegistrarLlegada.Designer.cs">
+      <DependentUpon>frmRegistrarLlegada.cs</DependentUpon>
     </Compile>
     <Compile Include="Registro de Usuario%28NO%29\Form1.cs">
       <SubType>Form</SubType>
@@ -296,6 +308,9 @@
     <EmbeddedResource Include="Cancelar Atencion\frmCancelarAtencion.resx">
       <DependentUpon>frmCancelarAtencion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Cancelar Atencion\frmCancelarDias.resx">
+      <DependentUpon>frmCancelarDias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Compra de Bono\frmBono.resx">
       <DependentUpon>frmBono.cs</DependentUpon>
     </EmbeddedResource>
@@ -330,6 +345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Registrar Agenda\lstSeleccionAgenda.resx">
       <DependentUpon>lstSeleccionAgenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registrar Llegada\frmRegistrarLlegada.resx">
+      <DependentUpon>frmRegistrarLlegada.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Registro Resultado Atencion\frmAtencion.resx">
       <DependentUpon>frmAtencion.cs</DependentUpon>

@@ -211,10 +211,11 @@ namespace Clinica_Frba.Clases
                 {
                     foreach (Turno unTurno in unRango.TurnosDentro)
                     {
-                        unTurno.Fecha = fecha;
-                        unTurno.Fecha.AddHours(unTurno.Horario.Hours);
-                        unTurno.Fecha.AddMinutes(unTurno.Horario.Minutes);
-                        unTurno.Codigo_Profesional = unaAgenda.Profesional;
+                        DateTime aux = fecha;
+                        aux = fecha.AddHours(unTurno.Horario.Hours);
+                        aux = aux.AddMinutes(unTurno.Horario.Minutes);
+                        unTurno.Fecha = aux;
+
                     }
                     listaTurnos.AddRange(unRango.TurnosDentro);
                 }

@@ -67,25 +67,29 @@ namespace Clinica_Frba.NewFolder7
 
         private void btnAction_Click(object sender, EventArgs e)
         {
-            try
+            if (txtMotivo.Text != "")
             {
-                unTurno = (Turno)grillaTurnos.CurrentRow.DataBoundItem;
+                try
+                {
+                    unTurno = (Turno)grillaTurnos.CurrentRow.DataBoundItem;
 
-                if (((DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date.DayOfYear - unTurno.Fecha.Date.DayOfYear) >= 1))
-                {
-                    Turnos.Cancelar(unTurno, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
-                    MessageBox.Show("El turno se ha cancelado con exito!", "Aviso", MessageBoxButtons.OK);
-                    this.Close();
+                    if (((DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date.DayOfYear - unTurno.Fecha.Date.DayOfYear) >= 1))
+                    {
+                        Turnos.Cancelar(unTurno, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
+                        MessageBox.Show("El turno se ha cancelado con exito!", "Aviso", MessageBoxButtons.OK);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El turno no puede cancelarse", "Aviso", MessageBoxButtons.OK);
+                    }
                 }
-                else
+                catch
                 {
-                    MessageBox.Show("El turno no puede cancelarse", "Aviso", MessageBoxButtons.OK);
+                    MessageBox.Show("No se ha seleccionado ningun turno o tiene campos sin completar!", "Error", MessageBoxButtons.OK);
                 }
             }
-            catch
-            {
-                MessageBox.Show("No se ha seleccionado ningun turno o tiene campos sin completar!", "Error", MessageBoxButtons.OK);
-            }
+            else MessageBox.Show("No se ha indicado el motivo de la cancelacion, por favor ingreselo y vuelva a intentarlo", "Error", MessageBoxButtons.OK);
         }
     }
 }

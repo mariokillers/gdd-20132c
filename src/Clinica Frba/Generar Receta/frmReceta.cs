@@ -101,6 +101,7 @@ namespace Clinica_Frba.NewFolder5
                 if (NecesitaBono)
                 {
                     BonoFarmacia unBono = new BonoFarmacia(Int32.Parse(txtNumeroBono.Text));
+                    //if(usado)
                     if (!unBono.EstasVencido((DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"])) ))
                     {
                         /*if (unBono.PuedeUsarlo(afiliado.Numero_Grupo))
@@ -211,10 +212,15 @@ namespace Clinica_Frba.NewFolder5
         {
             try
             {
+                int bonoAnterior = -1;
                 receta = new Receta(Int32.Parse(txtNumeroBono.Text));
                 receta.ListaMedicamentos = listaAMostrar;
                 foreach (Medicamento unMedicamento in receta.ListaMedicamentos)
                 {
+                    if (unMedicamento.BonoFarmacia != bonoAnterior)
+                    {
+                        //usar el bono
+                    }
                     unMedicamento.AgregarAReceta(idHistoriaClinica);
                 }
                 MessageBox.Show("Se ha recetado correctamete", "EnHoraBuena!", MessageBoxButtons.OK);

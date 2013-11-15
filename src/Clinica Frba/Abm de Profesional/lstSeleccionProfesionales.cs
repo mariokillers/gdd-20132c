@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using Clinica_Frba.Clases;
 using Clinica_Frba.NewFolder13;
+using Clinica_Frba.Registrar_Llegada;
 
 namespace Clinica_Frba.Abm_de_Profesional
 {
@@ -18,7 +19,7 @@ namespace Clinica_Frba.Abm_de_Profesional
         {
             InitializeComponent();
         }
-
+        public frmRegistrarLlegada formLlegada { get; set; }
         private List<Profesional> listaDeProfesionales = new List<Profesional>();
 
         private List<SqlParameter> ListaDeParametros = new List<SqlParameter>();
@@ -132,6 +133,17 @@ namespace Clinica_Frba.Abm_de_Profesional
                         formProf.unProfesional = unProfesional;
                         formProf.listaVieja = unProfesional.Especialidades;
                         formProf.Show();
+                    }
+                    if (Operacion == "Seleccion")
+                    {
+                        try
+                        {
+                            Profesional profesional = (Profesional)grillaProfesionales.CurrentRow.DataBoundItem;
+                            formLlegada.profesional = profesional;
+                            formLlegada.Show();
+                            this.Close();
+                        }
+                        catch { MessageBox.Show("Debe seleccionar algun medicamento", "Error!", MessageBoxButtons.OK); }
                     }
                 }
             }

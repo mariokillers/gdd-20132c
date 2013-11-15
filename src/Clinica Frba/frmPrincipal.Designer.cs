@@ -47,8 +47,9 @@
             this.consultarAgendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdEstadisticas = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdTurnos = new System.Windows.Forms.ToolStripMenuItem();
-            this.cancelarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cancelarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cancelarDiasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdCompraDeBonos = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdRegistrarLlegada = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdAtencion = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +57,6 @@
             this.cmbRoles = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdIngresar = new System.Windows.Forms.Button();
-            this.cancelarDiasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,21 +124,21 @@
             // cmdProfAlta
             // 
             this.cmdProfAlta.Name = "cmdProfAlta";
-            this.cmdProfAlta.Size = new System.Drawing.Size(152, 22);
+            this.cmdProfAlta.Size = new System.Drawing.Size(144, 22);
             this.cmdProfAlta.Text = "Alta";
             this.cmdProfAlta.Click += new System.EventHandler(this.cmdProfAlta_Click);
             // 
             // cmdProfMod
             // 
             this.cmdProfMod.Name = "cmdProfMod";
-            this.cmdProfMod.Size = new System.Drawing.Size(152, 22);
+            this.cmdProfMod.Size = new System.Drawing.Size(144, 22);
             this.cmdProfMod.Text = "Modificacion";
             this.cmdProfMod.Click += new System.EventHandler(this.cmdProfMod_Click);
             // 
             // cmdProfBaja
             // 
             this.cmdProfBaja.Name = "cmdProfBaja";
-            this.cmdProfBaja.Size = new System.Drawing.Size(152, 22);
+            this.cmdProfBaja.Size = new System.Drawing.Size(144, 22);
             this.cmdProfBaja.Text = "Baja";
             this.cmdProfBaja.Click += new System.EventHandler(this.cmdProfBaja_Click);
             // 
@@ -212,19 +212,26 @@
             this.cmdTurnos.Size = new System.Drawing.Size(56, 20);
             this.cmdTurnos.Text = "Turnos";
             // 
-            // cancelarToolStripMenuItem
-            // 
-            this.cancelarToolStripMenuItem.Name = "cancelarToolStripMenuItem";
-            this.cancelarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.cancelarToolStripMenuItem.Text = "Cancelar";
-            this.cancelarToolStripMenuItem.Click += new System.EventHandler(this.cancelarToolStripMenuItem_Click);
-            // 
             // nuevoToolStripMenuItem
             // 
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.nuevoToolStripMenuItem.Text = "Nuevo";
             this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
+            // 
+            // cancelarToolStripMenuItem
+            // 
+            this.cancelarToolStripMenuItem.Name = "cancelarToolStripMenuItem";
+            this.cancelarToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.cancelarToolStripMenuItem.Text = "Cancelar";
+            this.cancelarToolStripMenuItem.Click += new System.EventHandler(this.cancelarToolStripMenuItem_Click);
+            // 
+            // cancelarDiasToolStripMenuItem
+            // 
+            this.cancelarDiasToolStripMenuItem.Name = "cancelarDiasToolStripMenuItem";
+            this.cancelarDiasToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
+            this.cancelarDiasToolStripMenuItem.Text = "Cancelar Dias";
+            this.cancelarDiasToolStripMenuItem.Click += new System.EventHandler(this.cancelarDiasToolStripMenuItem_Click);
             // 
             // cmdCompraDeBonos
             // 
@@ -238,6 +245,7 @@
             this.cmdRegistrarLlegada.Name = "cmdRegistrarLlegada";
             this.cmdRegistrarLlegada.Size = new System.Drawing.Size(109, 20);
             this.cmdRegistrarLlegada.Text = "Registrar Llegada";
+            this.cmdRegistrarLlegada.Click += new System.EventHandler(this.cmdRegistrarLlegada_Click);
             // 
             // cmdAtencion
             // 
@@ -283,13 +291,6 @@
             this.cmdIngresar.UseVisualStyleBackColor = true;
             this.cmdIngresar.Visible = false;
             this.cmdIngresar.Click += new System.EventHandler(this.cmdIngresar_Click);
-            // 
-            // cancelarDiasToolStripMenuItem
-            // 
-            this.cancelarDiasToolStripMenuItem.Name = "cancelarDiasToolStripMenuItem";
-            this.cancelarDiasToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
-            this.cancelarDiasToolStripMenuItem.Text = "Cancelar Dias";
-            this.cancelarDiasToolStripMenuItem.Click += new System.EventHandler(this.cancelarDiasToolStripMenuItem_Click);
             // 
             // frmPrincipal
             // 

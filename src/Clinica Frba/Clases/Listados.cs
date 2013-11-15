@@ -56,7 +56,6 @@ namespace Clinica_Frba.Clases
             return listaListado2;
         }
 
-        //FALTA
         public static List<Listado1> ObtenerEspecialidadesMasCancelaciones(DateTime desde, DateTime hasta)
         {
             List<Listado1> listaListado2 = new List<Listado1>();
@@ -65,7 +64,7 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(new SqlParameter("@desde", desde));
             ListaParametros.Add(new SqlParameter("@hasta", hasta));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT Especialidad.descripcion AS especialidad, COUNT(Cancelacion.persona) AS cantidad FROM mario_killers.Cancelacion JOIN mario_killers.Afiliado ON Cancelacion.persona = Afiliado.persona JOIN mario_killers.Profesional ON Cancelacion.persona = Profesional.persona JOIN mario_killers.Especialidad_Profesional ON Profesional.persona = Especialidad_Profesional.profesional JOIN mario_killers.Especialidad ON Especialidad_Profesional.especialidad = Especialidad.codigo JOIN mario_killers.Turno ON Turno.persona = Afiliado.persona WHERE Turno.horario between @desde and @hasta", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT especialidad cancelaciones FROM mario_killers.listado_4_view WHERE horario between @desde and @hasta", "T", ListaParametros);
 
             if (lector.HasRows)
             {
@@ -73,7 +72,7 @@ namespace Clinica_Frba.Clases
                 {
                     Listado1 unRegistro = new Listado1();
                     unRegistro.EspecialidadMedica = (string)lector["especialidad"];
-                    unRegistro.CantCancelaciones = (int)lector["cantidad"];
+                    unRegistro.CantCancelaciones = (int)lector["cancelaciones"];
                     listaListado2.Add(unRegistro);
                 }
             }

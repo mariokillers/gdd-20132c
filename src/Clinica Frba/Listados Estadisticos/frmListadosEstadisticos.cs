@@ -111,7 +111,7 @@ namespace Clinica_Frba.NewFolder9
                     hasta = hasta.AddMilliseconds(-1);
                 }
 
-                //grillaListado1.DataSource = Listados.ObtenerEspecialidadesMasCancelaciones(desde, hasta);
+                grillaListado1.DataSource = Listados.ObtenerEspecialidadesMasCancelaciones(desde, hasta);
                 grillaListado2.DataSource = Listados.ObtenerCantBonosVencidosPorAfiliado(desde, hasta);
                 grillaListado3.DataSource = Listados.ObtenerEspecialidadesConMasBonosRecetados(desde, hasta);
                 grillaListado4.DataSource = Listados.ObtenerAfiliadosQueUsaronBonosQueNoCompraron(desde, hasta);

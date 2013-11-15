@@ -66,7 +66,7 @@ namespace Clinica_Frba.Clases
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@codigo", Id));
 
-            return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Paciente set activo =0 where codigo=@codigo ", "T", ListaParametros);
+            return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Bono_Farmacia set activo =0 where codigo=@codigo ", "T", ListaParametros);
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Clinica_Frba.Generar_Receta
         private void BusquedaMedicamento_Load(object sender, EventArgs e)
         {
             grillaMedicamentos.AutoGenerateColumns = false;
+            grillaMedicamentos.MultiSelect = false;
 
             generarGrilla();
         }

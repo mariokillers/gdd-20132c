@@ -28,7 +28,7 @@ namespace Clinica_Frba.NewFolder5
 
         private void frmRegistroLlegada_Load(object sender, EventArgs e)
         {
-            NecesitaBono = true;
+            /*NecesitaBono = true;
 
             cmdCant.Enabled = false;
             cmdSeleccionarMed.Enabled = false;
@@ -36,7 +36,8 @@ namespace Clinica_Frba.NewFolder5
 
             listaAMostrar = new List<Medicamento>();
             listaDeBonos = new List<BonoFarmacia>();
-            listaDeRecetas = new List<Receta>();
+            listaDeRecetas = new List<Receta>();*/
+            Limpiar();
 
             grillaRecetas.AutoGenerateColumns = false;
             grillaBonos.AutoGenerateColumns = false;
@@ -224,8 +225,17 @@ namespace Clinica_Frba.NewFolder5
 
         private void Limpiar()
         {
-            listaAMostrar = null;
+            listaDeBonos = null;
             ActualizarGrillaBonos();
+            listaAMostrar = null;
+            ActualizarGrillaRecetas();
+            cmdSeleccionarMed.Enabled = false;
+            txtNumeroBono.Enabled = true;
+            cmdAceptar.Enabled = true;
+            NecesitaBono = true;
+            listaAMostrar = new List<Medicamento>();
+            listaDeBonos = new List<BonoFarmacia>();
+            listaDeRecetas = new List<Receta>();
         }
     }
 }

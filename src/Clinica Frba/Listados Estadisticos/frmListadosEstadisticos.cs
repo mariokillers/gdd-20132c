@@ -32,17 +32,6 @@ namespace Clinica_Frba.NewFolder9
 
         private void generarGrillaListado4()
         {
-            DataGridViewTextBoxColumn ColNombre = new DataGridViewTextBoxColumn();
-            ColNombre.DataPropertyName = "Nombre";
-            ColNombre.HeaderText = "Nombre";
-            ColNombre.Width = 120;
-            grillaListado4.Columns.Add(ColNombre);
-
-            DataGridViewTextBoxColumn ColApellido = new DataGridViewTextBoxColumn();
-            ColApellido.DataPropertyName = "Apellido";
-            ColApellido.HeaderText = "Apellido";
-            ColApellido.Width = 120;
-            grillaListado4.Columns.Add(ColApellido);
 
             DataGridViewTextBoxColumn ColCant = new DataGridViewTextBoxColumn();
             ColCant.DataPropertyName = "CantBonos";
@@ -123,9 +112,9 @@ namespace Clinica_Frba.NewFolder9
                 }
 
                 //grillaListado1.DataSource = Listados.ObtenerEspecialidadesMasCancelaciones(desde, hasta);
-                //grillaListado2.DataSource = Listados.ObtenerCantBonosVencidosPorAfiliado(desde, hasta);
+                grillaListado2.DataSource = Listados.ObtenerCantBonosVencidosPorAfiliado(desde, hasta);
                 grillaListado3.DataSource = Listados.ObtenerEspecialidadesConMasBonosRecetados(desde, hasta);
-                //grillaListado4.DataSource = Listados.ObtenerAfiliadosQueUsaronBonosQueNoCompraron(desde, hasta);
+                grillaListado4.DataSource = Listados.ObtenerAfiliadosQueUsaronBonosQueNoCompraron(desde, hasta);
             }
             catch { MessageBox.Show("No se ha podido realizar las estadisticas. Vuelva a intentarlo", "Error!", MessageBoxButtons.OK); }
         }

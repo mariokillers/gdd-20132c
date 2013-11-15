@@ -12,7 +12,7 @@ namespace Clinica_Frba.Clases
         public static Boolean VerificarTurnoLibre(Turno turno)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            SqlParameter fecha = new SqlParameter("@fecha", System.Data.SqlDbType.DateTime);
+            SqlParameter fecha = new SqlParameter("@fecha", DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]));
             fecha.Value = turno.Fecha;
             ListaParametros.Add(fecha);
             ListaParametros.Add(new SqlParameter("@profesional", turno.Codigo_Profesional));
@@ -21,7 +21,7 @@ namespace Clinica_Frba.Clases
             paramRet.Direction = System.Data.ParameterDirection.Output;
             ListaParametros.Add(paramRet);
 
-            decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.verificarTurno", ListaParametros);
+            int ret = (int)Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.verificarTurno", ListaParametros);
             if (ret == 1) return true; else return false;
         }
 

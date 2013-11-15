@@ -101,6 +101,7 @@ namespace Clinica_Frba.NewFolder5
                 if (NecesitaBono)
                 {
                     BonoFarmacia unBono = new BonoFarmacia(Int32.Parse(txtNumeroBono.Text));
+                    //if(usado)
                     if (!unBono.EstasVencido((DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"])) ))
                     {
                         /*if (unBono.PuedeUsarlo(afiliado.Numero_Grupo))

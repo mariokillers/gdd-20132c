@@ -16,6 +16,7 @@ namespace Clinica_Frba.Clases
         public int Grupo_Flia { get; set; }
         public int Precio { get; set; }
         public DateTime FechaVencimiento { get; set; }
+        public bool Usado { get; set; }
 
         public BonoFarmacia(Afiliado unAfiliado)
         {
@@ -42,6 +43,7 @@ namespace Clinica_Frba.Clases
                 FechaVencimiento = unaCompra.Fecha.AddDays(60);
                 Grupo_Flia = (int)(decimal)lector["grupo"];
                 Detalle = "Bono Farmacia";
+                //AGREGAR EL USADO
             }
         }
 
@@ -57,6 +59,14 @@ namespace Clinica_Frba.Clases
                 return true;
             }
             else { return false; }
+        }
+
+        public bool Usar()
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@medicamento", Id));
+
+            return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Paciente set Activo =0 where ", "T", ListaParametros);
         }
     }
 }

@@ -31,7 +31,6 @@ namespace Clinica_Frba.Abm_de_Profesional
                 Nombre = (string)lector["nombre"];
                 Apellido = (string)lector["apellido"];
                 Id = (int)(decimal)lector["codigoPersona"];
-                //unProfesional.Id_User = Name; VER PORQUE NO FUNCIONA
                 NumeroDocumento = (decimal)lector["documento"];
                 Direccion = (string)lector["direccion"];
                 FechaNacimiento = (DateTime)lector["fechaNac"];

@@ -38,8 +38,8 @@ namespace Clinica_Frba.Clases
             List<Listado2> listaListado2 = new List<Listado2>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@año", desde));
-            ListaParametros.Add(new SqlParameter("@semestre", hasta));
+            ListaParametros.Add(new SqlParameter("@desde", desde));
+            ListaParametros.Add(new SqlParameter("@hasta", hasta));
 
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT TOP 5 Persona.nombre AS nombre, Persona.apellido AS apellido, COUNT(Bono_Farmacia.codigo) AS cantidad FROM mario_killers.Bono_Farmacia JOIN mario_killers.Compra ON Bono_Farmacia.compra = Compra.id JOIN mario_killers.Afiliado ON Compra.persona = Afiliado.persona JOIN mario_killers.Persona ON Afiliado.persona = Persona.id WHERE Compra.fecha + 60 between @desde and @hasta GROUP BY Persona.nombre, Persona.apellido ORDER BY COUNT(Bono_Farmacia.codigo) DESC", "T", ListaParametros);
 
@@ -62,8 +62,8 @@ namespace Clinica_Frba.Clases
             List<Listado1> listaListado2 = new List<Listado1>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@año", desde));
-            ListaParametros.Add(new SqlParameter("@semestre", hasta));
+            ListaParametros.Add(new SqlParameter("@desde", desde));
+            ListaParametros.Add(new SqlParameter("@hasta", hasta));
 
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("", "T", ListaParametros);
 

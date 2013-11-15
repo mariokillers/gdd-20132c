@@ -63,11 +63,12 @@ namespace Clinica_Frba.Clases
         public Afiliado()
         { }
 
-        public int ActualizarHistoriaClinica(Profesional unProfesional, DateTime hora, string sintomas, string diagnosticos)
+        public int ActualizarHistoriaClinica(Profesional unProfesional, DateTime hora, string sintomas, string diagnosticos, int codigoEspecialidad)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@afiliado", this.Id));
             ListaParametros.Add(new SqlParameter("@profesional", unProfesional.Id));
+            ListaParametros.Add(new SqlParameter("@especialidad", codigoEspecialidad));
             ListaParametros.Add(new SqlParameter("@hora_atencion", hora));
             ListaParametros.Add(new SqlParameter("@diagnostico", diagnosticos));
             ListaParametros.Add(new SqlParameter("@sintomas", sintomas));

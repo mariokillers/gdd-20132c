@@ -44,6 +44,8 @@
             this.cmdGeneraReceta = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.cmdFinalizar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbEspecialidades = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.gpHistoriaClinica.SuspendLayout();
             this.gpRecetas.SuspendLayout();
@@ -51,6 +53,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmbEspecialidades);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cmbHora);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.cmdAceptar);
@@ -82,7 +86,7 @@
             // 
             // cmdAceptar
             // 
-            this.cmdAceptar.Location = new System.Drawing.Point(207, 77);
+            this.cmdAceptar.Location = new System.Drawing.Point(230, 74);
             this.cmdAceptar.Name = "cmdAceptar";
             this.cmdAceptar.Size = new System.Drawing.Size(75, 23);
             this.cmdAceptar.TabIndex = 5;
@@ -206,6 +210,23 @@
             this.cmdFinalizar.UseVisualStyleBackColor = true;
             this.cmdFinalizar.Click += new System.EventHandler(this.cmdFinalizar_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(436, 31);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(70, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Especialidad:";
+            // 
+            // cmbEspecialidades
+            // 
+            this.cmbEspecialidades.FormattingEnabled = true;
+            this.cmbEspecialidades.Location = new System.Drawing.Point(412, 47);
+            this.cmbEspecialidades.Name = "cmbEspecialidades";
+            this.cmbEspecialidades.Size = new System.Drawing.Size(121, 21);
+            this.cmbEspecialidades.TabIndex = 10;
+            // 
             // frmAtencion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,5 +267,7 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button cmdGeneraReceta;
         private System.Windows.Forms.Button cmdFinalizar;
+        private System.Windows.Forms.ComboBox cmbEspecialidades;
+        private System.Windows.Forms.Label label3;
     }
 }

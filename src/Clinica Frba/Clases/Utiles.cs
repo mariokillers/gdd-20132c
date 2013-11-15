@@ -236,41 +236,5 @@ namespace Clinica_Frba.Clases
             }
             return listaDias;
         }
-
-        public static List<Turno> ObtenerTurnosDia(Agenda unaAgenda, DateTime fecha)
-        {
-            List<Turno> list = new List<Turno>();
-            List<Turno> listDef = new List<Turno>();
-
-            List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@profesional", unaAgenda.Profesional));
-
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.TurnosPorPaciente WHERE profesional = @profesional", "T", ListaParametros);
-
-            if (lector.HasRows)
-            {
-                while (lector.Read())
-                {
-                    Turno unTurno = new Turno();
-                    unTurno.Id = (decimal)lector["id"];
-                    unTurno.Codigo_Persona = (decimal)lector["persona_id"];
-                    unTurno.Nombre_Persona = (String)lector["persona"];
-                    unTurno.Codigo_Profesional = (decimal)lector["profesional_id"];
-                    unTurno.Nombre_Profesional = (String)lector["profesional"];
-                    unTurno.Fecha = fecha;
-                    unTurno.Codigo_Especialidad = (decimal)lector["especialidad"];
-                    list.Add(unTurno);
-                }
-            }
-
-            foreach (Turno turn in list)
-            {
-                if (turn.Fecha.ToString("yyyy-MM-dd") == fecha.ToString("yyyy-MM-dd"))
-                {
-                    listDef.Add(turn);
-                }
-            }
-            return listDef;
-        }
     }
 }

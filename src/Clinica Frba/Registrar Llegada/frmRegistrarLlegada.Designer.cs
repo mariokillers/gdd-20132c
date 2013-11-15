@@ -30,16 +30,17 @@
         {
             this.Medico = new System.Windows.Forms.GroupBox();
             this.cmdSeleccionar = new System.Windows.Forms.Button();
-            this.SeleccionTurno = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.grillaHorarios = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.Medico.SuspendLayout();
-            this.SeleccionTurno.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grillaHorarios)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,21 +64,23 @@
             this.cmdSeleccionar.UseVisualStyleBackColor = true;
             this.cmdSeleccionar.Click += new System.EventHandler(this.cmdSeleccionar_Click);
             // 
-            // SeleccionTurno
+            // groupBox1
             // 
-            this.SeleccionTurno.Controls.Add(this.button1);
-            this.SeleccionTurno.Controls.Add(this.grillaHorarios);
-            this.SeleccionTurno.Location = new System.Drawing.Point(27, 155);
-            this.SeleccionTurno.Name = "SeleccionTurno";
-            this.SeleccionTurno.Size = new System.Drawing.Size(508, 203);
-            this.SeleccionTurno.TabIndex = 2;
-            this.SeleccionTurno.TabStop = false;
-            this.SeleccionTurno.Text = "Seleccion Turno";
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Location = new System.Drawing.Point(27, 155);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(508, 203);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(473, 221);
+            this.label4.Location = new System.Drawing.Point(269, 114);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(218, 13);
             this.label4.TabIndex = 4;
@@ -85,20 +88,29 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(354, 88);
+            this.button1.Location = new System.Drawing.Point(301, 88);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
             this.button1.Text = "Seleccionar";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // grillaHorarios
+            // label3
             // 
-            this.grillaHorarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grillaHorarios.Location = new System.Drawing.Point(6, 19);
-            this.grillaHorarios.Name = "grillaHorarios";
-            this.grillaHorarios.Size = new System.Drawing.Size(342, 150);
-            this.grillaHorarios.TabIndex = 0;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(252, 30);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(399, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "ACA VAN LOS TURNOS DEL PROFESIONAL QUE SELECCIONO (LOS DE HOY)";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -131,17 +143,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(703, 505);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.SeleccionTurno);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Medico);
             this.Name = "frmRegistrarLlegada";
             this.Text = "s";
             this.Load += new System.EventHandler(this.frmRegistrarLlegada_Load);
             this.Medico.ResumeLayout(false);
-            this.SeleccionTurno.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grillaHorarios)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -153,10 +165,11 @@
 
         private System.Windows.Forms.GroupBox Medico;
         private System.Windows.Forms.Button cmdSeleccionar;
-        private System.Windows.Forms.GroupBox SeleccionTurno;
+        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView grillaHorarios;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label6;

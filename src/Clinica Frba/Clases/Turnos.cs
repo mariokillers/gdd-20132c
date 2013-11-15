@@ -12,13 +12,15 @@ namespace Clinica_Frba.Clases
         public static Boolean VerificarTurnoLibre(Turno turno)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@fecha", turno.Fecha.ToString("yyyy-MM-dd HH:mm:ss.fff")));
+            SqlParameter fecha = new SqlParameter("@fecha", System.Data.SqlDbType.DateTime);
+            fecha.Value = turno.Fecha;
+            ListaParametros.Add(fecha);
             ListaParametros.Add(new SqlParameter("@profesional", turno.Codigo_Profesional));
 
             SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
             paramRet.Direction = System.Data.ParameterDirection.Output;
-
             ListaParametros.Add(paramRet);
+
             decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.verificarTurno", ListaParametros);
             if (ret == 1) return true; else return false;
         }
@@ -81,17 +83,26 @@ namespace Clinica_Frba.Clases
             Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarTurno", ListaParametros);
         }
 
-        public static void AnularDia(int profesional, DateTime fecha)
+        public static void AnularDia(int profesional, DateTime fecha, decimal tipo, String motivo)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@profesional", profesional));
-            ListaParametros.Add(new SqlParameter("@horario", (String)fecha.ToString("yyyy-MM-dd")));
+            //ListaParametros.Add(new SqlParameter("@horario", (String)fecha.ToString("yyyy-MM-dd")));
+            SqlParameter facha = new SqlParameter("@horario", System.Data.SqlDbType.Date);
+            facha.Value = fecha.Date;
+            ListaParametros.Add(facha);
 
             SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
             paramRet.Direction = System.Data.ParameterDirection.Output;
             ListaParametros.Add(paramRet);
             Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.anularDia", ListaParametros);
-            //Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Turno SET activo = 0 WHERE profesional = @id OR horario LIKE @horario", "T", ListaParametros);
+
+            List<SqlParameter> ListaParametros2 = new List<SqlParameter>();
+            ListaParametros2.Add(new SqlParameter("@tipo", tipo));
+            ListaParametros2.Add(new SqlParameter("@motivo", motivo));
+            ListaParametros2.Add(new SqlParameter("@persona", profesional));
+
+            Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Cancelacion (tipo, motivo, persona) VALUES (@tipo, @motivo, @persona)", "T", ListaParametros2);
         }
     }
 }

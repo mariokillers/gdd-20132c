@@ -9,10 +9,10 @@ END
 GO
 
 CREATE PROCEDURE mario_killers.anularDia(@profesional numeric(18,0),
-										 @horario varchar(255),
+										 @horario date,
 										 @ret numeric(18,0) output)
 AS BEGIN
-	UPDATE mario_killers.Turno SET activo = 0 WHERE profesional = @profesional AND horario = CONVERT(DATE,@horario)
+	UPDATE mario_killers.Turno SET activo = 0 WHERE profesional = @profesional AND horario = @horario
 END
 GO
 
@@ -28,7 +28,7 @@ AS BEGIN
 END
 GO
 
-CREATE PROCEDURE mario_killers.verificarTurno(@fecha varchar(255),
+CREATE PROCEDURE mario_killers.verificarTurno(@fecha datetime,
 											  @profesional numeric(18,0),
 											  @ret numeric(18,0) output)
 AS BEGIN

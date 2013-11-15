@@ -58,7 +58,7 @@ namespace Clinica_Frba.Cancelar_Atencion
                     {
                         try
                         {
-                            Turnos.AnularDia(unUsuario.Codigo_Persona, fecha);
+                            Turnos.AnularDia(unUsuario.Codigo_Persona, fecha, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
                             MessageBox.Show("La fecha seleccionada ha sido cancelada correctamente!", "Aviso", MessageBoxButtons.OK);
                             this.Close();
                         }

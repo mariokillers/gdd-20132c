@@ -493,12 +493,13 @@ END
 GO
 
 CREATE TABLE mario_killers.Medicamento_HistoriaClinica (
+	id numeric(18, 0) IDENTITY,
 	medicamento varchar(255),
 	historia_clinica numeric(18, 0),
 	cantidad numeric(18, 0)
 		CONSTRAINT default_1_med DEFAULT 1,
 	bono_farmacia numeric(18, 0),
-	PRIMARY KEY (medicamento, historia_clinica),
+	PRIMARY KEY (id),
 	FOREIGN KEY (historia_clinica) REFERENCES mario_killers.Historia_Clinica(id),
 	FOREIGN KEY (bono_farmacia) REFERENCES mario_killers.Bono_Farmacia(codigo),
 	FOREIGN KEY (medicamento) REFERENCES mario_killers.Medicamento(detalle),

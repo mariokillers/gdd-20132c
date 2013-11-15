@@ -18,6 +18,7 @@ namespace Clinica_Frba.NewFolder5
             InitializeComponent();
         }
         private Receta receta { get; set; }
+        public int idHistoriaClinica { get; set; }
         public Afiliado afiliado { get; set; }
         private List<Receta> listaDeRecetas { get; set; }
         private List<BonoFarmacia> listaDeBonos { get; set; }
@@ -207,7 +208,28 @@ namespace Clinica_Frba.NewFolder5
 
         private void cmdRecetar_Click(object sender, EventArgs e)
         {
-            //DAR DE ALTA TODAS LAS RECETAS listaDeRecetas
+            try
+            {
+                if (listaDeRecetas.Count == 0)
+                {
+                    receta = new Receta(Int32.Parse(txtNumeroBono.Text));
+                    receta.ListaMedicamentos = listaAMostrar;
+                    foreach (Medicamento unMedicamento in receta.ListaMedicamentos)
+                    {
+                        unMedicamento.AgregarAReceta(idHistoriaClinica);
+                    }
+                }
+                else
+                {
+                    foreach (Receta unaReceta in listaDeRecetas)
+                    {
+                        unaReceta.Codigo_Historia_Clinica = idHistoriaClinica;
+                        unaReceta.RegistrarReceta();
+                    }
+                }
+                MessageBox.Show("Se ha recetado correctamete", "EnHoraBuena!", MessageBoxButtons.OK);
+            }
+            catch { MessageBox.Show("Se ha producido un error", "Error!", MessageBoxButtons.OK); }
         }
     }
 }

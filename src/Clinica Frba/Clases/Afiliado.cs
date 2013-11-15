@@ -63,7 +63,7 @@ namespace Clinica_Frba.Clases
         public Afiliado()
         { }
 
-        public bool ActualizarHistoriaClinica(Profesional unProfesional, DateTime hora, string sintomas, string diagnosticos)
+        public int ActualizarHistoriaClinica(Profesional unProfesional, DateTime hora, string sintomas, string diagnosticos)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@afiliado", this.Id));
@@ -71,8 +71,12 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(new SqlParameter("@hora_atencion", hora));
             ListaParametros.Add(new SqlParameter("@diagnostico", diagnosticos));
             ListaParametros.Add(new SqlParameter("@sintomas", sintomas));
+            SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
+            paramRet.Direction = System.Data.ParameterDirection.Output;
+            ListaParametros.Add(paramRet);
 
-            return Clases.BaseDeDatosSQL.EscribirEnBase("insert into mario_killers.Historia_Clinica (afiliado, profesional, horario_atencion, diagnostico, sintomas) values (@afiliado,@profesional, @hora_atencion, @diagnostico, @sintomas)", "T", ListaParametros);
+            int ret = (int)Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarHClinica", ListaParametros);
+            return ret;
         }
 
         public Afiliado(string numeroAfiliado)

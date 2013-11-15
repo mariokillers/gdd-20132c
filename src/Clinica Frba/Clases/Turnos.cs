@@ -104,5 +104,29 @@ namespace Clinica_Frba.Clases
 
             Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Cancelacion (tipo, motivo, persona) VALUES (@tipo, @motivo, @persona)", "T", ListaParametros2);
         }
+
+        public static void AnularRango(int profesional, DateTime fechaInicio, DateTime fechaFin, decimal tipo, String motivo)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@profesional", profesional));
+            SqlParameter facha = new SqlParameter("@fechaInicio", System.Data.SqlDbType.Date);
+            facha.Value = fechaInicio.Date;
+            ListaParametros.Add(facha);
+            SqlParameter facha2 = new SqlParameter("@fechaFin", System.Data.SqlDbType.Date);
+            facha2.Value = fechaFin.Date;
+            ListaParametros.Add(facha2);
+
+            SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
+            paramRet.Direction = System.Data.ParameterDirection.Output;
+            ListaParametros.Add(paramRet);
+            Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.anularRango", ListaParametros);
+
+            List<SqlParameter> ListaParametros2 = new List<SqlParameter>();
+            ListaParametros2.Add(new SqlParameter("@tipo", tipo));
+            ListaParametros2.Add(new SqlParameter("@motivo", motivo));
+            ListaParametros2.Add(new SqlParameter("@persona", profesional));
+
+            Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Cancelacion (tipo, motivo, persona) VALUES (@tipo, @motivo, @persona)", "T", ListaParametros2);
+        }
     }
 }

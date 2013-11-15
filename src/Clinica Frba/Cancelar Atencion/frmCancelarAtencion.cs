@@ -25,7 +25,7 @@ namespace Clinica_Frba.NewFolder7
         {
             unTurno = new Turno();
             listaTurnos = new List<Turno>();
-            grillaTurnos.AutoGenerateColumns = true;
+            grillaTurnos.AutoGenerateColumns = false;
             List<TipoCancelacion> listaDeTipos = Utiles.ObtenerTiposCancelacion();
             cmbCancelacion.DataSource = listaDeTipos;
             cmbCancelacion.ValueMember = "id";
@@ -53,6 +53,8 @@ namespace Clinica_Frba.NewFolder7
             ColFecha.HeaderText = "Fecha Turno";
             ColFecha.Width = 120;
             grillaTurnos.Columns.Add(ColFecha);
+
+            ActualizarGrilla();
         }
 
         public void ActualizarGrilla()
@@ -72,6 +74,8 @@ namespace Clinica_Frba.NewFolder7
                 if (((DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date.DayOfYear - unTurno.Fecha.Date.DayOfYear) >= 1))
                 {
                     Turnos.Cancelar(unTurno, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
+                    MessageBox.Show("El turno se ha cancelado con exito!", "Aviso", MessageBoxButtons.OK);
+                    this.Close();
                 }
                 else
                 {

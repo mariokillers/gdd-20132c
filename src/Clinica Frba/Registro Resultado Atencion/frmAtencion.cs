@@ -23,6 +23,7 @@ namespace Clinica_Frba.NewFolder6
         private DateTime fecha { get; set; }
         private TimeSpan hora { get; set; }
         public Profesional profesional { get; set; }
+        private int codigoHistoriaClinica { get; set; }
 
         private void frmAtencion_Load(object sender, EventArgs e)
         {
@@ -48,12 +49,10 @@ namespace Clinica_Frba.NewFolder6
         {
             if (txtDiagnostico.Text != "" && txtSintomas.Text != "")
             {
-                if(afiliado.ActualizarHistoriaClinica(profesional,fecha,txtSintomas.Text,txtDiagnostico.Text))
-                {
-                    gpRecetas.Visible = true;
-                    Limpiar();
-                    MessageBox.Show("Se ha actualizado correctamente la historia clinica del paciente", "EnHoraBuena!", MessageBoxButtons.OK);
-                }
+                codigoHistoriaClinica = afiliado.ActualizarHistoriaClinica(profesional, fecha, txtSintomas.Text, txtDiagnostico.Text);
+                gpRecetas.Visible = true;
+                Limpiar();
+                MessageBox.Show("Se ha actualizado correctamente la historia clinica del paciente", "EnHoraBuena!", MessageBoxButtons.OK);
             }
             else { MessageBox.Show("Complete correctamente todos los campos", "Error!", MessageBoxButtons.OK); }
         }
@@ -79,6 +78,7 @@ namespace Clinica_Frba.NewFolder6
         {
             frmReceta formReceta = new frmReceta();
             formReceta.afiliado = afiliado;
+            formReceta.idHistoriaClinica = codigoHistoriaClinica;
             formReceta.Show();
             this.Close();
         }

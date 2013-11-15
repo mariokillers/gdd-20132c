@@ -101,11 +101,12 @@ namespace Clinica_Frba.NewFolder5
                 if (NecesitaBono)
                 {
                     BonoFarmacia unBono = new BonoFarmacia(Int32.Parse(txtNumeroBono.Text));
-                    //if(usado)
-                    if (!unBono.EstasVencido((DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"])) ))
+                    if(!unBono.Usado)
                     {
-                        /*if (unBono.PuedeUsarlo(afiliado.Numero_Grupo))
-                        {*/
+                        if (!unBono.EstasVencido((DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]))))
+                        {
+                            /*if (unBono.PuedeUsarlo(afiliado.Numero_Grupo))
+                            {*/
                             if (!listaDeBonos.Any(p => p.Id == unBono.Id))
                             {
                                 listaDeBonos.Add(unBono);
@@ -121,10 +122,11 @@ namespace Clinica_Frba.NewFolder5
                                 txtNumeroBono.Enabled = false;
                             }
                             else { MessageBox.Show("Ya esta ingresado ese bono", "Error!", MessageBoxButtons.OK); }
-                        /*}
-                        else { MessageBox.Show("El bono no puede ser usado por el afiliado", "Error!", MessageBoxButtons.OK); }*/
-                    }
-                    else { MessageBox.Show("El bono esta vencido", "Error!", MessageBoxButtons.OK); }
+                            /*}
+                            else { MessageBox.Show("El bono no puede ser usado por el afiliado", "Error!", MessageBoxButtons.OK); }*/
+                        }
+                        else { MessageBox.Show("El bono esta vencido", "Error!", MessageBoxButtons.OK); }
+                    }else { MessageBox.Show("El bono ya ha sido usado", "Error!", MessageBoxButtons.OK); }
                 }else { MessageBox.Show("No es necesario que agrege mas bonos farmacia hasta el momento", "Error!", MessageBoxButtons.OK); }            }
             catch { MessageBox.Show("No existe un Bono Farmacia con ese codigo", "Error!", MessageBoxButtons.OK); }
         }
@@ -219,7 +221,8 @@ namespace Clinica_Frba.NewFolder5
                 {
                     if (unMedicamento.BonoFarmacia != bonoAnterior)
                     {
-                        //usar el bono
+                        BonoFarmacia bono = new BonoFarmacia(unMedicamento.BonoFarmacia);
+                        bono.Usar();
                     }
                     unMedicamento.AgregarAReceta(idHistoriaClinica);
                 }

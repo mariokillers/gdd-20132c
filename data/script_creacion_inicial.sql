@@ -711,6 +711,17 @@ INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (5, 'Otro')
 GO
 
 -- Vistas ABM
+CREATE VIEW mario_killers.listado_4_view AS
+SELECT Especialidad.descripcion AS especialidad, COUNT(Cancelacion.persona) cancelaciones, Turno.horario
+FROM mario_killers.Cancelacion
+	JOIN mario_killers.Afiliado ON Cancelacion.persona = Afiliado.persona
+	JOIN mario_killers.Profesional ON Cancelacion.persona = Profesional.persona
+	JOIN mario_killers.Especialidad_Profesional ON Profesional.persona = Especialidad_Profesional.profesional
+	JOIN mario_killers.Especialidad ON Especialidad_Profesional.especialidad = Especialidad.codigo
+	JOIN mario_killers.Turno ON Turno.persona = Afiliado.persona
+	GROUP BY Especialidad.descripcion, Turno.horario
+GO
+
 CREATE VIEW mario_killers.AfiliadosABM AS 
 SELECT A.persona AS persona, A.grupo_familia AS grupo_familia, A.nro_familiar AS nro_familiar, P.apellido AS apellido, P.nombre AS nombre, P.documento AS documento, GF.plan_medico AS plan_medico, 
 		P.direccion AS direccion, P.fecha_nac AS fecha_nac, P.mail AS mail, TD.id AS tipo_doc, P.sexo AS sexo, P.telefono AS telefono, A.cant_hijos AS cant_hijos, A.estado_civil AS estado_civil

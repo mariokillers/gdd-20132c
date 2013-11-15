@@ -83,6 +83,10 @@ namespace Clinica_Frba.Clases
 
         public static void AnularDia(int profesional, DateTime fecha)
         {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@id", profesional));
+            ListaParametros.Add(new SqlParameter("@horario", (String)fecha.ToString("yyyy-MM-dd")+"%"));
+            Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Turno SET activo = 0 WHERE profesional = @id AND horario LIKE @horario", "T", ListaParametros);
         }
     }
 }

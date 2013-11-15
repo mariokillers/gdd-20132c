@@ -52,10 +52,10 @@ DROP PROCEDURE mario_killers.agregar_funcionalidad,
                mario_killers.agregarTurno,
                mario_killers.agregarHClinica,
                mario_killers.anularDia,
-<<<<<<< HEAD
-               mario_killers.anularRango
-=======
+
+               mario_killers.anularRango,
+
                mario_killers.listado_4
->>>>>>> 460a1b2d8db2044d0e0a76feae118869724cb128
+
 
 DROP SCHEMA mario_killers

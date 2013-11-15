@@ -64,7 +64,6 @@ namespace Clinica_Frba.Pedir_Turno
                 if (!Utiles.ObtenerDiasHabilesAgenda(unaAgenda).Contains(new Dias(dtpFechas.Value.DayOfWeek).Id))
                 {
                     MessageBox.Show("La fecha seleccionada no esta disponible, por favor seleccione otra", "Aviso", MessageBoxButtons.OK);
-                    //MessageBox.Show("La fecha seleccionada es: " + (new Dias(dtpFechas.Value.DayOfWeek)).Detalle, "Aviso", MessageBoxButtons.OK);
                     limpiarGrilla();
                 }
                 else
@@ -75,7 +74,6 @@ namespace Clinica_Frba.Pedir_Turno
 
                     foreach (Turno turno in listaCompleta)
                     {
-        //                MessageBox.Show("fecha string: " + turno.Fecha.ToString("yyyyMMdd") + turno.Horario.ToString(), "test", MessageBoxButtons.OK);
                         if(Turnos.VerificarTurnoLibre(turno)) listaTurnos.Add(turno);
                     }
 
@@ -103,9 +101,6 @@ namespace Clinica_Frba.Pedir_Turno
                 unTurno.Codigo_Profesional = unProfesional.Id;
                 unTurno.Codigo_Especialidad = unaEspecialidad;
                 unTurno.Codigo_Persona = unUsuario.Codigo_Persona;
-
-                MessageBox.Show("hora: " + unTurno.Horario.Hours + " " + unTurno.Horario.Minutes, "Aviso", MessageBoxButtons.OK);
-                MessageBox.Show("fecha: " + unTurno.Fecha, "Aviso", MessageBoxButtons.OK);
 
                 Turnos.AgregarTurno(unTurno);
 

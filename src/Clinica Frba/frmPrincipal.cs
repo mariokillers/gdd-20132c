@@ -19,6 +19,7 @@ using Clinica_Frba.NewFolder13;
 using Clinica_Frba.NewFolder4;
 using Clinica_Frba.NewFolder7;
 using Clinica_Frba.NewFolder9;
+using Clinica_Frba.Cancelar_Atencion;
 
 namespace Clinica_Frba
 {
@@ -214,6 +215,13 @@ namespace Clinica_Frba
         {
             frmListadosEstadisticos formEstadisticas = new frmListadosEstadisticos();
             formEstadisticas.Show();
+        }
+
+        private void cancelarDiasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCancelarDias frmCancel= new frmCancelarDias();
+            frmCancel.unUsuario = this.User;
+            frmCancel.Show();
         }
     }
 }

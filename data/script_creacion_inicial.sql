@@ -21,7 +21,7 @@ CREATE PROCEDURE mario_killers.anularDia(@profesional numeric(18,0),
 										 @horario date,
 										 @ret numeric(18,0) output)
 AS BEGIN
-	UPDATE mario_killers.Turno SET activo = 0 WHERE profesional = @profesional AND horario = CONVERT(DATE,@horario)
+	UPDATE mario_killers.Turno SET activo = 0 WHERE profesional = @profesional AND horario BETWEEN DATEADD(n,-1,CONVERT(DATE,@horario)) and DATEADD(n,1,CONVERT(DATE,@horario))
 END
 GO
 
@@ -61,7 +61,7 @@ CREATE PROCEDURE mario_killers.verificarTurno(@fecha datetime,
 											  @profesional numeric(18,0),
 											  @ret numeric(18,0) output)
 AS BEGIN
-	IF(EXISTS(SELECT * FROM mario_killers.Turno WHERE profesional = @profesional AND horario between DATEADD(ss,1,@fecha) and DATEADD(ss,-1,@fecha))) BEGIN SET @ret = 0 END
+	IF(EXISTS(SELECT * FROM mario_killers.Turno WHERE profesional = @profesional AND horario between DATEADD(n,-1,@fecha) and DATEADD(n,1,@fecha))) BEGIN SET @ret = 0 END
 	ELSE BEGIN SET @ret = 1 END
 END
 GO

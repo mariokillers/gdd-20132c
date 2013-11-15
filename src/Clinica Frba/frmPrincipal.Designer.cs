@@ -48,7 +48,7 @@
             this.cmdEstadisticas = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdTurnos = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cancelarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdCancelar = new System.Windows.Forms.ToolStripMenuItem();
             this.cancelarDiasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdCompraDeBonos = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdRegistrarLlegada = new System.Windows.Forms.ToolStripMenuItem();
@@ -207,7 +207,7 @@
             // 
             this.cmdTurnos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nuevoToolStripMenuItem,
-            this.cancelarToolStripMenuItem});
+            this.cmdCancelar});
             this.cmdTurnos.Name = "cmdTurnos";
             this.cmdTurnos.Size = new System.Drawing.Size(56, 20);
             this.cmdTurnos.Text = "Turnos";
@@ -215,16 +215,16 @@
             // nuevoToolStripMenuItem
             // 
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.nuevoToolStripMenuItem.Text = "Nuevo";
             this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
             // 
-            // cancelarToolStripMenuItem
+            // cmdCancelar
             // 
-            this.cancelarToolStripMenuItem.Name = "cancelarToolStripMenuItem";
-            this.cancelarToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
-            this.cancelarToolStripMenuItem.Text = "Cancelar";
-            this.cancelarToolStripMenuItem.Click += new System.EventHandler(this.cancelarToolStripMenuItem_Click);
+            this.cmdCancelar.Name = "cmdCancelar";
+            this.cmdCancelar.Size = new System.Drawing.Size(152, 22);
+            this.cmdCancelar.Text = "Cancelar";
+            this.cmdCancelar.Click += new System.EventHandler(this.cancelarToolStripMenuItem_Click);
             // 
             // cancelarDiasToolStripMenuItem
             // 
@@ -341,7 +341,7 @@
         private System.Windows.Forms.ToolStripMenuItem cmdCompraDeBonos;
         private System.Windows.Forms.ToolStripMenuItem cmdRegistrarLlegada;
         private System.Windows.Forms.ToolStripMenuItem cmdAtencion;
-        private System.Windows.Forms.ToolStripMenuItem cancelarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmdCancelar;
         private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cancelarDiasToolStripMenuItem;
 

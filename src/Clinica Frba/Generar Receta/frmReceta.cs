@@ -212,10 +212,15 @@ namespace Clinica_Frba.NewFolder5
         {
             try
             {
+                int bonoAnterior = -1;
                 receta = new Receta(Int32.Parse(txtNumeroBono.Text));
                 receta.ListaMedicamentos = listaAMostrar;
                 foreach (Medicamento unMedicamento in receta.ListaMedicamentos)
                 {
+                    if (unMedicamento.BonoFarmacia != bonoAnterior)
+                    {
+                        //usar el bono
+                    }
                     unMedicamento.AgregarAReceta(idHistoriaClinica);
                 }
                 MessageBox.Show("Se ha recetado correctamete", "EnHoraBuena!", MessageBoxButtons.OK);

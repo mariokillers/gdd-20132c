@@ -80,5 +80,9 @@ namespace Clinica_Frba.Clases
 
             Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarTurno", ListaParametros);
         }
+
+        public static void AnularDia(int profesional, DateTime fecha)
+        {
+        }
     }
 }

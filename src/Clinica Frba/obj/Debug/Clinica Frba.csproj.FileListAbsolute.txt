@@ -1,0 +1,32 @@
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\bin\Debug\Clinica Frba.exe
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\bin\Debug\Clinica Frba.pdb
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.NewFolder12.frmAfiliadoAlta.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Afiliado.lstSeleccionAfiliado.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.NewFolder14.Form1.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.NewFolder13.frmProfesional.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.NewFolder1.frmRol.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Rol.lstSeleccionFuncionalidad.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Rol.lstSeleccionRol.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.NewFolder7.frmCancelarAtencion.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.NewFolder3.frmBono.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.frmPrincipal.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.NewFolder9.frmListadosEstadisticos.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.NewFolder10.frmLogin.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.Properties.Resources.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.NewFolder6.frmAtencion.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica Frba.csproj.GenerateResource.Cache
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica Frba.exe
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica Frba.pdb
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.Registrar_Agenda.frmRegistrarAgenda.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Afiliado.frmGrupo.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.Registrar_Agenda.lstSeleccionAgenda.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Afiliado.lstSeleccionGrupo.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Profesional.lstSeleccionProfesionales.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.Pedir_Turno.frmTurno.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.NewFolder4.lstTurno.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.NewFolder5.frmReceta.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.Generar_Receta.frmBusquedaMedicamento.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\bin\Debug\Clinica Frba.exe.config
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.Cancelar_Atencion.frmCancelarDias.resources
+C:\Users\Tommy\git\gdd-20132c\src\Clinica Frba\obj\Debug\Clinica_Frba.Registrar_Llegada.frmRegistrarLlegada.resources

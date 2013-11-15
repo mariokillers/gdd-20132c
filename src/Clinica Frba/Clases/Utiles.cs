@@ -240,10 +240,12 @@ namespace Clinica_Frba.Clases
         public static List<Turno> ObtenerTurnosDia(Agenda unaAgenda, DateTime fecha)
         {
             List<Turno> list = new List<Turno>();
+            List<Turno> listDef = new List<Turno>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@profesional", unaAgenda.Profesional));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.TurnosPorPaciente", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.TurnosPorPaciente WHERE profesional = @profesional", "T", ListaParametros);
 
             if (lector.HasRows)
             {
@@ -260,7 +262,15 @@ namespace Clinica_Frba.Clases
                     list.Add(unTurno);
                 }
             }
-            return list;
+
+            foreach (Turno turn in list)
+            {
+                if (turn.Fecha.ToString("yyyy-MM-dd") == fecha.ToString("yyyy-MM-dd"))
+                {
+                    listDef.Add(turn);
+                }
+            }
+            return listDef;
         }
     }
 }

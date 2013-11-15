@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.Medico = new System.Windows.Forms.GroupBox();
             this.cmdSeleccionar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -45,25 +44,15 @@
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(42, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(466, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "USAR EL SELECCION DE PROFESIONAL-> EL PACIENTE LE INDICA QUEPROFESIONAL ES";
-            // 
             // Medico
             // 
             this.Medico.Controls.Add(this.cmdSeleccionar);
-            this.Medico.Controls.Add(this.label1);
             this.Medico.Location = new System.Drawing.Point(27, 36);
             this.Medico.Name = "Medico";
             this.Medico.Size = new System.Drawing.Size(508, 100);
             this.Medico.TabIndex = 1;
             this.Medico.TabStop = false;
-            this.Medico.Text = "groupBox1";
+            this.Medico.Text = "Seleccionar Profesional";
             // 
             // cmdSeleccionar
             // 
@@ -162,7 +151,6 @@
             this.Text = "s";
             this.Load += new System.EventHandler(this.frmRegistrarLlegada_Load);
             this.Medico.ResumeLayout(false);
-            this.Medico.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -175,7 +163,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox Medico;
         private System.Windows.Forms.Button cmdSeleccionar;
         private System.Windows.Forms.GroupBox groupBox1;

@@ -31,6 +31,7 @@ namespace Clinica_Frba.Registrar_Llegada
             lstSeleccionProfesionales formProfesional = new lstSeleccionProfesionales();
             formProfesional.Operacion = "Seleccion";
             formProfesional.formLlegada = this;
+            this.Hide();
         }
     }
 }

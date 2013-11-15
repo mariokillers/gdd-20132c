@@ -49,6 +49,11 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 btnAction.Text = "Seleccionar";
                 btnGrupoFlia.Visible = false;
             }
+            if (Operacion == "SeleccionLlegada")
+            {
+                btnAction.Text = "Seleccionar";
+                btnGrupoFlia.Visible = false;
+            }
         }
 
         private void cmdBuscar_Click(object sender, EventArgs e)

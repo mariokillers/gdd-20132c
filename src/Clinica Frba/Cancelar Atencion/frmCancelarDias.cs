@@ -47,10 +47,11 @@ namespace Clinica_Frba.Cancelar_Atencion
         {
             if (txtMotivo.Text != "")
             {
+                DateTime fechaInicio = dtpInicio.Value;
                 if (lbl26.Visible == false) //Si solo se selecciono una fecha
                 {
-                    DateTime fecha = dtpInicio.Value;
-                    if (!Utiles.ObtenerDiasHabilesAgenda(unaAgenda).Contains(new Dias(fecha.DayOfWeek).Id))
+
+                    if (!Utiles.ObtenerDiasHabilesAgenda(unaAgenda).Contains(new Dias(fechaInicio.DayOfWeek).Id))
                     {
                         MessageBox.Show("La fecha seleccionada no esta disponible, por favor seleccione otra", "Aviso", MessageBoxButtons.OK);
                     }
@@ -58,7 +59,7 @@ namespace Clinica_Frba.Cancelar_Atencion
                     {
                         try
                         {
-                            Turnos.AnularDia(unUsuario.Codigo_Persona, fecha, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
+                            Turnos.AnularDia(unUsuario.Codigo_Persona, fechaInicio, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
                             MessageBox.Show("La fecha seleccionada ha sido cancelada correctamente!", "Aviso", MessageBoxButtons.OK);
                             this.Close();
                         }
@@ -70,6 +71,17 @@ namespace Clinica_Frba.Cancelar_Atencion
                 }
                 else
                 {
+                    DateTime fechaFin = dtpFin.Value;
+                    try
+                    {
+                        Turnos.AnularRango(unUsuario.Codigo_Persona, fechaInicio, fechaFin, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
+                        MessageBox.Show("El rango seleccionado ha sido cancelado correctamente!", "Aviso", MessageBoxButtons.OK);
+                        this.Close();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error al intentar cancelar el rango", "Error", MessageBoxButtons.OK);
+                    }
                 }
             }
             else MessageBox.Show("No se ha indicado el motivo de la cancelacion, por favor ingreselo y vuelva a intentarlo", "Error", MessageBoxButtons.OK);

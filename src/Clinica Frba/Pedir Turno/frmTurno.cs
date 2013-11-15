@@ -58,7 +58,6 @@ namespace Clinica_Frba.Pedir_Turno
 
         private void cmdBuscar_Click(object sender, EventArgs e)
         {
-            /*---FALTA EL FILTRO DE LA FECHA SELECCIONADA Y SI ES UN TURNO ACTIVO---*/
             try
             {
                 if (!Utiles.ObtenerDiasHabilesAgenda(unaAgenda).Contains(new Dias(dtpFechas.Value.DayOfWeek).Id))

@@ -1,9 +1,9 @@
 CREATE SCHEMA mario_killers AUTHORIZATION gd
 GO
 
-CREATE PROCEDURE mario_killers.agregarHClinica (@afiliado numeric(18, 0),@profesional numeric(18, 0), @hora_atencion datetime, @diagnostico text, @sintomas text, @ret numeric(18,0) output)
+CREATE PROCEDURE mario_killers.agregarHClinica (@afiliado numeric(18, 0),@profesional numeric(18, 0), @especialidad numeric(18, 0), @hora_atencion datetime, @diagnostico text, @sintomas text, @ret numeric(18,0) output)
 AS BEGIN
-	INSERT INTO mario_killers.Historia_Clinica (afiliado, profesional, horario_atencion, diagnostico, sintomas) VALUES (@afiliado,@profesional, @hora_atencion, @diagnostico, @sintomas)
+	INSERT INTO mario_killers.Historia_Clinica (afiliado, profesional, especialidad, horario_atencion, diagnostico, sintomas) VALUES (@afiliado,@profesional, @especialidad, @hora_atencion, @diagnostico, @sintomas)
 	SET @ret = SCOPE_IDENTITY()
 END
 GO
@@ -442,12 +442,14 @@ CREATE TABLE mario_killers.Historia_Clinica (
 	id numeric(18, 0) IDENTITY,
 	afiliado numeric(18, 0) NOT NULL,
 	profesional numeric(18, 0) NOT NULL,
+	especialidad numeric(18, 0) NOT NULL,
 	horario_atencion datetime NOT NULL,
 	sintomas text,
 	diagnostico text,
 	PRIMARY KEY (id),
 	FOREIGN KEY (afiliado) REFERENCES mario_killers.Afiliado(persona),
-	FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona)
+	FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona),
+	FOREIGN KEY (especialidad) REFERENCES mario_killers.Especialidad(codigo)
 )
 
 CREATE TABLE mario_killers.Compra (

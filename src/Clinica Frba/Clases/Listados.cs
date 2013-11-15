@@ -15,10 +15,10 @@ namespace Clinica_Frba.Clases
             List<Listado3> listaListado3 = new List<Listado3>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@año", desde));
-            ListaParametros.Add(new SqlParameter("@semestre", hasta));
+            ListaParametros.Add(new SqlParameter("@desde", desde));
+            ListaParametros.Add(new SqlParameter("@hasta", hasta));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT TOP 5 Especialidad.descripcion AS especialidad, COUNT(DISTINCT bono_farmacia) AS cantidad FROM mario_killers.Medicamento_HistoriaClinica JOIN mario_killers.Bono_Farmacia on Medicamento_HistoriaClinica.bono_farmacia = Bono_Farmacia.codigo JOIN mario_killers.Historia_Clinica ON Medicamento_HistoriaClinica.historia_clinica = Historia_Clinica.id JOIN mario_killers.Especialidad ON Historia_Clinica.especialidad = Especialidad.codigo JOIN mario_killers.Compra ON Bono_Farmacia.compra = Compra.id WHERE Compra.fecha between @desde and @hasta GROUP BY Especialidad.descripcion ORDER BY COUNT(DISTINCT bono_farmacia) DESC", "T", ListaParametros);
             
             if (lector.HasRows)
             {

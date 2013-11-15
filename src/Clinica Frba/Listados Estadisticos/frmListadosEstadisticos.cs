@@ -123,8 +123,8 @@ namespace Clinica_Frba.NewFolder9
                 }
 
                 //grillaListado1.DataSource = Listados.ObtenerEspecialidadesMasCancelaciones(desde, hasta);
-                grillaListado2.DataSource = Listados.ObtenerCantBonosVencidosPorAfiliado(desde, hasta);
-                //grillaListado3.DataSource = Listados.ObtenerEspecialidadesConMasBonosRecetados(desde, hasta);
+                //grillaListado2.DataSource = Listados.ObtenerCantBonosVencidosPorAfiliado(desde, hasta);
+                grillaListado3.DataSource = Listados.ObtenerEspecialidadesConMasBonosRecetados(desde, hasta);
                 //grillaListado4.DataSource = Listados.ObtenerAfiliadosQueUsaronBonosQueNoCompraron(desde, hasta);
             }
             catch { MessageBox.Show("No se ha podido realizar las estadisticas. Vuelva a intentarlo", "Error!", MessageBoxButtons.OK); }

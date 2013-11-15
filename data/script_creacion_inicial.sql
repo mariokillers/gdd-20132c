@@ -440,12 +440,6 @@ CREATE TABLE mario_killers.Rango (
 	FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona)
 )
 
-CREATE TABLE mario_killers.Especialidad_Profesional (
-	profesional numeric(18, 0),
-	especialidad numeric(18, 0),
-	PRIMARY KEY (profesional, especialidad)
-)
-
 CREATE TABLE mario_killers.Tipo_Especialidad (
 	codigo numeric(18, 0) IDENTITY,
 	descripcion varchar(255) NOT NULL,
@@ -458,6 +452,14 @@ CREATE TABLE mario_killers.Especialidad (
 	tipo numeric(18, 0) NOT NULL,
 	PRIMARY KEY (codigo),
 	FOREIGN KEY (tipo) REFERENCES mario_killers.Tipo_Especialidad(codigo)
+)
+
+CREATE TABLE mario_killers.Especialidad_Profesional (
+	profesional numeric(18, 0),
+	especialidad numeric(18, 0),
+	PRIMARY KEY (profesional, especialidad),
+	FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona),
+	FOREIGN KEY (especialidad) REFERENCES mario_killers.Especialidad(codigo)
 )
 
 CREATE TABLE mario_killers.Turno (
@@ -555,7 +557,7 @@ CREATE TABLE mario_killers.Medicamento_HistoriaClinica (
 GO
 
 CREATE TABLE mario_killers.Tipo_Cancelacion (
-	id numeric(18,0),
+	id numeric(18,0) IDENTITY,
 	descripcion varchar(255),
 	PRIMARY KEY (id)
 )
@@ -565,7 +567,8 @@ CREATE TABLE mario_killers.Cancelacion (
 	tipo numeric(18,0),
 	motivo varchar(255),
 	persona numeric(18,0),
-	FOREIGN KEY (persona) REFERENCES mario_killers.Persona
+	FOREIGN KEY (persona) REFERENCES mario_killers.Persona,
+	FOREIGN KEY (tipo) REFERENCES mario_killers.Tipo_Cancelacion(id)
 )
 GO
 
@@ -703,11 +706,13 @@ INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad
 SET IDENTITY_INSERT mario_killers.Turno OFF
 GO
 
+SET IDENTITY_INSERT mario_killers.Tipo_Cancelacion ON
 INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (1, 'Evento Imprevisto')
 INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (2, 'Problemas Laborales')
 INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (3, 'Problema Personal')
 INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (4, 'Factor Climatico')
 INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (5, 'Otro')
+SET IDENTITY_INSERT mario_killers.Tipo_Cancelacion OFF
 GO
 
 -- Vistas ABM

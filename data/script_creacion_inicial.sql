@@ -183,6 +183,14 @@ AS BEGIN
 END
 GO
 
+CREATE FUNCTION mario_killers.bono_farmacia_valido(@fecha datetime, @vencimiento datetime, @medicamento varchar(255)) RETURNS bit
+AS BEGIN
+	IF @vencimiento < @fecha OR @medicamento IS NOT NULL
+		RETURN 0
+	RETURN 1
+END
+GO
+
 CREATE FUNCTION mario_killers.horario_atencion(@hora datetime) returns numeric(18, 0)
 AS BEGIN
 	DECLARE @result numeric(18, 0)
@@ -466,12 +474,12 @@ CREATE TABLE mario_killers.Bono_Consulta (
 CREATE TABLE mario_killers.Bono_Farmacia (
 	codigo numeric(18, 0) IDENTITY,
 	compra numeric(18, 0),
-	turno numeric(18, 0),
 	plan_medico numeric(18, 0),
+	activo bit
+		CONSTRAINT bono_nuevo DEFAULT 1,
 	PRIMARY KEY (codigo),
 	FOREIGN KEY (plan_medico) REFERENCES mario_killers.Plan_Medico(codigo),
-	FOREIGN KEY (compra) REFERENCES mario_killers.Compra(id),
-	FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id)
+	FOREIGN KEY (compra) REFERENCES mario_killers.Compra(id)
 )
 
 CREATE TABLE mario_killers.Medicamento (

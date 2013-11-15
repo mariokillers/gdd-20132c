@@ -76,11 +76,14 @@ GO
 CREATE VIEW mario_killers.Bonos_Farmacia AS
 	SELECT DISTINCT Bono_Farmacia_Numero,
 	                MAX(Compra_Bono_Fecha) Compra_Bono_Fecha,
+	                Bono_Farmacia_Fecha_Vencimiento,
+	                Bono_Farmacia_Medicamento,
 	                MAX(Turno_Numero) AS Turno_Numero,
-	                Paciente_Dni
+	                Paciente_Dni,
+	                mario_killers.bono_farmacia_valido(Compra_Bono_Fecha, Bono_Farmacia_Fecha_Vencimiento, Bono_Farmacia_Medicamento) AS valido
 	FROM gd_esquema.Maestra
 	WHERE Bono_Farmacia_Numero IS NOT NULL
-	GROUP BY Bono_Farmacia_Numero, Paciente_Dni
+	GROUP BY Bono_Farmacia_Numero, Paciente_Dni, Bono_Farmacia_Fecha_Vencimiento, Bono_Farmacia_Medicamento, Compra_Bono_Fecha
 GO
 
 CREATE VIEW mario_killers.Especialidades_Profesional AS
@@ -189,8 +192,8 @@ INSERT INTO mario_killers.Bono_Consulta (compra, turno, plan_medico)
 
 -- Bonos farmacia
 SET IDENTITY_INSERT mario_killers.Bono_Farmacia ON
-INSERT INTO mario_killers.Bono_Farmacia (codigo, compra, plan_medico, turno)
-	SELECT Bonos_Farmacia.Bono_Farmacia_Numero, Compra.id, plan_medico, Bonos_Farmacia.Turno_Numero
+INSERT INTO mario_killers.Bono_Farmacia (codigo, compra, plan_medico,  activo)
+	SELECT Bonos_Farmacia.Bono_Farmacia_Numero, Compra.id, plan_medico, valido
 	FROM mario_killers.Bonos_Farmacia
 		JOIN mario_killers.Compra
 		ON Compra.persona = Bonos_Farmacia.Paciente_Dni

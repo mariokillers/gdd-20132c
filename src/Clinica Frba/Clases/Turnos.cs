@@ -12,7 +12,7 @@ namespace Clinica_Frba.Clases
         public static Boolean VerificarTurnoLibre(Turno turno)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@fecha", turno.Fecha.ToString("yyyy-MM-dd HH:mm")+"%"));
+            ListaParametros.Add(new SqlParameter("@fecha", turno.Fecha.ToString("yyyy-MM-dd HH:mm:ss.fff")));
             ListaParametros.Add(new SqlParameter("@profesional", turno.Codigo_Profesional));
 
             SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
@@ -84,9 +84,14 @@ namespace Clinica_Frba.Clases
         public static void AnularDia(int profesional, DateTime fecha)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@id", profesional));
-            ListaParametros.Add(new SqlParameter("@horario", (String)fecha.ToString("yyyy-MM-dd")+"%"));
-            Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Turno SET activo = 0 WHERE profesional = @id AND horario LIKE @horario", "T", ListaParametros);
+            ListaParametros.Add(new SqlParameter("@profesional", profesional));
+            ListaParametros.Add(new SqlParameter("@horario", (String)fecha.ToString("yyyy-MM-dd")));
+
+            SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
+            paramRet.Direction = System.Data.ParameterDirection.Output;
+            ListaParametros.Add(paramRet);
+            Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.anularDia", ListaParametros);
+            //Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Turno SET activo = 0 WHERE profesional = @id OR horario LIKE @horario", "T", ListaParametros);
         }
     }
 }

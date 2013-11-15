@@ -30,6 +30,10 @@ namespace Clinica_Frba.NewFolder6
             cmbHora.DataSource = Utiles.ObtenerHorasDiasHabiles();
             cmbHora.ValueMember = "LaHora";
             cmbHora.DisplayMember = "HoraAMostrar";
+
+            cmbEspecialidades.DataSource = Especialidades.ObtenerEspecialidadesProfesional(profesional.Id);
+            cmbEspecialidades.ValueMember = "Codigo";
+            cmbEspecialidades.DisplayMember = "Descripcion";
         }
 
         private void cmdAceptar_Click(object sender, EventArgs e)
@@ -49,7 +53,7 @@ namespace Clinica_Frba.NewFolder6
         {
             if (txtDiagnostico.Text != "" && txtSintomas.Text != "")
             {
-                codigoHistoriaClinica = afiliado.ActualizarHistoriaClinica(profesional, fecha, txtSintomas.Text, txtDiagnostico.Text);
+                codigoHistoriaClinica = afiliado.ActualizarHistoriaClinica(profesional, fecha, txtSintomas.Text, txtDiagnostico.Text, (int)(decimal)cmbEspecialidades.SelectedValue);
                 gpRecetas.Visible = true;
                 Limpiar();
                 MessageBox.Show("Se ha actualizado correctamente la historia clinica del paciente", "EnHoraBuena!", MessageBoxButtons.OK);

@@ -123,7 +123,7 @@ namespace Clinica_Frba
             cmbRoles.Visible = listaDeFunc.Contains("ABM de roles");
             cmdAgenda.Visible = listaDeFunc.Contains("Registrar agenda profesional");
             cmdProfesional.Visible = listaDeFunc.Contains("ABM de profesionales");
-            cmdEstadisticas.Visible = listaDeFunc.Contains("Consultar listado estadístico");
+            cmdEstadisticas.Visible = listaDeFunc.Contains("Consultar listado estadistico");
             cmdTurnos.Visible = listaDeFunc.Contains("Pedido de turno");
             cmdCompraDeBonos.Visible = listaDeFunc.Contains("Compra de bonos");
             cmdRegistrarLlegada.Visible = listaDeFunc.Contains("Registro de llegada para atencion medica");

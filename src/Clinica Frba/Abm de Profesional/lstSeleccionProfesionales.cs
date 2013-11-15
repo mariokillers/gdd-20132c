@@ -107,9 +107,13 @@ namespace Clinica_Frba.Abm_de_Profesional
             {
                 btnAction.Text = "Eliminar";
             }
-            else
+            else if (Operacion == "Modificacion")
             {
                 btnAction.Text = "Modificar";
+            }
+            else
+            {
+                btnAction.Text = "Seleccionar";
             }
         }
 
@@ -140,7 +144,9 @@ namespace Clinica_Frba.Abm_de_Profesional
                         {
                             Profesional profesional = (Profesional)grillaProfesionales.CurrentRow.DataBoundItem;
                             formLlegada.profesional = profesional;
+                            formLlegada.cargarGrilla(); 
                             formLlegada.Show();
+                                                       
                             this.Close();
                         }
                         catch { MessageBox.Show("Debe seleccionar algun medicamento", "Error!", MessageBoxButtons.OK); }

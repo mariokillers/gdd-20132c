@@ -110,10 +110,11 @@
             this.btnAction.TabIndex = 23;
             this.btnAction.Text = "Confirmar";
             this.btnAction.UseVisualStyleBackColor = true;
+            this.btnAction.Click += new System.EventHandler(this.btnAction_Click);
             // 
             // dtpFin
             // 
-            this.dtpFin.Location = new System.Drawing.Point(12, 107);
+            this.dtpFin.Location = new System.Drawing.Point(9, 102);
             this.dtpFin.Name = "dtpFin";
             this.dtpFin.Size = new System.Drawing.Size(215, 20);
             this.dtpFin.TabIndex = 30;
@@ -122,7 +123,7 @@
             // lbl26
             // 
             this.lbl26.AutoSize = true;
-            this.lbl26.Location = new System.Drawing.Point(12, 91);
+            this.lbl26.Location = new System.Drawing.Point(9, 86);
             this.lbl26.Name = "lbl26";
             this.lbl26.Size = new System.Drawing.Size(134, 13);
             this.lbl26.TabIndex = 28;

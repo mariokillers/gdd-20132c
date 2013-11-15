@@ -23,6 +23,7 @@ namespace Clinica_Frba.Cancelar_Atencion
         {
             lbl26.Visible = true;
             dtpFin.Visible = true;
+            label5.Text = "Seleccione Dia Inicio Rango:";
         }
 
         private void frmCancelarDias_Load(object sender, EventArgs e)
@@ -33,6 +34,20 @@ namespace Clinica_Frba.Cancelar_Atencion
             cmbCancelacion.DisplayMember = "descripcion";
 
             
+        }
+
+        private void btnAction_Click(object sender, EventArgs e)
+        {
+            if (txtMotivo.Text != "")
+            {
+                if (lbl26.Visible == false) //Si solo se selecciono una fecha
+                {
+                }
+                else
+                {
+                }
+            }
+            else MessageBox.Show("No se ha indicado el motivo de la cancelacion, por favor ingreselo y vuelva a intentarlo", "Error", MessageBoxButtons.OK);
         }
     }
 }

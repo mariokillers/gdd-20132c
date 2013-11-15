@@ -6,9 +6,3 @@ Integrantes:
  * Tomás Gropper	1445947
  * Uriel Petasny		1444013
  * Rodrigo López Dato	1440251
-
-Email del responsable: tomasgropper@gmail.com
-
-
-
-DECIDIMOS NO PONER FILTROS DE BUSQUEDA A LAS FUNCIONALIDADES YA QUE AL ESTAR POSICIONADO SOBRE EL COMBO,APRETANDO LA TECLA TE REDIRECCIONA 

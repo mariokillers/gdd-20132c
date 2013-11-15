@@ -223,5 +223,13 @@ namespace Clinica_Frba
             frmCancel.unUsuario = this.User;
             frmCancel.Show();
         }
+
+        private void cmdRegistrarLlegada_Click(object sender, EventArgs e)
+        {
+            lstSeleccionAfiliado formAfil = new lstSeleccionAfiliado();
+            formAfil.Operacion = "SeleccionLlegada";
+            formAfil.profesional = new Profesional(User.Codigo_Persona);
+            formAfil.Show();
+        }
     }
 }

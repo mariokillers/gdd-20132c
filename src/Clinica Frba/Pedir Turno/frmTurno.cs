@@ -103,8 +103,6 @@ namespace Clinica_Frba.Pedir_Turno
                 unTurno.Codigo_Profesional = unProfesional.Id;
                 unTurno.Codigo_Especialidad = unaEspecialidad;
                 unTurno.Codigo_Persona = unUsuario.Codigo_Persona;
-                unTurno.Fecha.AddHours(unTurno.Horario.Hours);
-                unTurno.Fecha.AddMinutes(unTurno.Horario.Minutes);
 
                 MessageBox.Show("hora: " + unTurno.Horario.Hours + " " + unTurno.Horario.Minutes, "Aviso", MessageBoxButtons.OK);
                 MessageBox.Show("fecha: " + unTurno.Fecha, "Aviso", MessageBoxButtons.OK);

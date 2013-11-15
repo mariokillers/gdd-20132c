@@ -12,7 +12,7 @@ namespace Clinica_Frba.Clases
         public static Boolean VerificarTurnoLibre(Turno turno)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@fecha", turno.Fecha.Date.ToString("yyyy-MM-dd HH:mm:ss.fff")));
+            ListaParametros.Add(new SqlParameter("@fecha", turno.Fecha.ToString("yyyy-MM-dd HH:mm:ss.fff")));
             ListaParametros.Add(new SqlParameter("@profesional", turno.Codigo_Profesional));
 
             SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
@@ -71,7 +71,7 @@ namespace Clinica_Frba.Clases
 
             ListaParametros.Add(new SqlParameter("@persona", turno.Codigo_Persona));
             ListaParametros.Add(new SqlParameter("@profesional", turno.Codigo_Profesional));
-            ListaParametros.Add(new SqlParameter("@horario", turno.Fecha.Date.ToString("yyyy-MM-dd HH:mm:ss.fff")));
+            ListaParametros.Add(new SqlParameter("@horario", turno.Fecha.ToString("yyyy-MM-dd HH:mm:ss.fff")));
             ListaParametros.Add(new SqlParameter("@especialidad", turno.Codigo_Especialidad));
 
             SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);

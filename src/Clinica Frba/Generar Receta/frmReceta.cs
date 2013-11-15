@@ -210,26 +210,22 @@ namespace Clinica_Frba.NewFolder5
         {
             try
             {
-                if (listaDeRecetas.Count == 0)
+                receta = new Receta(Int32.Parse(txtNumeroBono.Text));
+                receta.ListaMedicamentos = listaAMostrar;
+                foreach (Medicamento unMedicamento in receta.ListaMedicamentos)
                 {
-                    receta = new Receta(Int32.Parse(txtNumeroBono.Text));
-                    receta.ListaMedicamentos = listaAMostrar;
-                    foreach (Medicamento unMedicamento in receta.ListaMedicamentos)
-                    {
-                        unMedicamento.AgregarAReceta(idHistoriaClinica);
-                    }
-                }
-                else
-                {
-                    foreach (Receta unaReceta in listaDeRecetas)
-                    {
-                        unaReceta.Codigo_Historia_Clinica = idHistoriaClinica;
-                        unaReceta.RegistrarReceta();
-                    }
+                    unMedicamento.AgregarAReceta(idHistoriaClinica);
                 }
                 MessageBox.Show("Se ha recetado correctamete", "EnHoraBuena!", MessageBoxButtons.OK);
+                Limpiar();
             }
             catch { MessageBox.Show("Se ha producido un error", "Error!", MessageBoxButtons.OK); }
+        }
+
+        private void Limpiar()
+        {
+            listaAMostrar = null;
+            ActualizarGrillaBonos();
         }
     }
 }

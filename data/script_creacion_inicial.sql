@@ -1,9 +1,10 @@
 CREATE SCHEMA mario_killers AUTHORIZATION gd
 GO
 
-CREATE PROCEDURE mario_killers.agregarHClinica (@afiliado numeric(18, 0),@profesional numeric(18, 0), @especialidad numeric(18, 0), @hora_atencion datetime, @diagnostico text, @sintomas text, @ret numeric(18,0) output)
+CREATE PROCEDURE mario_killers.agregarHClinica (@horario_atencion datetime, @sintomas text, @diagnostico text, @turno numeric(18,0), @ret numeric(18,0) output)
 AS BEGIN
-	INSERT INTO mario_killers.Atencion (afiliado, profesional, especialidad, horario_atencion, diagnostico, sintomas) VALUES (@afiliado,@profesional, @especialidad, @hora_atencion, @diagnostico, @sintomas)
+	INSERT INTO mario_killers.Atencion (horario_atencion, sintomas, diagnostico, turno)
+	VALUES (@horario_atencion, @sintomas, @diagnostico, @turno)
 	SET @ret = SCOPE_IDENTITY()
 END
 GO

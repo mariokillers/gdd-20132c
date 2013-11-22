@@ -57,7 +57,7 @@ INSERT INTO mario_killers.Agenda (profesional, desde, hasta) VALUES (1, '01/01/2
 GO
 
 SET IDENTITY_INSERT mario_killers.Turno ON
-INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad, activo) VALUES (1, 1, 1,GETDATE(), 1, 1)
+--INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad, activo) VALUES (1, 1, 1,GETDATE(), 1, 1)
 SET IDENTITY_INSERT mario_killers.Turno OFF
 GO
 
@@ -70,6 +70,9 @@ INSERT INTO mario_killers.Bono_Farmacia (codigo, compra, plan_medico) VALUES (1,
 SET IDENTITY_INSERT mario_killers.Bono_Farmacia OFF
 GO
 
-INSERT INTO mario_killers.Medicamento (detalle) VALUES ('VIAGRA POTENCIA MAXIMA')
+SET IDENTITY_INSERT mario_killers.Bono_Consulta ON
+INSERT INTO mario_killers.Bono_Consulta(id, compra, plan_medico) VALUES (1, 1, 1)
+SET IDENTITY_INSERT mario_killers.Bono_Consulta OFF
+GO
 
-INSERT INTO mario_killers.Atencion (id) VALUES (1)
+INSERT INTO mario_killers.Medicamento (detalle) VALUES ('VIAGRA POTENCIA MAXIMA')

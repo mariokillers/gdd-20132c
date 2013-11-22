@@ -161,6 +161,7 @@ namespace Clinica_Frba.Clases
             return lista;
         }
 
+
         public static List<Hora> ObtenerHorasDiasSabados()
         {
             int cont = 0;
@@ -243,13 +244,15 @@ namespace Clinica_Frba.Clases
             }
             return listaDias;
         }
+       
         public static List<Turno> ObtenerTurnosDia(Agenda unaAgenda, DateTime fecha)
         {
             List<Turno> list = new List<Turno>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@fecha", (DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"])).Date));          
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.TurnosPorPaciente", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.TurnosPorPaciente WHERE CONVERT(DATE,fecha) = CONVERT(DATE,@fecha)", "T", ListaParametros);
 
             if (lector.HasRows)
             {
@@ -257,11 +260,12 @@ namespace Clinica_Frba.Clases
                 {
                     Turno unTurno = new Turno();
                     unTurno.Id = (decimal)lector["id"];
-                    unTurno.Codigo_Persona = (decimal)lector["persona_id"];
-                    unTurno.Nombre_Persona = (String)lector["persona"];
+                    unTurno.Codigo_Persona = (decimal)lector["paciente_id"];
+                    unTurno.Nombre_Persona = (String)lector["paciente"];
                     unTurno.Codigo_Profesional = (decimal)lector["profesional_id"];
                     unTurno.Nombre_Profesional = (String)lector["profesional"];
-                    unTurno.Fecha = fecha;
+                    unTurno.Fecha = (DateTime)lector["fecha"];
+                    unTurno.Horario = (TimeSpan)unTurno.Fecha.TimeOfDay;
                     unTurno.Codigo_Especialidad = (decimal)lector["especialidad"];
                     list.Add(unTurno);
                 }

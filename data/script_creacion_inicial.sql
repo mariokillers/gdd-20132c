@@ -476,7 +476,8 @@ CREATE TABLE mario_killers.Turno (
 	PRIMARY KEY (id),
 	FOREIGN KEY (persona) REFERENCES mario_killers.Persona(id),
 	FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona),
-	FOREIGN KEY (especialidad) REFERENCES mario_killers.Especialidad(codigo)
+	FOREIGN KEY (especialidad) REFERENCES mario_killers.Especialidad(codigo),
+	UNIQUE (horario, profesional)
 )
 
 CREATE TABLE mario_killers.Compra (
@@ -707,6 +708,15 @@ FROM mario_killers.Bono_Farmacia bf
 	join mario_killers.Compra c on c.id = bf.compra
 	join mario_killers.Afiliado a on a.persona = c.persona
 	join mario_killers.Grupo_Familia on Grupo_Familia.codigo = a.grupo_familia
+	join mario_killers.Plan_Medico on Plan_Medico.codigo = Grupo_Familia.codigo
+GO
+
+CREATE VIEW mario_killers.BonoConsultaYcompra AS
+SELECT Compra.id AS compra, Compra.fecha AS fecha, Bono_Consulta.id AS codigo, Bono_Consulta.plan_medico AS plan_medico, Afiliado.grupo_familia AS grupo, Bono_Consulta.activo AS activo, precio_bono_consulta, precio_bono_farmacia
+FROM mario_killers.Bono_Consulta
+	join mario_killers.Compra ON Compra.id = Bono_Consulta.compra
+	join mario_killers.Afiliado on Afiliado.persona = Compra.persona
+	join mario_killers.Grupo_Familia on Grupo_Familia.codigo = Afiliado.grupo_familia
 	join mario_killers.Plan_Medico on Plan_Medico.codigo = Grupo_Familia.codigo
 GO
 

@@ -149,7 +149,7 @@ namespace Clinica_Frba.Abm_de_Profesional
 
                             this.Close();
                         }
-                        catch { MessageBox.Show("Debe seleccionar algun medicamento", "Error!", MessageBoxButtons.OK); }
+                        catch { MessageBox.Show("Debe seleccionar algun profesional", "Error!", MessageBoxButtons.OK); }
                     }
                 }
             }

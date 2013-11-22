@@ -88,16 +88,18 @@ namespace Clinica_Frba.Registrar_Llegada
                 else { MessageBox.Show("El bono ya ha sido usado", "Error!", MessageBoxButtons.OK); }
             }
             catch { MessageBox.Show("No existe un Bono Consulta con ese codigo", "Error!", MessageBoxButtons.OK); }
-        
         }
 
         private void btnTurno_Click(object sender, EventArgs e)
         {
+            //TURNO == UNPROFESIONAL.PROXIMOTURNO
             turno = (Turno)grillaHorarios.CurrentRow.DataBoundItem;
-            if (turno.Codigo_Persona == afiliado.Codigo_Persona)
+            if (turno.Codigo_Persona == afiliado.Id)
             {
                 cmdConfirmarBono.Enabled = true;
                 txtBono.Enabled = true;
+                btnTurno.Enabled = false;
+                grillaHorarios.Enabled = false;
             }
             else
             {

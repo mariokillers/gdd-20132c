@@ -25,6 +25,11 @@ namespace Clinica_Frba.Registrar_Agenda
 
         private void frmRegistrarAgenda_Load(object sender, EventArgs e)
         {
+            if (unProfesional.TieneAgenda())
+            {
+                MessageBox.Show("El profesional ya cuenta con una agenda", "Error!", MessageBoxButtons.OK);
+                this.Close();
+            }
             grillaHorarios.AutoGenerateColumns = false;
             grillaHorarios.MultiSelect = false;
 

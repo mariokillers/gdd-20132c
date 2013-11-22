@@ -54,6 +54,7 @@ namespace Clinica_Frba.Abm_de_Profesional
                     ListaParametros.Add(new SqlParameter("@hora_desde", unRango.HoraDesde));
                     ListaParametros.Add(new SqlParameter("@hora_hasta", unRango.HoraHasta));
                     Clases.BaseDeDatosSQL.EscribirEnBase("insert into mario_killers.Rango ( profesional, dia, hora_desde , hora_hasta) values (@profesional, @dia,@hora_desde, @hora_hasta)", "T", ListaParametros);
+                    ListaParametros.Clear();
                 }
                 return true;
             }
@@ -72,6 +73,16 @@ namespace Clinica_Frba.Abm_de_Profesional
                 return Clases.BaseDeDatosSQL.EscribirEnBase("insert into mario_killers.Agenda ( profesional, desde , hasta) values (@profesional, @desde, @hasta)", "T", ListaParametros);
             }
             catch { return false; }
+        }
+
+        public bool TieneAgenda()
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@profesional", Id));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * from mario_killers.Agenda where profesional=@profesional", "T", ListaParametros);
+
+            return lector.HasRows;
         }
 
         public DateTime ObtenerAgendaDesde()
@@ -102,13 +113,24 @@ namespace Clinica_Frba.Abm_de_Profesional
             } return (DateTime)lector["hasta"];
         }
 
-        public bool EliminarAgenda()
+        public bool EliminarRango()
         {
             try
             {
                 List<SqlParameter> ListaParametros = new List<SqlParameter>();
                 ListaParametros.Add(new SqlParameter("@profesional", Id));
                 return Clases.BaseDeDatosSQL.EscribirEnBase("delete from mario_killers.Rango where profesional=@profesional", "T", ListaParametros);
+            }
+            catch { return false; }
+        }
+
+        public bool EliminarAgenda()
+        {
+            try
+            {
+                List<SqlParameter> ListaParametros = new List<SqlParameter>();
+                ListaParametros.Add(new SqlParameter("@profesional", Id));
+                return Clases.BaseDeDatosSQL.EscribirEnBase("delete from mario_killers.Agenda where profesional=@profesional", "T", ListaParametros);
             }
             catch { return false; }
         }

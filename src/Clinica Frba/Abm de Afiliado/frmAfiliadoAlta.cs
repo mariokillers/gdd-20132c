@@ -42,13 +42,32 @@ namespace Clinica_Frba.NewFolder12
                 {
                     if (Afiliado.Plan_Medico != (decimal)cmbPlanes.SelectedValue)
                     {
-                        Afiliados.RegistrarCambioPlan(Afiliado, txtMotivo.Text);
-                    }
-                }
+                        if (txtMotivo.Text != "")
+                        {
+                            Afiliados.RegistrarCambioPlan(Afiliado, txtMotivo.Text);
+                            MessageBox.Show("El Afiliado ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
 
-                MessageBox.Show("El Afiliado ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
-                   
-                this.Hide();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Por favor especifique motivo del cambio de grupo", "Aviso", MessageBoxButtons.OK);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("El Afiliado ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
+
+                        this.Hide();
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("El Afiliado ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
+
+                    this.Hide();
+                }
             }
             catch { MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK); }
         }
@@ -150,6 +169,7 @@ namespace Clinica_Frba.NewFolder12
                 {
                     cmbPlanes.Enabled = false;
                     txtMotivo.Visible = true;
+                    txtMotivo.Enabled = false;
                 }
             }
             if (Miembro == "Hijo")

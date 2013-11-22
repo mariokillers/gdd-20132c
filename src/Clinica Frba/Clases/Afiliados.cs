@@ -85,13 +85,35 @@ namespace Clinica_Frba.Clases
             return listaDeAfiliados; ;
         }
 
+        public static int ObtenerSiguienteNumeroFamilia(decimal grupo)
+        {
+            int cant = 1;
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@grupo_familia", (int)grupo));
+
+            String query = @"SELECT MAX(nro_familiar) AS cant
+                            FROM mario_killers.Afiliado
+                            WHERE grupo_familia = @grupo_familia";
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader(query, "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                lector.Read();
+                cant = (int)(decimal) lector["cant"];
+                cant++;
+            }
+            return cant;
+        }
+
         public static void ModificarGrupo(Afiliado afil, Grupo grupo)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@id", (int)afil.Id));
             ListaParametros.Add(new SqlParameter("@grupo_familia", (int)grupo.nroGrupo));
+            ListaParametros.Add(new SqlParameter("@nro_familia", (int)ObtenerSiguienteNumeroFamilia(grupo.nroGrupo)));
 
-            Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Afiliado SET grupo_familia = @grupo_familia WHERE persona = @id", "T", ListaParametros);
+            Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Afiliado SET grupo_familia = @grupo_familia, nro_familiar = @nro_familia WHERE persona = @id", "T", ListaParametros);
         }
 
         public static void Modificar(Afiliado afil)

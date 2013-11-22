@@ -54,7 +54,7 @@ namespace Clinica_Frba.Clases
             else { return false; }
         }
 
-        public bool Usar()
+        public bool Usar(Afiliado afiliado)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@codigo", Id));

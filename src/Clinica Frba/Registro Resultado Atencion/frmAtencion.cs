@@ -86,23 +86,5 @@ namespace Clinica_Frba.NewFolder6
             formReceta.Show();
             this.Close();
         }
-
-       /* private void cmdConfirmarBono_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                BonoConsulta unBono = new BonoConsulta(Int32.Parse(txtBono.Text));
-                if (unBono.Usado)
-                {
-                    if (unBono.PuedeUsarlo((int)afiliado.Numero_Grupo))
-                    {
-                        //VALIDAR BONO (QUE PUEDA SER USADO POR EL AFIL
-                        gbDatos.Visible = true;
-                    }
-                }
-                else { MessageBox.Show("El bono ya ha sido usado", "Error!", MessageBoxButtons.OK); }
-            }
-            catch { MessageBox.Show("No existe un Bono Consulta con ese codigo", "Error!", MessageBoxButtons.OK); }
-        }*/
     }
 }

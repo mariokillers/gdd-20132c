@@ -199,7 +199,7 @@ SET IDENTITY_INSERT mario_killers.Bono_Farmacia OFF
 
 -- Medicamentos por turno
 -- Inicialmente los ID de historia clinica son los numeros de turno
-INSERT INTO mario_killers.Medicamento_Atencion (medicamento, historia_clinica, bono_farmacia)
+INSERT INTO mario_killers.Medicamento_Atencion (medicamento, atencion, bono_farmacia)
 	SELECT Bono_Farmacia_Medicamento, Turno_Numero, Bono_Farmacia_Numero
 	FROM mario_killers.Medicamentos_Atencion
 

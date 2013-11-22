@@ -39,6 +39,7 @@ namespace Clinica_Frba.Clases
                 lector.Read();
                 Codigo_Plan = (int)(decimal)lector["plan_medico"];
                 Codigo_Compra = (int)(decimal)lector["compra"];
+                Precio = (int)(decimal)lector["precio_bono_farmacia"];
                 Compra unaCompra = new Compra(Codigo_Compra);
                 FechaVencimiento = unaCompra.Fecha.AddDays(60);
                 Grupo_Flia = (int)(decimal)lector["grupo"];

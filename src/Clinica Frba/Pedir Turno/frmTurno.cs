@@ -70,7 +70,7 @@ namespace Clinica_Frba.Pedir_Turno
                 {
                     limpiarGrilla();
 
-                    listaCompleta = Utiles.ObtenerTurnosAgenda(unaAgenda, dtpFechas.Value);
+                    listaCompleta = Utiles.ObtenerTurnosAgenda(unaAgenda, ((DateTime)dtpFechas.Value).Date);
 
                     foreach (Turno turno in listaCompleta)
                     {

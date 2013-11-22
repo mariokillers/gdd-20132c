@@ -22,6 +22,7 @@ CREATE PROCEDURE mario_killers.anularDia(@profesional numeric(18,0),
 										 @ret numeric(18,0) output)
 AS BEGIN
 	UPDATE mario_killers.Turno SET activo = 0 WHERE profesional = @profesional AND horario BETWEEN DATEADD(n,-1,CONVERT(DATE,@horario)) and DATEADD(n,1,CONVERT(DATE,@horario))
+	SET @ret = (SELECT id FROM mario_killers.Turno WHERE profesional = @profesional AND horario BETWEEN DATEADD(n,-1,CONVERT(DATE,@horario)) and DATEADD(n,1,CONVERT(DATE,@horario)))
 END
 GO
 
@@ -567,8 +568,10 @@ CREATE TABLE mario_killers.Cancelacion (
 	tipo numeric(18,0),
 	motivo varchar(255),
 	persona numeric(18,0),
+	turno numeric(18,0)
 	FOREIGN KEY (persona) REFERENCES mario_killers.Persona,
-	FOREIGN KEY (tipo) REFERENCES mario_killers.Tipo_Cancelacion(id)
+	FOREIGN KEY (tipo) REFERENCES mario_killers.Tipo_Cancelacion(id),
+	FOREIGN KEY (turno) REFERENCES mario_killers.Turno
 )
 GO
 

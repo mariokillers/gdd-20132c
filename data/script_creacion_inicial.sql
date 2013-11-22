@@ -55,7 +55,7 @@ CREATE PROCEDURE mario_killers.agregarTurno(@persona numeric(18,0),
 AS BEGIN
 	INSERT INTO mario_killers.Turno(persona, profesional, horario, especialidad)
 			VALUES (@persona, @profesional, CONVERT(DATETIME, @horario), @especialidad)
-	SET @ret = @persona
+	SET @ret = SCOPE_IDENTITY()
 END
 GO
 

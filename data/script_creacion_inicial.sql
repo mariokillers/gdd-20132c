@@ -3,7 +3,7 @@ GO
 
 CREATE PROCEDURE mario_killers.agregarHClinica (@afiliado numeric(18, 0),@profesional numeric(18, 0), @especialidad numeric(18, 0), @hora_atencion datetime, @diagnostico text, @sintomas text, @ret numeric(18,0) output)
 AS BEGIN
-	INSERT INTO mario_killers.Historia_Clinica (afiliado, profesional, especialidad, horario_atencion, diagnostico, sintomas) VALUES (@afiliado,@profesional, @especialidad, @hora_atencion, @diagnostico, @sintomas)
+	INSERT INTO mario_killers.Atencion (afiliado, profesional, especialidad, horario_atencion, diagnostico, sintomas) VALUES (@afiliado,@profesional, @especialidad, @hora_atencion, @diagnostico, @sintomas)
 	SET @ret = SCOPE_IDENTITY()
 END
 GO
@@ -38,11 +38,11 @@ WHERE Compra.persona <> Turno.persona and fecha between @desde and @hasta)
 +
 
 (SELECT COUNT(Bono_Farmacia.codigo)
-FROM mario_killers.Medicamento_HistoriaClinica
-     JOIN mario_killers.Bono_Farmacia ON Medicamento_HistoriaClinica.bono_farmacia = Bono_Farmacia.codigo
+FROM mario_killers.Medicamento_Atencion
+     JOIN mario_killers.Bono_Farmacia ON Medicamento_Atencion.bono_farmacia = Bono_Farmacia.codigo
      JOIN mario_killers.Compra ON Bono_Farmacia.compra = Compra.id
-     JOIN mario_killers.Historia_Clinica ON Historia_Clinica.id = Medicamento_HistoriaClinica.historia_clinica
-WHERE Compra.persona <> Historia_Clinica.afiliado and fecha between @desde and @hasta))
+     JOIN mario_killers.Atencion ON Atencion.id = Medicamento_Atencion.Atencion
+WHERE Compra.persona <> Atencion.afiliado and fecha between @desde and @hasta))
 END
 GO
 
@@ -478,7 +478,7 @@ CREATE TABLE mario_killers.Turno (
 	FOREIGN KEY (especialidad) REFERENCES mario_killers.Especialidad(codigo)
 )
 
-CREATE TABLE mario_killers.Historia_Clinica (
+CREATE TABLE mario_killers.Atencion (
 	id numeric(18, 0) IDENTITY,
 	horario_atencion datetime,
 	sintomas text,
@@ -509,7 +509,7 @@ CREATE TABLE mario_killers.Bono_Consulta (
 	PRIMARY KEY (id),
 	FOREIGN KEY (plan_medico) REFERENCES mario_killers.Plan_Medico(codigo),
 	FOREIGN KEY (compra) REFERENCES mario_killers.Compra(id),
-	FOREIGN KEY (atencion) REFERENCES mario_killers.Historia_Clinica(id),
+	FOREIGN KEY (atencion) REFERENCES mario_killers.Atencion(id),
 	FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id)
 )
 
@@ -534,23 +534,23 @@ CREATE FUNCTION mario_killers.cant_medicamentos(@historia_id numeric(18, 0)) ret
 AS BEGIN
 	RETURN (
 			SELECT COUNT(DISTINCT medicamento)
-			FROM mario_killers.Medicamento_HistoriaClinica
-			WHERE historia_clinica = @historia_id
-			GROUP BY historia_clinica
+			FROM mario_killers.Medicamento_Atencion
+			WHERE Atencion = @historia_id
+			GROUP BY Atencion
 			HAVING COUNT(DISTINCT medicamento) > 5
 	)
 END
 GO
 
-CREATE TABLE mario_killers.Medicamento_HistoriaClinica (
+CREATE TABLE mario_killers.Medicamento_Atencion (
 	id numeric(18, 0) IDENTITY,
 	medicamento varchar(255),
-	historia_clinica numeric(18, 0),
+	Atencion numeric(18, 0),
 	cantidad numeric(18, 0)
 		CONSTRAINT default_1_med DEFAULT 1,
 	bono_farmacia numeric(18, 0),
 	PRIMARY KEY (id),
-	FOREIGN KEY (historia_clinica) REFERENCES mario_killers.Historia_Clinica(id),
+	FOREIGN KEY (Atencion) REFERENCES mario_killers.Atencion(id),
 	FOREIGN KEY (bono_farmacia) REFERENCES mario_killers.Bono_Farmacia(codigo),
 	FOREIGN KEY (medicamento) REFERENCES mario_killers.Medicamento(detalle),
 	CONSTRAINT max_3_medicamento CHECK (cantidad <= 3)

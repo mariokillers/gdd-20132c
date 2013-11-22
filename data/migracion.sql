@@ -40,7 +40,7 @@ CREATE VIEW mario_killers.Medicamentos AS
 	WHERE Bono_Farmacia_Medicamento IS NOT NULL
 GO
 
-CREATE VIEW mario_killers.Medicamentos_HistoriaClinica AS
+CREATE VIEW mario_killers.Medicamentos_Atencion AS
 	SELECT Bono_Farmacia_Medicamento, Turno_Numero, Bono_Farmacia_Numero
 	FROM gd_esquema.Maestra
 	WHERE Bono_Farmacia_Medicamento IS NOT NULL AND Turno_Numero IS NOT NULL
@@ -179,11 +179,11 @@ GO
 
 -- Historia clinica
 -- Inicialmente los ID de historia clinica son los numeros de turno
-SET IDENTITY_INSERT mario_killers.Historia_Clinica ON
-INSERT INTO mario_killers.Historia_Clinica (id, turno, horario_atencion, sintomas, diagnostico)
+SET IDENTITY_INSERT mario_killers.Atencion ON
+INSERT INTO mario_killers.Atencion (id, turno, horario_atencion, sintomas, diagnostico)
 	SELECT Turno_Numero, Turno_Numero, Turno_Fecha, Consulta_Sintomas, Consulta_Enfermedades
 	FROM mario_killers.Turnos
-SET IDENTITY_INSERT mario_killers.Historia_Clinica OFF
+SET IDENTITY_INSERT mario_killers.Atencion OFF
 
 -- Bonos consulta
 INSERT INTO mario_killers.Bono_Consulta (compra, turno, plan_medico)
@@ -199,16 +199,16 @@ SET IDENTITY_INSERT mario_killers.Bono_Farmacia OFF
 
 -- Medicamentos por turno
 -- Inicialmente los ID de historia clinica son los numeros de turno
-INSERT INTO mario_killers.Medicamento_HistoriaClinica (medicamento, historia_clinica, bono_farmacia)
+INSERT INTO mario_killers.Medicamento_Atencion (medicamento, historia_clinica, bono_farmacia)
 	SELECT Bono_Farmacia_Medicamento, Turno_Numero, Bono_Farmacia_Numero
-	FROM mario_killers.Medicamentos_HistoriaClinica
+	FROM mario_killers.Medicamentos_Atencion
 
 DROP VIEW mario_killers.Pacientes
          ,mario_killers.Medicos
          ,mario_killers.Especialidades
          ,mario_killers.Planes_Medicos
          ,mario_killers.Medicamentos
-         ,mario_killers.Medicamentos_HistoriaClinica
+         ,mario_killers.Medicamentos_Atencion
          ,mario_killers.Bonos_Consulta
          ,mario_killers.Turnos
          ,mario_killers.Compras
@@ -220,8 +220,8 @@ DROP VIEW mario_killers.Pacientes
 ALTER TABLE mario_killers.Turno WITH NOCHECK
 	ADD CONSTRAINT fecha_turno CHECK (mario_killers.horario_atencion(horario) = 1)
 	
-ALTER TABLE mario_killers.Medicamento_HistoriaClinica WITH NOCHECK
-	ADD CONSTRAINT max_5_receta CHECK ( mario_killers.cant_medicamentos(historia_clinica) <= 5)
+ALTER TABLE mario_killers.Medicamento_Atencion WITH NOCHECK
+	ADD CONSTRAINT max_5_receta CHECK ( mario_killers.cant_medicamentos(Atencion) <= 5)
 	
 ALTER TABLE mario_killers.Turno WITH NOCHECK
 	ADD CONSTRAINT horario_valido CHECK (mario_killers.Turno_Valido(horario) = 1)

@@ -54,7 +54,7 @@ namespace Clinica_Frba.Clases
         public Afiliado()
         { }
 
-        public int ActualizarHistoriaClinica(Profesional unProfesional, DateTime hora, string sintomas, string diagnosticos, int codigoEspecialidad)
+        public int ActualizarAtencion(Profesional unProfesional, DateTime hora, string sintomas, string diagnosticos, int codigoEspecialidad)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@afiliado", this.Id));
@@ -160,7 +160,7 @@ namespace Clinica_Frba.Clases
             return Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Bono_Farmacia(compra, plan_medico) VALUES (@compra, @plan_medico)", "T", ListaParametros);
         }
 
-        /*public static int ProximoTurno(DateTime fecha, int codigoEspecialidad, int codigoProfesional)
+        public int ProximoTurno(DateTime fecha, int codigoEspecialidad, int codigoProfesional)
         {
             int turno = -1;
 
@@ -169,15 +169,19 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(new SqlParameter("@especialidad", codigoEspecialidad));
             ListaParametros.Add(new SqlParameter("@profesional", codigoProfesional));
             ListaParametros.Add(new SqlParameter("@persona", Codigo_Persona));
+            String query = @"SELECT id
+                            FROM mario_killers.Turno
+                            WHERE profesional = @profesional AND persona = @persona AND especialidad= @especialidad
+					                AND CONVERT(DATE,horario) = CONVERT(DATE,@horario)";
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader(query, "T", ListaParametros);
 
             if (lector.HasRows)
             {
                 lector.Read();
-                turno = (int)(decimal)lector["turno"];
+                turno = (int)(decimal)lector["id"];
             }
             return turno;
-        }*/
+        }
     }
 }

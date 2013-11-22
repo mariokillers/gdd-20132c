@@ -53,7 +53,8 @@ namespace Clinica_Frba.NewFolder6
         {
             if (txtDiagnostico.Text != "" && txtSintomas.Text != "")
             {
-                codigoHistoriaClinica = afiliado.ActualizarHistoriaClinica(profesional, fecha, txtSintomas.Text, txtDiagnostico.Text, (int)(decimal)cmbEspecialidades.SelectedValue);
+                int turno = afiliado.ProximoTurno(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date, (int)(decimal)cmbEspecialidades.SelectedValue, profesional.Id);
+                codigoHistoriaClinica = afiliado.ActualizarAtencion(profesional, fecha, txtSintomas.Text, txtDiagnostico.Text, (int)(decimal)cmbEspecialidades.SelectedValue);
                 gpRecetas.Visible = true;
                 Limpiar();
                 MessageBox.Show("Se ha actualizado correctamente la historia clinica del paciente", "EnHoraBuena!", MessageBoxButtons.OK);

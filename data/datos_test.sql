@@ -61,4 +61,15 @@ INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad
 SET IDENTITY_INSERT mario_killers.Turno OFF
 GO
 
+SET IDENTITY_INSERT mario_killers.Compra ON
+INSERT INTO mario_killers.Compra (id, persona, plan_medico, fecha) VALUES (1, 1, 1, GETDATE())
+SET IDENTITY_INSERT mario_killers.Compra OFF
+
+SET IDENTITY_INSERT mario_killers.Bono_Farmacia ON
+INSERT INTO mario_killers.Bono_Farmacia (codigo, compra, plan_medico) VALUES (1, 1, 1)
+SET IDENTITY_INSERT mario_killers.Bono_Farmacia OFF
+GO
+
+INSERT INTO mario_killers.Medicamento (detalle) VALUES ('VIAGRA POTENCIA MAXIMA')
+
 INSERT INTO mario_killers.Atencion (id) VALUES (1)

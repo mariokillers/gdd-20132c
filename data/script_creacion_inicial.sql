@@ -702,10 +702,12 @@ FROM mario_killers.Afiliado A JOIN mario_killers.Persona P ON A.persona = P.id
 GO
 
 CREATE VIEW mario_killers.BonoYcompra AS
-SELECT c.id AS compra, c.fecha AS fecha, bf.codigo AS codigo, bf.plan_medico AS plan_medico, a.grupo_familia AS grupo, bf.activo AS activo
+SELECT c.id AS compra, c.fecha AS fecha, bf.codigo AS codigo, bf.plan_medico AS plan_medico, a.grupo_familia AS grupo, bf.activo AS activo, precio_bono_consulta, precio_bono_farmacia
 FROM mario_killers.Bono_Farmacia bf
 	join mario_killers.Compra c on c.id = bf.compra
 	join mario_killers.Afiliado a on a.persona = c.persona
+	join mario_killers.Grupo_Familia on Grupo_Familia.codigo = a.grupo_familia
+	join mario_killers.Plan_Medico on Plan_Medico.codigo = Grupo_Familia.codigo
 GO
 
 CREATE VIEW mario_killers.TurnosPorPaciente AS

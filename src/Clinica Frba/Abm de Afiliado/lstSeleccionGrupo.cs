@@ -24,6 +24,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
         private void lstSeleccionGrupo_Load(object sender, EventArgs e)
         {
             grillaGrupos.AutoGenerateColumns = false;
+            grillaGrupos.MultiSelect = false;
             cargarGrilla();
         }
 

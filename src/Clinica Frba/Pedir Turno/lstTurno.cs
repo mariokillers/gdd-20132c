@@ -28,6 +28,7 @@ namespace Clinica_Frba.NewFolder4
         private void lstTurno_Load(object sender, EventArgs e)
         {
             grillaProfesionales.AutoGenerateColumns = false;
+            grillaProfesionales.MultiSelect = false;
             List<Especialidad> listaDeEspecialidades = Especialidades.ObtenerEspecialidades();
             cmbEspecialidades.DataSource = listaDeEspecialidades;
             cmbEspecialidades.ValueMember = "Codigo";

@@ -31,6 +31,7 @@ namespace Clinica_Frba.Abm_de_Profesional
         private void lstSeleccionProfesionales_Load(object sender, EventArgs e)
         {
             grillaProfesionales.AutoGenerateColumns = false;
+            grillaProfesionales.MultiSelect = false;
             List<Especialidad> listaDeEspecialidades = Especialidades.ObtenerEspecialidades();
             cmbEspecialidades.DataSource = listaDeEspecialidades;
             cmbEspecialidades.ValueMember = "Codigo";

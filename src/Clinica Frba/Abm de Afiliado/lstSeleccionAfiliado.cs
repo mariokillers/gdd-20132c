@@ -37,6 +37,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
         private void lstSeleccionAfiliado_Load(object sender, EventArgs e)
         {
             grillaPacientes.AutoGenerateColumns = false;
+            grillaPacientes.MultiSelect = false;
             List<Plan> listaDePlanes = Planes.ObtenerPlanes();
             cmbPlanes.DataSource = listaDePlanes;
             cmbPlanes.ValueMember = "Codigo";

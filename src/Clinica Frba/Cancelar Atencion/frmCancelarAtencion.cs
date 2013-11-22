@@ -26,6 +26,7 @@ namespace Clinica_Frba.NewFolder7
             unTurno = new Turno();
             listaTurnos = new List<Turno>();
             grillaTurnos.AutoGenerateColumns = false;
+            grillaTurnos.MultiSelect = false;
             List<TipoCancelacion> listaDeTipos = Utiles.ObtenerTiposCancelacion();
             cmbCancelacion.DataSource = listaDeTipos;
             cmbCancelacion.ValueMember = "id";

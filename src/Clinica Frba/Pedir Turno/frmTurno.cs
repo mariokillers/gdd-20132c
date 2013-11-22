@@ -36,6 +36,7 @@ namespace Clinica_Frba.Pedir_Turno
             //MessageBox.Show("Desde: " + unaAgenda.FechaDesde + ", Hasta: " + unaAgenda.FechaHasta, "test", MessageBoxButtons.OK);
 
             grillaHorarios.AutoGenerateColumns = false;
+            grillaHorarios.MultiSelect = false;
 
             DataGridViewTextBoxColumn ColDia = new DataGridViewTextBoxColumn();
             ColDia.DataPropertyName = "DiaString";

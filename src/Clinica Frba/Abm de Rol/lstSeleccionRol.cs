@@ -45,6 +45,7 @@ namespace Clinica_Frba.Abm_de_Rol
         {
             //genero las columnas de la grilla
             grillaRoles.AutoGenerateColumns = false;
+            grillaRoles.MultiSelect = false;
 
             cargarGrilla();
             ActualizarGrilla();

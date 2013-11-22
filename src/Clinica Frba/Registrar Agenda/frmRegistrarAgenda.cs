@@ -26,6 +26,7 @@ namespace Clinica_Frba.Registrar_Agenda
         private void frmRegistrarAgenda_Load(object sender, EventArgs e)
         {
             grillaHorarios.AutoGenerateColumns = false;
+            grillaHorarios.MultiSelect = false;
 
             generarGrilla();
 

@@ -68,8 +68,6 @@ namespace Clinica_Frba
                 cmbRoles.DisplayMember = "Nombre";
                 cmbRoles.ValueMember = "Id";    
             }
-
-            // OBTENER FUNCIONALIDADES POR ESTE ROL Y VER ESTE TEMA
             cmdAfiliado.Visible = true;
         }
 
@@ -115,7 +113,6 @@ namespace Clinica_Frba
 
             ocultar();
             menu.Visible = true;
-            
 
             //VEO QUE MOSTRAR EN BASE A SUS FUNCIONALIDADES
             cmdLogOut.Visible = true;

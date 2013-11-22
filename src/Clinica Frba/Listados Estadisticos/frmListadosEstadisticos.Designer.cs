@@ -184,7 +184,7 @@
             // 
             // cmdConsultar
             // 
-            this.cmdConsultar.Location = new System.Drawing.Point(494, 70);
+            this.cmdConsultar.Location = new System.Drawing.Point(476, 61);
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(75, 23);
             this.cmdConsultar.TabIndex = 4;

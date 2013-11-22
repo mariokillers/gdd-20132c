@@ -31,7 +31,6 @@ namespace Clinica_Frba.Abm_de_Profesional
         private void lstSeleccionProfesionales_Load(object sender, EventArgs e)
         {
             grillaProfesionales.AutoGenerateColumns = false;
-            grillaProfesionales.MultiSelect = false;
             List<Especialidad> listaDeEspecialidades = Especialidades.ObtenerEspecialidades();
             cmbEspecialidades.DataSource = listaDeEspecialidades;
             cmbEspecialidades.ValueMember = "Codigo";
@@ -108,9 +107,13 @@ namespace Clinica_Frba.Abm_de_Profesional
             {
                 btnAction.Text = "Eliminar";
             }
-            else
+            else if (Operacion == "Modificacion")
             {
                 btnAction.Text = "Modificar";
+            }
+            else
+            {
+                btnAction.Text = "Seleccionar";
             }
         }
 
@@ -141,7 +144,9 @@ namespace Clinica_Frba.Abm_de_Profesional
                         {
                             Profesional profesional = (Profesional)grillaProfesionales.CurrentRow.DataBoundItem;
                             formLlegada.profesional = profesional;
+                            formLlegada.cargarGrilla();
                             formLlegada.Show();
+
                             this.Close();
                         }
                         catch { MessageBox.Show("Debe seleccionar algun medicamento", "Error!", MessageBoxButtons.OK); }
@@ -160,7 +165,9 @@ namespace Clinica_Frba.Abm_de_Profesional
             {
                 ActualizarGrilla();
             }
-            catch { MessageBox.Show("no actualiza grilla", "Error!", MessageBoxButtons.OK); 
+            catch
+            {
+                MessageBox.Show("no actualiza grilla", "Error!", MessageBoxButtons.OK);
             }
         }
     }

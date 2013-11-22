@@ -78,11 +78,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(227, 30);
+            this.label3.Location = new System.Drawing.Point(190, 30);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 13);
+            this.label3.Size = new System.Drawing.Size(141, 13);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Especialidad:";
+            this.label3.Text = "Especialidad de la Atención:";
             // 
             // cmbHora
             // 

@@ -34,7 +34,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.grillaHorarios = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtBono = new System.Windows.Forms.TextBox();
             this.cmdConfirmarBono = new System.Windows.Forms.Button();
             this.Medico.SuspendLayout();
             this.SeleccionTurno.SuspendLayout();
@@ -92,7 +92,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.txtBono);
             this.groupBox2.Location = new System.Drawing.Point(33, 379);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 100);
@@ -100,12 +100,12 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
             // 
-            // textBox1
+            // txtBono
             // 
-            this.textBox1.Location = new System.Drawing.Point(27, 31);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(130, 20);
-            this.textBox1.TabIndex = 0;
+            this.txtBono.Location = new System.Drawing.Point(27, 31);
+            this.txtBono.Name = "txtBono";
+            this.txtBono.Size = new System.Drawing.Size(130, 20);
+            this.txtBono.TabIndex = 0;
             // 
             // cmdConfirmarBono
             // 
@@ -145,7 +145,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView grillaHorarios;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBono;
         private System.Windows.Forms.Button cmdConfirmarBono;
     }
 }

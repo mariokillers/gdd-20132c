@@ -82,4 +82,5 @@ namespace Clinica_Frba.Registrar_Llegada
             }
             catch { MessageBox.Show("No existe un Bono Consulta con ese codigo", "Error!", MessageBoxButtons.OK); }
         }
+    }
 }

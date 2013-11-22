@@ -179,15 +179,13 @@ GO
 
 -- Historia clinica
 -- Inicialmente los ID de historia clinica son los numeros de turno
-SET IDENTITY_INSERT mario_killers.Atencion ON
 INSERT INTO mario_killers.Atencion (id, horario_atencion, sintomas, diagnostico)
 	SELECT Turno_Numero, Turno_Fecha, Consulta_Sintomas, Consulta_Enfermedades
 	FROM mario_killers.Turnos
-SET IDENTITY_INSERT mario_killers.Atencion OFF
 
 -- Bonos consulta
-INSERT INTO mario_killers.Bono_Consulta (compra, turno, plan_medico)
-	SELECT Bono_Consulta_Numero, Turno_Numero, Plan_Med_Codigo
+INSERT INTO mario_killers.Bono_Consulta (compra, plan_medico)
+	SELECT Bono_Consulta_Numero, Plan_Med_Codigo
 	FROM mario_killers.Bonos_Consulta
 
 -- Bonos farmacia

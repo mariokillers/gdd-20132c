@@ -479,15 +479,6 @@ CREATE TABLE mario_killers.Turno (
 	FOREIGN KEY (especialidad) REFERENCES mario_killers.Especialidad(codigo)
 )
 
-CREATE TABLE mario_killers.Atencion (
-	id numeric(18, 0),
-	horario_atencion datetime,
-	sintomas text,
-	diagnostico text,
-	PRIMARY KEY (id),
-	FOREIGN KEY (id) REFERENCES mario_killers.Turno(id)
-)
-
 CREATE TABLE mario_killers.Compra (
 	id numeric(18, 0) IDENTITY,
 	fecha datetime,
@@ -501,16 +492,23 @@ CREATE TABLE mario_killers.Compra (
 CREATE TABLE mario_killers.Bono_Consulta (
 	id numeric(18, 0) IDENTITY,
 	compra numeric(18, 0),
-	atencion numeric(18, 0),
 	plan_medico numeric(18, 0),
 	activo bit NOT NULL
 		CONSTRAINT bono_consulta_activo DEFAULT 1,
-	turno numeric(18, 0),
 	PRIMARY KEY (id),
 	FOREIGN KEY (plan_medico) REFERENCES mario_killers.Plan_Medico(codigo),
-	FOREIGN KEY (compra) REFERENCES mario_killers.Compra(id),
-	FOREIGN KEY (atencion) REFERENCES mario_killers.Atencion(id),
-	FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id)
+	FOREIGN KEY (compra) REFERENCES mario_killers.Compra(id)
+)
+
+CREATE TABLE mario_killers.Atencion (
+	id numeric(18, 0),
+	horario_atencion datetime,
+	sintomas text,
+	diagnostico text,
+	bono_consulta numeric(18, 0),
+	PRIMARY KEY (id),
+	FOREIGN KEY (id) REFERENCES mario_killers.Turno(id),
+	FOREIGN KEY (bono_consulta) REFERENCES mario_killers.Bono_Consulta(id)
 )
 
 CREATE TABLE mario_killers.Bono_Farmacia (

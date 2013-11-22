@@ -23,7 +23,7 @@ CREATE PROCEDURE mario_killers.anularDia(@profesional numeric(18,0),
 										 @ret numeric(18,0) output)
 AS BEGIN
 	UPDATE mario_killers.Turno SET activo = 0 WHERE profesional = @profesional AND CONVERT(DATE,horario) =  CONVERT(DATE,@horario)
-	SET @ret = (SELECT id FROM mario_killers.Turno WHERE profesional = @profesional AND CONVERT(DATE,horario) =  CONVERT(DATE,@horario))
+	SET @ret = 0
 END
 GO
 

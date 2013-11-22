@@ -1,7 +1,7 @@
 CREATE SCHEMA mario_killers AUTHORIZATION gd
 GO
 
-CREATE PROCEDURE mario_killers.agregarHClinica (@horario_atencion datetime, @sintomas text, @diagnostico text, @turno numeric(18,0), @ret numeric(18,0) output)
+CREATE PROCEDURE mario_killers.agregarAtencion (@horario_atencion datetime, @sintomas text, @diagnostico text, @turno numeric(18,0), @ret numeric(18,0) output)
 AS BEGIN
 	INSERT INTO mario_killers.Atencion (horario_atencion, sintomas, diagnostico, turno)
 	VALUES (@horario_atencion, @sintomas, @diagnostico, @turno)
@@ -55,7 +55,7 @@ CREATE PROCEDURE mario_killers.agregarTurno(@persona numeric(18,0),
 AS BEGIN
 	INSERT INTO mario_killers.Turno(persona, profesional, horario, especialidad)
 			VALUES (@persona, @profesional, CONVERT(DATETIME, @horario), @especialidad)
-	SET @ret = SCOPE_IDENTITY()
+	SET @ret = @persona
 END
 GO
 
@@ -480,13 +480,12 @@ CREATE TABLE mario_killers.Turno (
 )
 
 CREATE TABLE mario_killers.Atencion (
-	id numeric(18, 0) IDENTITY,
+	id numeric(18, 0),
 	horario_atencion datetime,
 	sintomas text,
 	diagnostico text,
-	turno numeric(18, 0) NOT NULL,
 	PRIMARY KEY (id),
-	FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id)
+	FOREIGN KEY (id) REFERENCES mario_killers.Turno(id)
 )
 
 CREATE TABLE mario_killers.Compra (

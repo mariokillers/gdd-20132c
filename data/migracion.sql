@@ -180,8 +180,8 @@ GO
 -- Historia clinica
 -- Inicialmente los ID de historia clinica son los numeros de turno
 SET IDENTITY_INSERT mario_killers.Atencion ON
-INSERT INTO mario_killers.Atencion (id, turno, horario_atencion, sintomas, diagnostico)
-	SELECT Turno_Numero, Turno_Numero, Turno_Fecha, Consulta_Sintomas, Consulta_Enfermedades
+INSERT INTO mario_killers.Atencion (id, horario_atencion, sintomas, diagnostico)
+	SELECT Turno_Numero, Turno_Fecha, Consulta_Sintomas, Consulta_Enfermedades
 	FROM mario_killers.Turnos
 SET IDENTITY_INSERT mario_killers.Atencion OFF
 

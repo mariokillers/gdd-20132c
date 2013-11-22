@@ -63,8 +63,9 @@ namespace Clinica_Frba.Clases
             ListaParametros2.Add(new SqlParameter("@tipo", tipoCanc));
             ListaParametros2.Add(new SqlParameter("@motivo", motivo));
             ListaParametros2.Add(new SqlParameter("@persona", turno.Codigo_Persona));
+            ListaParametros2.Add(new SqlParameter("@turno", turno.Id));
 
-            Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Cancelacion (tipo, motivo, persona) VALUES (@tipo, @motivo, @persona)", "T", ListaParametros2);
+            Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Cancelacion (tipo, motivo, persona, turno) VALUES (@tipo, @motivo, @persona, @turno)", "T", ListaParametros2);
         }
 
         public static void AgregarTurno(Turno turno)
@@ -80,7 +81,7 @@ namespace Clinica_Frba.Clases
             paramRet.Direction = System.Data.ParameterDirection.Output;
             ListaParametros.Add(paramRet);
 
-            Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarTurno", ListaParametros);
+            decimal retor = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarTurno", ListaParametros);
         }
 
         public static void AnularDia(int profesional, DateTime fecha, decimal tipo, String motivo)

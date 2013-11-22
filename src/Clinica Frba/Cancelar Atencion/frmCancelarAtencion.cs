@@ -74,7 +74,7 @@ namespace Clinica_Frba.NewFolder7
                 {
                     unTurno = (Turno)grillaTurnos.CurrentRow.DataBoundItem;
 
-                    if (((DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date.DayOfYear - unTurno.Fecha.Date.DayOfYear) >= 1))
+                    if ((Utiles.EsFechaValidaPorUnDia(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date, unTurno.Fecha.Date)))
                     {
                         Turnos.Cancelar(unTurno, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
                         MessageBox.Show("El turno se ha cancelado con exito!", "Aviso", MessageBoxButtons.OK);

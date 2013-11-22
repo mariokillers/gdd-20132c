@@ -53,6 +53,13 @@ namespace Clinica_Frba.Clases
             else { return false; }
         }
 
+        public static bool EsFechaValidaPorUnDia(DateTime desde, DateTime hasta)
+        {
+            DateTime comparable = desde.AddHours(1);
+            if (comparable.Date < hasta.Date) { return true; }
+            else { return false; }
+        }
+
         public static bool NoSePisan(Dias dia, TimeSpan desde, TimeSpan hasta, List<Rango> lista)
         {
             foreach (Rango unRango in lista)

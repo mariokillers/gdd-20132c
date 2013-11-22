@@ -437,7 +437,7 @@ CREATE TABLE mario_killers.Rango (
 	hora_desde < hora_hasta
 	),
 	CONSTRAINT max_horas_por_semana CHECK (mario_killers.horas_por_semana(profesional) <= 48),
-	CONSTRAINT horas_no_se_pisan CHECK (mario_killers.horas_se_pisan(profesional) = 0),
+	--CONSTRAINT horas_no_se_pisan CHECK (mario_killers.horas_se_pisan(profesional) = 0),
 	FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona)
 )
 
@@ -501,11 +501,15 @@ CREATE TABLE mario_killers.Compra (
 CREATE TABLE mario_killers.Bono_Consulta (
 	id numeric(18, 0) IDENTITY,
 	compra numeric(18, 0),
-	turno numeric(18, 0),
+	atencion numeric(18, 0),
 	plan_medico numeric(18, 0),
+	activo bit NOT NULL
+		CONSTRAINT bono_consulta_activo DEFAULT 1,
+	turno numeric(18, 0),
 	PRIMARY KEY (id),
 	FOREIGN KEY (plan_medico) REFERENCES mario_killers.Plan_Medico(codigo),
 	FOREIGN KEY (compra) REFERENCES mario_killers.Compra(id),
+	FOREIGN KEY (atencion) REFERENCES mario_killers.Historia_Clinica(id),
 	FOREIGN KEY (turno) REFERENCES mario_killers.Turno(id)
 )
 

@@ -52,17 +52,17 @@ CREATE VIEW mario_killers.Compras AS
 	FROM gd_esquema.Maestra
 	WHERE Compra_Bono_Fecha IS NOT NULL
 	      AND Plan_Med_Codigo IS NOT NULL
-	GROUP BY Compra_Bono_Fecha, Paciente_Dni, Plan_Med_Codigo
 GO
 
 CREATE VIEW mario_killers.Bonos_Consulta AS
 	SELECT DISTINCT Bono_Consulta_Numero,
 	                MAX(Turno_Numero) AS Turno_Numero,
 	                MAX(Compra_Bono_Fecha) AS Compra_Bono_Fecha,
-	                Paciente_Dni
+	                Paciente_Dni,
+	                Plan_Med_Codigo
 	FROM gd_esquema.Maestra
 	WHERE Bono_Consulta_Numero IS NOT NULL
-	GROUP BY Bono_Consulta_Numero, Paciente_Dni
+	GROUP BY Bono_Consulta_Numero, Paciente_Dni, Plan_Med_Codigo
 GO
 
 CREATE VIEW mario_killers.Turnos AS
@@ -72,7 +72,7 @@ CREATE VIEW mario_killers.Turnos AS
 	                mario_killers.Turno_Valido(Turno_Fecha) AS Turno_Activo
 	FROM gd_esquema.Maestra
 	WHERE Turno_Numero IS NOT NULL
-	GROUP BY Turno_Numero, Paciente_Dni, Medico_Dni, Turno_Fecha, Especialidad_Codigo
+	GROUP BY Turno_Numero, Paciente_Dni, Medico_Dni, Turno_Fecha, Especialidad_Codigo, Plan_Med_Codigo
 GO
 
 CREATE VIEW mario_killers.Bonos_Farmacia AS
@@ -82,10 +82,11 @@ CREATE VIEW mario_killers.Bonos_Farmacia AS
 	                Bono_Farmacia_Medicamento,
 	                MAX(Turno_Numero) AS Turno_Numero,
 	                Paciente_Dni,
+	                Plan_Med_Codigo,
 	                mario_killers.bono_farmacia_valido(Compra_Bono_Fecha, Bono_Farmacia_Fecha_Vencimiento, Bono_Farmacia_Medicamento) AS valido
 	FROM gd_esquema.Maestra
-	WHERE Bono_Farmacia_Numero IS NOT NULL
-	GROUP BY Bono_Farmacia_Numero, Paciente_Dni, Bono_Farmacia_Fecha_Vencimiento, Bono_Farmacia_Medicamento, Compra_Bono_Fecha
+	WHERE Bono_Farmacia_Numero IS NOT NULL AND Compra_Bono_Fecha IS NOT NULL
+	GROUP BY Bono_Farmacia_Numero, Paciente_Dni, Bono_Farmacia_Fecha_Vencimiento, Bono_Farmacia_Medicamento, Compra_Bono_Fecha, Plan_Med_Codigo
 GO
 
 CREATE VIEW mario_killers.Especialidades_Profesional AS
@@ -186,20 +187,14 @@ SET IDENTITY_INSERT mario_killers.Historia_Clinica OFF
 
 -- Bonos consulta
 INSERT INTO mario_killers.Bono_Consulta (compra, turno, plan_medico)
-	SELECT Compra.id, Bonos_Consulta.Turno_Numero, Compra.plan_medico
+	SELECT Bono_Consulta_Numero, Turno_Numero, Plan_Med_Codigo
 	FROM mario_killers.Bonos_Consulta
-	     JOIN mario_killers.Compra
-	     ON Compra.persona = Bonos_Consulta.Paciente_Dni
-			AND Compra.fecha = Bonos_Consulta.Compra_Bono_Fecha
 
 -- Bonos farmacia
 SET IDENTITY_INSERT mario_killers.Bono_Farmacia ON
 INSERT INTO mario_killers.Bono_Farmacia (codigo, compra, plan_medico,  activo)
-	SELECT Bonos_Farmacia.Bono_Farmacia_Numero, Compra.id, plan_medico, valido
+	SELECT Bono_Farmacia_Numero, Bono_Farmacia_Numero, Plan_Med_Codigo, valido
 	FROM mario_killers.Bonos_Farmacia
-		JOIN mario_killers.Compra
-		ON Compra.persona = Bonos_Farmacia.Paciente_Dni
-			AND Compra.fecha = Bonos_Farmacia.Compra_Bono_Fecha
 SET IDENTITY_INSERT mario_killers.Bono_Farmacia OFF
 
 -- Medicamentos por turno

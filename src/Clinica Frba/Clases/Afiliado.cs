@@ -54,21 +54,16 @@ namespace Clinica_Frba.Clases
         public Afiliado()
         { }
 
-        public int ActualizarAtencion(Profesional unProfesional, DateTime hora, string sintomas, string diagnosticos, int codigoEspecialidad)
+        public bool ActualizarAtencion(DateTime hora, string sintomas, string diagnosticos, int codigoAtencion)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@afiliado", this.Id));
-            ListaParametros.Add(new SqlParameter("@profesional", unProfesional.Id));
-            ListaParametros.Add(new SqlParameter("@especialidad", codigoEspecialidad));
             ListaParametros.Add(new SqlParameter("@hora_atencion", hora));
             ListaParametros.Add(new SqlParameter("@diagnostico", diagnosticos));
             ListaParametros.Add(new SqlParameter("@sintomas", sintomas));
-            SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
-            paramRet.Direction = System.Data.ParameterDirection.Output;
-            ListaParametros.Add(paramRet);
+            ListaParametros.Add(new SqlParameter("@id", codigoAtencion));
 
-            int ret = (int)Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarHClinica", ListaParametros);
-            return ret;
+            return Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Atencion SET sintomas=@sintomas, diagnostico=@diagnostico, horario_atencion=@hora_atencion WHERE id=@id", "T", ListaParametros);
         }
 
         public Afiliado(string numeroAfiliado)
@@ -168,7 +163,7 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(new SqlParameter("@horario", fecha));
             ListaParametros.Add(new SqlParameter("@especialidad", codigoEspecialidad));
             ListaParametros.Add(new SqlParameter("@profesional", codigoProfesional));
-            ListaParametros.Add(new SqlParameter("@persona", Codigo_Persona));
+            ListaParametros.Add(new SqlParameter("@persona", Id));
             String query = @"SELECT id
                             FROM mario_killers.Turno
                             WHERE profesional = @profesional AND persona = @persona AND especialidad= @especialidad

@@ -117,7 +117,7 @@ namespace Clinica_Frba
             //VEO QUE MOSTRAR EN BASE A SUS FUNCIONALIDADES
             cmdLogOut.Visible = true;
             cmdAfiliado.Visible = listaDeFunc.Contains("ABM de afiliados");
-            cmbRoles.Visible = listaDeFunc.Contains("ABM de roles");
+            cmdRol.Visible = listaDeFunc.Contains("ABM de roles");
             cmdAgenda.Visible = listaDeFunc.Contains("Registrar agenda profesional");
             cmdProfesional.Visible = listaDeFunc.Contains("ABM de profesionales");
             cmdEstadisticas.Visible = listaDeFunc.Contains("Consultar listado estadistico");

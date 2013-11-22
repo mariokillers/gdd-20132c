@@ -86,5 +86,11 @@ namespace Clinica_Frba.NewFolder6
             formReceta.Show();
             this.Close();
         }
+
+        private void cmdConfirmarBono_Click(object sender, EventArgs e)
+        {
+            //VALIDAR BONO (QUE PUEDA SER USADO POR EL AFIL
+            gbDatos.Visible = true;
+        }
     }
 }

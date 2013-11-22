@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbDatos = new System.Windows.Forms.GroupBox();
+            this.cmbEspecialidades = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.cmbHora = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmdAceptar = new System.Windows.Forms.Button();
@@ -44,33 +46,54 @@
             this.cmdGeneraReceta = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.cmdFinalizar = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbEspecialidades = new System.Windows.Forms.ComboBox();
-            this.groupBox1.SuspendLayout();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblNumeroAfiliado = new System.Windows.Forms.Label();
+            this.txtBono = new System.Windows.Forms.TextBox();
+            this.cmdConfirmarBono = new System.Windows.Forms.Button();
+            this.gbDatos.SuspendLayout();
             this.gpHistoriaClinica.SuspendLayout();
             this.gpRecetas.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // gbDatos
             // 
-            this.groupBox1.Controls.Add(this.cmbEspecialidades);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.cmbHora);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.cmdAceptar);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.dtpFechaAtencion);
-            this.groupBox1.Location = new System.Drawing.Point(13, 13);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(552, 114);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos Atención";
+            this.gbDatos.Controls.Add(this.cmbEspecialidades);
+            this.gbDatos.Controls.Add(this.label3);
+            this.gbDatos.Controls.Add(this.cmbHora);
+            this.gbDatos.Controls.Add(this.label2);
+            this.gbDatos.Controls.Add(this.cmdAceptar);
+            this.gbDatos.Controls.Add(this.label1);
+            this.gbDatos.Controls.Add(this.dtpFechaAtencion);
+            this.gbDatos.Location = new System.Drawing.Point(13, 62);
+            this.gbDatos.Name = "gbDatos";
+            this.gbDatos.Size = new System.Drawing.Size(552, 155);
+            this.gbDatos.TabIndex = 4;
+            this.gbDatos.TabStop = false;
+            this.gbDatos.Text = "Datos Atención";
+            this.gbDatos.Visible = false;
+            // 
+            // cmbEspecialidades
+            // 
+            this.cmbEspecialidades.FormattingEnabled = true;
+            this.cmbEspecialidades.Location = new System.Drawing.Point(203, 46);
+            this.cmbEspecialidades.Name = "cmbEspecialidades";
+            this.cmbEspecialidades.Size = new System.Drawing.Size(121, 21);
+            this.cmbEspecialidades.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(227, 30);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(70, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Especialidad:";
             // 
             // cmbHora
             // 
             this.cmbHora.FormattingEnabled = true;
-            this.cmbHora.Location = new System.Drawing.Point(246, 47);
+            this.cmbHora.Location = new System.Drawing.Point(293, 99);
             this.cmbHora.Name = "cmbHora";
             this.cmbHora.Size = new System.Drawing.Size(121, 21);
             this.cmbHora.TabIndex = 8;
@@ -78,7 +101,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(243, 31);
+            this.label2.Location = new System.Drawing.Point(290, 83);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 13);
             this.label2.TabIndex = 7;
@@ -86,7 +109,7 @@
             // 
             // cmdAceptar
             // 
-            this.cmdAceptar.Location = new System.Drawing.Point(230, 74);
+            this.cmdAceptar.Location = new System.Drawing.Point(230, 126);
             this.cmdAceptar.Name = "cmdAceptar";
             this.cmdAceptar.Size = new System.Drawing.Size(75, 23);
             this.cmdAceptar.TabIndex = 5;
@@ -97,7 +120,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 31);
+            this.label1.Location = new System.Drawing.Point(78, 83);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 13);
             this.label1.TabIndex = 6;
@@ -105,7 +128,7 @@
             // 
             // dtpFechaAtencion
             // 
-            this.dtpFechaAtencion.Location = new System.Drawing.Point(10, 48);
+            this.dtpFechaAtencion.Location = new System.Drawing.Point(57, 100);
             this.dtpFechaAtencion.Name = "dtpFechaAtencion";
             this.dtpFechaAtencion.Size = new System.Drawing.Size(200, 20);
             this.dtpFechaAtencion.TabIndex = 5;
@@ -117,12 +140,12 @@
             this.gpHistoriaClinica.Controls.Add(this.txtSintomas);
             this.gpHistoriaClinica.Controls.Add(this.label5);
             this.gpHistoriaClinica.Controls.Add(this.label4);
-            this.gpHistoriaClinica.Location = new System.Drawing.Point(22, 159);
+            this.gpHistoriaClinica.Location = new System.Drawing.Point(22, 241);
             this.gpHistoriaClinica.Name = "gpHistoriaClinica";
             this.gpHistoriaClinica.Size = new System.Drawing.Size(543, 168);
             this.gpHistoriaClinica.TabIndex = 6;
             this.gpHistoriaClinica.TabStop = false;
-            this.gpHistoriaClinica.Text = "Síntomas";
+            this.gpHistoriaClinica.Text = "Resultado";
             this.gpHistoriaClinica.Visible = false;
             // 
             // txtDiagnostico
@@ -173,7 +196,7 @@
             // 
             this.gpRecetas.Controls.Add(this.cmdGeneraReceta);
             this.gpRecetas.Controls.Add(this.label25);
-            this.gpRecetas.Location = new System.Drawing.Point(22, 368);
+            this.gpRecetas.Location = new System.Drawing.Point(22, 421);
             this.gpRecetas.Name = "gpRecetas";
             this.gpRecetas.Size = new System.Drawing.Size(543, 100);
             this.gpRecetas.TabIndex = 7;
@@ -202,7 +225,7 @@
             // 
             // cmdFinalizar
             // 
-            this.cmdFinalizar.Location = new System.Drawing.Point(243, 478);
+            this.cmdFinalizar.Location = new System.Drawing.Point(243, 531);
             this.cmdFinalizar.Name = "cmdFinalizar";
             this.cmdFinalizar.Size = new System.Drawing.Size(75, 23);
             this.cmdFinalizar.TabIndex = 58;
@@ -210,48 +233,72 @@
             this.cmdFinalizar.UseVisualStyleBackColor = true;
             this.cmdFinalizar.Click += new System.EventHandler(this.cmdFinalizar_Click);
             // 
-            // label3
+            // groupBox2
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(436, 31);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Especialidad:";
+            this.groupBox2.Controls.Add(this.lblNumeroAfiliado);
+            this.groupBox2.Controls.Add(this.txtBono);
+            this.groupBox2.Controls.Add(this.cmdConfirmarBono);
+            this.groupBox2.Location = new System.Drawing.Point(13, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(552, 53);
+            this.groupBox2.TabIndex = 59;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Bono Consulta";
             // 
-            // cmbEspecialidades
+            // lblNumeroAfiliado
             // 
-            this.cmbEspecialidades.FormattingEnabled = true;
-            this.cmbEspecialidades.Location = new System.Drawing.Point(412, 47);
-            this.cmbEspecialidades.Name = "cmbEspecialidades";
-            this.cmbEspecialidades.Size = new System.Drawing.Size(121, 21);
-            this.cmbEspecialidades.TabIndex = 10;
+            this.lblNumeroAfiliado.AutoSize = true;
+            this.lblNumeroAfiliado.Location = new System.Drawing.Point(31, 23);
+            this.lblNumeroAfiliado.Name = "lblNumeroAfiliado";
+            this.lblNumeroAfiliado.Size = new System.Drawing.Size(131, 13);
+            this.lblNumeroAfiliado.TabIndex = 9;
+            this.lblNumeroAfiliado.Text = "Ingrese  Numero de Bono:";
+            // 
+            // txtBono
+            // 
+            this.txtBono.Location = new System.Drawing.Point(203, 21);
+            this.txtBono.Name = "txtBono";
+            this.txtBono.Size = new System.Drawing.Size(181, 20);
+            this.txtBono.TabIndex = 2;
+            // 
+            // cmdConfirmarBono
+            // 
+            this.cmdConfirmarBono.Location = new System.Drawing.Point(406, 18);
+            this.cmdConfirmarBono.Name = "cmdConfirmarBono";
+            this.cmdConfirmarBono.Size = new System.Drawing.Size(75, 23);
+            this.cmdConfirmarBono.TabIndex = 0;
+            this.cmdConfirmarBono.Text = "Confirmar";
+            this.cmdConfirmarBono.UseVisualStyleBackColor = true;
+            this.cmdConfirmarBono.Click += new System.EventHandler(this.cmdConfirmarBono_Click);
             // 
             // frmAtencion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(583, 513);
+            this.ClientSize = new System.Drawing.Size(583, 560);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.cmdFinalizar);
             this.Controls.Add(this.gpRecetas);
             this.Controls.Add(this.gpHistoriaClinica);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbDatos);
             this.Name = "frmAtencion";
             this.Text = "Atención Médica";
             this.Load += new System.EventHandler(this.frmAtencion_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbDatos.ResumeLayout(false);
+            this.gbDatos.PerformLayout();
             this.gpHistoriaClinica.ResumeLayout(false);
             this.gpHistoriaClinica.PerformLayout();
             this.gpRecetas.ResumeLayout(false);
             this.gpRecetas.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbDatos;
         private System.Windows.Forms.ComboBox cmbHora;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -269,5 +316,9 @@
         private System.Windows.Forms.Button cmdFinalizar;
         private System.Windows.Forms.ComboBox cmbEspecialidades;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox txtBono;
+        private System.Windows.Forms.Button cmdConfirmarBono;
+        private System.Windows.Forms.Label lblNumeroAfiliado;
     }
 }

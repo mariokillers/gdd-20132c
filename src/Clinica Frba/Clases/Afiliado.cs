@@ -50,15 +50,6 @@ namespace Clinica_Frba.Clases
                 Activo = (bool)lector["activo"];
             }
         }
-       
-        public bool Eliminar(int codigoGrupo, int numeroFamiliar)
-        {
-            List<SqlParameter> Lista = new List<SqlParameter>();
-            //VER COMO ESTA EN LA DB (numeroAfiliado)
-            Lista.Add(new SqlParameter("@codigoGrupo", codigoGrupo));
-            Lista.Add(new SqlParameter("@numeroFamiliar", numeroFamiliar));
-            return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Paciente set Activo =0 where (Codigo_Grupo=@codigoGrupo and Nro_Familiar=@numeroFamiliar)", "T", Lista);
-        }
         
         public Afiliado()
         { }
@@ -102,28 +93,15 @@ namespace Clinica_Frba.Clases
                 NumeroDocumento = (decimal)lector["documento"];
                 Plan_Medico = (decimal)lector["plan_medico"];
                 FechaNacimiento = (DateTime)lector["fecha_nac"];
-                Direccion = (String)lector["direccion"];
+                Direccion = (string)lector["direccion"];
                 TipoDocumento = (decimal)lector["tipo_doc"];
-                Sexo = (String)lector["sexo"];
-                Mail = (String)lector["mail"];
+                Sexo = (string)lector["sexo"];
+                Mail = (string)lector["mail"];
                 Telefono = (decimal)lector["telefono"];
                 Cantidad_Hijos = (decimal)lector["cant_hijos"];
                 Estado_Civil = (decimal)lector["estado_civil"];
                 Activo = (bool)lector["activo"];
             }
-        }
-
-        public bool Agregar(Afiliado unAfiliado)
-        {
-            List<SqlParameter> Lista = new List<SqlParameter>();
-            Lista.Add(new SqlParameter("@persona", unAfiliado.Codigo_Persona));
-            Lista.Add(new SqlParameter("@estado_civil", unAfiliado.Estado_Civil));
-            Lista.Add(new SqlParameter("@grupo_familia", unAfiliado.Numero_Grupo));
-            Lista.Add(new SqlParameter("@nro_familiar", unAfiliado.Numero_Familiar));
-            Lista.Add(new SqlParameter("@cant_hijos", unAfiliado.Cantidad_Hijos));
-            Lista.Add(new SqlParameter("@activo", unAfiliado.Activo));
-
-            return Clases.BaseDeDatosSQL.EscribirEnBase("insert into mario_killers.Afiliado ( persona, estado_civil , grupo_familia, nro_familiar, cant_hijos, activo) values (@persona, @estado_civil, @grupo_familia, @nro_familiar, @cant_hijos, @activo)", "T", Lista);
         }
 
         public bool ComprarBonos(Compra unaCompra)
@@ -181,5 +159,25 @@ namespace Clinica_Frba.Clases
 
             return Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Bono_Farmacia(compra, plan_medico) VALUES (@compra, @plan_medico)", "T", ListaParametros);
         }
+
+        /*public static int ProximoTurno(DateTime fecha, int codigoEspecialidad, int codigoProfesional)
+        {
+            int turno = -1;
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@horario", fecha));
+            ListaParametros.Add(new SqlParameter("@especialidad", codigoEspecialidad));
+            ListaParametros.Add(new SqlParameter("@profesional", codigoProfesional));
+            ListaParametros.Add(new SqlParameter("@persona", Codigo_Persona));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("", "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                lector.Read();
+                turno = (int)(decimal)lector["turno"];
+            }
+            return turno;
+        }*/
     }
 }

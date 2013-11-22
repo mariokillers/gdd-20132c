@@ -23,7 +23,7 @@ namespace Clinica_Frba.NewFolder6
         private DateTime fecha { get; set; }
         private TimeSpan hora { get; set; }
         public Profesional profesional { get; set; }
-        private int codigoHistoriaClinica { get; set; }
+        private int turno { get; set; }
 
         private void frmAtencion_Load(object sender, EventArgs e)
         {
@@ -53,8 +53,8 @@ namespace Clinica_Frba.NewFolder6
         {
             if (txtDiagnostico.Text != "" && txtSintomas.Text != "")
             {
-                int turno = afiliado.ProximoTurno(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date, (int)(decimal)cmbEspecialidades.SelectedValue, profesional.Id);
-                codigoHistoriaClinica = afiliado.ActualizarAtencion(profesional, fecha, txtSintomas.Text, txtDiagnostico.Text, (int)(decimal)cmbEspecialidades.SelectedValue);
+                turno = afiliado.ProximoTurno(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date, (int)(decimal)cmbEspecialidades.SelectedValue, profesional.Id);
+                afiliado.ActualizarAtencion(fecha,txtSintomas.Text,txtDiagnostico.Text,turno);
                 gpRecetas.Visible = true;
                 Limpiar();
                 MessageBox.Show("Se ha actualizado correctamente la historia clinica del paciente", "EnHoraBuena!", MessageBoxButtons.OK);
@@ -83,7 +83,7 @@ namespace Clinica_Frba.NewFolder6
         {
             frmReceta formReceta = new frmReceta();
             formReceta.afiliado = afiliado;
-            formReceta.idHistoriaClinica = codigoHistoriaClinica;
+            formReceta.idAtencion = turno;
             formReceta.Show();
             this.Close();
         }

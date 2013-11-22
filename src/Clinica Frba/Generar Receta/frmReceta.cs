@@ -18,7 +18,7 @@ namespace Clinica_Frba.NewFolder5
             InitializeComponent();
         }
         private Receta receta { get; set; }
-        public int idHistoriaClinica { get; set; }
+        public int idAtencion { get; set; }
         public Afiliado afiliado { get; set; }
         private List<Receta> listaDeRecetas { get; set; }
         private List<BonoFarmacia> listaDeBonos { get; set; }
@@ -224,7 +224,7 @@ namespace Clinica_Frba.NewFolder5
                         BonoFarmacia bono = new BonoFarmacia(unMedicamento.BonoFarmacia);
                         bono.Usar();
                     }
-                    unMedicamento.AgregarAReceta(idHistoriaClinica);
+                    unMedicamento.AgregarAReceta(idAtencion);
                 }
                 MessageBox.Show("Se ha recetado correctamete", "EnHoraBuena!", MessageBoxButtons.OK);
                 Limpiar();

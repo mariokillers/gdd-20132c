@@ -31,7 +31,7 @@ namespace Clinica_Frba.Clases
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@codigo", codigo));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.BonoYcompra where codigo=@codigo", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.BonoConultaYcompra where codigo=@codigo", "T", ListaParametros);
 
             if (lector.HasRows)
             {

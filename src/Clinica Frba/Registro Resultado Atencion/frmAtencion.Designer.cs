@@ -46,14 +46,9 @@
             this.cmdGeneraReceta = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.cmdFinalizar = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblNumeroAfiliado = new System.Windows.Forms.Label();
-            this.txtBono = new System.Windows.Forms.TextBox();
-            this.cmdConfirmarBono = new System.Windows.Forms.Button();
             this.gbDatos.SuspendLayout();
             this.gpHistoriaClinica.SuspendLayout();
             this.gpRecetas.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbDatos
@@ -65,13 +60,12 @@
             this.gbDatos.Controls.Add(this.cmdAceptar);
             this.gbDatos.Controls.Add(this.label1);
             this.gbDatos.Controls.Add(this.dtpFechaAtencion);
-            this.gbDatos.Location = new System.Drawing.Point(13, 62);
+            this.gbDatos.Location = new System.Drawing.Point(13, 13);
             this.gbDatos.Name = "gbDatos";
             this.gbDatos.Size = new System.Drawing.Size(552, 155);
             this.gbDatos.TabIndex = 4;
             this.gbDatos.TabStop = false;
             this.gbDatos.Text = "Datos Atención";
-            this.gbDatos.Visible = false;
             // 
             // cmbEspecialidades
             // 
@@ -140,7 +134,7 @@
             this.gpHistoriaClinica.Controls.Add(this.txtSintomas);
             this.gpHistoriaClinica.Controls.Add(this.label5);
             this.gpHistoriaClinica.Controls.Add(this.label4);
-            this.gpHistoriaClinica.Location = new System.Drawing.Point(22, 241);
+            this.gpHistoriaClinica.Location = new System.Drawing.Point(22, 192);
             this.gpHistoriaClinica.Name = "gpHistoriaClinica";
             this.gpHistoriaClinica.Size = new System.Drawing.Size(543, 168);
             this.gpHistoriaClinica.TabIndex = 6;
@@ -158,7 +152,7 @@
             // 
             // cmdConfirmarSintomas
             // 
-            this.cmdConfirmarSintomas.Location = new System.Drawing.Point(203, 137);
+            this.cmdConfirmarSintomas.Location = new System.Drawing.Point(221, 137);
             this.cmdConfirmarSintomas.Name = "cmdConfirmarSintomas";
             this.cmdConfirmarSintomas.Size = new System.Drawing.Size(75, 23);
             this.cmdConfirmarSintomas.TabIndex = 7;
@@ -196,7 +190,7 @@
             // 
             this.gpRecetas.Controls.Add(this.cmdGeneraReceta);
             this.gpRecetas.Controls.Add(this.label25);
-            this.gpRecetas.Location = new System.Drawing.Point(22, 421);
+            this.gpRecetas.Location = new System.Drawing.Point(22, 372);
             this.gpRecetas.Name = "gpRecetas";
             this.gpRecetas.Size = new System.Drawing.Size(543, 100);
             this.gpRecetas.TabIndex = 7;
@@ -225,7 +219,7 @@
             // 
             // cmdFinalizar
             // 
-            this.cmdFinalizar.Location = new System.Drawing.Point(243, 531);
+            this.cmdFinalizar.Location = new System.Drawing.Point(243, 482);
             this.cmdFinalizar.Name = "cmdFinalizar";
             this.cmdFinalizar.Size = new System.Drawing.Size(75, 23);
             this.cmdFinalizar.TabIndex = 58;
@@ -233,50 +227,11 @@
             this.cmdFinalizar.UseVisualStyleBackColor = true;
             this.cmdFinalizar.Click += new System.EventHandler(this.cmdFinalizar_Click);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.lblNumeroAfiliado);
-            this.groupBox2.Controls.Add(this.txtBono);
-            this.groupBox2.Controls.Add(this.cmdConfirmarBono);
-            this.groupBox2.Location = new System.Drawing.Point(13, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(552, 53);
-            this.groupBox2.TabIndex = 59;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Bono Consulta";
-            // 
-            // lblNumeroAfiliado
-            // 
-            this.lblNumeroAfiliado.AutoSize = true;
-            this.lblNumeroAfiliado.Location = new System.Drawing.Point(31, 23);
-            this.lblNumeroAfiliado.Name = "lblNumeroAfiliado";
-            this.lblNumeroAfiliado.Size = new System.Drawing.Size(131, 13);
-            this.lblNumeroAfiliado.TabIndex = 9;
-            this.lblNumeroAfiliado.Text = "Ingrese  Numero de Bono:";
-            // 
-            // txtBono
-            // 
-            this.txtBono.Location = new System.Drawing.Point(203, 21);
-            this.txtBono.Name = "txtBono";
-            this.txtBono.Size = new System.Drawing.Size(181, 20);
-            this.txtBono.TabIndex = 2;
-            // 
-            // cmdConfirmarBono
-            // 
-            this.cmdConfirmarBono.Location = new System.Drawing.Point(406, 18);
-            this.cmdConfirmarBono.Name = "cmdConfirmarBono";
-            this.cmdConfirmarBono.Size = new System.Drawing.Size(75, 23);
-            this.cmdConfirmarBono.TabIndex = 0;
-            this.cmdConfirmarBono.Text = "Confirmar";
-            this.cmdConfirmarBono.UseVisualStyleBackColor = true;
-            this.cmdConfirmarBono.Click += new System.EventHandler(this.cmdConfirmarBono_Click);
-            // 
             // frmAtencion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(583, 560);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(583, 513);
             this.Controls.Add(this.cmdFinalizar);
             this.Controls.Add(this.gpRecetas);
             this.Controls.Add(this.gpHistoriaClinica);
@@ -290,8 +245,6 @@
             this.gpHistoriaClinica.PerformLayout();
             this.gpRecetas.ResumeLayout(false);
             this.gpRecetas.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -316,9 +269,5 @@
         private System.Windows.Forms.Button cmdFinalizar;
         private System.Windows.Forms.ComboBox cmbEspecialidades;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtBono;
-        private System.Windows.Forms.Button cmdConfirmarBono;
-        private System.Windows.Forms.Label lblNumeroAfiliado;
     }
 }

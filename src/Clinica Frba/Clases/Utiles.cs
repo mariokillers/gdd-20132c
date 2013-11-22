@@ -57,7 +57,7 @@ namespace Clinica_Frba.Clases
         {
             foreach (Rango unRango in lista)
             {
-                if ((unRango.HoraDesde <= desde && desde <= unRango.HoraHasta || unRango.HoraDesde <= hasta && hasta <= unRango.HoraHasta) && dia.Id == unRango.Dia.Id)
+                if ((unRango.HoraDesde <= desde.Add(new TimeSpan(0, 1, 0)) && desde.Add(new TimeSpan(0, 1, 0)) <= unRango.HoraHasta || unRango.HoraDesde <= hasta.Add(new TimeSpan(0, 1, 0)) && hasta.Add(new TimeSpan(0, 1, 0)) <= unRango.HoraHasta) && dia.Id == unRango.Dia.Id)
                 {
                     return false;
                 }

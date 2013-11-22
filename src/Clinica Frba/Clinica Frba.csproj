@@ -201,10 +201,10 @@
     <Compile Include="Registrar Llegada\frmRegistrarLlegada.Designer.cs">
       <DependentUpon>frmRegistrarLlegada.cs</DependentUpon>
     </Compile>
-    <Compile Include="Registro de Usuario%28NO%29\Form1.cs">
+    <Compile Include="Registro de Usuario\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Registro de Usuario%28NO%29\Form1.Designer.cs">
+    <Compile Include="Registro de Usuario\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm de Afiliado\frmAfiliadoAlta.cs">
@@ -219,16 +219,16 @@
     <Compile Include="Abm de Profesional\frmProfesional.Designer.cs">
       <DependentUpon>frmProfesional.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm de Especialidades Medicas%28NO%29\Form1.cs">
+    <Compile Include="Abm de Especialidades Medicas\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm de Especialidades Medicas%28NO%29\Form1.Designer.cs">
+    <Compile Include="Abm de Especialidades Medicas\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm de Planes%28NO%29\Form1.cs">
+    <Compile Include="Abm de Planes\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm de Planes%28NO%29\Form1.Designer.cs">
+    <Compile Include="Abm de Planes\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm de Rol\frmRol.cs">
@@ -287,7 +287,7 @@
     <EmbeddedResource Include="Abm de Afiliado\lstSeleccionGrupo.resx">
       <DependentUpon>lstSeleccionGrupo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Abm de Especialidades Medicas%28NO%29\Form1.resx">
+    <EmbeddedResource Include="Abm de Especialidades Medicas\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm de Profesional\frmProfesional.resx">

@@ -157,5 +157,16 @@ namespace Clinica_Frba.Abm_de_Profesional
             }
             return lista;
         }
+
+        /*public List<Turno> ObtenerTurnos(DateTime hoy)
+        {
+            List<Turno> lista = new List<Turno>();
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@profesional", Id));
+            ListaParametros.Add(new SqlParameter("@profesional", Id));
+        }*/
+
+        
     }
 }

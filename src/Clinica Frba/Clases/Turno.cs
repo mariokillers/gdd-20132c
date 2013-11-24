@@ -17,7 +17,7 @@ namespace Clinica_Frba.Clases
         public DateTime Fecha { get; set; }
         public TimeSpan Horario { get; set; }
         public Dias Dia { get; set; }
-        public String DiaString { get; set; }
+        public string DiaString { get; set; }
         public decimal Codigo_Especialidad { get; set; }
         public bool Estado { get; set; }
         public string Diagnostico { get; set; }

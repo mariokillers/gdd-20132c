@@ -12,7 +12,6 @@ using System.Data.SqlClient;
 using Clinica_Frba.NewFolder12;
 using Clinica_Frba.Abm_de_Profesional;
 using Clinica_Frba.NewFolder6;
-using Clinica_Frba.Registrar_Llegada;
 
 namespace Clinica_Frba.Abm_de_Afiliado
 {
@@ -46,11 +45,6 @@ namespace Clinica_Frba.Abm_de_Afiliado
             cargarGrilla();
 
             if (Operacion == "Seleccion")
-            {
-                btnAction.Text = "Seleccionar";
-                btnGrupoFlia.Visible = false;
-            }
-            if (Operacion == "SeleccionLlegada")
             {
                 btnAction.Text = "Seleccionar";
                 btnGrupoFlia.Visible = false;
@@ -179,14 +173,6 @@ namespace Clinica_Frba.Abm_de_Afiliado
                         formAtencion.afiliado = unAfiliado;
                         formAtencion.profesional = profesional;
                         formAtencion.Show();
-                        this.Close();
-                    }
-                    if (Operacion == "SeleccionLlegada")
-                    {
-                        frmRegistrarLlegada formLlegada = new frmRegistrarLlegada();
-                        formLlegada.afiliado = unAfiliado;
-                        formLlegada.profesional = profesional;
-                        formLlegada.Show();
                         this.Close();
                     }
                 }

@@ -34,9 +34,11 @@
             this.btnTurno = new System.Windows.Forms.Button();
             this.grillaHorarios = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtBono = new System.Windows.Forms.TextBox();
-            this.cmdConfirmarBono = new System.Windows.Forms.Button();
             this.lblNumeroAfiliado = new System.Windows.Forms.Label();
+            this.cmdConfirmarBono = new System.Windows.Forms.Button();
+            this.txtBono = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtNumAfil = new System.Windows.Forms.TextBox();
             this.Medico.SuspendLayout();
             this.SeleccionTurno.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grillaHorarios)).BeginInit();
@@ -48,14 +50,14 @@
             this.Medico.Controls.Add(this.cmdSeleccionar);
             this.Medico.Location = new System.Drawing.Point(27, 36);
             this.Medico.Name = "Medico";
-            this.Medico.Size = new System.Drawing.Size(508, 77);
+            this.Medico.Size = new System.Drawing.Size(508, 60);
             this.Medico.TabIndex = 1;
             this.Medico.TabStop = false;
             this.Medico.Text = "Seleccionar Profesional";
             // 
             // cmdSeleccionar
             // 
-            this.cmdSeleccionar.Location = new System.Drawing.Point(144, 32);
+            this.cmdSeleccionar.Location = new System.Drawing.Point(140, 19);
             this.cmdSeleccionar.Name = "cmdSeleccionar";
             this.cmdSeleccionar.Size = new System.Drawing.Size(148, 23);
             this.cmdSeleccionar.TabIndex = 0;
@@ -65,18 +67,20 @@
             // 
             // SeleccionTurno
             // 
+            this.SeleccionTurno.Controls.Add(this.txtNumAfil);
+            this.SeleccionTurno.Controls.Add(this.label1);
             this.SeleccionTurno.Controls.Add(this.btnTurno);
             this.SeleccionTurno.Controls.Add(this.grillaHorarios);
-            this.SeleccionTurno.Location = new System.Drawing.Point(27, 126);
+            this.SeleccionTurno.Location = new System.Drawing.Point(27, 104);
             this.SeleccionTurno.Name = "SeleccionTurno";
-            this.SeleccionTurno.Size = new System.Drawing.Size(508, 203);
+            this.SeleccionTurno.Size = new System.Drawing.Size(508, 235);
             this.SeleccionTurno.TabIndex = 2;
             this.SeleccionTurno.TabStop = false;
             this.SeleccionTurno.Text = "Seleccion Turno";
             // 
             // btnTurno
             // 
-            this.btnTurno.Location = new System.Drawing.Point(162, 174);
+            this.btnTurno.Location = new System.Drawing.Point(197, 206);
             this.btnTurno.Name = "btnTurno";
             this.btnTurno.Size = new System.Drawing.Size(75, 23);
             this.btnTurno.TabIndex = 1;
@@ -87,7 +91,7 @@
             // grillaHorarios
             // 
             this.grillaHorarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grillaHorarios.Location = new System.Drawing.Point(6, 19);
+            this.grillaHorarios.Location = new System.Drawing.Point(6, 50);
             this.grillaHorarios.Name = "grillaHorarios";
             this.grillaHorarios.Size = new System.Drawing.Size(496, 150);
             this.grillaHorarios.TabIndex = 0;
@@ -104,13 +108,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bono Consulta";
             // 
-            // txtBono
+            // lblNumeroAfiliado
             // 
-            this.txtBono.Enabled = false;
-            this.txtBono.Location = new System.Drawing.Point(156, 35);
-            this.txtBono.Name = "txtBono";
-            this.txtBono.Size = new System.Drawing.Size(130, 20);
-            this.txtBono.TabIndex = 0;
+            this.lblNumeroAfiliado.AutoSize = true;
+            this.lblNumeroAfiliado.Location = new System.Drawing.Point(6, 38);
+            this.lblNumeroAfiliado.Name = "lblNumeroAfiliado";
+            this.lblNumeroAfiliado.Size = new System.Drawing.Size(131, 13);
+            this.lblNumeroAfiliado.TabIndex = 9;
+            this.lblNumeroAfiliado.Text = "Ingrese  Numero de Bono:";
             // 
             // cmdConfirmarBono
             // 
@@ -123,14 +128,30 @@
             this.cmdConfirmarBono.UseVisualStyleBackColor = true;
             this.cmdConfirmarBono.Click += new System.EventHandler(this.cmdConfirmarBono_Click);
             // 
-            // lblNumeroAfiliado
+            // txtBono
             // 
-            this.lblNumeroAfiliado.AutoSize = true;
-            this.lblNumeroAfiliado.Location = new System.Drawing.Point(6, 38);
-            this.lblNumeroAfiliado.Name = "lblNumeroAfiliado";
-            this.lblNumeroAfiliado.Size = new System.Drawing.Size(131, 13);
-            this.lblNumeroAfiliado.TabIndex = 9;
-            this.lblNumeroAfiliado.Text = "Ingrese  Numero de Bono:";
+            this.txtBono.Enabled = false;
+            this.txtBono.Location = new System.Drawing.Point(156, 35);
+            this.txtBono.Name = "txtBono";
+            this.txtBono.Size = new System.Drawing.Size(130, 20);
+            this.txtBono.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(148, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Ingrese el Numero de Afiliado:";
+            // 
+            // txtNumAfil
+            // 
+            this.txtNumAfil.Enabled = false;
+            this.txtNumAfil.Location = new System.Drawing.Point(177, 24);
+            this.txtNumAfil.Name = "txtNumAfil";
+            this.txtNumAfil.Size = new System.Drawing.Size(100, 20);
+            this.txtNumAfil.TabIndex = 9;
             // 
             // frmRegistrarLlegada
             // 
@@ -141,10 +162,11 @@
             this.Controls.Add(this.SeleccionTurno);
             this.Controls.Add(this.Medico);
             this.Name = "frmRegistrarLlegada";
-            this.Text = "s";
+            this.Text = "Registro de Llegada";
             this.Load += new System.EventHandler(this.frmRegistrarLlegada_Load);
             this.Medico.ResumeLayout(false);
             this.SeleccionTurno.ResumeLayout(false);
+            this.SeleccionTurno.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grillaHorarios)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -163,5 +185,7 @@
         private System.Windows.Forms.Button cmdConfirmarBono;
         private System.Windows.Forms.Button btnTurno;
         private System.Windows.Forms.Label lblNumeroAfiliado;
+        private System.Windows.Forms.TextBox txtNumAfil;
+        private System.Windows.Forms.Label label1;
     }
 }

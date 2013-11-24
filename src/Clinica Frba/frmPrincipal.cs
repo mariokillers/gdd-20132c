@@ -20,6 +20,8 @@ using Clinica_Frba.NewFolder4;
 using Clinica_Frba.NewFolder7;
 using Clinica_Frba.NewFolder9;
 using Clinica_Frba.Cancelar_Atencion;
+using Clinica_Frba.NewFolder6;
+using Clinica_Frba.Registrar_Llegada;
 
 namespace Clinica_Frba
 {
@@ -221,10 +223,8 @@ namespace Clinica_Frba
 
         private void cmdRegistrarLlegada_Click(object sender, EventArgs e)
         {
-            lstSeleccionAfiliado formAfil = new lstSeleccionAfiliado();
-            formAfil.Operacion = "SeleccionLlegada";
-            formAfil.profesional = new Profesional(User.Codigo_Persona);
-            formAfil.Show();
+            frmRegistrarLlegada formLlegada = new frmRegistrarLlegada();
+            formLlegada.Show();
         }
     }
 }

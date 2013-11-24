@@ -14,7 +14,7 @@ namespace Clinica_Frba.Clases
         public int Codigo_Plan { get; set; }
         public int Codigo_Turno { get; set; }
         public int Precio { get; set; }
-        public bool Usado { get; set; }
+        public bool Activo { get; set; }
         public int Grupo_Flia { get; set; }
 
         public BonoConsulta(Afiliado unAfiliado)
@@ -22,7 +22,6 @@ namespace Clinica_Frba.Clases
             Precio = (int)(new Plan((int)unAfiliado.Plan_Medico)).Precio_Bono_Consulta;
             Codigo_Plan = (int)unAfiliado.Plan_Medico;
             Grupo_Flia = (int)unAfiliado.Numero_Grupo;
-            //Codigo_Turno = (int)unAfiliado.ProximoTurno();
         }
 
         public BonoConsulta(int codigo)
@@ -31,7 +30,7 @@ namespace Clinica_Frba.Clases
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@codigo", codigo));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.BonoConultaYcompra where codigo=@codigo", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.BonoConsultaYcompra where codigo=@codigo", "T", ListaParametros);
 
             if (lector.HasRows)
             {
@@ -40,8 +39,7 @@ namespace Clinica_Frba.Clases
                 Codigo_Compra = (int)(decimal)lector["compra"];
                 Compra unaCompra = new Compra(Codigo_Compra);
                 Grupo_Flia = (int)(decimal)lector["grupo"];
-                //Detalle = "Bono Farmacia";
-                Usado = (bool)lector["activo"];
+                Activo = (bool)lector["activo"];
             }
         }
 
@@ -58,9 +56,8 @@ namespace Clinica_Frba.Clases
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@codigo", Id));
-            //ListaParametros.Add(new SqlParameter("@codigo", Contador));
 
-            return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Bono_Consulta set activo =0 where codigo=@codigo ", "T", ListaParametros);
+            return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Bono_Consulta set activo =0 where id=@codigo ", "T", ListaParametros);
         }
     }
 }

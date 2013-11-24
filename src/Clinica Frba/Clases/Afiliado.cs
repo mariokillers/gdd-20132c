@@ -66,6 +66,15 @@ namespace Clinica_Frba.Clases
             return Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Atencion SET sintomas=@sintomas, diagnostico=@diagnostico, horario_atencion=@hora_atencion WHERE id=@id", "T", ListaParametros);
         }
 
+        public bool CrearAtencion(int bonoConsulta, int turno)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@bono_consulta", bonoConsulta));
+            ListaParametros.Add(new SqlParameter("@id", turno));
+
+            return Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Atencion(id,bono_consulta) VALUES (@id, @bono_consulta)", "T", ListaParametros);
+        }
+
         public Afiliado(string numeroAfiliado)
         {
             int numGrupo = Int32.Parse(numeroAfiliado.Remove(numeroAfiliado.Length - 2));

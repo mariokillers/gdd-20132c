@@ -53,11 +53,15 @@ namespace Clinica_Frba.NewFolder6
         {
             if (txtDiagnostico.Text != "" && txtSintomas.Text != "")
             {
-                turno = afiliado.ProximoTurno(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date, (int)(decimal)cmbEspecialidades.SelectedValue, profesional.Id);
-                afiliado.ActualizarAtencion(fecha,txtSintomas.Text,txtDiagnostico.Text,turno);
-                gpRecetas.Visible = true;
-                Limpiar();
-                MessageBox.Show("Se ha actualizado correctamente la historia clinica del paciente", "EnHoraBuena!", MessageBoxButtons.OK);
+                try 
+                {
+                    turno = afiliado.ProximoTurno(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date, (int)(decimal)cmbEspecialidades.SelectedValue, profesional.Id);
+                    afiliado.ActualizarAtencion(fecha, txtSintomas.Text, txtDiagnostico.Text, turno);
+                    gpRecetas.Visible = true;
+                    Limpiar();
+                    MessageBox.Show("Se ha actualizado correctamente la atención del paciente", "EnHoraBuena!", MessageBoxButtons.OK);
+                }
+                catch { MessageBox.Show("El paciente no tiene turno con la especialidad seleccionada", "Error!", MessageBoxButtons.OK); }
             }
             else { MessageBox.Show("Complete correctamente todos los campos", "Error!", MessageBoxButtons.OK); }
         }

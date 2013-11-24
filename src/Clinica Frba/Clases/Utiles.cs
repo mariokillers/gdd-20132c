@@ -250,7 +250,7 @@ namespace Clinica_Frba.Clases
             List<Turno> list = new List<Turno>();
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@fecha", (DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"])).Date));          
+            ListaParametros.Add(new SqlParameter("@fecha", fecha.Date));          
 
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.TurnosPorPaciente WHERE CONVERT(DATE,fecha) = CONVERT(DATE,@fecha)", "T", ListaParametros);
 
@@ -266,6 +266,7 @@ namespace Clinica_Frba.Clases
                     unTurno.Nombre_Profesional = (String)lector["profesional"];
                     unTurno.Fecha = (DateTime)lector["fecha"];
                     unTurno.Horario = (TimeSpan)unTurno.Fecha.TimeOfDay;
+                    unTurno.Fecha = ((DateTime)lector["fecha"]).Date;
                     unTurno.Codigo_Especialidad = (decimal)lector["especialidad"];
                     list.Add(unTurno);
                 }

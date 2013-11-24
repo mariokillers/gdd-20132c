@@ -28,6 +28,7 @@ namespace Clinica_Frba.Registrar_Llegada
         {
             grillaHorarios.AutoGenerateColumns = false;
             grillaHorarios.MultiSelect = false;
+            btnTurno.Enabled = false;
 
             if (profesional != null) unaAgenda.armarAgenda(profesional.Id);
 
@@ -36,12 +37,6 @@ namespace Clinica_Frba.Registrar_Llegada
 
         private void generarGrilla()
         {
-            DataGridViewTextBoxColumn ColDia = new DataGridViewTextBoxColumn();
-            ColDia.DataPropertyName = "DiaString";
-            ColDia.HeaderText = "Dia";
-            ColDia.Width = 120;
-            grillaHorarios.Columns.Add(ColDia);
-
             DataGridViewTextBoxColumn ColFecha = new DataGridViewTextBoxColumn();
             ColFecha.DataPropertyName = "Fecha";
             ColFecha.HeaderText = "Fecha";
@@ -59,7 +54,8 @@ namespace Clinica_Frba.Registrar_Llegada
         {
             if (profesional != null) unaAgenda.armarAgenda(profesional.Id);
             listaTurnos = Utiles.ObtenerTurnosDia(unaAgenda, (DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"])));
-            grillaHorarios.DataSource = listaTurnos;
+            if (listaTurnos.Count != 0) { grillaHorarios.DataSource = listaTurnos; }
+            else { MessageBox.Show("El profesional no tiene turnos para este día", "Error!", MessageBoxButtons.OK); }
         }
 
         private void cmdSeleccionar_Click(object sender, EventArgs e)
@@ -69,6 +65,7 @@ namespace Clinica_Frba.Registrar_Llegada
             formProfesional.formLlegada = this;
             cmdSeleccionar.Enabled = false;
             btnTurno.Enabled = true;
+            txtNumAfil.Enabled = true;
             formProfesional.Show();
             this.Hide();
         }
@@ -78,33 +75,47 @@ namespace Clinica_Frba.Registrar_Llegada
             try
             {
                 BonoConsulta unBono = new BonoConsulta(Int32.Parse(txtBono.Text));
-                if (unBono.Usado)
+                if (unBono.Grupo_Flia != 0)
                 {
-                    if (unBono.PuedeUsarlo((int)afiliado.Numero_Grupo))
+                    if (unBono.Activo)
                     {
-                        unBono.Usar(afiliado);
+                        if (unBono.PuedeUsarlo((int)afiliado.Numero_Grupo))
+                        {
+                            unBono.Usar(afiliado);
+                            afiliado.CrearAtencion(unBono.Id, (int)turno.Id);
+                            cmdConfirmarBono.Enabled = false;
+                            txtBono.Enabled = false;
+                            MessageBox.Show("Se ha registrado a llegada del afiliado correctamente", "EnHoraBuena!", MessageBoxButtons.OK);
+                            this.Close();
+                        }
                     }
+                    else { MessageBox.Show("El bono ya ha sido usado", "Error!", MessageBoxButtons.OK); }
                 }
-                else { MessageBox.Show("El bono ya ha sido usado", "Error!", MessageBoxButtons.OK); }
+                else { MessageBox.Show("No existe un bono con ese numero", "Error!", MessageBoxButtons.OK); }   
             }
             catch { MessageBox.Show("No existe un Bono Consulta con ese codigo", "Error!", MessageBoxButtons.OK); }
         }
 
         private void btnTurno_Click(object sender, EventArgs e)
         {
-            //TURNO == UNPROFESIONAL.PROXIMOTURNO
-            turno = (Turno)grillaHorarios.CurrentRow.DataBoundItem;
-            if (turno.Codigo_Persona == afiliado.Id)
+            try
             {
-                cmdConfirmarBono.Enabled = true;
-                txtBono.Enabled = true;
-                btnTurno.Enabled = false;
-                grillaHorarios.Enabled = false;
+                afiliado = new Afiliado(txtNumAfil.Text);
+                turno = (Turno)grillaHorarios.CurrentRow.DataBoundItem;
+                if (turno.Codigo_Persona == afiliado.Codigo_Persona)
+                {
+                    cmdConfirmarBono.Enabled = true;
+                    txtBono.Enabled = true;
+                    btnTurno.Enabled = false;
+                    grillaHorarios.Enabled = false;
+                    txtNumAfil.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("El turno seleccionado no corresponde al afiliado", "Error", MessageBoxButtons.OK);
+                }
             }
-            else
-            {
-                MessageBox.Show("El turno seleccionado no corresponde al afiliado", "Error", MessageBoxButtons.OK);   
-            }
+            catch { MessageBox.Show("Inserte correctamente el numero de afiliado", "Error!", MessageBoxButtons.OK); }
         }
 
     }

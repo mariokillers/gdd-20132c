@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.gbDatos = new System.Windows.Forms.GroupBox();
-            this.cmbEspecialidades = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.cmbHora = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmdAceptar = new System.Windows.Forms.Button();
@@ -46,6 +44,8 @@
             this.cmdGeneraReceta = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.cmdFinalizar = new System.Windows.Forms.Button();
+            this.cmbEspecialidades = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.gbDatos.SuspendLayout();
             this.gpHistoriaClinica.SuspendLayout();
             this.gpRecetas.SuspendLayout();
@@ -53,8 +53,8 @@
             // 
             // gbDatos
             // 
-            this.gbDatos.Controls.Add(this.cmbEspecialidades);
             this.gbDatos.Controls.Add(this.label3);
+            this.gbDatos.Controls.Add(this.cmbEspecialidades);
             this.gbDatos.Controls.Add(this.cmbHora);
             this.gbDatos.Controls.Add(this.label2);
             this.gbDatos.Controls.Add(this.cmdAceptar);
@@ -66,23 +66,6 @@
             this.gbDatos.TabIndex = 4;
             this.gbDatos.TabStop = false;
             this.gbDatos.Text = "Datos Atención";
-            // 
-            // cmbEspecialidades
-            // 
-            this.cmbEspecialidades.FormattingEnabled = true;
-            this.cmbEspecialidades.Location = new System.Drawing.Point(203, 46);
-            this.cmbEspecialidades.Name = "cmbEspecialidades";
-            this.cmbEspecialidades.Size = new System.Drawing.Size(121, 21);
-            this.cmbEspecialidades.TabIndex = 10;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(190, 30);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(141, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Especialidad de la Atención:";
             // 
             // cmbHora
             // 
@@ -227,6 +210,23 @@
             this.cmdFinalizar.UseVisualStyleBackColor = true;
             this.cmdFinalizar.Click += new System.EventHandler(this.cmdFinalizar_Click);
             // 
+            // cmbEspecialidades
+            // 
+            this.cmbEspecialidades.FormattingEnabled = true;
+            this.cmbEspecialidades.Location = new System.Drawing.Point(207, 47);
+            this.cmbEspecialidades.Name = "cmbEspecialidades";
+            this.cmbEspecialidades.Size = new System.Drawing.Size(121, 21);
+            this.cmbEspecialidades.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(204, 31);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(141, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Especialidad de la Atención:";
+            // 
             // frmAtencion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -267,7 +267,7 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button cmdGeneraReceta;
         private System.Windows.Forms.Button cmdFinalizar;
-        private System.Windows.Forms.ComboBox cmbEspecialidades;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbEspecialidades;
     }
 }

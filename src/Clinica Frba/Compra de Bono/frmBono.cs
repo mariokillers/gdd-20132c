@@ -38,7 +38,7 @@ namespace Clinica_Frba.NewFolder3
                 lblGrupoFamiliar.Text = afiliado.Numero_Familiar.ToString();
                 lblPrecioPorBono.Text = (new BonoConsulta(afiliado)).Precio.ToString();
                 lblNumeroAfiliado.Text = afiliado.Numero_Familiar.ToString() + afiliado.Numero_Grupo.ToString();
-                lblPlanMedico.Text = afiliado.Plan_Medico.ToString(); //ES UN NOMBRE?
+                lblPlanMedico.Text = afiliado.Plan_Medico.ToString(); 
             }
             //COMO ES ADMINISTRADOR ->TIENE QUE INGRESAR EL NUM DE AFIL DE LA PERSONA
             else 
@@ -208,7 +208,6 @@ namespace Clinica_Frba.NewFolder3
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-
             try
             {
                 if (!txtNumAfil.Visible)

@@ -127,16 +127,16 @@ namespace Clinica_Frba.NewFolder3
                     {
                         for (int i = 0; i < unRegistro.Cantidad; i++)
                         {
-                            BonoConsulta unBono = new BonoConsulta(afiliado);
-                            bonosConsulta.Add(unBono);
+                            BonoFarmacia unBono = new BonoFarmacia(afiliado);
+                            bonosFarmacia.Add(unBono);
                         }
                     }
                     else
                     {
                         for (int i = 0; i < unRegistro.Cantidad; i++)
                         {
-                            BonoFarmacia unBono = new BonoFarmacia(afiliado);
-                            bonosFarmacia.Add(unBono);
+                            BonoConsulta unBono = new BonoConsulta(afiliado);
+                            bonosConsulta.Add(unBono);
                         }
                     }
                 }
@@ -216,8 +216,8 @@ namespace Clinica_Frba.NewFolder3
                     TipoCompraParaMostrar unaCompra = new TipoCompraParaMostrar();
                     unaCompra.FechaVencimiento = lblFechaVencimiento.Text;
                     unaCompra.Cantidad = (int)cmdCantBonos.Value;
-                    unaCompra.MontoTotal = Int32.Parse(lblMontoAPagar.Text);
                     unaCompra.MontoBono = Int32.Parse(lblPrecioPorBono.Text);
+                    unaCompra.MontoTotal = (unaCompra.MontoBono * unaCompra.Cantidad);
                     if (rbFarmacia.Checked) { unaCompra.TipoBono = "Bono Farmacia"; }
                     else { unaCompra.TipoBono = "Bono Consulta"; }
                     ListaAMostrar.Add(unaCompra);

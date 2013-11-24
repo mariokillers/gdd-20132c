@@ -82,8 +82,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.grillaBonos);
             this.splitContainer1.Panel2.Controls.Add(this.tlpDatos);
-            this.splitContainer1.Size = new System.Drawing.Size(885, 526);
-            this.splitContainer1.SplitterDistance = 296;
+            this.splitContainer1.Size = new System.Drawing.Size(907, 526);
+            this.splitContainer1.SplitterDistance = 303;
             this.splitContainer1.TabIndex = 0;
             // 
             // cmdAgregar
@@ -191,7 +191,7 @@
             this.grillaBonos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaBonos.Location = new System.Drawing.Point(3, 4);
             this.grillaBonos.Name = "grillaBonos";
-            this.grillaBonos.Size = new System.Drawing.Size(579, 335);
+            this.grillaBonos.Size = new System.Drawing.Size(594, 335);
             this.grillaBonos.TabIndex = 8;
             // 
             // tlpDatos
@@ -354,7 +354,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(885, 526);
+            this.ClientSize = new System.Drawing.Size(907, 526);
             this.Controls.Add(this.splitContainer1);
             this.Name = "frmBono";
             this.Text = "Compra de bonos";

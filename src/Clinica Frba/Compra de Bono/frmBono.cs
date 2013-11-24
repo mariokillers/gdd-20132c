@@ -26,6 +26,7 @@ namespace Clinica_Frba.NewFolder3
         {
             ListaAMostrar = new List<TipoCompraParaMostrar>();
             grillaBonos.AutoGenerateColumns = false;
+            cmdComprar.Enabled = false;
             cargarGrilla();
 
             lblFechaCompra.Text = DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).ToShortDateString();
@@ -107,7 +108,6 @@ namespace Clinica_Frba.NewFolder3
                 else
                 {
                     //SI ES ADMINISTRATIVO -> LE HAGO UNA COMPRA PARA EL AFILIADO
-                    //afiliado = new Afiliado(Int32.Parse(txtNumAfil.Text));
                     RealizarCompra();
                 }
             }
@@ -222,6 +222,7 @@ namespace Clinica_Frba.NewFolder3
                     else { unaCompra.TipoBono = "Bono Consulta"; }
                     ListaAMostrar.Add(unaCompra);
                     ActualizarGrilla();
+                    cmdComprar.Enabled = true;
                 }
                 else
                 {

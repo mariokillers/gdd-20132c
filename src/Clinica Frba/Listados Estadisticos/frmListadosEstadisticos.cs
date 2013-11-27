@@ -24,13 +24,13 @@ namespace Clinica_Frba.NewFolder9
             grillaListado4.AutoGenerateColumns = false;
             grillaListado1.AutoGenerateColumns = false;
 
-            generarGrillaListado1();
+            /*generarGrillaListado1();
             generarGrillaListado2();
             generarGrillaListado3();
-            generarGrillaListado4();
+            generarGrillaListado4();*/
         }
 
-        private void generarGrillaListado4()
+       /* private void generarGrillaListado4()
         {
 
             DataGridViewTextBoxColumn ColCant = new DataGridViewTextBoxColumn();
@@ -38,9 +38,9 @@ namespace Clinica_Frba.NewFolder9
             ColCant.HeaderText = "Bonos Farmacia Vencidos";
             ColCant.Width = 120;
             grillaListado4.Columns.Add(ColCant);
-        }
+        }*/
 
-        private void generarGrillaListado2()
+       /* private void generarGrillaListado2()
         {
             DataGridViewTextBoxColumn ColNombre = new DataGridViewTextBoxColumn();
             ColNombre.DataPropertyName = "Nombre";
@@ -59,9 +59,9 @@ namespace Clinica_Frba.NewFolder9
             ColCant.HeaderText = "Bonos Farmacia Vencidos";
             ColCant.Width = 120;
             grillaListado2.Columns.Add(ColCant);
-        }
+        }*/
 
-        private void generarGrillaListado3()
+        /*private void generarGrillaListado3()
         {
             DataGridViewTextBoxColumn ColNombre = new DataGridViewTextBoxColumn();
             ColNombre.DataPropertyName = "EspecialidadMedica";
@@ -74,9 +74,9 @@ namespace Clinica_Frba.NewFolder9
             ColCant.HeaderText = "Bonos Farmacia Recetados";
             ColCant.Width = 120;
             grillaListado3.Columns.Add(ColCant);
-        }
+        }*/
 
-        private void generarGrillaListado1()
+       /* private void generarGrillaListado1()
         {
             DataGridViewTextBoxColumn ColNombre = new DataGridViewTextBoxColumn();
             ColNombre.DataPropertyName = "EspecialidadMedica";
@@ -89,7 +89,7 @@ namespace Clinica_Frba.NewFolder9
             ColCant.HeaderText = "Bonos Farmacia Recetados";
             ColCant.Width = 120;
             grillaListado1.Columns.Add(ColCant);
-        }
+        }*/
 
         private void cmdConsultar_Click(object sender, EventArgs e)
         {

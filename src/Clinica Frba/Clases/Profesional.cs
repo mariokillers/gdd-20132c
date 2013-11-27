@@ -53,7 +53,8 @@ namespace Clinica_Frba.Abm_de_Profesional
                     ListaParametros.Add(new SqlParameter("@dia", unRango.Dia.Id));
                     ListaParametros.Add(new SqlParameter("@hora_desde", unRango.HoraDesde));
                     ListaParametros.Add(new SqlParameter("@hora_hasta", unRango.HoraHasta));
-                    Clases.BaseDeDatosSQL.EscribirEnBase("insert into mario_killers.Rango ( profesional, dia, hora_desde , hora_hasta) values (@profesional, @dia,@hora_desde, @hora_hasta)", "T", ListaParametros);
+                    ListaParametros.Add(new SqlParameter("@especialidad", unRango.Especialidad));
+                    Clases.BaseDeDatosSQL.EscribirEnBase("insert into mario_killers.Rango ( profesional, dia, hora_desde , hora_hasta, especialidad) values (@profesional, @dia,@hora_desde, @hora_hasta, @especialidad)", "T", ListaParametros);
                     ListaParametros.Clear();
                 }
                 return true;

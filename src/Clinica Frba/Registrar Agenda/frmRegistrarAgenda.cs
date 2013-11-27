@@ -30,6 +30,10 @@ namespace Clinica_Frba.Registrar_Agenda
                 MessageBox.Show("El profesional ya cuenta con una agenda", "Error!", MessageBoxButtons.OK);
                 this.Close();
             }
+            cmbEspecialidades.DataSource = Especialidades.ObtenerEspecialidadesProfesional(unProfesional.Id);
+            cmbEspecialidades.ValueMember = "Codigo";
+            cmbEspecialidades.DisplayMember = "Descripcion";
+
             grillaHorarios.AutoGenerateColumns = false;
             grillaHorarios.MultiSelect = false;
 
@@ -71,6 +75,12 @@ namespace Clinica_Frba.Registrar_Agenda
             ColHoraHasta.HeaderText = "Hora Hasta";
             ColHoraHasta.Width = 120;
             grillaHorarios.Columns.Add(ColHoraHasta);
+
+            DataGridViewTextBoxColumn ColEspecialidad = new DataGridViewTextBoxColumn();
+            ColEspecialidad.DataPropertyName = "EspString";
+            ColEspecialidad.HeaderText = "Especialidad";
+            ColEspecialidad.Width = 120;
+            grillaHorarios.Columns.Add(ColEspecialidad);
         }
 
         private void cmdAceptar_Click(object sender, EventArgs e)
@@ -82,7 +92,7 @@ namespace Clinica_Frba.Registrar_Agenda
             TimeSpan horaHasta = (TimeSpan)cmbHoraHasta.SelectedValue;
             if (Utiles.EsHoraValida(horaDesde, horaHasta))
             {
-                Rango unRango = new Rango(unDia, horaDesde, horaHasta);
+                Rango unRango = new Rango(unDia, horaDesde, horaHasta,(int)(decimal)cmbEspecialidades.SelectedValue);
                 //VALIDAR QUE NO SE PISE CON OTRA YA ASIGNADA
                 if(Utiles.NoSePisan(unDia, horaDesde,horaHasta,listaDeRangos))
                 {

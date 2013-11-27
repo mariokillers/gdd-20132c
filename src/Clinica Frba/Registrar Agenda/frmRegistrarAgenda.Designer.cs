@@ -47,6 +47,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dtpHasta = new System.Windows.Forms.DateTimePicker();
             this.dtpDesde = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cmbEspecialidades = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grillaHorarios)).BeginInit();
             this.groRango.SuspendLayout();
@@ -72,6 +74,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmbEspecialidades);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.cmbHoraHasta);
             this.groupBox1.Controls.Add(this.cmbHoraDesde);
             this.groupBox1.Controls.Add(this.label4);
@@ -81,7 +85,7 @@
             this.groupBox1.Controls.Add(this.cmdAceptar);
             this.groupBox1.Location = new System.Drawing.Point(15, 28);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(415, 82);
+            this.groupBox1.Size = new System.Drawing.Size(558, 82);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Registrar Dias y Horarios";
@@ -141,7 +145,7 @@
             // 
             // cmdAceptar
             // 
-            this.cmdAceptar.Location = new System.Drawing.Point(334, 55);
+            this.cmdAceptar.Location = new System.Drawing.Point(471, 55);
             this.cmdAceptar.Name = "cmdAceptar";
             this.cmdAceptar.Size = new System.Drawing.Size(75, 23);
             this.cmdAceptar.TabIndex = 0;
@@ -156,12 +160,12 @@
             this.grillaHorarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaHorarios.Location = new System.Drawing.Point(12, 114);
             this.grillaHorarios.Name = "grillaHorarios";
-            this.grillaHorarios.Size = new System.Drawing.Size(418, 150);
+            this.grillaHorarios.Size = new System.Drawing.Size(561, 150);
             this.grillaHorarios.TabIndex = 3;
             // 
             // cmdEliminar
             // 
-            this.cmdEliminar.Location = new System.Drawing.Point(33, 278);
+            this.cmdEliminar.Location = new System.Drawing.Point(123, 278);
             this.cmdEliminar.Name = "cmdEliminar";
             this.cmdEliminar.Size = new System.Drawing.Size(75, 23);
             this.cmdEliminar.TabIndex = 4;
@@ -171,7 +175,7 @@
             // 
             // cmdFinalizar
             // 
-            this.cmdFinalizar.Location = new System.Drawing.Point(306, 278);
+            this.cmdFinalizar.Location = new System.Drawing.Point(396, 278);
             this.cmdFinalizar.Name = "cmdFinalizar";
             this.cmdFinalizar.Size = new System.Drawing.Size(75, 23);
             this.cmdFinalizar.TabIndex = 6;
@@ -188,7 +192,7 @@
             this.groRango.Controls.Add(this.dtpDesde);
             this.groRango.Location = new System.Drawing.Point(15, 311);
             this.groRango.Name = "groRango";
-            this.groRango.Size = new System.Drawing.Size(415, 154);
+            this.groRango.Size = new System.Drawing.Size(558, 144);
             this.groRango.TabIndex = 7;
             this.groRango.TabStop = false;
             this.groRango.Text = "Registrar Rango de Fechas";
@@ -196,7 +200,7 @@
             // 
             // cmdConfirmarRango
             // 
-            this.cmdConfirmarRango.Location = new System.Drawing.Point(174, 114);
+            this.cmdConfirmarRango.Location = new System.Drawing.Point(255, 108);
             this.cmdConfirmarRango.Name = "cmdConfirmarRango";
             this.cmdConfirmarRango.Size = new System.Drawing.Size(75, 23);
             this.cmdConfirmarRango.TabIndex = 4;
@@ -207,7 +211,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(19, 77);
+            this.label6.Location = new System.Drawing.Point(111, 77);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(71, 13);
             this.label6.TabIndex = 3;
@@ -216,7 +220,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 41);
+            this.label5.Location = new System.Drawing.Point(111, 41);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 13);
             this.label5.TabIndex = 2;
@@ -224,23 +228,40 @@
             // 
             // dtpHasta
             // 
-            this.dtpHasta.Location = new System.Drawing.Point(154, 71);
+            this.dtpHasta.Location = new System.Drawing.Point(246, 71);
             this.dtpHasta.Name = "dtpHasta";
             this.dtpHasta.Size = new System.Drawing.Size(200, 20);
             this.dtpHasta.TabIndex = 1;
             // 
             // dtpDesde
             // 
-            this.dtpDesde.Location = new System.Drawing.Point(154, 35);
+            this.dtpDesde.Location = new System.Drawing.Point(246, 35);
             this.dtpDesde.Name = "dtpDesde";
             this.dtpDesde.Size = new System.Drawing.Size(200, 20);
             this.dtpDesde.TabIndex = 0;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(448, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(70, 13);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Especialidad:";
+            // 
+            // cmbEspecialidades
+            // 
+            this.cmbEspecialidades.FormattingEnabled = true;
+            this.cmbEspecialidades.Location = new System.Drawing.Point(425, 31);
+            this.cmbEspecialidades.Name = "cmbEspecialidades";
+            this.cmbEspecialidades.Size = new System.Drawing.Size(121, 21);
+            this.cmbEspecialidades.TabIndex = 14;
             // 
             // frmRegistrarAgenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 492);
+            this.ClientSize = new System.Drawing.Size(591, 467);
             this.Controls.Add(this.groRango);
             this.Controls.Add(this.cmdFinalizar);
             this.Controls.Add(this.cmdEliminar);
@@ -282,5 +303,7 @@
         private System.Windows.Forms.DateTimePicker dtpHasta;
         private System.Windows.Forms.DateTimePicker dtpDesde;
         private System.Windows.Forms.Button cmdConfirmarRango;
+        private System.Windows.Forms.ComboBox cmbEspecialidades;
+        private System.Windows.Forms.Label label7;
     }
 }

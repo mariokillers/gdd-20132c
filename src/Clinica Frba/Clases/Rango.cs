@@ -11,6 +11,8 @@ namespace Clinica_Frba.Clases
         public string StringDia { get; set; }
         public TimeSpan HoraDesde { get; set; }
         public TimeSpan HoraHasta { get; set; }
+        public int Especialidad { get; set; }
+        public string EspString { get; set; }
         public List<Turno> TurnosDentro { get; set; }
 
         public Rango(Dias dia, TimeSpan horaDesde, TimeSpan horaHasta)
@@ -20,6 +22,19 @@ namespace Clinica_Frba.Clases
             StringDia = dia.Detalle;
             HoraDesde = horaDesde;
             HoraHasta = horaHasta;
+            this.armarTurnos();
+        }
+
+        public Rango(Dias dia, TimeSpan horaDesde, TimeSpan horaHasta, int especialidad)
+        {
+            TurnosDentro = new List<Turno>();
+            Dia = dia;
+            StringDia = dia.Detalle;
+            HoraDesde = horaDesde;
+            HoraHasta = horaHasta;
+            Especialidad = especialidad;
+            Especialidad esp = new Especialidad(Especialidad);
+            EspString = esp.Descripcion;
             this.armarTurnos();
         }
 

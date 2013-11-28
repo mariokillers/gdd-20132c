@@ -67,10 +67,7 @@ namespace Clinica_Frba.Clases
             if (comparable.TimeOfDay < turno.Horario) return true;
             else
             {
-                List<SqlParameter> ListaParametros = new List<SqlParameter>();
-                ListaParametros.Add(new SqlParameter("@id", turno.Id));
-                Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Turno SET activo = 0 WHERE id = @id", "T", ListaParametros);
-
+                turno.Usar();   
                 return false;
             }
         }

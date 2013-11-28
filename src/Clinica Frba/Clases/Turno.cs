@@ -43,5 +43,12 @@ namespace Clinica_Frba.Clases
             }
             return i;
         }
+
+        public void Usar()
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@id", Id));
+            Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Turno SET activo = 0 WHERE id = @id", "T", ListaParametros);
+        }
     }
 }

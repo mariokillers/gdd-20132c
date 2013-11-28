@@ -86,7 +86,7 @@ namespace Clinica_Frba.Registrar_Llegada
                                 unBono.Usar(afiliado, turno);
                                 afiliado.CrearAtencion(unBono.Id, (int)turno.Id);
                                 cmdConfirmarBono.Enabled = false;
-                                txtBono.Enabled = false;
+                                txtBono.Enabled = false;                                
                                 MessageBox.Show("Se ha registrado la llegada del afiliado correctamente", "EnHoraBuena!", MessageBoxButtons.OK);
                                 this.Close();
                             }

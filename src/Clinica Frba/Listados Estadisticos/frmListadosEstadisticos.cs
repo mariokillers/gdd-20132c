@@ -98,6 +98,7 @@ namespace Clinica_Frba.NewFolder9
                 /*DateTime desde = new DateTime();
                 DateTime hasta = new DateTime();*/
 
+                int ano = (int)dtpAño.Value.Year;
                 int desde = 0;
                 int hasta = 0;
 
@@ -118,10 +119,10 @@ namespace Clinica_Frba.NewFolder9
                     hasta = hasta.AddMilliseconds(-1);*/
                 }
 
-                grillaListado1.DataSource = Listados.Listado1(desde, hasta);
-                grillaListado2.DataSource = Listados.Listado2(desde, hasta);
-                grillaListado3.DataSource = Listados.Listado3(desde, hasta);
-                grillaListado4.DataSource = Listados.Listado4(desde, hasta);
+                grillaListado1.DataSource = Listados.Listado1(desde, hasta, ano);
+                grillaListado2.DataSource = Listados.Listado2(desde, hasta, ano);
+                grillaListado3.DataSource = Listados.Listado3(desde, hasta, ano);
+                grillaListado4.DataSource = Listados.Listado4(desde, hasta, ano);
             }
             catch { MessageBox.Show("No se ha podido realizar las estadisticas. Vuelva a intentarlo", "Error!", MessageBoxButtons.OK); }
         }

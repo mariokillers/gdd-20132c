@@ -32,11 +32,12 @@ namespace Clinica_Frba.Clases
             return listaListado3;
         }*/
 
-        public static SqlDataReader Listado2(int desde, int hasta)
+        public static SqlDataReader Listado2(int desde, int hasta, int ano)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@desde", desde));
             ListaParametros.Add(new SqlParameter("@hasta", hasta));
+            ListaParametros.Add(new SqlParameter("@ano", ano));
 
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT nombre, apellido, documento, mes FROM mario_killers.listado_2_view WHERE nro_mes in (@desde,@hasta)", "T", ListaParametros);
 
@@ -71,11 +72,12 @@ namespace Clinica_Frba.Clases
             return listaListado2;
         }*/
 
-        public static SqlDataReader Listado3(int desde, int hasta)
+        public static SqlDataReader Listado3(int desde, int hasta, int ano)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@desde", desde));
             ListaParametros.Add(new SqlParameter("@hasta", hasta));
+            ListaParametros.Add(new SqlParameter("@ano", ano));
 
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT desc_esp, desc_tipo_esp,cant_bonos,mes FROM mario_killers.listado_3_view WHERE nro_mes IN (@desde,@hasta)", "T", ListaParametros);
 
@@ -109,11 +111,12 @@ namespace Clinica_Frba.Clases
             return listaListado2;
         }*/
 
-        public static SqlDataReader Listado1(int desde, int hasta)
+        public static SqlDataReader Listado1(int desde, int hasta, int ano)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@desde", desde));
             ListaParametros.Add(new SqlParameter("@hasta", hasta));
+            ListaParametros.Add(new SqlParameter("@ano", ano));
 
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT especialidad, cancelaciones, horario, mes FROM mario_killers.listado_1_view WHERE numero_mes IN(@desde, @hasta)", "T", ListaParametros);
 
@@ -145,17 +148,17 @@ namespace Clinica_Frba.Clases
             return listaListado4;
         }*/
 
-        public static SqlDataReader Listado4(int desde, int hasta)
+        public static SqlDataReader Listado4(int desde, int hasta, int ano)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@desde", desde));
             ListaParametros.Add(new SqlParameter("@hasta", hasta));
+            ListaParametros.Add(new SqlParameter("@ano", ano));
 
             SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
             paramRet.Direction = System.Data.ParameterDirection.Output;
             ListaParametros.Add(paramRet);
 
-            //estamal la consulta
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT cantidad_de_bonos, nombre, apellido, documento FROM mario_killers.listado_4_view WHERE nro_mes IN(@desde, @hasta)", "T", ListaParametros);
             if (lector.HasRows)
             {

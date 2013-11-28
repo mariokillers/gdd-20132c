@@ -153,6 +153,9 @@ namespace Clinica_Frba.Abm_de_Profesional
                     unRango.StringDia = unRango.Dia.Detalle;
                     unRango.HoraDesde = (TimeSpan)lector["hora_desde"];
                     unRango.HoraHasta = (TimeSpan)lector["hora_hasta"];
+                    Especialidad unaEsp = new Especialidad((int)(decimal)lector["especialidad"]);
+                    unRango.Especialidad = (int)(decimal)lector["especialidad"];
+                    unRango.EspString = unaEsp.Descripcion;
                     lista.Add(unRango);
                 }
             }

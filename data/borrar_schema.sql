@@ -60,6 +60,7 @@ DROP VIEW mario_killers.bonos_consulta_distinto_comprador,
 		  mario_killers.bonos_distinto_comprador,
           mario_killers.listado_1_view,
           mario_killers.listado_2_view,
+          mario_killers.listado_3_view,
           mario_killers.listado_4_view
 
 DROP SCHEMA mario_killers

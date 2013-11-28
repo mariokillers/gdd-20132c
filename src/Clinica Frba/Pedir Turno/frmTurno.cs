@@ -26,6 +26,8 @@ namespace Clinica_Frba.Pedir_Turno
         public Turno unTurno = new Turno();
         public List<Turno> listaCompleta = new List<Turno>();
         public decimal unaEspecialidad { get; set; }
+        public decimal nro_turno { get; set; }
+
         private void frmTurno_Load(object sender, EventArgs e)
         {
             unaAgenda.armarAgenda(unProfesional.Id);
@@ -112,9 +114,10 @@ namespace Clinica_Frba.Pedir_Turno
                 unTurno.Codigo_Especialidad = unaEspecialidad;
                 unTurno.Codigo_Persona = unUsuario.Codigo_Persona;
 
-                if (Turnos.AgregarTurno(unTurno) != 0)
+                nro_turno = Turnos.AgregarTurno(unTurno);
+                if (nro_turno != 0)
                 {
-                    MessageBox.Show("El turno se ha registrado con exito!", "Aviso", MessageBoxButtons.OK);
+                    MessageBox.Show("El turno numero " + nro_turno + " se ha registrado con exito!", "Aviso", MessageBoxButtons.OK);
                     this.Close();
                 }
                 else

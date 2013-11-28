@@ -95,26 +95,33 @@ namespace Clinica_Frba.NewFolder9
         {
             try
             {
-                DateTime desde = new DateTime();
-                DateTime hasta = new DateTime();
+                /*DateTime desde = new DateTime();
+                DateTime hasta = new DateTime();*/
+
+                int desde = 0;
+                int hasta = 0;
 
                 if (rdPrimerSemestre.Checked)
                 {
-                    desde = new DateTime(dtpAño.Value.Year, 1, 1);
+                    desde = 1;
+                    hasta = 6;
+                    /*desde = new DateTime(dtpAño.Value.Year, 1, 1);
                     hasta = desde.AddMonths(6).AddMilliseconds(-1);
-                    hasta = hasta.AddMilliseconds(-1);
+                    hasta = hasta.AddMilliseconds(-1);*/
                 }
                 if (rdSegundoSemestre.Checked)
                 {
-                    desde = new DateTime(dtpAño.Value.Year, 7, 1);
+                    desde = 7;
+                    hasta = 12;
+                    /*desde = new DateTime(dtpAño.Value.Year, 7, 1);
                     hasta = desde.AddMonths(6).AddMilliseconds(-1);
-                    hasta = hasta.AddMilliseconds(-1);
+                    hasta = hasta.AddMilliseconds(-1);*/
                 }
 
-                grillaListado1.DataSource = Listados.ObtenerEspecialidadesMasCancelaciones(desde, hasta);
-                grillaListado2.DataSource = Listados.ObtenerCantBonosVencidosPorAfiliado(desde, hasta);
-                grillaListado3.DataSource = Listados.ObtenerEspecialidadesConMasBonosRecetados(desde, hasta);
-                grillaListado4.DataSource = Listados.ObtenerAfiliadosQueUsaronBonosQueNoCompraron(desde, hasta);
+                grillaListado1.DataSource = Listados.Listado1(desde, hasta);
+                grillaListado2.DataSource = Listados.Listado2(desde, hasta);
+                grillaListado3.DataSource = Listados.Listado3(desde, hasta);
+                grillaListado4.DataSource = Listados.Listado4(desde, hasta);
             }
             catch { MessageBox.Show("No se ha podido realizar las estadisticas. Vuelva a intentarlo", "Error!", MessageBoxButtons.OK); }
         }

@@ -32,13 +32,13 @@ namespace Clinica_Frba.Clases
             return listaListado3;
         }*/
 
-        public static SqlDataReader ObtenerEspecialidadesConMasBonosRecetados(DateTime desde, DateTime hasta)
+        public static SqlDataReader Listado2(int desde, int hasta)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@desde", desde));
             ListaParametros.Add(new SqlParameter("@hasta", hasta));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT TOP 5 Especialidad.descripcion AS especialidad, COUNT(DISTINCT bono_farmacia) AS cantidad FROM mario_killers.Medicamento_HistoriaClinica JOIN mario_killers.Bono_Farmacia on Medicamento_HistoriaClinica.bono_farmacia = Bono_Farmacia.codigo JOIN mario_killers.Historia_Clinica ON Medicamento_HistoriaClinica.historia_clinica = Historia_Clinica.id JOIN mario_killers.Especialidad ON Historia_Clinica.especialidad = Especialidad.codigo JOIN mario_killers.Compra ON Bono_Farmacia.compra = Compra.id WHERE Compra.fecha between @desde and @hasta GROUP BY Especialidad.descripcion ORDER BY COUNT(DISTINCT bono_farmacia) DESC", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT nombre, apellido, documento, mes FROM mario_killers.listado_2_view WHERE nro_mes in (@desde,@hasta)", "T", ListaParametros);
 
             if (lector.HasRows)
             {
@@ -71,13 +71,13 @@ namespace Clinica_Frba.Clases
             return listaListado2;
         }*/
 
-        public static SqlDataReader ObtenerCantBonosVencidosPorAfiliado(DateTime desde, DateTime hasta)
+        public static SqlDataReader Listado3(int desde, int hasta)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@desde", desde));
             ListaParametros.Add(new SqlParameter("@hasta", hasta));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT TOP 5 Persona.nombre AS nombre, Persona.apellido AS apellido, COUNT(Bono_Farmacia.codigo) AS cantidad FROM mario_killers.Bono_Farmacia JOIN mario_killers.Compra ON Bono_Farmacia.compra = Compra.id JOIN mario_killers.Afiliado ON Compra.persona = Afiliado.persona JOIN mario_killers.Persona ON Afiliado.persona = Persona.id WHERE Compra.fecha + 60 between @desde and @hasta GROUP BY Persona.nombre, Persona.apellido ORDER BY COUNT(Bono_Farmacia.codigo) DESC", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT desc_esp, desc_tipo_esp,cant_bonos,mes FROM mario_killers.listado_3_view WHERE nro_mes IN (@desde,@hasta)", "T", ListaParametros);
 
             if (lector.HasRows)
             {
@@ -109,13 +109,13 @@ namespace Clinica_Frba.Clases
             return listaListado2;
         }*/
 
-        public static SqlDataReader ObtenerEspecialidadesMasCancelaciones(DateTime desde, DateTime hasta)
+        public static SqlDataReader Listado1(int desde, int hasta)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@desde", desde));
             ListaParametros.Add(new SqlParameter("@hasta", hasta));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT especialidad cancelaciones FROM mario_killers.listado_4_view WHERE horario between @desde and @hasta", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT especialidad, cancelaciones, horario, mes FROM mario_killers.listado_1_view WHERE numero_mes IN(@desde, @hasta)", "T", ListaParametros);
 
             if (lector.HasRows)
             {
@@ -145,7 +145,7 @@ namespace Clinica_Frba.Clases
             return listaListado4;
         }*/
 
-        public static SqlDataReader ObtenerAfiliadosQueUsaronBonosQueNoCompraron(DateTime desde, DateTime hasta)
+        public static SqlDataReader Listado4(int desde, int hasta)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@desde", desde));
@@ -156,7 +156,7 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(paramRet);
 
             //estamal la consulta
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT especialidad cancelaciones FROM mario_killers.listado_4_view WHERE horario between @desde and @hasta", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT cantidad_de_bonos, nombre, apellido, documento FROM mario_killers.listado_4_view WHERE nro_mes IN(@desde, @hasta)", "T", ListaParametros);
             if (lector.HasRows)
             {
                 return lector;

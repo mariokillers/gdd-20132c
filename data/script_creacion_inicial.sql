@@ -679,7 +679,7 @@ FROM mario_killers.Cancelacion
 GO
 
 CREATE VIEW mario_killers.listado_2_view AS
-SELECT nombre, apellido, documento, COUNT(Bono_Farmacia.codigo) 'cant_bonos', DATEPART(m, Compra.fecha) 'nro_mes', mario_killers.mes(DATEPART(m, Compra.fecha)) 'mes'
+SELECT nombre, apellido, documento, COUNT(Bono_Farmacia.codigo) AS cant_bonos, DATEPART(m, Compra.fecha) AS nro_mes, mario_killers.mes(DATEPART(m, Compra.fecha)) AS mes
 FROM mario_killers.Bono_Farmacia
 	JOIN mario_killers.Compra ON Compra.id = Bono_Farmacia.compra
 	JOIN mario_killers.Afiliado ON Compra.persona = Afiliado.persona
@@ -688,7 +688,7 @@ GROUP BY nombre, apellido, documento, DATEPART(m, Compra.fecha), mario_killers.m
 GO
 
 CREATE VIEW mario_killers.listado_3_view AS
-SELECT Especialidad.descripcion 'desc_esp', Tipo_Especialidad.descripcion 'desc_tipo_esp', COUNT(Medicamento_Atencion.bono_farmacia) 'cant_bonos', DATEPART(M, Turno.horario) 'nro_mes', mario_killers.mes(DATEPART(m, Turno.horario)) 'mes'
+SELECT Especialidad.descripcion AS desc_esp, Tipo_Especialidad.descripcion AS desc_tipo_esp, COUNT(Medicamento_Atencion.bono_farmacia) AS cant_bonos, DATEPART(M, Turno.horario) AS nro_mes, mario_killers.mes(DATEPART(m, Turno.horario)) AS mes
 FROM mario_killers.Medicamento_Atencion
 	JOIN mario_killers.Atencion ON Medicamento_Atencion.Atencion = Atencion.id
 	JOIN mario_killers.Turno ON Turno.id = Atencion.id
@@ -727,7 +727,7 @@ SELECT * FROM mario_killers.bonos_farmacia_distinto_comprador
 GO
 
 CREATE VIEW mario_killers.listado_4_view AS
-SELECT mes 'nro_mes', mario_killers.mes(mes) 'Mes', COUNT(bono_id) 'Cantidad de bonos', nombre, apellido, documento
+SELECT mes 'nro_mes', mario_killers.mes(mes) AS Mes, COUNT(bono_id) AS cantidad_de_bonos, nombre, apellido, documento
 FROM mario_killers.bonos_distinto_comprador
 GROUP BY mes, mario_killers.mes(mes), nombre, apellido, documento
 GO

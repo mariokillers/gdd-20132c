@@ -34,6 +34,10 @@
             this.cmdBuscar = new System.Windows.Forms.Button();
             this.dtpFechas = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblProfesional = new System.Windows.Forms.Label();
+            this.lblEspecialidad = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grillaHorarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,11 +96,50 @@
             this.label1.TabIndex = 20;
             this.label1.Text = "Seleccione Horario de Turno:";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(273, 28);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(130, 13);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "Profesional Seleccionado:";
+            // 
+            // lblProfesional
+            // 
+            this.lblProfesional.AutoSize = true;
+            this.lblProfesional.Location = new System.Drawing.Point(273, 50);
+            this.lblProfesional.Name = "lblProfesional";
+            this.lblProfesional.Size = new System.Drawing.Size(0, 13);
+            this.lblProfesional.TabIndex = 22;
+            // 
+            // lblEspecialidad
+            // 
+            this.lblEspecialidad.AutoSize = true;
+            this.lblEspecialidad.Location = new System.Drawing.Point(273, 98);
+            this.lblEspecialidad.Name = "lblEspecialidad";
+            this.lblEspecialidad.Size = new System.Drawing.Size(28, 13);
+            this.lblEspecialidad.TabIndex = 24;
+            this.lblEspecialidad.Text = "XXX";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(273, 76);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(142, 13);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "Especialidad del Profesional:";
+            // 
             // frmTurno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(468, 401);
+            this.Controls.Add(this.lblEspecialidad);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblProfesional);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtpFechas);
             this.Controls.Add(this.btnAction);
@@ -120,5 +163,9 @@
         private System.Windows.Forms.Button cmdBuscar;
         private System.Windows.Forms.DateTimePicker dtpFechas;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblProfesional;
+        private System.Windows.Forms.Label lblEspecialidad;
+        private System.Windows.Forms.Label label4;
     }
 }

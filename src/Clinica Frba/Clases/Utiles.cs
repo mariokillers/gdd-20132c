@@ -83,6 +83,19 @@ namespace Clinica_Frba.Clases
             catch { return false; }
         }
 
+        public static String ObtenerEspecialidad(decimal esp)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@codigo", esp));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT descripcion FROM mario_killers.Especialidad WHERE codigo = @codigo", "T", ListaParametros);
+            if (lector.HasRows)
+            {
+                lector.Read();
+            }
+            return ((String)lector["descripcion"]);
+        }
+
         public static string ObtenerTipoDoc(decimal tipoDoc)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
@@ -107,6 +120,19 @@ namespace Clinica_Frba.Clases
                 lector.Read();
             }
             return ((string)lector["descripcion"]);
+        }
+
+        public static DateTime ProximoTurno(decimal profesional){
+ 
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@profesional", (decimal) profesional));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT horario FROM mario_killers.Turno WHERE profesional = @profesional", "T", ListaParametros);
+            if (lector.HasRows)
+            {
+                lector.Read();
+            }
+            return ((DateTime)lector["horario"]);
         }
 
         public static string ObtenerEstado(decimal id)

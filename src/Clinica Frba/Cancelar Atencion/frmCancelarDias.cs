@@ -49,39 +49,46 @@ namespace Clinica_Frba.Cancelar_Atencion
             if (txtMotivo.Text != "")
             {
                 DateTime fechaInicio = dtpInicio.Value;
-                if (lbl26.Visible == false) //Si solo se selecciono una fecha
+                if ((Utiles.EsFechaValidaPorUnDia(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date, fechaInicio.Date)))
                 {
-                    if (!Utiles.ObtenerDiasHabilesAgenda(unaAgenda).Contains(new Dias(fechaInicio.DayOfWeek).Id))
+                    if (lbl26.Visible == false) //Si solo se selecciono una fecha
                     {
-                        MessageBox.Show("La fecha seleccionada no esta disponible, por favor seleccione otra", "Aviso", MessageBoxButtons.OK);
+                        if (!Utiles.ObtenerDiasHabilesAgenda(unaAgenda).Contains(new Dias(fechaInicio.DayOfWeek).Id))
+                        {
+                            MessageBox.Show("La fecha seleccionada no forma parte de su agenda, por favor seleccione otra", "Aviso", MessageBoxButtons.OK);
+                        }
+                        else
+                        {
+                            try
+                            {
+                                Turnos.AnularDia(unUsuario.Codigo_Persona, fechaInicio, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
+                                MessageBox.Show("La fecha seleccionada ha sido cancelada correctamente!", "Aviso", MessageBoxButtons.OK);
+                                this.Close();
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Error al intentar cancelar el dia", "Error", MessageBoxButtons.OK);
+                            }
+                        }
                     }
                     else
                     {
+                        DateTime fechaFin = dtpFin.Value;
                         try
                         {
-                            Turnos.AnularDia(unUsuario.Codigo_Persona, fechaInicio, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
-                            MessageBox.Show("La fecha seleccionada ha sido cancelada correctamente!", "Aviso", MessageBoxButtons.OK);
+                            Turnos.AnularRango(unUsuario.Codigo_Persona, fechaInicio, fechaFin, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
+                            MessageBox.Show("El rango seleccionado ha sido cancelado correctamente!", "Aviso", MessageBoxButtons.OK);
                             this.Close();
                         }
                         catch
                         {
-                            MessageBox.Show("Error al intentar cancelar el dia", "Error", MessageBoxButtons.OK);
+                            MessageBox.Show("Error al intentar cancelar el rango", "Error", MessageBoxButtons.OK);
                         }
                     }
                 }
                 else
                 {
-                    DateTime fechaFin = dtpFin.Value;
-                    try
-                    {
-                        Turnos.AnularRango(unUsuario.Codigo_Persona, fechaInicio, fechaFin, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
-                        MessageBox.Show("El rango seleccionado ha sido cancelado correctamente!", "Aviso", MessageBoxButtons.OK);
-                        this.Close();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Error al intentar cancelar el rango", "Error", MessageBoxButtons.OK);
-                    }
+                    MessageBox.Show("El dia/rango no puede cancelarse por ser en menos de 24hs.", "Aviso", MessageBoxButtons.OK);
                 }
             }
             else MessageBox.Show("No se ha indicado el motivo de la cancelacion, por favor ingreselo y vuelva a intentarlo", "Error", MessageBoxButtons.OK);

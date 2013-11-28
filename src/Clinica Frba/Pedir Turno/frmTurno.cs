@@ -55,6 +55,9 @@ namespace Clinica_Frba.Pedir_Turno
             ColHora.HeaderText = "Horario";
             ColHora.Width = 120;
             grillaHorarios.Columns.Add(ColHora);
+
+            lblProfesional.Text = unProfesional.Apellido + ", " + unProfesional.Nombre;
+            lblEspecialidad.Text = Utiles.ObtenerEspecialidad(unaEspecialidad);
         }
 
         private void cmdBuscar_Click(object sender, EventArgs e)
@@ -63,7 +66,7 @@ namespace Clinica_Frba.Pedir_Turno
             {
                 if (!Utiles.ObtenerDiasHabilesAgenda(unaAgenda).Contains(new Dias(dtpFechas.Value.DayOfWeek).Id))
                 {
-                    MessageBox.Show("La fecha seleccionada no esta disponible, por favor seleccione otra", "Aviso", MessageBoxButtons.OK);
+                    MessageBox.Show("La fecha seleccionada no forma parte de la agenda del profesional, por favor seleccione otra", "Aviso", MessageBoxButtons.OK);
                     limpiarGrilla();
                 }
                 else

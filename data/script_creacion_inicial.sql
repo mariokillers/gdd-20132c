@@ -425,23 +425,6 @@ CREATE TABLE mario_killers.Agenda (
 	FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona)
 )
 
-CREATE TABLE mario_killers.Rango (
-	id numeric(18, 0) IDENTITY,
-	dia numeric(18, 0) NOT NULL, -- domingo = 1, valor default de DATEFIRST
-	profesional numeric(18, 0) NOT NULL,
-	hora_desde time NOT NULL,
-	hora_hasta time NOT NULL,
-	PRIMARY KEY (id),
-	CONSTRAINT horarios_validos CHECK (
-	mario_killers.horario_atencion(CONVERT(TIME,hora_desde)) = 1 AND
-	mario_killers.horario_atencion(CONVERT(TIME,hora_hasta)) = 1 AND
-	hora_desde < hora_hasta
-	),
-	CONSTRAINT max_horas_por_semana CHECK (mario_killers.horas_por_semana(profesional) <= 48),
-	--CONSTRAINT horas_no_se_pisan CHECK (mario_killers.horas_se_pisan(profesional) = 0),
-	FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona)
-)
-
 CREATE TABLE mario_killers.Tipo_Especialidad (
 	codigo numeric(18, 0) IDENTITY,
 	descripcion varchar(255) NOT NULL,
@@ -454,6 +437,25 @@ CREATE TABLE mario_killers.Especialidad (
 	tipo numeric(18, 0) NOT NULL,
 	PRIMARY KEY (codigo),
 	FOREIGN KEY (tipo) REFERENCES mario_killers.Tipo_Especialidad(codigo)
+)
+
+CREATE TABLE mario_killers.Rango (
+	id numeric(18, 0) IDENTITY,
+	dia numeric(18, 0) NOT NULL, -- domingo = 1, valor default de DATEFIRST
+	profesional numeric(18, 0) NOT NULL,
+	hora_desde time NOT NULL,
+	hora_hasta time NOT NULL,
+	especialidad numeric(18, 0) NOT NULL,
+	PRIMARY KEY (id),
+	CONSTRAINT horarios_validos CHECK (
+	mario_killers.horario_atencion(CONVERT(TIME,hora_desde)) = 1 AND
+	mario_killers.horario_atencion(CONVERT(TIME,hora_hasta)) = 1 AND
+	hora_desde < hora_hasta
+	),
+	CONSTRAINT max_horas_por_semana CHECK (mario_killers.horas_por_semana(profesional) <= 48),
+	--CONSTRAINT horas_no_se_pisan CHECK (mario_killers.horas_se_pisan(profesional) = 0),
+	FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona),
+	FOREIGN KEY (especialidad) REFERENCES mario_killers.Especialidad(codigo)
 )
 
 CREATE TABLE mario_killers.Especialidad_Profesional (

@@ -24,13 +24,10 @@ namespace Clinica_Frba.NewFolder6
         private TimeSpan hora { get; set; }
         public Profesional profesional { get; set; }
         private int turno { get; set; }
+        public Turno unTurno = new Turno();
 
         private void frmAtencion_Load(object sender, EventArgs e)
         {
-            cmbHora.DataSource = Utiles.ObtenerHorasDiasHabiles();
-            cmbHora.ValueMember = "LaHora";
-            cmbHora.DisplayMember = "HoraAMostrar";
-
             cmbEspecialidades.DataSource = Especialidades.ObtenerEspecialidadesProfesional(profesional.Id);
             cmbEspecialidades.ValueMember = "Codigo";
             cmbEspecialidades.DisplayMember = "Descripcion";
@@ -55,7 +52,7 @@ namespace Clinica_Frba.NewFolder6
             {
                 try 
                 {
-                    turno = afiliado.ProximoTurno(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date, (int)(decimal)cmbEspecialidades.SelectedValue, profesional.Id);
+                    //pase la validacion mas arriba ---> turno = afiliado.ProximoTurno(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date, (int)(decimal)cmbEspecialidades.SelectedValue, profesional.Id);
                     afiliado.ActualizarAtencion(fecha, txtSintomas.Text, txtDiagnostico.Text, turno);
                     gpRecetas.Visible = true;
                     Limpiar();
@@ -90,6 +87,29 @@ namespace Clinica_Frba.NewFolder6
             formReceta.idAtencion = turno;
             formReceta.Show();
             this.Close();
+        }
+
+        private void btnConfEsp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                turno = afiliado.ProximoTurno(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date, (int)(decimal)cmbEspecialidades.SelectedValue, profesional.Id);
+
+                dtpFechaAtencion.Text = Utiles.ObtenerFechaTurno(turno).ToString();
+                dtpFechaAtencion.Enabled = false;
+                 
+                cmbHora.DataSource = Utiles.ObtenerHorasAceptables(Utiles.ObtenerTurno(turno));
+                cmbHora.ValueMember = "LaHora";
+                cmbHora.DisplayMember = "HoraAMostrar";
+
+                label1.Visible = true;
+                label2.Visible = true;
+                dtpFechaAtencion.Visible = true;
+                cmdAceptar.Visible = true;
+                cmbHora.Visible = true;
+            }
+            catch { MessageBox.Show("El paciente no tiene turno con la especialidad seleccionada o no ha dado aviso de llegada", "Error!", MessageBoxButtons.OK); }
+
         }
     }
 }

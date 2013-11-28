@@ -53,12 +53,10 @@ DROP PROCEDURE mario_killers.agregar_funcionalidad,
                mario_killers.agregarTurno,
                mario_killers.agregarAtencion,
                mario_killers.anularDia,
+               mario_killers.anularRango
 
-               mario_killers.anularRango,
-
-               mario_killers.listado_4
-
-DROP VIEW mario_killers.listado_4_view
+DROP VIEW mario_killers.listado_4_view,
+          mario_killers.listado_1_view
 
 
 DROP SCHEMA mario_killers

@@ -27,26 +27,6 @@ AS BEGIN
 END
 GO
 
-CREATE PROCEDURE mario_killers.listado_4(@desde datetime, @hasta datetime, @ret int OUTPUT)
-AS BEGIN
-
-SET @ret = (SELECT (SELECT COUNT(Bono_Consulta.id)
-FROM mario_killers.Bono_Consulta
-     JOIN mario_killers.Compra ON Bono_Consulta.compra = Compra.id
-     JOIN mario_killers.Turno ON Bono_Consulta.turno = Turno.id
-WHERE Compra.persona <> Turno.persona and fecha between @desde and @hasta)
-
-+
-
-(SELECT COUNT(Bono_Farmacia.codigo)
-FROM mario_killers.Medicamento_Atencion
-     JOIN mario_killers.Bono_Farmacia ON Medicamento_Atencion.bono_farmacia = Bono_Farmacia.codigo
-     JOIN mario_killers.Compra ON Bono_Farmacia.compra = Compra.id
-     JOIN mario_killers.Atencion ON Atencion.id = Medicamento_Atencion.Atencion
-WHERE Compra.persona <> Atencion.afiliado and fecha between @desde and @hasta))
-END
-GO
-
 CREATE PROCEDURE mario_killers.agregarTurno(@persona numeric(18,0),
 											@profesional numeric(18,0),
 											@horario varchar(255),
@@ -681,7 +661,7 @@ GO
 
 
 -- Vistas ABM
-CREATE VIEW mario_killers.listado_4_view AS
+CREATE VIEW mario_killers.listado_1_view AS
 SELECT DATEPART(MONTH, Turno.horario) AS numero_mes, mario_killers.mes(DATEPART(MONTH, Turno.horario)) AS mes, Especialidad.descripcion AS especialidad, COUNT(Cancelacion.persona) cancelaciones, Turno.horario
 FROM mario_killers.Cancelacion
 	JOIN mario_killers.Afiliado ON Cancelacion.persona = Afiliado.persona
@@ -690,6 +670,30 @@ FROM mario_killers.Cancelacion
 	JOIN mario_killers.Especialidad ON Especialidad_Profesional.especialidad = Especialidad.codigo
 	JOIN mario_killers.Turno ON Turno.persona = Afiliado.persona
 	GROUP BY Especialidad.descripcion, Turno.horario, mario_killers.mes(DATEPART(MONTH, Turno.horario))
+GO
+
+CREATE VIEW mario_killers.listado_4_view AS
+SELECT
+	(SELECT COUNT(Bono_Consulta.id)
+	FROM mario_killers.Atencion
+		JOIN mario_killers.Turno t ON t.id = Atencion.id
+		JOIN mario_killers.Bono_Consulta ON Bono_Consulta.id = Atencion.bono_consulta
+		JOIN mario_killers.Compra ON Compra.id = Bono_Consulta.compra
+		WHERE Compra.persona <> t.persona AND Compra.persona = Afiliado.persona
+	)
+	+
+	(SELECT COUNT(Bono_Farmacia.codigo)
+	FROM mario_killers.Turno
+		JOIN mario_killers.Atencion ON Atencion.id = Turno.id
+		JOIN mario_killers.Medicamento_Atencion ON Medicamento_Atencion.Atencion = Atencion.id
+		JOIN mario_killers.Bono_Farmacia ON Medicamento_Atencion.bono_farmacia = Bono_Farmacia.codigo
+		JOIN mario_killers.Compra ON Compra.id = Bono_Farmacia.compra
+		WHERE Compra.persona <> Turno.persona AND Compra.persona = Afiliado.persona
+	) AS cant_bonos,
+	Persona.nombre,
+	Persona.apellido
+FROM mario_killers.Afiliado
+	JOIN mario_killers.Persona ON Afiliado.persona = Persona.id
 GO
 
 CREATE VIEW mario_killers.AfiliadosABM AS 

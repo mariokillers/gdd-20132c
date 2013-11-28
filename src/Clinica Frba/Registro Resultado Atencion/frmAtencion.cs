@@ -61,7 +61,7 @@ namespace Clinica_Frba.NewFolder6
                     Limpiar();
                     MessageBox.Show("Se ha actualizado correctamente la atención del paciente", "EnHoraBuena!", MessageBoxButtons.OK);
                 }
-                catch { MessageBox.Show("El paciente no tiene turno con la especialidad seleccionada", "Error!", MessageBoxButtons.OK); }
+                catch { MessageBox.Show("El paciente no tiene turno con la especialidad seleccionada o no ha dado aviso de llegada", "Error!", MessageBoxButtons.OK); }
             }
             else { MessageBox.Show("Complete correctamente todos los campos", "Error!", MessageBoxButtons.OK); }
         }

@@ -64,6 +64,12 @@ namespace Clinica_Frba.Registrar_Agenda
             ColHoraHasta.HeaderText = "Hora Hasta";
             ColHoraHasta.Width = 120;
             grillaAgenda.Columns.Add(ColHoraHasta);
+
+            DataGridViewTextBoxColumn ColEspecialidad = new DataGridViewTextBoxColumn();
+            ColEspecialidad.DataPropertyName = "EspString";
+            ColEspecialidad.HeaderText = "Especialidad";
+            ColEspecialidad.Width = 120;
+            grillaAgenda.Columns.Add(ColEspecialidad);
         }
 
         private void cmdEliminar_Click(object sender, EventArgs e)

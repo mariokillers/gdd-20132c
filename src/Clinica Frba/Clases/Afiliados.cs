@@ -20,7 +20,7 @@ namespace Clinica_Frba.Clases
             if (nombre != "") ListaParametros.Add(new SqlParameter("@nombre", "%" + nombre + "%")); else ListaParametros.Add(new SqlParameter("@nombre", "%%"));
             if (apellido != "") ListaParametros.Add(new SqlParameter("@apellido", "%" + apellido + "%")); else ListaParametros.Add(new SqlParameter("@apellido", "%%"));
             if (dni != "") ListaParametros.Add(new SqlParameter("@dni", "%" + dni + "%")); else ListaParametros.Add(new SqlParameter("@dni", "%%"));
-            if (numeroAfiliado != "") ListaParametros.Add(new SqlParameter("@numeroAfiliado", "%" + numeroAfiliado.Remove(numeroAfiliado.Length - 2) + "%")); else ListaParametros.Add(new SqlParameter("@numeroAfiliado", "%%"));
+            if (numeroAfiliado != "") ListaParametros.Add(new SqlParameter("@numeroAfiliado", "%" + numeroAfiliado/*.Remove(numeroAfiliado.Length - 2)*/ + "%")); else ListaParametros.Add(new SqlParameter("@numeroAfiliado", "%%"));
             if (codigoPlan != 0) ListaParametros.Add(new SqlParameter("@codigoPlan", "%" + codigoPlan + "%")); else ListaParametros.Add(new SqlParameter("@codigoPlan", 0));
 
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.AfiliadosABM WHERE grupo_familia * 100 + nro_familiar LIKE @numeroAfiliado AND apellido LIKE @apellido AND nombre LIKE @nombre AND documento LIKE @dni AND plan_medico LIKE @codigoPlan", "T", ListaParametros);
@@ -209,9 +209,10 @@ namespace Clinica_Frba.Clases
 
         public static void Eliminar(decimal id)
         {
+            DateTime horario_llegada = (DateTime)(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"])).AddHours(System.DateTime.Now.TimeOfDay.Hours).AddMinutes(System.DateTime.Now.Minute);
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@id", id));
-            ListaParametros.Add(new SqlParameter("@date", (DateTime)System.DateTime.Now.Date));
+            ListaParametros.Add(new SqlParameter("@date", (DateTime)horario_llegada));
             Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Bajas_Afiliado (persona, fecha) VALUES (@id, @date)", "T", ListaParametros);
 
             List<SqlParameter> ListaParametros2 = new List<SqlParameter>();

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.gbDatos = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbEspecialidades = new System.Windows.Forms.ComboBox();
             this.cmbHora = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmdAceptar = new System.Windows.Forms.Button();
@@ -44,8 +46,7 @@
             this.cmdGeneraReceta = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.cmdFinalizar = new System.Windows.Forms.Button();
-            this.cmbEspecialidades = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btnConfEsp = new System.Windows.Forms.Button();
             this.gbDatos.SuspendLayout();
             this.gpHistoriaClinica.SuspendLayout();
             this.gpRecetas.SuspendLayout();
@@ -53,6 +54,7 @@
             // 
             // gbDatos
             // 
+            this.gbDatos.Controls.Add(this.btnConfEsp);
             this.gbDatos.Controls.Add(this.label3);
             this.gbDatos.Controls.Add(this.cmbEspecialidades);
             this.gbDatos.Controls.Add(this.cmbHora);
@@ -62,53 +64,75 @@
             this.gbDatos.Controls.Add(this.dtpFechaAtencion);
             this.gbDatos.Location = new System.Drawing.Point(13, 13);
             this.gbDatos.Name = "gbDatos";
-            this.gbDatos.Size = new System.Drawing.Size(552, 155);
+            this.gbDatos.Size = new System.Drawing.Size(552, 184);
             this.gbDatos.TabIndex = 4;
             this.gbDatos.TabStop = false;
             this.gbDatos.Text = "Datos Atención";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(204, 31);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(141, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Especialidad de la Atención:";
+            // 
+            // cmbEspecialidades
+            // 
+            this.cmbEspecialidades.FormattingEnabled = true;
+            this.cmbEspecialidades.Location = new System.Drawing.Point(207, 47);
+            this.cmbEspecialidades.Name = "cmbEspecialidades";
+            this.cmbEspecialidades.Size = new System.Drawing.Size(121, 21);
+            this.cmbEspecialidades.TabIndex = 9;
+            // 
             // cmbHora
             // 
             this.cmbHora.FormattingEnabled = true;
-            this.cmbHora.Location = new System.Drawing.Point(293, 99);
+            this.cmbHora.Location = new System.Drawing.Point(300, 120);
             this.cmbHora.Name = "cmbHora";
             this.cmbHora.Size = new System.Drawing.Size(121, 21);
             this.cmbHora.TabIndex = 8;
+            this.cmbHora.Visible = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(290, 83);
+            this.label2.Location = new System.Drawing.Point(297, 104);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "Hora de la Atención:";
+            this.label2.Visible = false;
             // 
             // cmdAceptar
             // 
-            this.cmdAceptar.Location = new System.Drawing.Point(230, 126);
+            this.cmdAceptar.Location = new System.Drawing.Point(237, 147);
             this.cmdAceptar.Name = "cmdAceptar";
             this.cmdAceptar.Size = new System.Drawing.Size(75, 23);
             this.cmdAceptar.TabIndex = 5;
             this.cmdAceptar.Text = "Confirmar";
             this.cmdAceptar.UseVisualStyleBackColor = true;
+            this.cmdAceptar.Visible = false;
             this.cmdAceptar.Click += new System.EventHandler(this.cmdAceptar_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(78, 83);
+            this.label1.Location = new System.Drawing.Point(85, 104);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Fecha de la Atención:";
+            this.label1.Visible = false;
             // 
             // dtpFechaAtencion
             // 
-            this.dtpFechaAtencion.Location = new System.Drawing.Point(57, 100);
+            this.dtpFechaAtencion.Location = new System.Drawing.Point(64, 121);
             this.dtpFechaAtencion.Name = "dtpFechaAtencion";
             this.dtpFechaAtencion.Size = new System.Drawing.Size(200, 20);
             this.dtpFechaAtencion.TabIndex = 5;
+            this.dtpFechaAtencion.Visible = false;
             // 
             // gpHistoriaClinica
             // 
@@ -117,7 +141,7 @@
             this.gpHistoriaClinica.Controls.Add(this.txtSintomas);
             this.gpHistoriaClinica.Controls.Add(this.label5);
             this.gpHistoriaClinica.Controls.Add(this.label4);
-            this.gpHistoriaClinica.Location = new System.Drawing.Point(22, 192);
+            this.gpHistoriaClinica.Location = new System.Drawing.Point(22, 203);
             this.gpHistoriaClinica.Name = "gpHistoriaClinica";
             this.gpHistoriaClinica.Size = new System.Drawing.Size(543, 168);
             this.gpHistoriaClinica.TabIndex = 6;
@@ -173,7 +197,7 @@
             // 
             this.gpRecetas.Controls.Add(this.cmdGeneraReceta);
             this.gpRecetas.Controls.Add(this.label25);
-            this.gpRecetas.Location = new System.Drawing.Point(22, 372);
+            this.gpRecetas.Location = new System.Drawing.Point(22, 383);
             this.gpRecetas.Name = "gpRecetas";
             this.gpRecetas.Size = new System.Drawing.Size(543, 100);
             this.gpRecetas.TabIndex = 7;
@@ -202,7 +226,7 @@
             // 
             // cmdFinalizar
             // 
-            this.cmdFinalizar.Location = new System.Drawing.Point(243, 482);
+            this.cmdFinalizar.Location = new System.Drawing.Point(243, 493);
             this.cmdFinalizar.Name = "cmdFinalizar";
             this.cmdFinalizar.Size = new System.Drawing.Size(75, 23);
             this.cmdFinalizar.TabIndex = 58;
@@ -210,28 +234,21 @@
             this.cmdFinalizar.UseVisualStyleBackColor = true;
             this.cmdFinalizar.Click += new System.EventHandler(this.cmdFinalizar_Click);
             // 
-            // cmbEspecialidades
+            // btnConfEsp
             // 
-            this.cmbEspecialidades.FormattingEnabled = true;
-            this.cmbEspecialidades.Location = new System.Drawing.Point(207, 47);
-            this.cmbEspecialidades.Name = "cmbEspecialidades";
-            this.cmbEspecialidades.Size = new System.Drawing.Size(121, 21);
-            this.cmbEspecialidades.TabIndex = 9;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(204, 31);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(141, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Especialidad de la Atención:";
+            this.btnConfEsp.Location = new System.Drawing.Point(230, 74);
+            this.btnConfEsp.Name = "btnConfEsp";
+            this.btnConfEsp.Size = new System.Drawing.Size(75, 23);
+            this.btnConfEsp.TabIndex = 59;
+            this.btnConfEsp.Text = "Confirmar";
+            this.btnConfEsp.UseVisualStyleBackColor = true;
+            this.btnConfEsp.Click += new System.EventHandler(this.btnConfEsp_Click);
             // 
             // frmAtencion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(583, 513);
+            this.ClientSize = new System.Drawing.Size(570, 524);
             this.Controls.Add(this.cmdFinalizar);
             this.Controls.Add(this.gpRecetas);
             this.Controls.Add(this.gpHistoriaClinica);
@@ -269,5 +286,6 @@
         private System.Windows.Forms.Button cmdFinalizar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbEspecialidades;
+        private System.Windows.Forms.Button btnConfEsp;
     }
 }

@@ -27,6 +27,38 @@ namespace Clinica_Frba.Clases
             return cadena.Substring(cadena.Length - cantidad);
         }
 
+        public static DateTime ObtenerFechaTurno(decimal turno)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@id", turno));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT horario FROM mario_killers.Turno WHERE id = @id", "T", ListaParametros);
+            if (lector.HasRows)
+            {
+                lector.Read();
+            }
+            return ((DateTime)lector["horario"]);
+        }
+
+        public static Turno ObtenerTurno(decimal turno)
+        {
+            Turno unTurno = new Turno();
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@id", turno));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Turno WHERE id = @id", "T", ListaParametros);
+            if (lector.HasRows)
+            {
+                lector.Read();
+            }
+            unTurno.Id = turno;
+            unTurno.Codigo_Persona = ((decimal)lector["persona"]);
+            unTurno.Codigo_Profesional = ((decimal)lector["profesional"]);
+            unTurno.Codigo_Especialidad = ((decimal)lector["especialidad"]);
+            unTurno.Fecha = ((DateTime)lector["horario"]);
+            return unTurno;
+        }
+
         public static string DameEnLetras(int numero)
         {
             switch (numero)
@@ -199,6 +231,31 @@ namespace Clinica_Frba.Clases
             return lista;
         }
 
+        public static List<Hora> ObtenerHorasAceptables(Turno turno)
+        {
+            int cont = 0;
+            List<Hora> lista = new List<Hora>();
+            for (int i = turno.Fecha.TimeOfDay.Hours; i <= turno.Fecha.TimeOfDay.Hours + 3; i++)
+            {
+                cont++;
+                if (cont != 2)
+                {
+                    TimeSpan unaHora = new TimeSpan(i, 00, 0);
+                    string hora = unaHora.Hours.ToString() + ":" + unaHora.Minutes.ToString() + "0";
+                    lista.Add(new Hora(unaHora, hora));
+                }
+                else
+                {
+                    //REINICIO EL CONTADOR PORQUE ES MEDIA HORA
+                    cont = 0;
+                    i--;
+                    TimeSpan unaHora = new TimeSpan(i, 30, 0);
+                    string hora = unaHora.Hours.ToString() + ":" + unaHora.Minutes.ToString();
+                    lista.Add(new Hora(unaHora, hora));
+                }
+            }
+            return lista;
+        }
 
         public static List<Hora> ObtenerHorasDiasSabados()
         {

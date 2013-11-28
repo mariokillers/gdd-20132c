@@ -29,6 +29,7 @@ namespace Clinica_Frba.Clases
                     unRegistro.Documento = (int)(decimal)lector["documento"];
                     unRegistro.CantBonos = (int)lector["cant_bonos"];
                     unRegistro.Mes = (string)lector["mes"];
+                    unRegistro.ano = ano;
                     listaListado2.Add(unRegistro);
                 }
             }
@@ -55,6 +56,7 @@ namespace Clinica_Frba.Clases
                     unRegistro.TipoEspecialidadMedica = (string)lector["desc_tipo_esp"];
                     unRegistro.CantBonos = (int)lector["cant_bonos"];
                     unRegistro.Mes = (string)lector["mes"];
+                    unRegistro.ano = ano;
                     listaListado3.Add(unRegistro);
                 }
             }
@@ -81,6 +83,7 @@ namespace Clinica_Frba.Clases
                     unRegistro.CantCancelaciones = (int)lector["cancelaciones"];
                     unRegistro.Horario = (DateTime)lector["horario"];
                     unRegistro.Mes = (string)lector["mes"];
+                    unRegistro.ano = ano;
                     listaListado1.Add(unRegistro);
                 }
             }
@@ -108,6 +111,7 @@ namespace Clinica_Frba.Clases
                     unRegistro.CantBonos = (int)lector["cantidad_de_bonos"];
                     unRegistro.Documento = (int)(decimal)lector["documento"];
                     unRegistro.Mes = (string)lector["mes"];
+                    unRegistro.ano = ano;
                     listaListado4.Add(unRegistro);
                 }
             }

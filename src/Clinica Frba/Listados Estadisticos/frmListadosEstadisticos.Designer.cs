@@ -67,7 +67,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(624, 335);
+            this.tabControl1.Size = new System.Drawing.Size(754, 335);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -76,7 +76,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(616, 309);
+            this.tabPage1.Size = new System.Drawing.Size(746, 309);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Cancelaciones por especialidad";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -87,7 +87,7 @@
             this.grillaListado1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grillaListado1.Location = new System.Drawing.Point(3, 3);
             this.grillaListado1.Name = "grillaListado1";
-            this.grillaListado1.Size = new System.Drawing.Size(610, 303);
+            this.grillaListado1.Size = new System.Drawing.Size(740, 303);
             this.grillaListado1.TabIndex = 0;
             // 
             // tabPage2
@@ -168,7 +168,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer1.Size = new System.Drawing.Size(624, 473);
+            this.splitContainer1.Size = new System.Drawing.Size(754, 473);
             this.splitContainer1.SplitterDistance = 134;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -227,7 +227,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 473);
+            this.ClientSize = new System.Drawing.Size(754, 473);
             this.Controls.Add(this.splitContainer1);
             this.Name = "frmListadosEstadisticos";
             this.Text = "Listados estadísticos";

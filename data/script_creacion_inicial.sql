@@ -682,7 +682,7 @@ GO
 
 -- Vistas ABM
 CREATE VIEW mario_killers.listado_4_view AS
-SELECT mario_killers.mes(DATEPART(MONTH, Turno.horario)) AS mes, Especialidad.descripcion AS especialidad, COUNT(Cancelacion.persona) cancelaciones, Turno.horario
+SELECT DATEPART(MONTH, Turno.horario) AS numero_mes, mario_killers.mes(DATEPART(MONTH, Turno.horario)) AS mes, Especialidad.descripcion AS especialidad, COUNT(Cancelacion.persona) cancelaciones, Turno.horario
 FROM mario_killers.Cancelacion
 	JOIN mario_killers.Afiliado ON Cancelacion.persona = Afiliado.persona
 	JOIN mario_killers.Profesional ON Cancelacion.persona = Profesional.persona

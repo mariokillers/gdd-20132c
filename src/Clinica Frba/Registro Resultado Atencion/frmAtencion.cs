@@ -92,11 +92,9 @@ namespace Clinica_Frba.NewFolder6
 
         private void btnConfEsp_Click(object sender, EventArgs e)
         {
-            try
+            turno = afiliado.ProximoTurno(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date, (int)(decimal)cmbEspecialidades.SelectedValue, profesional.Id);
+            if(turno != -1)
             {
-
-                turno = afiliado.ProximoTurno(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date, (int)(decimal)cmbEspecialidades.SelectedValue, profesional.Id);
-
                 if(Utiles.ExisteRegistroLlegada(turno))
                 {
                     dtpFechaAtencion.Text = Utiles.ObtenerFechaTurno(turno).ToString();
@@ -114,7 +112,7 @@ namespace Clinica_Frba.NewFolder6
                 }
                 else { MessageBox.Show("El paciente no no ha dado aviso de llegada", "Error!", MessageBoxButtons.OK); }
             }
-            catch { MessageBox.Show("El paciente no tiene turno con la especialidad seleccionada", "Error!", MessageBoxButtons.OK); }
+            else { MessageBox.Show("El paciente no tiene turno con la especialidad seleccionada", "Error!", MessageBoxButtons.OK); }
 
         }
     }

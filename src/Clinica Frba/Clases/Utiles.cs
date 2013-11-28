@@ -60,6 +60,21 @@ namespace Clinica_Frba.Clases
             else { return false; }
         }
 
+        public static Boolean LlegoAHorario(Turno turno)
+        {
+            
+            DateTime comparable = (DateTime)(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"])).AddHours(System.DateTime.Now.Hour).AddMinutes(System.DateTime.Now.Minute + 15);
+            if (comparable.TimeOfDay < turno.Horario) return true;
+            else
+            {
+                List<SqlParameter> ListaParametros = new List<SqlParameter>();
+                ListaParametros.Add(new SqlParameter("@id", turno.Id));
+                Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Turno SET activo = 0 WHERE id = @id", "T", ListaParametros);
+
+                return false;
+            }
+        }
+
         public static bool NoSePisan(Dias dia, TimeSpan desde, TimeSpan hasta, List<Rango> lista)
         {
             foreach (Rango unRango in lista)

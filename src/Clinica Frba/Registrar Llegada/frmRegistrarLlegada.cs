@@ -81,12 +81,16 @@ namespace Clinica_Frba.Registrar_Llegada
                     {
                         if (unBono.PuedeUsarlo((int)afiliado.Numero_Grupo))
                         {
-                            unBono.Usar(afiliado, turno);
-                            afiliado.CrearAtencion(unBono.Id, (int)turno.Id);
-                            cmdConfirmarBono.Enabled = false;
-                            txtBono.Enabled = false;
-                            MessageBox.Show("Se ha registrado a llegada del afiliado correctamente", "EnHoraBuena!", MessageBoxButtons.OK);
-                            this.Close();
+                            if (Utiles.LlegoAHorario(turno))
+                            {
+                                unBono.Usar(afiliado, turno);
+                                afiliado.CrearAtencion(unBono.Id, (int)turno.Id);
+                                cmdConfirmarBono.Enabled = false;
+                                txtBono.Enabled = false;
+                                MessageBox.Show("Se ha registrado la llegada del afiliado correctamente", "EnHoraBuena!", MessageBoxButtons.OK);
+                                this.Close();
+                            }
+                            else { MessageBox.Show("Ha perdido el turno por incumplimiento de horario.", "Aviso!", MessageBoxButtons.OK); }
                         }
                     }
                     else { MessageBox.Show("El bono ya ha sido usado", "Error!", MessageBoxButtons.OK); }

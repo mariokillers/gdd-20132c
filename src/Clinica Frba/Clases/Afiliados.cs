@@ -218,6 +218,33 @@ namespace Clinica_Frba.Clases
             List<SqlParameter> ListaParametros2 = new List<SqlParameter>();
             ListaParametros2.Add(new SqlParameter("@id", id));
             Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Afiliado SET Activo =0 where persona = @id", "T", ListaParametros2);
+
+            //ELIMINAR TURNOS Y REGISTRARLO
+            List<SqlParameter> ListaParametros5 = new List<SqlParameter>();
+            ListaParametros5.Add(new SqlParameter("@persona", id));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id FROM mario_killers.Turno WHERE persona = @persona AND activo = 1", "T", ListaParametros5);
+
+            if (lector.HasRows)
+            {
+                while (lector.Read())
+                {
+                    decimal turno = (decimal)lector["id"];
+
+                    List<SqlParameter> ListaParametros3 = new List<SqlParameter>();
+                    ListaParametros3.Add(new SqlParameter("@tipo", (decimal)5));
+                    ListaParametros3.Add(new SqlParameter("@motivo", (String)"El afiliado ha sido dado de baja"));
+                    ListaParametros3.Add(new SqlParameter("@persona", id));
+                    ListaParametros3.Add(new SqlParameter("@turno", turno));
+
+                    Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Cancelacion (tipo, motivo, persona, turno) VALUES (@tipo, @motivo, @persona, @turno)", "T", ListaParametros3);
+
+                }
+            }
+
+            List<SqlParameter> ListaParametros4 = new List<SqlParameter>();
+            ListaParametros4.Add(new SqlParameter("@id", id));
+            Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Turno SET activo = 0 WHERE persona = @id", "T", ListaParametros4);
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Clinica_Frba.NewFolder12
             {
                 if (!analizarCampos())
                 {
-                    MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                    MessageBox.Show("Hay campos sin completar. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
                 }
                 else
                 {
@@ -76,7 +76,7 @@ namespace Clinica_Frba.NewFolder12
                     }
                 }
             }
-            catch { MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK); }
+            catch { MessageBox.Show("Hay campos con valores incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK); }
         }
 
         private Boolean analizarCampos()

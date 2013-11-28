@@ -52,8 +52,15 @@ namespace Clinica_Frba.Clases
             else { return false; }
         }
 
-        public bool Usar(Afiliado afiliado)
+        public bool Usar(Afiliado afiliado, Turno turno)
         {
+            DateTime horario_llegada = (DateTime)(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"])).AddHours(System.DateTime.Now.TimeOfDay.Hours).AddMinutes(System.DateTime.Now.Minute);
+            List<SqlParameter> ListaParametros2 = new List<SqlParameter>();
+            ListaParametros2.Add(new SqlParameter("@codigo", turno.Id));
+            ListaParametros2.Add(new SqlParameter("@horario_llegada", (DateTime)horario_llegada));
+
+            Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Turno set horario_llegada = @horario_llegada where id=@codigo ", "T", ListaParametros2);
+
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@codigo", Id));
 

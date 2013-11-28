@@ -81,7 +81,7 @@ namespace Clinica_Frba.Registrar_Llegada
                     {
                         if (unBono.PuedeUsarlo((int)afiliado.Numero_Grupo))
                         {
-                            unBono.Usar(afiliado);
+                            unBono.Usar(afiliado, turno);
                             afiliado.CrearAtencion(unBono.Id, (int)turno.Id);
                             cmdConfirmarBono.Enabled = false;
                             txtBono.Enabled = false;

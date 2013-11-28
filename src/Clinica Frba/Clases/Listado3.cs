@@ -9,5 +9,8 @@ namespace Clinica_Frba.Clases
     {
         public int CantBonos { get; set; }
         public string EspecialidadMedica { get; set; }
+        public string TipoEspecialidadMedica { get; set; }
+        public string Mes { get; set; }
+        public int ano { get; set; }
     }
 }

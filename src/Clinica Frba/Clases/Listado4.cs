@@ -5,12 +5,13 @@ using System.Text;
 
 namespace Clinica_Frba.Clases
 {
-    class Listado1
+    class Listado4
     {
-        public int CantCancelaciones { get; set; }
-        public string EspecialidadMedica { get; set; }
         public string Mes { get; set; }
-        public DateTime Horario { get; set; }
+        public int CantBonos { get; set; }
+        public int Documento { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
         public int ano { get; set; }
     }
 }

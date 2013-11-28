@@ -49,6 +49,10 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 btnAction.Text = "Seleccionar";
                 btnGrupoFlia.Visible = false;
             }
+            if (Operacion == "Baja")
+            {
+                btnGrupoFlia.Visible = false;
+            }
         }
 
         private void cmdBuscar_Click(object sender, EventArgs e)
@@ -154,9 +158,11 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 unAfiliado = (Afiliado)grillaPacientes.CurrentRow.DataBoundItem;
 
                 if (Operacion == "Baja")
-                {
+                {                    
                     Afiliados.Eliminar(unAfiliado.Id);
                     Limpiar();
+                    MessageBox.Show("El afiliado ha sido dado de baja correctamente", "Aviso", MessageBoxButtons.OK);
+
                 }
                 else if (Operacion == "Modificacion")
                 {

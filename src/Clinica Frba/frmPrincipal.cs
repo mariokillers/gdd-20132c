@@ -140,6 +140,7 @@ namespace Clinica_Frba
         private void cmdAfiliadoAlta_Click_1(object sender, EventArgs e)
         {
             frmAfiliadoAlta formAfiliado = new frmAfiliadoAlta();
+            formAfiliado.Operacion = "Alta";
             formAfiliado.Show();
         }
 

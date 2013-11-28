@@ -79,6 +79,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
             try
             {
                 Afiliados.ModificarGrupo(unAfiliado, unGrupo);
+                MessageBox.Show("El afiliado ha sido actualizado correctamente", "Aviso", MessageBoxButtons.OK);
                 this.Close();
             }
             catch

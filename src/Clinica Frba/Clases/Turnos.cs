@@ -68,7 +68,7 @@ namespace Clinica_Frba.Clases
             Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Cancelacion (tipo, motivo, persona, turno) VALUES (@tipo, @motivo, @persona, @turno)", "T", ListaParametros2);
         }
 
-        public static void AgregarTurno(Turno turno)
+        public static decimal AgregarTurno(Turno turno)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
 
@@ -82,6 +82,8 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(paramRet);
 
             decimal retor = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarTurno", ListaParametros);
+
+            return retor;
         }
 
         public static void AnularDia(int profesional, DateTime fecha, decimal tipo, String motivo)
@@ -105,7 +107,7 @@ namespace Clinica_Frba.Clases
             facha2.Value = fecha.Date;
             ListaParametros2.Add(facha2);
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id FROM mario_killers.Turno WHERE profesional = @profesional AND horario = @horario", "T", ListaParametros2);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id FROM mario_killers.Turno WHERE profesional = @profesional AND CONVERT(DATE,horario) = CONVERT(DATE,@horario)", "T", ListaParametros2);
 
             if (lector.HasRows)
             {
@@ -123,7 +125,6 @@ namespace Clinica_Frba.Clases
 
                 }
             } 
- 
        }
 
         public static void AnularRango(int profesional, DateTime fechaInicio, DateTime fechaFin, decimal tipo, String motivo)
@@ -142,12 +143,35 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(paramRet);
             Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.anularRango", ListaParametros);
 
+            //Registro las cancleaciones
             List<SqlParameter> ListaParametros2 = new List<SqlParameter>();
-            ListaParametros2.Add(new SqlParameter("@tipo", tipo));
-            ListaParametros2.Add(new SqlParameter("@motivo", motivo));
-            ListaParametros2.Add(new SqlParameter("@persona", profesional));
-            //VER COMO AGREGAR A CANCELACION TODOS LOS ID DE TURNOQ UE SE CANCELARON DEL RANGO
-            Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Cancelacion (tipo, motivo, persona) VALUES (@tipo, @motivo, @persona)", "T", ListaParametros2);
-        }
+            ListaParametros2.Add(new SqlParameter("@profesional", profesional));
+            SqlParameter fechaIni = new SqlParameter("@horarioInicio", System.Data.SqlDbType.Date);
+            fechaIni.Value = fechaInicio.Date;
+            ListaParametros2.Add(fechaIni);
+            SqlParameter fechaFinal = new SqlParameter("@horarioFin", System.Data.SqlDbType.Date);
+            fechaFinal.Value = fechaFin.Date;
+            ListaParametros2.Add(fechaFinal);
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id FROM mario_killers.Turno WHERE profesional = @profesional AND CONVERT(DATE,horario) BETWEEN CONVERT(DATE,@horarioInicio) AND CONVERT(DATE,@horarioFin)", "T", ListaParametros2);
+
+            if (lector.HasRows)
+            {
+                while (lector.Read())
+                {
+                    decimal turno = (decimal)lector["id"];
+
+                    List<SqlParameter> ListaParametros3 = new List<SqlParameter>();
+                    ListaParametros3.Add(new SqlParameter("@tipo", tipo));
+                    ListaParametros3.Add(new SqlParameter("@motivo", motivo));
+                    ListaParametros3.Add(new SqlParameter("@persona", profesional));
+                    ListaParametros3.Add(new SqlParameter("@turno", turno));
+
+                    Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Cancelacion (tipo, motivo, persona, turno) VALUES (@tipo, @motivo, @persona, @turno)", "T", ListaParametros3);
+
+                }
+            } 
+
+            }
     }
 }

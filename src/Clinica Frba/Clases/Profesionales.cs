@@ -30,12 +30,20 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(paramRet);
             decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarProfesional", ListaParametros);
 
-            foreach (Especialidad unaEsp in pro.Especialidades)
+            if (ret == 0)
             {
-                Especialidades.AgregarEspecialidadEnProfesional(ret, unaEsp);
+                return 0;
             }
+            else
+            {
 
-            return ret;
+                foreach (Especialidad unaEsp in pro.Especialidades)
+                {
+                    Especialidades.AgregarEspecialidadEnProfesional(ret, unaEsp);
+                }
+
+                return ret;
+            }
         }
 
         public static void EliminarProfesional(decimal pro)

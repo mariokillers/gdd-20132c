@@ -46,10 +46,10 @@ INSERT mario_killers.Especialidad_Profesional (profesional, especialidad) VALUES
 GO
 
 SET IDENTITY_INSERT mario_killers.Rango ON
-INSERT INTO mario_killers.Rango (id, dia, profesional, hora_desde, hora_hasta) VALUES (1, 2, 1, '7:00', '10:00')
-INSERT INTO mario_killers.Rango (id, dia, profesional, hora_desde, hora_hasta) VALUES (2, 2, 1, '15:00', '18:00')
-INSERT INTO mario_killers.Rango (id, dia, profesional, hora_desde, hora_hasta) VALUES (3, 3, 1, '7:00', '10:00')
-INSERT INTO mario_killers.Rango (id, dia, profesional, hora_desde, hora_hasta) VALUES (4, 4, 1, '15:00', '18:00')
+INSERT INTO mario_killers.Rango (id, dia, profesional, hora_desde, hora_hasta, especialidad) VALUES (1, 2, 1, '7:00', '10:00', 1)
+INSERT INTO mario_killers.Rango (id, dia, profesional, hora_desde, hora_hasta, especialidad) VALUES (2, 2, 1, '15:00', '18:00', 1)
+INSERT INTO mario_killers.Rango (id, dia, profesional, hora_desde, hora_hasta, especialidad) VALUES (3, 3, 1, '7:00', '10:00', 1)
+INSERT INTO mario_killers.Rango (id, dia, profesional, hora_desde, hora_hasta, especialidad) VALUES (4, 4, 1, '15:00', '18:00', 1)
 SET IDENTITY_INSERT mario_killers.Rango OFF
 GO
 

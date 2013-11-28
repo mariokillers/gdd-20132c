@@ -43,7 +43,7 @@ CREATE PROCEDURE mario_killers.verificarTurno(@fecha datetime,
 											  @profesional numeric(18,0),
 											  @ret numeric(18,0) output)
 AS BEGIN
-	IF(EXISTS(SELECT * FROM mario_killers.Turno WHERE profesional = @profesional AND horario between DATEADD(n,-1,@fecha) and DATEADD(n,1,@fecha))) BEGIN SET @ret = 0 END
+	IF(EXISTS(SELECT * FROM mario_killers.Turno WHERE profesional = @profesional AND CONVERT(DATETIME,horario) = CONVERT(DATETIME,@fecha))) BEGIN SET @ret = 0 END
 	ELSE BEGIN SET @ret = 1 END
 END
 GO

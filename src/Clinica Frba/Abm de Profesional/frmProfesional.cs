@@ -153,21 +153,39 @@ namespace Clinica_Frba.NewFolder13
                     unProfesional.TipoDocumento = (decimal)cmbTipoDoc.SelectedValue;
                     unProfesional.NumeroDocumento = (decimal)decimal.Parse(txtDni.Text);
                     unProfesional.FechaNacimiento = (DateTime)dtpFechaNacimiento.Value;
-
-                    Profesionales.AgregarProfesional(unProfesional);
+                    if (Profesionales.AgregarProfesional(unProfesional) == 0)
+                    {
+                        MessageBox.Show("Hay campos incorrectos o el profesional ya esta registrado. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El Profesional ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
+                        this.Close();
+                    }
                 }
                 else if (Operacion == "Modificacion")
                 {
                     Profesionales.EliminarEspecialidades(unProfesional, listaVieja);
                     Profesionales.ModificarProfesional(unProfesional);
-                }
-                MessageBox.Show("El Profesional ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
-    
-                this.Close();
+                    MessageBox.Show("El Profesional ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
+                    this.Close();
+                }  
             }
             catch
             {
                 MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+            }
+        }
+
+        private Boolean analizarCampos()
+        {
+            if (txtApellido.Text == "" || txtDir.Text == "" || txtDni.Text == "" || txtMail.Text == "" || txtNombre.Text == "" || txtTel.Text == "" || txtMatricula.Text == "" || grillaEspecialidades.CheckedItems.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

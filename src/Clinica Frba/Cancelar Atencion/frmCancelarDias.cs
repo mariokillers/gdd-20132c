@@ -25,6 +25,7 @@ namespace Clinica_Frba.Cancelar_Atencion
             dtpFin.Visible = true;
             label5.Text = "Seleccione Dia Inicio Rango:";
             dtpInicio.Enabled = false;
+            cmdRango.Enabled = false;
 
             dtpFin.MinDate = dtpInicio.Value;
             dtpFin.MaxDate = unaAgenda.FechaHasta;
@@ -50,7 +51,6 @@ namespace Clinica_Frba.Cancelar_Atencion
                 DateTime fechaInicio = dtpInicio.Value;
                 if (lbl26.Visible == false) //Si solo se selecciono una fecha
                 {
-
                     if (!Utiles.ObtenerDiasHabilesAgenda(unaAgenda).Contains(new Dias(fechaInicio.DayOfWeek).Id))
                     {
                         MessageBox.Show("La fecha seleccionada no esta disponible, por favor seleccione otra", "Aviso", MessageBoxButtons.OK);

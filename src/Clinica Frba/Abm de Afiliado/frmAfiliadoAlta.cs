@@ -36,23 +36,37 @@ namespace Clinica_Frba.NewFolder12
         {
             try
             {
-                almacenarDatos();
-
-                if (Operacion == "Modificacion")
+                if (!analizarCampos())
                 {
-                    if (Afiliado.Plan_Medico != (decimal)cmbPlanes.SelectedValue)
+                    MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    almacenarDatos();
+
+                    if (Operacion == "Modificacion")
                     {
-                        if (txtMotivo.Text != "")
+                        if (Afiliado.Plan_Medico != (decimal)cmbPlanes.SelectedValue)
                         {
-                            Afiliados.RegistrarCambioPlan(Afiliado, txtMotivo.Text);
+                            if (txtMotivo.Text != "")
+                            {
+                                Afiliados.RegistrarCambioPlan(Afiliado, txtMotivo.Text);
+                                MessageBox.Show("El Afiliado ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
+
+                                this.Hide();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Por favor especifique motivo del cambio de grupo", "Aviso", MessageBoxButtons.OK);
+                            }
+                        }
+                        else
+                        {
                             MessageBox.Show("El Afiliado ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
 
                             this.Hide();
                         }
-                        else
-                        {
-                            MessageBox.Show("Por favor especifique motivo del cambio de grupo", "Aviso", MessageBoxButtons.OK);
-                        }
+
                     }
                     else
                     {
@@ -60,16 +74,21 @@ namespace Clinica_Frba.NewFolder12
 
                         this.Hide();
                     }
-
-                }
-                else
-                {
-                    MessageBox.Show("El Afiliado ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
-
-                    this.Hide();
                 }
             }
             catch { MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK); }
+        }
+
+        private Boolean analizarCampos()
+        {
+            if (txtApellido.Text == "" || txtDir.Text == "" || txtDni.Text == "" || txtMail.Text == "" || txtNombre.Text == "" || txtTel.Text == "" || txtHijos.Text == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private void cmdLimpiar_Click(object sender, EventArgs e)
@@ -236,19 +255,26 @@ namespace Clinica_Frba.NewFolder12
 
         private void btnHijo_Click(object sender, EventArgs e)
         {
-            try
+            if (analizarCampos())
             {
-                Operacion = "Alta";
-                almacenarDatos();
-                frmAfiliadoAlta formHijo = new frmAfiliadoAlta();
-                formHijo.Operacion = this.Operacion;
-                formHijo.Afiliado = this.nuevoAfil;
-                formHijo.Afiliado.Numero_Grupo = nuevoAfil.Numero_Grupo;
-                formHijo.Miembro = "Hijo";
-                formHijo.Show();
-                this.Close();
+                try
+                {
+                    Operacion = "Alta";
+                    almacenarDatos();
+                    frmAfiliadoAlta formHijo = new frmAfiliadoAlta();
+                    formHijo.Operacion = this.Operacion;
+                    formHijo.Afiliado = this.nuevoAfil;
+                    formHijo.Afiliado.Numero_Grupo = nuevoAfil.Numero_Grupo;
+                    formHijo.Miembro = "Hijo";
+                    formHijo.Show();
+                    this.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                }
             }
-            catch
+            else
             {
                 MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
             }
@@ -256,23 +282,29 @@ namespace Clinica_Frba.NewFolder12
 
         private void btnConyuge_Click(object sender, EventArgs e)
         {
-            try
+            if (analizarCampos())
             {
-                Operacion = "Alta";
-                almacenarDatos();
-                frmAfiliadoAlta formConyuge = new frmAfiliadoAlta();
-                formConyuge.Operacion = this.Operacion;
-                formConyuge.Afiliado = this.nuevoAfil;
-                formConyuge.Afiliado.Numero_Grupo = nuevoAfil.Numero_Grupo;
-                formConyuge.Miembro = "Conyuge";
-                formConyuge.Show();
-                this.Close();
+                try
+                {
+                    Operacion = "Alta";
+                    almacenarDatos();
+                    frmAfiliadoAlta formConyuge = new frmAfiliadoAlta();
+                    formConyuge.Operacion = this.Operacion;
+                    formConyuge.Afiliado = this.nuevoAfil;
+                    formConyuge.Afiliado.Numero_Grupo = nuevoAfil.Numero_Grupo;
+                    formConyuge.Miembro = "Conyuge";
+                    formConyuge.Show();
+                    this.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                }
             }
-            catch
+            else
             {
                 MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
             }
-
         }
     }
 }

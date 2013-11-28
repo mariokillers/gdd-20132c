@@ -102,11 +102,15 @@ namespace Clinica_Frba.Pedir_Turno
                 unTurno.Codigo_Especialidad = unaEspecialidad;
                 unTurno.Codigo_Persona = unUsuario.Codigo_Persona;
 
-                Turnos.AgregarTurno(unTurno);
-
-                MessageBox.Show("El turno se ha registrado con exito!", "Aviso", MessageBoxButtons.OK);
-
-                this.Close();
+                if (Turnos.AgregarTurno(unTurno) != 0)
+                {
+                    MessageBox.Show("El turno se ha registrado con exito!", "Aviso", MessageBoxButtons.OK);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("El turno que desea tomar se encuentra ocupado. Seleccione otro horario por favor.", "Error", MessageBoxButtons.OK);
+                }
             }
             catch
             {

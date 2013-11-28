@@ -127,6 +127,7 @@ namespace Clinica_Frba.Abm_de_Profesional
                 {
                     Profesionales.EliminarProfesional(unProfesional.Id);
                     Limpiar();
+                    MessageBox.Show("El profesional ha sido dado de baja correctamente", "Aviso", MessageBoxButtons.OK);
                 }
                 else
                 {

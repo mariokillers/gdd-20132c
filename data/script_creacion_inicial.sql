@@ -676,6 +676,25 @@ FROM mario_killers.Cancelacion
 	GROUP BY Especialidad.descripcion, Turno.horario, mario_killers.mes(DATEPART(MONTH, Turno.horario))
 GO
 
+CREATE VIEW mario_killers.listado_2_view AS
+SELECT nombre, apellido, documento, COUNT(Bono_Farmacia.codigo) 'cant_bonos', DATEPART(m, Compra.fecha) 'nro_mes', mario_killers.mes(DATEPART(m, Compra.fecha)) 'mes'
+FROM mario_killers.Bono_Farmacia
+	JOIN mario_killers.Compra ON Compra.id = Bono_Farmacia.compra
+	JOIN mario_killers.Afiliado ON Compra.persona = Afiliado.persona
+	JOIN mario_killers.Persona ON Afiliado.persona = Persona.id
+GROUP BY nombre, apellido, documento, DATEPART(m, Compra.fecha), mario_killers.mes(DATEPART(m, Compra.fecha))
+GO
+
+CREATE VIEW mario_killers.listado_3_view AS
+SELECT Especialidad.descripcion, Tipo_Especialidad.descripcion, COUNT(Medicamento_Atencion.bono_farmacia) 'cant_bonos', DATEPART(M, Turno.horario) 'nro_mes', mario_killers.mes(DATEPART(m, Turno.horario)) 'mes'
+FROM mario_killers.Medicamento_Atencion
+	JOIN mario_killers.Atencion ON Medicamento_Atencion.Atencion = Atencion.id
+	JOIN mario_killers.Turno ON Turno.id = Atencion.id
+	JOIN mario_killers.Especialidad ON Turno.especialidad = Especialidad.codigo
+	JOIN mario_killers.Tipo_Especialidad ON Especialidad.tipo = Tipo_Especialidad.codigo
+GROUP BY Especialidad.descripcion, Tipo_Especialidad.descripcion, DATEPART(M, Turno.horario), mario_killers.mes(DATEPART(m, Turno.horario))
+GO
+
 CREATE VIEW mario_killers.bonos_consulta_distinto_comprador AS
 	SELECT Bono_Consulta.id 'bono_id', Persona.nombre, Persona.apellido, Persona.documento, DATEPART(m,Turno.horario) 'mes'
 	FROM mario_killers.Atencion

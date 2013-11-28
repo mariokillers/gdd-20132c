@@ -30,7 +30,14 @@ namespace Clinica_Frba.Pedir_Turno
         {
             unaAgenda.armarAgenda(unProfesional.Id);
 
-            dtpFechas.MinDate = unaAgenda.FechaDesde;
+            if (unaAgenda.FechaDesde < DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date)
+            {
+                dtpFechas.MinDate = DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date;
+            }
+            else
+            {
+                dtpFechas.MinDate = unaAgenda.FechaDesde;
+            }
             dtpFechas.MaxDate = unaAgenda.FechaHasta;
 
             //MessageBox.Show("Desde: " + unaAgenda.FechaDesde + ", Hasta: " + unaAgenda.FechaHasta, "test", MessageBoxButtons.OK);

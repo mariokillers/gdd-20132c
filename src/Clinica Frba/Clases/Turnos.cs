@@ -12,9 +12,12 @@ namespace Clinica_Frba.Clases
         public static Boolean VerificarTurnoLibre(Turno turno)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            SqlParameter fecha = new SqlParameter("@fecha", DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]));
-            fecha.Value = turno.Fecha;
+            SqlParameter fecha = new SqlParameter("@fecha", System.Data.SqlDbType.DateTime);
+            fecha.Value = turno.Fecha.Date;
             ListaParametros.Add(fecha);
+            SqlParameter horario = new SqlParameter("@horario", System.Data.SqlDbType.Time);
+            horario.Value = turno.Horario;
+            ListaParametros.Add(horario);
             ListaParametros.Add(new SqlParameter("@profesional", turno.Codigo_Profesional));
 
             SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);

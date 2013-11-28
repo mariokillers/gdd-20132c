@@ -534,6 +534,8 @@ CREATE TABLE mario_killers.Medicamento_Atencion (
 	cantidad numeric(18, 0)
 		CONSTRAINT default_1_med DEFAULT 1,
 	bono_farmacia numeric(18, 0),
+	activo bit
+		CONSTRAINT activo DEFAULT 1,
 	PRIMARY KEY (id),
 	FOREIGN KEY (Atencion) REFERENCES mario_killers.Atencion(id),
 	FOREIGN KEY (bono_farmacia) REFERENCES mario_killers.Bono_Farmacia(codigo),

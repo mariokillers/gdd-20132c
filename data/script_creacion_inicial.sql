@@ -640,7 +640,7 @@ SET IDENTITY_INSERT mario_killers.Tipo_Cancelacion OFF
 GO
 
 CREATE FUNCTION mario_killers.mes(@m int)
-RETURNS varchar
+RETURNS varchar(100)
 AS BEGIN
 	RETURN (CASE @m
 		WHEN 1 THEN 'Enero'
@@ -672,28 +672,25 @@ FROM mario_killers.Cancelacion
 	GROUP BY Especialidad.descripcion, Turno.horario, mario_killers.mes(DATEPART(MONTH, Turno.horario))
 GO
 
-CREATE VIEW mario_killers.listado_4_view AS
-SELECT
-	(SELECT COUNT(Bono_Consulta.id)
+CREATE VIEW mario_killers.bonos_consulta_distinto_comprador AS
+	SELECT Bono_Consulta.id 'bono_id', Persona.nombre, Persona.apellido, Persona.documento, mario_killers.mes(DATEPART(m,Turno.horario)) 'mes'
 	FROM mario_killers.Atencion
-		JOIN mario_killers.Turno t ON t.id = Atencion.id
+		JOIN mario_killers.Turno ON Turno.id = Atencion.id
 		JOIN mario_killers.Bono_Consulta ON Bono_Consulta.id = Atencion.bono_consulta
 		JOIN mario_killers.Compra ON Compra.id = Bono_Consulta.compra
-		WHERE Compra.persona <> t.persona AND Compra.persona = Afiliado.persona
-	)
-	+
-	(SELECT COUNT(Bono_Farmacia.codigo)
+		JOIN mario_killers.Afiliado ON Turno.persona = Afiliado.persona
+		JOIN mario_killers.Persona ON Persona.id = Afiliado.persona
+GO
+
+CREATE VIEW mario_killers.bonos_farmacia_distinto_comprador AS
+	SELECT Bono_Farmacia.codigo 'bono_id', Persona.nombre, Persona.apellido, Persona.documento, DATEPART(m,Turno.horario) 'mes'
 	FROM mario_killers.Turno
 		JOIN mario_killers.Atencion ON Atencion.id = Turno.id
 		JOIN mario_killers.Medicamento_Atencion ON Medicamento_Atencion.Atencion = Atencion.id
 		JOIN mario_killers.Bono_Farmacia ON Medicamento_Atencion.bono_farmacia = Bono_Farmacia.codigo
 		JOIN mario_killers.Compra ON Compra.id = Bono_Farmacia.compra
-		WHERE Compra.persona <> Turno.persona AND Compra.persona = Afiliado.persona
-	) AS cant_bonos,
-	Persona.nombre,
-	Persona.apellido
-FROM mario_killers.Afiliado
-	JOIN mario_killers.Persona ON Afiliado.persona = Persona.id
+		JOIN mario_killers.Afiliado ON Afiliado.persona = Turno.persona
+		JOIN mario_killers.Persona ON Afiliado.persona = Persona.id
 GO
 
 CREATE VIEW mario_killers.AfiliadosABM AS 

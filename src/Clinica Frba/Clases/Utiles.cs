@@ -179,6 +179,22 @@ namespace Clinica_Frba.Clases
             return ((DateTime)lector["horario"]);
         }
 
+        public static Boolean ExisteRegistroLlegada(decimal turno)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@id", turno));
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Atencion where id=@id", "T", ListaParametros);
+            if (lector.HasRows)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public static string ObtenerEstado(decimal id)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
@@ -233,25 +249,52 @@ namespace Clinica_Frba.Clases
 
         public static List<Hora> ObtenerHorasAceptables(Turno turno)
         {
-            int cont = 0;
+            int cont;
             List<Hora> lista = new List<Hora>();
-            for (int i = turno.Fecha.TimeOfDay.Hours; i <= turno.Fecha.TimeOfDay.Hours + 3; i++)
+            if (turno.Fecha.Minute == 0)
             {
-                cont++;
-                if (cont != 2)
+                cont = 0;
+                for (int i = turno.Fecha.TimeOfDay.Hours; i <= turno.Fecha.TimeOfDay.Hours + 3; i++)
                 {
-                    TimeSpan unaHora = new TimeSpan(i, 00, 0);
-                    string hora = unaHora.Hours.ToString() + ":" + unaHora.Minutes.ToString() + "0";
-                    lista.Add(new Hora(unaHora, hora));
+                    cont++;
+                    if (cont != 2)
+                    {
+                        TimeSpan unaHora = new TimeSpan(i, 00, 0);
+                        string hora = unaHora.Hours.ToString() + ":" + unaHora.Minutes.ToString() + "0";
+                        lista.Add(new Hora(unaHora, hora));
+                    }
+                    else
+                    {
+                        //REINICIO EL CONTADOR PORQUE ES MEDIA HORA
+                        cont = 0;
+                        i--;
+                        TimeSpan unaHora = new TimeSpan(i, 30, 0);
+                        string hora = unaHora.Hours.ToString() + ":" + unaHora.Minutes.ToString();
+                        lista.Add(new Hora(unaHora, hora));
+                    }
                 }
-                else
+            }
+            else
+            {
+                cont = 1;
+                for (int i = turno.Fecha.TimeOfDay.Hours + 1; i <= turno.Fecha.TimeOfDay.Hours + 3; i++)
                 {
-                    //REINICIO EL CONTADOR PORQUE ES MEDIA HORA
-                    cont = 0;
-                    i--;
-                    TimeSpan unaHora = new TimeSpan(i, 30, 0);
-                    string hora = unaHora.Hours.ToString() + ":" + unaHora.Minutes.ToString();
-                    lista.Add(new Hora(unaHora, hora));
+                    cont++;
+                    if (cont != 2)
+                    {
+                        TimeSpan unaHora = new TimeSpan(i, 00, 0);
+                        string hora = unaHora.Hours.ToString() + ":" + unaHora.Minutes.ToString() + "0";
+                        lista.Add(new Hora(unaHora, hora));
+                    }
+                    else
+                    {
+                        //REINICIO EL CONTADOR PORQUE ES MEDIA HORA
+                        cont = 0;
+                        i--;
+                        TimeSpan unaHora = new TimeSpan(i, 30, 0);
+                        string hora = unaHora.Hours.ToString() + ":" + unaHora.Minutes.ToString();
+                        lista.Add(new Hora(unaHora, hora));
+                    }
                 }
             }
             return lista;

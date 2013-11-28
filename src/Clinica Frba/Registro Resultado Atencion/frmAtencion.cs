@@ -54,6 +54,7 @@ namespace Clinica_Frba.NewFolder6
                 {
                     //pase la validacion mas arriba ---> turno = afiliado.ProximoTurno(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date, (int)(decimal)cmbEspecialidades.SelectedValue, profesional.Id);
                     afiliado.ActualizarAtencion(fecha, txtSintomas.Text, txtDiagnostico.Text, turno);
+                    Utiles.ObtenerTurno(turno).Usar();
                     gpRecetas.Visible = true;
                     Limpiar();
                     MessageBox.Show("Se ha actualizado correctamente la atención del paciente", "EnHoraBuena!", MessageBoxButtons.OK);
@@ -93,22 +94,27 @@ namespace Clinica_Frba.NewFolder6
         {
             try
             {
+
                 turno = afiliado.ProximoTurno(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date, (int)(decimal)cmbEspecialidades.SelectedValue, profesional.Id);
 
-                dtpFechaAtencion.Text = Utiles.ObtenerFechaTurno(turno).ToString();
-                dtpFechaAtencion.Enabled = false;
-                 
-                cmbHora.DataSource = Utiles.ObtenerHorasAceptables(Utiles.ObtenerTurno(turno));
-                cmbHora.ValueMember = "LaHora";
-                cmbHora.DisplayMember = "HoraAMostrar";
+                if(Utiles.ExisteRegistroLlegada(turno))
+                {
+                    dtpFechaAtencion.Text = Utiles.ObtenerFechaTurno(turno).ToString();
+                    dtpFechaAtencion.Enabled = false;
 
-                label1.Visible = true;
-                label2.Visible = true;
-                dtpFechaAtencion.Visible = true;
-                cmdAceptar.Visible = true;
-                cmbHora.Visible = true;
+                    cmbHora.DataSource = Utiles.ObtenerHorasAceptables(Utiles.ObtenerTurno(turno));
+                    cmbHora.ValueMember = "LaHora";
+                    cmbHora.DisplayMember = "HoraAMostrar";
+
+                    label1.Visible = true;
+                    label2.Visible = true;
+                    dtpFechaAtencion.Visible = true;
+                    cmdAceptar.Visible = true;
+                    cmbHora.Visible = true;
+                }
+                else { MessageBox.Show("El paciente no no ha dado aviso de llegada", "Error!", MessageBoxButtons.OK); }
             }
-            catch { MessageBox.Show("El paciente no tiene turno con la especialidad seleccionada o no ha dado aviso de llegada", "Error!", MessageBoxButtons.OK); }
+            catch { MessageBox.Show("El paciente no tiene turno con la especialidad seleccionada", "Error!", MessageBoxButtons.OK); }
 
         }
     }

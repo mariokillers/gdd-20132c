@@ -176,7 +176,7 @@ namespace Clinica_Frba.Clases
             String query = @"SELECT id
                             FROM mario_killers.Turno
                             WHERE profesional = @profesional AND persona = @persona AND especialidad= @especialidad
-					                AND CONVERT(DATE,horario) = CONVERT(DATE,@horario)";
+					                AND CONVERT(DATE,horario) = CONVERT(DATE,@horario) AND activo = 1";
 
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader(query, "T", ListaParametros);
 

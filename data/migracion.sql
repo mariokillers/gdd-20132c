@@ -48,10 +48,19 @@ GO
 
 
 CREATE VIEW mario_killers.Compras AS
-	SELECT Compra_Bono_Fecha, Paciente_Dni, Plan_Med_Codigo
+	SELECT Bono_Consulta_Numero AS id, Compra_Bono_Fecha, Paciente_Dni, Plan_Med_Codigo
 	FROM gd_esquema.Maestra
 	WHERE Compra_Bono_Fecha IS NOT NULL
 	      AND Plan_Med_Codigo IS NOT NULL
+	      AND Bono_Consulta_Numero IS NOT NULL
+	      AND Bono_Farmacia_Numero IS NULL
+	UNION
+	SELECT Bono_Farmacia_Numero + 1000000 AS id, Compra_Bono_Fecha, Paciente_Dni, Plan_Med_Codigo
+	FROM gd_esquema.Maestra
+	WHERE Compra_Bono_Fecha IS NOT NULL
+		AND Plan_Med_Codigo IS NOT NULL
+		AND Bono_Farmacia_Numero IS NOT NULL
+		AND Bono_Consulta_Numero IS NULL
 GO
 
 CREATE VIEW mario_killers.Bonos_Consulta AS
@@ -162,11 +171,6 @@ INSERT INTO mario_killers.Especialidad_Profesional (profesional, especialidad)
 INSERT INTO mario_killers.Medicamento (detalle)
 	SELECT Bono_Farmacia_Medicamento FROM mario_killers.Medicamentos
 
--- Compras
-INSERT INTO mario_killers.Compra (fecha, persona, plan_medico)
-	SELECT Compra_Bono_Fecha, Paciente_Dni, Plan_Med_Codigo
-	FROM mario_killers.Compras
-
 -- Turnos
 SET IDENTITY_INSERT mario_killers.Turno ON
 INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad, activo)
@@ -183,6 +187,13 @@ INSERT INTO mario_killers.Atencion (id, horario_atencion, sintomas, diagnostico)
 	SELECT Turno_Numero, Turno_Fecha, Consulta_Sintomas, Consulta_Enfermedades
 	FROM mario_killers.Turnos
 
+-- Compras
+SET IDENTITY_INSERT mario_killers.Compra ON
+INSERT INTO mario_killers.Compra (id, fecha, persona, plan_medico)
+	SELECT id, Compra_Bono_Fecha, Paciente_Dni, Plan_Med_Codigo
+	FROM mario_killers.Compras
+SET IDENTITY_INSERT mario_killers.Compra OFF
+
 -- Bonos consulta
 INSERT INTO mario_killers.Bono_Consulta (compra, plan_medico)
 	SELECT Bono_Consulta_Numero, Plan_Med_Codigo
@@ -191,7 +202,7 @@ INSERT INTO mario_killers.Bono_Consulta (compra, plan_medico)
 -- Bonos farmacia
 SET IDENTITY_INSERT mario_killers.Bono_Farmacia ON
 INSERT INTO mario_killers.Bono_Farmacia (codigo, compra, plan_medico,  activo)
-	SELECT Bono_Farmacia_Numero, Bono_Farmacia_Numero, Plan_Med_Codigo, valido
+	SELECT Bono_Farmacia_Numero, Bono_Farmacia_Numero + 1000000, Plan_Med_Codigo, valido
 	FROM mario_killers.Bonos_Farmacia
 SET IDENTITY_INSERT mario_killers.Bono_Farmacia OFF
 

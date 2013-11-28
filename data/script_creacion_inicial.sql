@@ -686,7 +686,7 @@ GROUP BY nombre, apellido, documento, DATEPART(m, Compra.fecha), mario_killers.m
 GO
 
 CREATE VIEW mario_killers.listado_3_view AS
-SELECT Especialidad.descripcion, Tipo_Especialidad.descripcion, COUNT(Medicamento_Atencion.bono_farmacia) 'cant_bonos', DATEPART(M, Turno.horario) 'nro_mes', mario_killers.mes(DATEPART(m, Turno.horario)) 'mes'
+SELECT Especialidad.descripcion 'desc_esp', Tipo_Especialidad.descripcion 'desc_tipo_esp', COUNT(Medicamento_Atencion.bono_farmacia) 'cant_bonos', DATEPART(M, Turno.horario) 'nro_mes', mario_killers.mes(DATEPART(m, Turno.horario)) 'mes'
 FROM mario_killers.Medicamento_Atencion
 	JOIN mario_killers.Atencion ON Medicamento_Atencion.Atencion = Atencion.id
 	JOIN mario_killers.Turno ON Turno.id = Atencion.id

@@ -82,7 +82,7 @@ namespace Clinica_Frba.NewFolder7
                     }
                     else
                     {
-                        MessageBox.Show("El turno no puede cancelarse", "Aviso", MessageBoxButtons.OK);
+                        MessageBox.Show("El turno no puede cancelarse por ser en menos de 24hs.", "Aviso", MessageBoxButtons.OK);
                     }
                 }
                 catch

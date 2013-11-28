@@ -659,16 +659,37 @@ INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (5, 'Otro')
 SET IDENTITY_INSERT mario_killers.Tipo_Cancelacion OFF
 GO
 
+CREATE FUNCTION mario_killers.mes(@m int)
+RETURNS varchar
+AS BEGIN
+	RETURN (CASE @m
+		WHEN 1 THEN 'Enero'
+		WHEN 2 THEN 'Febrero'
+		WHEN 3 THEN 'Marzo'
+		WHEN 4 THEN 'Abril'
+		WHEN 5 THEN 'Mayo'
+		WHEN 6 THEN 'Junio'
+		WHEN 7 THEN 'Julio'
+		WHEN 8 THEN 'Agosto'
+		WHEN 9 THEN 'Septiembre'
+		WHEN 10 THEN 'Octubre'
+		WHEN 11 THEN 'Noviembre'
+		WHEN 12 THEN 'Diciembre'
+	END)
+END
+GO
+
+
 -- Vistas ABM
 CREATE VIEW mario_killers.listado_4_view AS
-SELECT Especialidad.descripcion AS especialidad, COUNT(Cancelacion.persona) cancelaciones, Turno.horario
+SELECT mario_killers.mes(DATEPART(MONTH, Turno.horario)) AS mes, Especialidad.descripcion AS especialidad, COUNT(Cancelacion.persona) cancelaciones, Turno.horario
 FROM mario_killers.Cancelacion
 	JOIN mario_killers.Afiliado ON Cancelacion.persona = Afiliado.persona
 	JOIN mario_killers.Profesional ON Cancelacion.persona = Profesional.persona
 	JOIN mario_killers.Especialidad_Profesional ON Profesional.persona = Especialidad_Profesional.profesional
 	JOIN mario_killers.Especialidad ON Especialidad_Profesional.especialidad = Especialidad.codigo
 	JOIN mario_killers.Turno ON Turno.persona = Afiliado.persona
-	GROUP BY Especialidad.descripcion, Turno.horario
+	GROUP BY Especialidad.descripcion, Turno.horario, mario_killers.mes(DATEPART(MONTH, Turno.horario))
 GO
 
 CREATE VIEW mario_killers.AfiliadosABM AS 

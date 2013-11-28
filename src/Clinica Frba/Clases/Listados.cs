@@ -15,9 +15,9 @@ namespace Clinica_Frba.Clases
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@desde", desde));
             ListaParametros.Add(new SqlParameter("@hasta", hasta));
-            ListaParametros.Add(new SqlParameter("@ano", ano));
+            ListaParametros.Add(new SqlParameter("@ano", (decimal)ano));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT nombre, apellido, documento, mes, cant_bonos FROM mario_killers.listado_2_view WHERE nro_mes BETWEEN  @desde AND @hasta", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT nombre, apellido, documento, mes, cant_bonos FROM mario_killers.listado_2_view WHERE (nro_mes BETWEEN  @desde AND @hasta AND ano=@ano)", "T", ListaParametros);
 
             if (lector.HasRows)
             {
@@ -43,9 +43,9 @@ namespace Clinica_Frba.Clases
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@desde", desde));
             ListaParametros.Add(new SqlParameter("@hasta", hasta));
-            ListaParametros.Add(new SqlParameter("@ano", ano));
+            ListaParametros.Add(new SqlParameter("@ano", (decimal)ano));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT desc_esp, desc_tipo_esp,cant_bonos,mes FROM mario_killers.listado_3_view WHERE nro_mes BETWEEN  @desde AND @hasta", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT desc_esp, desc_tipo_esp,cant_bonos,mes FROM mario_killers.listado_3_view WHERE (nro_mes BETWEEN  @desde AND @hasta AND ano=@ano)", "T", ListaParametros);
 
             if (lector.HasRows)
             {
@@ -70,9 +70,9 @@ namespace Clinica_Frba.Clases
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@desde", desde));
             ListaParametros.Add(new SqlParameter("@hasta", hasta));
-            ListaParametros.Add(new SqlParameter("@ano", ano));
+            ListaParametros.Add(new SqlParameter("@ano", (decimal)ano));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT especialidad, cancelaciones, horario, mes FROM mario_killers.listado_1_view WHERE numero_mes BETWEEN  @desde AND @hasta", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT especialidad, cancelaciones, horario, mes FROM mario_killers.listado_1_view WHERE (numero_mes BETWEEN  @desde AND @hasta AND ano=@ano)", "T", ListaParametros);
 
             if (lector.HasRows)
             {
@@ -97,9 +97,9 @@ namespace Clinica_Frba.Clases
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@desde", desde));
             ListaParametros.Add(new SqlParameter("@hasta", hasta));
-            ListaParametros.Add(new SqlParameter("@ano", ano));
+            ListaParametros.Add(new SqlParameter("@ano", (decimal)ano));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT cantidad_de_bonos, nombre, apellido, documento FROM mario_killers.listado_4_view WHERE nro_mes BETWEEN  @desde AND @hasta", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT cantidad_de_bonos, nombre, apellido, documento FROM mario_killers.listado_4_view WHERE (nro_mes BETWEEN  @desde AND @hasta AND año=@ano)", "T", ListaParametros);
             
             if (lector.HasRows)
             {

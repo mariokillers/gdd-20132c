@@ -57,7 +57,6 @@ DROP PROCEDURE mario_killers.agregar_funcionalidad,
 
 DROP VIEW mario_killers.bonos_consulta_distinto_comprador,
 		  mario_killers.bonos_farmacia_distinto_comprador,
-		  mario_killers.bonos_farmacia_por_afiliado,
 		  mario_killers.bonos_farmacia_por_especialidad,
 		  mario_killers.bonos_distinto_comprador,
 		  mario_killers.cancelaciones_por_especialidad,

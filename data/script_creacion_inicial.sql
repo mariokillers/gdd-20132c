@@ -668,6 +668,7 @@ GO
 
 -- Vistas ABM
 
+-------------- Listado 1
 CREATE VIEW mario_killers.cancelaciones_por_especialidad AS
 SELECT Turno.id ID_Turno,
        YEAR(Turno.horario) Anio,
@@ -687,20 +688,7 @@ FROM mario_killers.cancelaciones_por_especialidad
 -- Mucha magia
 PIVOT (COUNT(ID_Turno) FOR Mes IN ([1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12])) AS Cancelaciones_Pivot
 GO
-
------------------------------- Listado 2 (FECHA DEL SISTEMA DESDE LA APP)
-
-CREATE VIEW mario_killers.bonos_farmacia_por_afiliado AS
-SELECT Bono_Farmacia.codigo ID_Bono_Farmacia,
-       Compra.fecha Fecha_Compra,
-       Persona.nombre Nombre,
-       Persona.apellido Apellido,
-       Persona.documento Documento
-FROM mario_killers.Bono_Farmacia
-	JOIN mario_killers.Compra ON Bono_Farmacia.compra = Compra.id
-	JOIN mario_killers.Afiliado ON Compra.persona = Afiliado.persona
-	JOIN mario_killers.Persona ON Persona.id = Afiliado.persona
-GO
+-------------------- Listado 2 (ver archivo)
 
 -------------------- Listado 3
 
@@ -723,6 +711,8 @@ SELECT *, [1]+[2]+[3]+[4]+[5]+[6] Total_Primer_Semestre, [7]+[8]+[9]+[10]+[11]+[
 FROM mario_killers.bonos_farmacia_por_especialidad
 PIVOT (COUNT(Codigo_Bono) FOR Mes IN ([1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12])) as Bonos_Farmacia_Por_Mes
 GO
+
+----------- Listado 4
 
 CREATE VIEW mario_killers.bonos_consulta_distinto_comprador AS
 	SELECT Bono_Consulta.id AS ID_Bono,

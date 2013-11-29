@@ -241,6 +241,21 @@ namespace Clinica_Frba.Clases
                     ListaParametros3.Add(new SqlParameter("@turno", turno));
 
                     Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Cancelacion (tipo, motivo, persona, turno) VALUES (@tipo, @motivo, @persona, @turno)", "T", ListaParametros3);
+                }
+            }
+
+            //DAR DE BAJA LAS RECETAS DEL PACIENTE
+            //ELIMINAR TURNOS Y REGISTRARLO
+            List<SqlParameter> ListaParametros7 = new List<SqlParameter>();
+            ListaParametros7.Add(new SqlParameter("@persona", id));
+
+            SqlDataReader lector2 = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id FROM mario_killers.Turno WHERE persona = @persona", "T", ListaParametros7);
+
+            if (lector2.HasRows)
+            {
+                while (lector2.Read())
+                {
+                    decimal turno = (decimal)lector2["id"];
 
                     //DOY DE BAJA LAS RECETAS DEL PACIENTE
                     List<SqlParameter> ListaParametros6 = new List<SqlParameter>();

@@ -145,10 +145,11 @@ namespace Clinica_Frba.Abm_de_Profesional
                         {
                             Profesional profesional = (Profesional)grillaProfesionales.CurrentRow.DataBoundItem;
                             formLlegada.profesional = profesional;
-                            formLlegada.cargarGrilla();
-                            formLlegada.Show();
-
-                            this.Close();
+                            if (formLlegada.cargarGrilla())
+                            {
+                                formLlegada.Show();
+                                this.Close();
+                            }
                         }
                         catch { MessageBox.Show("Debe seleccionar algun profesional", "Error!", MessageBoxButtons.OK); }
                     }

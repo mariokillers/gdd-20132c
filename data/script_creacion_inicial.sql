@@ -681,7 +681,7 @@ BEGIN
 END
 GO
 
-CREATE FUNCTION mario_killers.cancelaciones_por_especialidad(@especialidad numeric, @mes_desde numeric, @mes_hasta numeric) RETURNS numeric AS
+CREATE FUNCTION mario_killers.cancelaciones_por_especialidad(@especialidad numeric, @mes_desde numeric, @mes_hasta numeric, @anio numeric) RETURNS numeric AS
 BEGIN
 	RETURN (
 		SELECT COUNT(Cancelacion.turno)
@@ -689,6 +689,7 @@ BEGIN
 			JOIN mario_killers.Turno ON Cancelacion.turno = Turno.id
 		WHERE Turno.especialidad = @especialidad
 			AND DATEPART(MONTH, Turno.horario) BETWEEN @mes_desde AND @mes_hasta
+			AND DATEPART(YEAR, Turno.horario) = @anio
 	)
 END
 GO
@@ -696,8 +697,8 @@ GO
 CREATE VIEW mario_killers.listado_1_view AS
 SELECT Turno.especialidad Especialidad,
        DATEPART(year, Turno.horario) Anio,
-       mario_killers.cancelaciones_por_especialidad(Turno.especialidad, 1, 6) Total_Primer_Semestre,
-       mario_killers.cancelaciones_por_especialidad(Turno.especialidad, 7, 12) Total_Segundo_Semestre,
+       mario_killers.cancelaciones_por_especialidad(Turno.especialidad, 1, 6, DATEPART(year, Turno.horario)) Total_Primer_Semestre,
+       mario_killers.cancelaciones_por_especialidad(Turno.especialidad, 7, 12, DATEPART(year, Turno.horario)) Total_Segundo_Semestre,
        mario_killers.cancelaciones_por_mes(Turno.especialidad, 1, DATEPART(year, Turno.horario)) Enero,
        mario_killers.cancelaciones_por_mes(Turno.especialidad, 2, DATEPART(year, Turno.horario)) Febrero,
        mario_killers.cancelaciones_por_mes(Turno.especialidad, 3, DATEPART(year, Turno.horario)) Marzo,
@@ -713,6 +714,8 @@ SELECT Turno.especialidad Especialidad,
 FROM mario_killers.Cancelacion
 	JOIN mario_killers.Turno ON Cancelacion.turno = Turno.id
 GO
+
+------------------------------ Listado 2
 
 CREATE VIEW mario_killers.listado_2_view AS
 SELECT nombre,

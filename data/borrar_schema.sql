@@ -38,9 +38,7 @@ DROP FUNCTION mario_killers.horas_por_semana,
               mario_killers.cant_medicamentos,
               mario_killers.Turno_Valido,
               mario_killers.bono_farmacia_valido,
-              mario_killers.mes,
-              mario_killers.cancelaciones_por_especialidad,
-              mario_killers.cancelaciones_por_mes
+              mario_killers.mes
 
 DROP PROCEDURE mario_killers.agregar_funcionalidad,
                mario_killers.agregarPlanAlGrupo,
@@ -59,9 +57,11 @@ DROP PROCEDURE mario_killers.agregar_funcionalidad,
 
 DROP VIEW mario_killers.bonos_consulta_distinto_comprador,
 		  mario_killers.bonos_farmacia_distinto_comprador,
+		  mario_killers.bonos_farmacia_por_afiliado,
+		  mario_killers.bonos_farmacia_por_especialidad,
 		  mario_killers.bonos_distinto_comprador,
+		  mario_killers.cancelaciones_por_especialidad,
           mario_killers.listado_1_view,
-          mario_killers.listado_2_view,
           mario_killers.listado_3_view,
           mario_killers.listado_4_view
 

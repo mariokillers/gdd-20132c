@@ -667,20 +667,48 @@ GO
 
 
 -- Vistas ABM
+
+CREATE FUNCTION mario_killers.cancelaciones_por_mes(@especialidad numeric, @mes numeric) RETURNS numeric AS
+BEGIN
+	RETURN (
+	SELECT COUNT(Cancelacion.turno)
+	FROM mario_killers.Cancelacion
+		JOIN mario_killers.Turno ON Cancelacion.turno = Turno.id
+	WHERE DATEPART(month, Turno.horario) = @mes AND Turno.especialidad = @especialidad
+	)
+END
+GO
+
+CREATE FUNCTION mario_killers.cancelaciones_por_especialidad(@especialidad numeric, @mes_desde numeric, @mes_hasta numeric) RETURNS numeric AS
+BEGIN
+	RETURN (
+		SELECT COUNT(Cancelacion.turno)
+		FROM mario_killers.Cancelacion
+			JOIN mario_killers.Turno ON Cancelacion.turno = Turno.id
+		WHERE Turno.especialidad = @especialidad
+			AND DATEPART(MONTH, Turno.horario) BETWEEN @mes_desde AND @mes_hasta
+	)
+END
+GO
+
 CREATE VIEW mario_killers.listado_1_view AS
-SELECT DATEPART(MONTH, Turno.horario) AS numero_mes,
-       mario_killers.mes(DATEPART(MONTH, Turno.horario)) AS mes,
-       DATEPART(yyyy, Turno.horario) AS ano,
-       Especialidad.descripcion AS especialidad,
-       COUNT(Cancelacion.persona) cancelaciones,
-       Turno.horario
+SELECT Turno.especialidad Especialidad,
+       mario_killers.cancelaciones_por_especialidad(Turno.especialidad, 1, 6) Total_Primer_Semestre,
+       mario_killers.cancelaciones_por_especialidad(Turno.especialidad, 7, 12) Total_Segundo_Semestre,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 1) Enero,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 2) Febrero,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 3) Marzo,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 4) Abril,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 5) Mayo,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 6) Junio,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 7) Julio,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 8) Agosto,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 9) Septiembre,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 10) Octubre,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 11) Noviembre,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 12) Diciembre
 FROM mario_killers.Cancelacion
-	JOIN mario_killers.Afiliado ON Cancelacion.persona = Afiliado.persona
-	JOIN mario_killers.Profesional ON Cancelacion.persona = Profesional.persona
-	JOIN mario_killers.Especialidad_Profesional ON Profesional.persona = Especialidad_Profesional.profesional
-	JOIN mario_killers.Especialidad ON Especialidad_Profesional.especialidad = Especialidad.codigo
-	JOIN mario_killers.Turno ON Turno.persona = Afiliado.persona
-	GROUP BY Especialidad.descripcion, Turno.horario, mario_killers.mes(DATEPART(MONTH, Turno.horario)), DATEPART(yyyy, Turno.horario)
+	JOIN mario_killers.Turno ON Cancelacion.turno = Turno.id
 GO
 
 CREATE VIEW mario_killers.listado_2_view AS

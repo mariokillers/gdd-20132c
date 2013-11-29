@@ -266,21 +266,28 @@ namespace Clinica_Frba.NewFolder12
         {
             if (analizarCampos())
             {
-                try
+                if (Utiles.ExisteDni((decimal)cmbTipoDoc.SelectedValue, (decimal)decimal.Parse(txtDni.Text)) && Operacion == "Alta")
                 {
-                    Operacion = "Alta";
-                    almacenarDatos();
-                    frmAfiliadoAlta formHijo = new frmAfiliadoAlta();
-                    formHijo.Operacion = this.Operacion;
-                    formHijo.Afiliado = this.nuevoAfil;
-                    formHijo.Afiliado.Numero_Grupo = nuevoAfil.Numero_Grupo;
-                    formHijo.Miembro = "Hijo";
-                    formHijo.Show();
-                    this.Close();
+                    MessageBox.Show("Ya existe una persona con ese tipo y numero de documento. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
                 }
-                catch
+                else
                 {
-                    MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                    try
+                    {
+                        Operacion = "Alta";
+                        almacenarDatos();
+                        frmAfiliadoAlta formHijo = new frmAfiliadoAlta();
+                        formHijo.Operacion = this.Operacion;
+                        formHijo.Afiliado = this.nuevoAfil;
+                        formHijo.Afiliado.Numero_Grupo = nuevoAfil.Numero_Grupo;
+                        formHijo.Miembro = "Hijo";
+                        formHijo.Show();
+                        this.Close();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                    }
                 }
             }
             else
@@ -293,21 +300,28 @@ namespace Clinica_Frba.NewFolder12
         {
             if (analizarCampos())
             {
-                try
+                if (Utiles.ExisteDni((decimal)cmbTipoDoc.SelectedValue, (decimal)decimal.Parse(txtDni.Text)) && Operacion == "Alta")
                 {
-                    Operacion = "Alta";
-                    almacenarDatos();
-                    frmAfiliadoAlta formConyuge = new frmAfiliadoAlta();
-                    formConyuge.Operacion = this.Operacion;
-                    formConyuge.Afiliado = this.nuevoAfil;
-                    formConyuge.Afiliado.Numero_Grupo = nuevoAfil.Numero_Grupo;
-                    formConyuge.Miembro = "Conyuge";
-                    formConyuge.Show();
-                    this.Close();
+                    MessageBox.Show("Ya existe una persona con ese tipo y numero de documento. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
                 }
-                catch
+                else
                 {
-                    MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                    try
+                    {
+                        Operacion = "Alta";
+                        almacenarDatos();
+                        frmAfiliadoAlta formConyuge = new frmAfiliadoAlta();
+                        formConyuge.Operacion = this.Operacion;
+                        formConyuge.Afiliado = this.nuevoAfil;
+                        formConyuge.Afiliado.Numero_Grupo = nuevoAfil.Numero_Grupo;
+                        formConyuge.Miembro = "Conyuge";
+                        formConyuge.Show();
+                        this.Close();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                    }
                 }
             }
             else

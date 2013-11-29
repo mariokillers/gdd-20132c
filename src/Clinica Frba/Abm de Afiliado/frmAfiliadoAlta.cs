@@ -42,23 +42,38 @@ namespace Clinica_Frba.NewFolder12
                 }
                 else
                 {
-                    almacenarDatos();
-
-                    if (Operacion == "Modificacion")
+                    if (Utiles.ExisteDni((decimal)cmbTipoDoc.SelectedValue, (decimal)decimal.Parse(txtDni.Text)) && Operacion == "Alta")
                     {
-                        if (Afiliado.Plan_Medico != (decimal)cmbPlanes.SelectedValue)
+                        MessageBox.Show("Ya existe una persona con ese tipo y numero de documento. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+
+                        almacenarDatos();
+
+                        if (Operacion == "Modificacion")
                         {
-                            if (txtMotivo.Text != "")
+                            if (Afiliado.Plan_Medico != (decimal)cmbPlanes.SelectedValue)
                             {
-                                Afiliados.RegistrarCambioPlan(Afiliado, txtMotivo.Text);
+                                if (txtMotivo.Text != "")
+                                {
+                                    Afiliados.RegistrarCambioPlan(Afiliado, txtMotivo.Text);
+                                    MessageBox.Show("El Afiliado ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
+
+                                    this.Hide();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Por favor especifique motivo del cambio de grupo", "Aviso", MessageBoxButtons.OK);
+                                }
+                            }
+                            else
+                            {
                                 MessageBox.Show("El Afiliado ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
 
                                 this.Hide();
                             }
-                            else
-                            {
-                                MessageBox.Show("Por favor especifique motivo del cambio de grupo", "Aviso", MessageBoxButtons.OK);
-                            }
+
                         }
                         else
                         {
@@ -66,15 +81,9 @@ namespace Clinica_Frba.NewFolder12
 
                             this.Hide();
                         }
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("El Afiliado ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
-
-                        this.Hide();
                     }
                 }
+                
             }
             catch { MessageBox.Show("Hay campos con valores incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK); }
         }

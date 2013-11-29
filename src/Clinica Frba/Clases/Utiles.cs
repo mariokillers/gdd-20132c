@@ -20,6 +20,28 @@ namespace Clinica_Frba.Clases
             {return false;}
         }
 
+        public static Boolean ExisteDni(decimal tipo, decimal dni)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@tipo", tipo));
+            ListaParametros.Add(new SqlParameter("@dni", dni));
+
+            String query = @"SELECT *
+                            FROM mario_killers.Persona
+                            WHERE tipo_doc = @tipo AND documento = @dni";
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader(query, "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public static string ObtenerUltimos(this string cadena, int cantidad)
         {
             if (cantidad >= cadena.Length)

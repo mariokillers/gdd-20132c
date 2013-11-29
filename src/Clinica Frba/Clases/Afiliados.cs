@@ -206,7 +206,7 @@ namespace Clinica_Frba.Clases
 
             Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.registrarCambioPlan", ListaParametros);
         }
-
+        
         public static void Eliminar(decimal id)
         {
             DateTime horario_llegada = (DateTime)(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"])).AddHours(System.DateTime.Now.TimeOfDay.Hours).AddMinutes(System.DateTime.Now.Minute);

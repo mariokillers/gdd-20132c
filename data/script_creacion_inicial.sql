@@ -668,18 +668,20 @@ GO
 
 -- Vistas ABM
 
-CREATE FUNCTION mario_killers.cancelaciones_por_mes(@especialidad numeric, @mes numeric) RETURNS numeric AS
+CREATE FUNCTION mario_killers.cancelaciones_por_mes(@especialidad numeric, @mes numeric, @anio numeric) RETURNS numeric AS
 BEGIN
 	RETURN (
 	SELECT COUNT(Cancelacion.turno)
 	FROM mario_killers.Cancelacion
 		JOIN mario_killers.Turno ON Cancelacion.turno = Turno.id
-	WHERE DATEPART(month, Turno.horario) = @mes AND Turno.especialidad = @especialidad
+	WHERE DATEPART(month, Turno.horario) = @mes
+		AND DATEPART(year, Turno.horario) = @anio
+		AND Turno.especialidad = @especialidad
 	)
 END
 GO
 
-CREATE FUNCTION mario_killers.cancelaciones_por_especialidad(@especialidad numeric, @mes_desde numeric, @mes_hasta numeric) RETURNS numeric AS
+CREATE FUNCTION mario_killers.cancelaciones_por_especialidad(@especialidad numeric, @mes_desde numeric, @mes_hasta numeric, @anio numeric) RETURNS numeric AS
 BEGIN
 	RETURN (
 		SELECT COUNT(Cancelacion.turno)
@@ -687,29 +689,33 @@ BEGIN
 			JOIN mario_killers.Turno ON Cancelacion.turno = Turno.id
 		WHERE Turno.especialidad = @especialidad
 			AND DATEPART(MONTH, Turno.horario) BETWEEN @mes_desde AND @mes_hasta
+			AND DATEPART(YEAR, Turno.horario) = @anio
 	)
 END
 GO
 
 CREATE VIEW mario_killers.listado_1_view AS
 SELECT Turno.especialidad Especialidad,
-       mario_killers.cancelaciones_por_especialidad(Turno.especialidad, 1, 6) Total_Primer_Semestre,
-       mario_killers.cancelaciones_por_especialidad(Turno.especialidad, 7, 12) Total_Segundo_Semestre,
-       mario_killers.cancelaciones_por_mes(Turno.especialidad, 1) Enero,
-       mario_killers.cancelaciones_por_mes(Turno.especialidad, 2) Febrero,
-       mario_killers.cancelaciones_por_mes(Turno.especialidad, 3) Marzo,
-       mario_killers.cancelaciones_por_mes(Turno.especialidad, 4) Abril,
-       mario_killers.cancelaciones_por_mes(Turno.especialidad, 5) Mayo,
-       mario_killers.cancelaciones_por_mes(Turno.especialidad, 6) Junio,
-       mario_killers.cancelaciones_por_mes(Turno.especialidad, 7) Julio,
-       mario_killers.cancelaciones_por_mes(Turno.especialidad, 8) Agosto,
-       mario_killers.cancelaciones_por_mes(Turno.especialidad, 9) Septiembre,
-       mario_killers.cancelaciones_por_mes(Turno.especialidad, 10) Octubre,
-       mario_killers.cancelaciones_por_mes(Turno.especialidad, 11) Noviembre,
-       mario_killers.cancelaciones_por_mes(Turno.especialidad, 12) Diciembre
+       DATEPART(year, Turno.horario) Anio,
+       mario_killers.cancelaciones_por_especialidad(Turno.especialidad, 1, 6, DATEPART(year, Turno.horario)) Total_Primer_Semestre,
+       mario_killers.cancelaciones_por_especialidad(Turno.especialidad, 7, 12, DATEPART(year, Turno.horario)) Total_Segundo_Semestre,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 1, DATEPART(year, Turno.horario)) Enero,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 2, DATEPART(year, Turno.horario)) Febrero,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 3, DATEPART(year, Turno.horario)) Marzo,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 4, DATEPART(year, Turno.horario)) Abril,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 5, DATEPART(year, Turno.horario)) Mayo,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 6, DATEPART(year, Turno.horario)) Junio,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 7, DATEPART(year, Turno.horario)) Julio,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 8, DATEPART(year, Turno.horario)) Agosto,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 9, DATEPART(year, Turno.horario)) Septiembre,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 10, DATEPART(year, Turno.horario)) Octubre,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 11, DATEPART(year, Turno.horario)) Noviembre,
+       mario_killers.cancelaciones_por_mes(Turno.especialidad, 12, DATEPART(year, Turno.horario)) Diciembre
 FROM mario_killers.Cancelacion
 	JOIN mario_killers.Turno ON Cancelacion.turno = Turno.id
 GO
+
+------------------------------ Listado 2
 
 CREATE VIEW mario_killers.listado_2_view AS
 SELECT nombre,

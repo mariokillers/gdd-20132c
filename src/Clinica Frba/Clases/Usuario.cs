@@ -32,7 +32,7 @@ namespace Clinica_Frba.Clases
                 {
                     Codigo_Persona = (int)(decimal)lector["persona"]; 
                 }
-                else { Codigo_Persona = 13288527; } //LE METO FRUTA PARA QUE FUNQUE
+                else { Codigo_Persona = -1; }
                 Password = ((string)lector["pw"]).ToUpper();
                 Activo = (bool)lector["activo"];
                 CantFallidos = (decimal)lector["intentos_login"];
@@ -53,7 +53,7 @@ namespace Clinica_Frba.Clases
             }
             else
             {
-                return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Usuario intentos_login=@intentos_login where nombre=@nombre", "T", Lista); 
+                return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Usuario set intentos_login=@intentos_login where nombre=@nombre", "T", Lista); 
             }
         }
 

@@ -23,7 +23,7 @@ namespace Clinica_Frba.Registrar_Llegada
         public Agenda unaAgenda = new Agenda();
         public List<Turno> listaTurnos = new List<Turno>();
         public Turno turno = new Turno();
-
+ 
         private void frmRegistrarLlegada_Load(object sender, EventArgs e)
         {
             grillaHorarios.AutoGenerateColumns = false;
@@ -50,12 +50,33 @@ namespace Clinica_Frba.Registrar_Llegada
             grillaHorarios.Columns.Add(ColHora);
         }
 
-        public void cargarGrilla()
+        public Boolean cargarGrilla()
         {
             if (profesional != null) unaAgenda.armarAgenda(profesional.Id);
             listaTurnos = Utiles.ObtenerTurnosDia(unaAgenda, (DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"])));
-            if (listaTurnos.Count != 0) { grillaHorarios.DataSource = listaTurnos; }
-            else { MessageBox.Show("El profesional no tiene turnos para este día", "Error!", MessageBoxButtons.OK); }
+            if (listaTurnos.Count != 0)
+            {
+                grillaHorarios.DataSource = listaTurnos;                
+                cmdSeleccionar.Enabled = false;
+                btnTurno.Enabled = true;
+                txtNumAfil.Text = "";
+                txtNumAfil.Enabled = true;                
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("El profesional no tiene turnos para este día", "Error!", MessageBoxButtons.OK);
+                grillaHorarios.DataSource = new List<Turno>();
+                cmdSeleccionar.Enabled = true;
+                btnTurno.Enabled = false;
+                txtNumAfil.Enabled = false;
+                return false;/*
+                lstSeleccionProfesionales formProfesional = new lstSeleccionProfesionales();
+                formProfesional.Operacion = "Seleccion";
+                formProfesional.formLlegada = this;
+                formProfesional.Show();
+                this.Hide();*/
+            }
         }
 
         private void cmdSeleccionar_Click(object sender, EventArgs e)
@@ -63,9 +84,6 @@ namespace Clinica_Frba.Registrar_Llegada
             lstSeleccionProfesionales formProfesional = new lstSeleccionProfesionales();
             formProfesional.Operacion = "Seleccion";
             formProfesional.formLlegada = this;
-            cmdSeleccionar.Enabled = false;
-            btnTurno.Enabled = true;
-            txtNumAfil.Enabled = true;
             formProfesional.Show();
             this.Hide();
         }
@@ -83,14 +101,23 @@ namespace Clinica_Frba.Registrar_Llegada
                         {
                             if (Utiles.LlegoAHorario(turno))
                             {
-                                unBono.Usar(afiliado, turno); 
+                                unBono.Usar(afiliado, turno);
                                 afiliado.CrearAtencion(unBono.Id, (int)turno.Id);
                                 cmdConfirmarBono.Enabled = false;
-                                txtBono.Enabled = false;                                
+                                txtBono.Enabled = false;
                                 MessageBox.Show("Se ha registrado la llegada del afiliado correctamente", "EnHoraBuena!", MessageBoxButtons.OK);
                                 this.Close();
                             }
-                            else { MessageBox.Show("Ha perdido el turno por incumplimiento de horario.", "Aviso!", MessageBoxButtons.OK); }
+                            else
+                            {
+                                MessageBox.Show("Ha perdido el turno por incumplimiento de horario.", "Aviso!", MessageBoxButtons.OK);
+                                grillaHorarios.Enabled = true;
+                                btnTurno.Enabled = true;
+                                cmdConfirmarBono.Enabled = false;
+                                txtBono.Text = "";
+                                txtBono.Enabled = false;
+                                cargarGrilla();
+                            }
                         }
                     }
                     else { MessageBox.Show("El bono ya ha sido usado", "Error!", MessageBoxButtons.OK); }

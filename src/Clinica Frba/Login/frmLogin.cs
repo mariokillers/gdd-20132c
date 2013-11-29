@@ -26,33 +26,41 @@ namespace Clinica_Frba.NewFolder10
                 if (txtUserName.Text != "" && txtPassword.Text != "")
                 {
                     Usuario user = new Usuario(txtUserName.Text);
-
-                    //comienza el hasheo de la pass
-                    UTF8Encoding encoderHash = new UTF8Encoding();
-                    SHA256Managed hasher = new SHA256Managed();
-                    byte[] bytesDeHasheo = hasher.ComputeHash(encoderHash.GetBytes(txtPassword.Text));
-                    string pass = bytesDeHasheoToString(bytesDeHasheo);
-
-                    if (!user.Password.Equals(pass))
+                    if (user.Codigo_Persona != -1 && user.Codigo_Persona != 0)
                     {
-                        //ACTUALIZAR CANT FALLIDOS
-                        user.ActualizarFallidos(); MessageBox.Show("Usuario y contraseña no validos", "Error!", MessageBoxButtons.OK);
+
+                        //comienza el hasheo de la pass
+                        UTF8Encoding encoderHash = new UTF8Encoding();
+                        SHA256Managed hasher = new SHA256Managed();
+                        byte[] bytesDeHasheo = hasher.ComputeHash(encoderHash.GetBytes(txtPassword.Text));
+                        string pass = bytesDeHasheoToString(bytesDeHasheo);
+
+                        if (!user.Password.Equals(pass))
+                        {
+                            //ACTUALIZAR CANT FALLIDOS
+                            user.ActualizarFallidos(); MessageBox.Show("Usuario y contraseña no validos", "Error!", MessageBoxButtons.OK);
+                        }
+                        else 
+                        {
+                            //VALIDAR EL USER
+                            if (!user.Activo)
+                            {
+                                MessageBox.Show("Usuario inactivo para acceder al sistema", "Error!", MessageBoxButtons.OK);
+                            }
+                            else
+                            {
+                                //SETEO LOS FALLIDOS EN 0 PORQUE ENTRO
+                                user.ReiniciarFallidos();
+
+                                //INGRESO AL FORM PRINCIPAL,LE PASO EL USER ID ASI SABE QUE FUNCIONALIDADES MOSTRAR
+                                frmPrincipal formPrincipal = new frmPrincipal();
+                                formPrincipal.User = user;
+                                this.Hide();
+                                formPrincipal.Show();
+                            }
+                        }
                     }
-
-                    //VALIDAR EL USER
-                    if (!user.Activo)
-                    {
-                        MessageBox.Show("Usuario inactivo", "Error!", MessageBoxButtons.OK);
-                    }
-
-                    //SETEO LOS FALLIDOS EN 0 PORQUE ENTRO
-                    user.ReiniciarFallidos();
-
-                    //INGRESO AL FORM PRINCIPAL,LE PASO EL USER ID ASI SABE QUE FUNCIONALIDADES MOSTRAR
-                    frmPrincipal formPrincipal = new frmPrincipal();
-                    formPrincipal.User = user;
-                    this.Hide();
-                    formPrincipal.Show();
+                    else { MessageBox.Show("Usuario y contraseña no validos", "Error!", MessageBoxButtons.OK); }
                 }
                 else
                 {   MessageBox.Show("Complete todos los campos", "Error!", MessageBoxButtons.OK);}

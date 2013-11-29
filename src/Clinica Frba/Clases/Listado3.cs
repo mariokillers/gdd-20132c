@@ -7,10 +7,15 @@ namespace Clinica_Frba.Clases
 {
     class Listado3
     {
-        public int CantBonos { get; set; }
+        public int CantCancelaciones { get; set; }
+        public int CantCancelaciones1 { get; set; }
+        public int CantCancelaciones2 { get; set; }
+        public int CantCancelaciones3 { get; set; }
+        public int CantCancelaciones4 { get; set; }
+        public int CantCancelaciones5 { get; set; }
+        public int CantCancelaciones6 { get; set; }
         public string EspecialidadMedica { get; set; }
         public string TipoEspecialidadMedica { get; set; }
-        public string Mes { get; set; }
         public int ano { get; set; }
     }
 }

@@ -7,16 +7,6 @@ INSERT INTO mario_killers.Rol_Usuario (usuario, rol)
 VALUES ('cormillot', 2),
 	   ('tomi', 3);
 
--- ADMIN, AFILIADO Y PROFESIONAL: MENGANO (TEST)
-INSERT INTO mario_killers.Persona (nombre, apellido, documento, fecha_nac, direccion, telefono, mail, sexo, tipo_doc)
-VALUES ('Fulano', 'Mengano', 11111111, '1992-06-15', 'Calle Falsa 123', 22222222, 'fulano@mengano.com', 'X', 5)
-GO
-
-UPDATE mario_killers.Usuario
-SET persona = (SELECT id from mario_killers.Persona WHERE documento = 11111111)
-WHERE nombre = 'admin'
-GO
-
 INSERT mario_killers.Profesional (persona)
 	SELECT id FROM mario_killers.Persona WHERE documento = 11111111
 GO

@@ -636,6 +636,16 @@ INSERT INTO mario_killers.Rol_Usuario
 	       ('admin', 3)	       
 GO
 
+-- ADMIN, AFILIADO Y PROFESIONAL: MENGANO (TEST)
+INSERT INTO mario_killers.Persona (nombre, apellido, documento, fecha_nac, direccion, telefono, mail, sexo, tipo_doc)
+VALUES ('Fulano', 'Mengano', 11111111, '1992-06-15', 'Calle Falsa 123', 22222222, 'fulano@mengano.com', 'X', 5)
+GO
+
+UPDATE mario_killers.Usuario
+SET persona = (SELECT id from mario_killers.Persona WHERE documento = 11111111)
+WHERE nombre = 'admin'
+GO
+
 SET IDENTITY_INSERT mario_killers.Tipo_Cancelacion ON
 INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (1, 'Evento Imprevisto')
 INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (2, 'Problemas Laborales')

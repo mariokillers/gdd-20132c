@@ -209,12 +209,14 @@ namespace Clinica_Frba.Clases
         
         public static void Eliminar(decimal id)
         {
+            //REGISTRO BAJA DE PACIENTE
             DateTime horario_llegada = (DateTime)(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"])).AddHours(System.DateTime.Now.TimeOfDay.Hours).AddMinutes(System.DateTime.Now.Minute);
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@id", id));
             ListaParametros.Add(new SqlParameter("@date", (DateTime)horario_llegada));
             Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Bajas_Afiliado (persona, fecha) VALUES (@id, @date)", "T", ListaParametros);
 
+            //DOY DE BAJA EL PACIENTE
             List<SqlParameter> ListaParametros2 = new List<SqlParameter>();
             ListaParametros2.Add(new SqlParameter("@id", id));
             Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Afiliado SET Activo =0 where persona = @id", "T", ListaParametros2);
@@ -231,6 +233,7 @@ namespace Clinica_Frba.Clases
                 {
                     decimal turno = (decimal)lector["id"];
 
+                    //REGISTRO LAS CANCELACIONES
                     List<SqlParameter> ListaParametros3 = new List<SqlParameter>();
                     ListaParametros3.Add(new SqlParameter("@tipo", (decimal)5));
                     ListaParametros3.Add(new SqlParameter("@motivo", (String)"El afiliado ha sido dado de baja"));
@@ -239,9 +242,16 @@ namespace Clinica_Frba.Clases
 
                     Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Cancelacion (tipo, motivo, persona, turno) VALUES (@tipo, @motivo, @persona, @turno)", "T", ListaParametros3);
 
+                    //DOY DE BAJA LAS RECETAS DEL PACIENTE
+                    List<SqlParameter> ListaParametros6 = new List<SqlParameter>();
+                    ListaParametros6.Add(new SqlParameter("@turno", turno));
+                    String query = @"UPDATE mario_killers.Medicamento_Atencion SET activo = 0 
+                            WHERE Atencion = @turno";
+                    Clases.BaseDeDatosSQL.EscribirEnBase(query, "T", ListaParametros6);
+
                 }
             }
-
+            //DOY DE BAJA LOS TURNOS DEL PACIENTE
             List<SqlParameter> ListaParametros4 = new List<SqlParameter>();
             ListaParametros4.Add(new SqlParameter("@id", id));
             Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Turno SET activo = 0 WHERE persona = @id", "T", ListaParametros4);

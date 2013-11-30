@@ -33,15 +33,23 @@ namespace Clinica_Frba.Cancelar_Atencion
 
         private void frmCancelarDias_Load(object sender, EventArgs e)
         {
-            unaAgenda.armarAgenda(unUsuario.Codigo_Persona);
+            try
+            {
+                unaAgenda.armarAgenda(unUsuario.Codigo_Persona);
 
-            dtpInicio.MinDate = unaAgenda.FechaDesde;
-            dtpInicio.MaxDate = unaAgenda.FechaHasta;
+                dtpInicio.MinDate = unaAgenda.FechaDesde;
+                dtpInicio.MaxDate = unaAgenda.FechaHasta;
 
-            List<TipoCancelacion> listaDeTipos = Utiles.ObtenerTiposCancelacion();
-            cmbCancelacion.DataSource = listaDeTipos;
-            cmbCancelacion.ValueMember = "id";
-            cmbCancelacion.DisplayMember = "descripcion";            
+                List<TipoCancelacion> listaDeTipos = Utiles.ObtenerTiposCancelacion();
+                cmbCancelacion.DataSource = listaDeTipos;
+                cmbCancelacion.ValueMember = "id";
+                cmbCancelacion.DisplayMember = "descripcion";
+            }
+            catch
+            {
+                MessageBox.Show("El profesional no tiene una agenda disponible", "Error", MessageBoxButtons.OK);
+                this.Close();
+            }
         }
 
         private void btnAction_Click(object sender, EventArgs e)

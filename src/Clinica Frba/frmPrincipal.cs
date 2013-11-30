@@ -128,7 +128,7 @@ namespace Clinica_Frba
             cmdRegistrarLlegada.Visible = listaDeFunc.Contains("Registro de llegada para atencion medica");
             cmdAtencion.Visible = listaDeFunc.Contains("Registro de resultado para atencion medica");
             cmdCancelar.Visible = listaDeFunc.Contains("Cancelar atencion medica");
-            cmdCancelarDias.Visible = listaDeFunc.Contains("Cancelar atencion medica");
+            cmdCancelarDias.Visible = listaDeFunc.Contains("Cancelar dia");
         }
 
         private void cmdLogOut_Click(object sender, EventArgs e)

@@ -591,6 +591,7 @@ INSERT INTO mario_killers.Funcionalidad (nombre)
 	       ('Registro de llegada para atencion medica'),
 	       ('Registrar diagnostico'),
 	       ('Cancelar atencion medica'),
+	       ('Cancelar dia'),
 	       ('Confeccionar receta medica'),
 	       ('Consultar listado estadistico'),
 	       ('Compra de bonos'),
@@ -619,7 +620,7 @@ EXEC mario_killers.agregar_funcionalidad
 EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Profesional', @func = 'Registro de resultado para atencion medica';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Profesional', @func = 'Cancelar atencion medica';
+	@rol = 'Profesional', @func = 'Cancelar dia';
 EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Afiliado', @func = 'Cancelar atencion medica';
 EXEC mario_killers.agregar_funcionalidad

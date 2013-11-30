@@ -54,13 +54,32 @@ namespace Clinica_Frba.Clases
 
         public bool Usar(Afiliado afiliado, Turno turno)
         {
+
+            //NUMERO DE CONSULTAS DEL AFILIADO
+            decimal cant_atenciones = 0;
+            List<SqlParameter> ListaParametros3 = new List<SqlParameter>();
+            ListaParametros3.Add(new SqlParameter("@persona", afiliado.Codigo_Persona));
+            String query = @"SELECT COUNT(*)
+                             FROM mario_killers.Atencion A JOIN mario_killers.Turno T ON T.id = A.id
+                             WHERE T.persona = @persona";
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader(query, "T", ListaParametros3);
+            if (lector.HasRows)
+            {
+                lector.Read();
+                cant_atenciones = (decimal)lector["plan_medico"];
+            }
+
+            //REGISTRAR HORARIO LLEGADA Y CANT CONSULTAS
             DateTime horario_llegada = (DateTime)(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"])).AddHours(System.DateTime.Now.TimeOfDay.Hours).AddMinutes(System.DateTime.Now.Minute);
             List<SqlParameter> ListaParametros2 = new List<SqlParameter>();
             ListaParametros2.Add(new SqlParameter("@codigo", turno.Id));
             ListaParametros2.Add(new SqlParameter("@horario_llegada", (DateTime)horario_llegada));
+            ListaParametros2.Add(new SqlParameter("@cant", cant_atenciones+1));
 
-            Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Turno set horario_llegada = @horario_llegada where id=@codigo ", "T", ListaParametros2);
+            Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Turno set horario_llegada = @horario_llegada, cant_consultas = @cant where id=@codigo ", "T", ListaParametros2);
 
+            //USAR BONO
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@codigo", Id));
 

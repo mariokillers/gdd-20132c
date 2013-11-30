@@ -49,7 +49,7 @@
             this.cmdTurnos = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdCancelar = new System.Windows.Forms.ToolStripMenuItem();
-            this.cancelarDiasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdCancelarDias = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdCompraDeBonos = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdRegistrarLlegada = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdAtencion = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,7 +69,7 @@
             this.cmdAgenda,
             this.cmdEstadisticas,
             this.cmdTurnos,
-            this.cancelarDiasToolStripMenuItem,
+            this.cmdCancelarDias,
             this.cmdCompraDeBonos,
             this.cmdRegistrarLlegada,
             this.cmdAtencion,
@@ -226,12 +226,12 @@
             this.cmdCancelar.Text = "Cancelar";
             this.cmdCancelar.Click += new System.EventHandler(this.cancelarToolStripMenuItem_Click);
             // 
-            // cancelarDiasToolStripMenuItem
+            // cmdCancelarDias
             // 
-            this.cancelarDiasToolStripMenuItem.Name = "cancelarDiasToolStripMenuItem";
-            this.cancelarDiasToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
-            this.cancelarDiasToolStripMenuItem.Text = "Cancelar Dias";
-            this.cancelarDiasToolStripMenuItem.Click += new System.EventHandler(this.cancelarDiasToolStripMenuItem_Click);
+            this.cmdCancelarDias.Name = "cmdCancelarDias";
+            this.cmdCancelarDias.Size = new System.Drawing.Size(90, 20);
+            this.cmdCancelarDias.Text = "Cancelar Dias";
+            this.cmdCancelarDias.Click += new System.EventHandler(this.cancelarDiasToolStripMenuItem_Click);
             // 
             // cmdCompraDeBonos
             // 
@@ -343,7 +343,7 @@
         private System.Windows.Forms.ToolStripMenuItem cmdAtencion;
         private System.Windows.Forms.ToolStripMenuItem cmdCancelar;
         private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cancelarDiasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmdCancelarDias;
 
 
     }

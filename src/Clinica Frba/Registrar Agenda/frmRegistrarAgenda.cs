@@ -126,11 +126,10 @@ namespace Clinica_Frba.Registrar_Agenda
 
             if (Utiles.SonFechasValidas(fechaDesde, fechaHasta))
             {
-                if (unProfesional.RegistrarAgenda(fechaDesde, fechaHasta)) { MessageBox.Show("El rango de fechas ha sido insertado correctamente", "EnhoraBuena!", MessageBoxButtons.OK); }
+                if (unProfesional.RegistrarAgenda(fechaDesde, fechaHasta)) { MessageBox.Show("El rango de fechas ha sido insertado correctamente", "EnhoraBuena!", MessageBoxButtons.OK); this.Close(); }
                 else { MessageBox.Show("El rango de fechas supera los 120 dias", "Error!", MessageBoxButtons.OK); }
             }
-            else { MessageBox.Show("La fecha desde es superior a la fecha hasta", "Error!", MessageBoxButtons.OK); }
-            this.Close();        
+            else { MessageBox.Show("La fecha desde es superior a la fecha hasta", "Error!", MessageBoxButtons.OK); }      
         }
 
         private void cmbDias_SelectedIndexChanged(object sender, EventArgs e)

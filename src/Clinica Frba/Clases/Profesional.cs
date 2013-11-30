@@ -47,9 +47,9 @@ namespace Clinica_Frba.Abm_de_Profesional
             try 
             {
                 List<SqlParameter> ListaParametros = new List<SqlParameter>();
-                ListaParametros.Add(new SqlParameter("@profesional", Id)); 
                 foreach (Rango unRango in listaDeRangos)
                 {
+                    ListaParametros.Add(new SqlParameter("@profesional", Id)); 
                     ListaParametros.Add(new SqlParameter("@dia", unRango.Dia.Id));
                     ListaParametros.Add(new SqlParameter("@hora_desde", unRango.HoraDesde));
                     ListaParametros.Add(new SqlParameter("@hora_hasta", unRango.HoraHasta));

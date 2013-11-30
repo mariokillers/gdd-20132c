@@ -134,35 +134,26 @@ namespace Clinica_Frba.NewFolder13
                 {
                     if (Utiles.ExisteDni((decimal)cmbTipoDoc.SelectedValue, (decimal)decimal.Parse(txtDni.Text)) && Operacion == "Alta")
                     {
-                        MessageBox.Show("Ya existe una persona con ese tipo y numero de documento. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                        if (Profesionales.ExisteComoProfesional((decimal)cmbTipoDoc.SelectedValue, (decimal)decimal.Parse(txtDni.Text)))
+                        {
+                            MessageBox.Show("Ya existe un profesional con ese tipo y numero de documento. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                        }
+                        else
+                        {
+                            almacenarDatosProfesionalSinPersona();
+                            Profesionales.AgregarProfesionalSinPersona(unProfesional);
+                            MessageBox.Show("El Profesional ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
+                            this.Hide();
+                        }
                     }
                     else
                     {
                         try
                         {
-
-                            unProfesional.Direccion = txtDir.Text;
-
-                            unProfesional.Telefono = (decimal)decimal.Parse(txtTel.Text);
-                            unProfesional.Mail = txtMail.Text;
-                            unProfesional.Sexo = (String)cmbSexo.SelectedValue;
-                            unProfesional.Matricula = (int)int.Parse(txtMatricula.Text);
-                            unProfesional.Especialidades = new List<Especialidad>();
-
-                            listaVieja = Especialidades.ObtenerEspecialidadesProfesional(unProfesional.Id);
-
-                            foreach (Especialidad unaEsp in grillaEspecialidades.CheckedItems)
-                            {
-                                unProfesional.Especialidades.Add(unaEsp);
-                            }
+                            almacenarDatosProfesional();
 
                             if (Operacion == "Alta")
                             {
-                                unProfesional.Nombre = txtNombre.Text;
-                                unProfesional.Apellido = txtApellido.Text;
-                                unProfesional.TipoDocumento = (decimal)cmbTipoDoc.SelectedValue;
-                                unProfesional.NumeroDocumento = (decimal)decimal.Parse(txtDni.Text);
-                                unProfesional.FechaNacimiento = (DateTime)dtpFechaNacimiento.Value;
                                 if (Profesionales.AgregarProfesional(unProfesional) == 0)
                                 {
                                     MessageBox.Show("Hay campos incorrectos o el profesional ya esta registrado. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
@@ -190,6 +181,45 @@ namespace Clinica_Frba.NewFolder13
                 else { MessageBox.Show("Hay campos sin completar. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK); }
             }
             catch { MessageBox.Show("Hay campos con valores incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK); }
+        }
+
+        public void almacenarDatosProfesionalSinPersona()
+        {
+            unProfesional.Matricula = (int)int.Parse(txtMatricula.Text);
+            unProfesional.Especialidades = new List<Especialidad>();
+
+            listaVieja = Especialidades.ObtenerEspecialidadesProfesional(unProfesional.Id);
+
+            foreach (Especialidad unaEsp in grillaEspecialidades.CheckedItems)
+            {
+                unProfesional.Especialidades.Add(unaEsp);
+            }
+
+            unProfesional.TipoDocumento = (decimal)cmbTipoDoc.SelectedValue;
+            unProfesional.NumeroDocumento = (decimal)decimal.Parse(txtDni.Text);
+        }
+
+
+        public void almacenarDatosProfesional()
+        {
+            unProfesional.Direccion = txtDir.Text;
+            unProfesional.Telefono = (decimal)decimal.Parse(txtTel.Text);
+            unProfesional.Mail = txtMail.Text;
+            unProfesional.Sexo = (String)cmbSexo.SelectedValue;
+            unProfesional.Matricula = (int)int.Parse(txtMatricula.Text);
+            unProfesional.Especialidades = new List<Especialidad>();
+
+            listaVieja = Especialidades.ObtenerEspecialidadesProfesional(unProfesional.Id);
+
+            foreach (Especialidad unaEsp in grillaEspecialidades.CheckedItems)
+            {
+                unProfesional.Especialidades.Add(unaEsp);
+            }
+            unProfesional.Nombre = txtNombre.Text;
+            unProfesional.Apellido = txtApellido.Text;
+            unProfesional.TipoDocumento = (decimal)cmbTipoDoc.SelectedValue;
+            unProfesional.NumeroDocumento = (decimal)decimal.Parse(txtDni.Text);
+            unProfesional.FechaNacimiento = (DateTime)dtpFechaNacimiento.Value;
         }
 
         private Boolean analizarCampos()

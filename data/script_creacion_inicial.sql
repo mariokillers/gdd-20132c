@@ -67,6 +67,18 @@ SET @ret = @id
 END
 GO
 
+CREATE PROCEDURE mario_killers.agregarProfesionalSinPersona(@tipo_doc numeric(18,0),
+												   @documento numeric(18,0),												   
+												   @matricula numeric(18,0),
+												   @ret numeric(18,0) output)
+AS BEGIN
+DECLARE @pers numeric(18,0)
+SET @pers = (SELECT id FROM mario_killers.Persona WHERE tipo_doc = @tipo_doc AND documento = @documento)
+INSERT INTO mario_killers.Profesional (persona, matricula)
+	VALUES (@pers, @matricula) SET @ret = @pers
+END
+GO
+
 CREATE PROCEDURE mario_killers.agregarProfesional(@nombre varchar(255),
 												   @apellido varchar(255),
 												   @fecha_nac datetime,

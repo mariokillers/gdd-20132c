@@ -10,6 +10,55 @@ namespace Clinica_Frba.Clases
 {
     public class Profesionales
     {
+        public static Boolean ExisteComoProfesional(decimal tipo, decimal dni)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@tipo", tipo));
+            ListaParametros.Add(new SqlParameter("@dni", dni));
+
+            String query = @"SELECT *
+                            FROM mario_killers.Persona P JOIN mario_killers.Profesional Pro ON P.id = Pro.persona
+                            WHERE P.tipo_doc = @tipo AND P.documento = @dni";
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader(query, "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static decimal AgregarProfesionalSinPersona(Profesional pro)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@tipo_doc", (int)pro.TipoDocumento));
+            ListaParametros.Add(new SqlParameter("@documento", (int)pro.NumeroDocumento));
+            ListaParametros.Add(new SqlParameter("@matricula", (int)pro.Matricula));
+
+            SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
+            paramRet.Direction = System.Data.ParameterDirection.Output;
+
+            ListaParametros.Add(paramRet);
+            decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarProfesionalSinPersona", ListaParametros);
+
+            if (ret == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                foreach (Especialidad unaEsp in pro.Especialidades)
+                {
+                    Especialidades.AgregarEspecialidadEnProfesional(ret, unaEsp);
+                }
+                return ret;
+            }
+        }
+
         public static decimal AgregarProfesional(Profesional pro)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
@@ -36,12 +85,10 @@ namespace Clinica_Frba.Clases
             }
             else
             {
-
                 foreach (Especialidad unaEsp in pro.Especialidades)
                 {
                     Especialidades.AgregarEspecialidadEnProfesional(ret, unaEsp);
                 }
-
                 return ret;
             }
         }

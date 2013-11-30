@@ -18,7 +18,7 @@ namespace Clinica_Frba.Clases
 
             if (semestre == 1)
             {
-                string query = @"SELECT *, [1]+[2]+[3]+[4]+[5]+[6] Total_Primer_Semestre
+                string query = @"SELECT TOP 5 *, [1]+[2]+[3]+[4]+[5]+[6] Total_Primer_Semestre
                             FROM ( SELECT Bono_Farmacia.codigo AS ID_Bono_Farmacia,
                             MONTH(Compra.fecha) Mes,
                             YEAR(Compra.fecha) AS Anio,
@@ -32,7 +32,8 @@ namespace Clinica_Frba.Clases
 	                        WHERE @fecha < Compra.fecha + 60 
 	                        ) AS Pivot_source
                             PIVOT (COUNT(ID_Bono_Farmacia) FOR Mes IN ([1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12])) as Bonos_Por_Mes
-                            WHERE Anio=@ano";
+                            WHERE Anio=@ano
+                            ORDER BY Total_Primer_Semestre DESC";
 
                 SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader(query, "T", ListaParametros);
 
@@ -45,12 +46,12 @@ namespace Clinica_Frba.Clases
                         unRegistro.Nombre = (string)lector["Nombre"];
                         unRegistro.Documento = (int)(decimal)lector["Documento"];
                         unRegistro.CantBonos = (int)lector["Total_Primer_Semestre"];
-                        unRegistro.CantBonos1 = (int)lector["[1]"];
-                        unRegistro.CantBonos2 = (int)lector["[2]"];
-                        unRegistro.CantBonos3 = (int)lector["[3]"];
-                        unRegistro.CantBonos4 = (int)lector["[4]"];
-                        unRegistro.CantBonos5 = (int)lector["[5]"];
-                        unRegistro.CantBonos6 = (int)lector["[6]"];
+                        unRegistro.CantBonos1 = (int)lector["1"];
+                        unRegistro.CantBonos2 = (int)lector["2"];
+                        unRegistro.CantBonos3 = (int)lector["3"];
+                        unRegistro.CantBonos4 = (int)lector["4"];
+                        unRegistro.CantBonos5 = (int)lector["5"];
+                        unRegistro.CantBonos6 = (int)lector["6"];
                         unRegistro.ano = ano;
                         listaListado2.Add(unRegistro);
                     }
@@ -59,7 +60,7 @@ namespace Clinica_Frba.Clases
             }
             else 
             {
-                string query = @"SELECT *, [7]+[8]+[9]+[10]+[11]+[12] Total_Segundo_Semestre
+                string query = @"SELECT TOP 5 *, [7]+[8]+[9]+[10]+[11]+[12] Total_Segundo_Semestre
                             FROM ( SELECT Bono_Farmacia.codigo AS ID_Bono_Farmacia,
                             MONTH(Compra.fecha) Mes,
                             YEAR(Compra.fecha) AS Anio,
@@ -73,7 +74,8 @@ namespace Clinica_Frba.Clases
 	                        WHERE @fecha < Compra.fecha + 60
 	                        ) AS Pivot_source
                             PIVOT (COUNT(ID_Bono_Farmacia) FOR Mes IN ([1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12])) as Bonos_Por_Mes
-                            WHERE Anio=@ano";
+                            WHERE Anio=@ano
+                            ORDER BY Total_Segundo_Semestre DESC";
 
                 SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader(query, "T", ListaParametros);
 
@@ -86,12 +88,12 @@ namespace Clinica_Frba.Clases
                         unRegistro.Nombre = (string)lector["Nombre"];
                         unRegistro.Documento = (int)(decimal)lector["Documento"];
                         unRegistro.CantBonos = (int)lector["Total_Segundo_Semestre"];
-                        unRegistro.CantBonos1 = (int)lector["[7]"];
-                        unRegistro.CantBonos2 = (int)lector["[8]"];
-                        unRegistro.CantBonos3 = (int)lector["[9]"];
-                        unRegistro.CantBonos4 = (int)lector["[10]"];
-                        unRegistro.CantBonos5 = (int)lector["[11]"];
-                        unRegistro.CantBonos6 = (int)lector["[12]"];
+                        unRegistro.CantBonos1 = (int)lector["7"];
+                        unRegistro.CantBonos2 = (int)lector["8"];
+                        unRegistro.CantBonos3 = (int)lector["9"];
+                        unRegistro.CantBonos4 = (int)lector["10"];
+                        unRegistro.CantBonos5 = (int)lector["11"];
+                        unRegistro.CantBonos6 = (int)lector["12"];
                         unRegistro.ano = ano;
                         listaListado2.Add(unRegistro);
                     }
@@ -109,9 +111,10 @@ namespace Clinica_Frba.Clases
 
             if (semestre == 1)
             {
-                string query = @"SELECT Desc_Especialidad, Desc_Tipo_Especialidad, [1], [2], [3], [4], [5], [6], Total_Primer_Semestre
+                string query = @"SELECT TOP 5 Desc_Especialidad, Desc_Tipo_Especialidad, [1], [2], [3], [4], [5], [6], Total_Primer_Semestre
                                 FROM mario_killers.listado_3_view
-                                WHERE Anio = @ano";
+                                WHERE Anio = @ano
+                                ORDER BY Total_Primer_Semestre DESC ";
 
                 SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader(query, "T", ListaParametros);
 
@@ -122,13 +125,13 @@ namespace Clinica_Frba.Clases
                         Listado3 unRegistro = new Listado3();
                         unRegistro.EspecialidadMedica = (string)lector["Desc_Especialidad"];
                         unRegistro.TipoEspecialidadMedica = (string)lector["Desc_Tipo_Especialidad"];
-                        unRegistro.CantCancelaciones = (int)lector["Total_Primer_Trimestre"];
-                        unRegistro.CantCancelaciones1 = (int)lector["[1]"];
-                        unRegistro.CantCancelaciones2 = (int)lector["[2]"];
-                        unRegistro.CantCancelaciones3 = (int)lector["[3]"];
-                        unRegistro.CantCancelaciones4 = (int)lector["[4]"];
-                        unRegistro.CantCancelaciones5 = (int)lector["[5]"];
-                        unRegistro.CantCancelaciones6 = (int)lector["[6]"];
+                        unRegistro.CantCancelaciones = (int)lector["Total_Primer_Semestre"];
+                        unRegistro.CantCancelaciones1 = (int)lector["1"];
+                        unRegistro.CantCancelaciones2 = (int)lector["2"];
+                        unRegistro.CantCancelaciones3 = (int)lector["3"];
+                        unRegistro.CantCancelaciones4 = (int)lector["4"];
+                        unRegistro.CantCancelaciones5 = (int)lector["5"];
+                        unRegistro.CantCancelaciones6 = (int)lector["6"];
                         unRegistro.ano = ano;
                         listaListado3.Add(unRegistro);
                     }
@@ -137,9 +140,10 @@ namespace Clinica_Frba.Clases
             }
             else 
             {
-                string query = @"SELECT Desc_Especialidad, Desc_Tipo_Especialidad, [7], [8], [9], [10], [11], [12], Total_Segundo_Semestre
+                string query = @"SELECT TOP 5 Desc_Especialidad, Desc_Tipo_Especialidad, [7], [8], [9], [10], [11], [12], Total_Segundo_Semestre
                                 FROM mario_killers.listado_3_view
-                                WHERE Anio = @ano";
+                                WHERE Anio = @ano
+                                ORDER BY Total_Segundo_Semestre DESC ";
 
                 SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader(query, "T", ListaParametros);
 
@@ -150,13 +154,13 @@ namespace Clinica_Frba.Clases
                         Listado3 unRegistro = new Listado3();
                         unRegistro.EspecialidadMedica = (string)lector["Desc_Especialidad"];
                         unRegistro.TipoEspecialidadMedica = (string)lector["Desc_Tipo_Especialidad"];
-                        unRegistro.CantCancelaciones = (int)lector["Total_Segundo_Trimestre"];
-                        unRegistro.CantCancelaciones1 = (int)lector["[7]"];
-                        unRegistro.CantCancelaciones2 = (int)lector["[8]"];
-                        unRegistro.CantCancelaciones3 = (int)lector["[9]"];
-                        unRegistro.CantCancelaciones4 = (int)lector["[10]"];
-                        unRegistro.CantCancelaciones5 = (int)lector["[11]"];
-                        unRegistro.CantCancelaciones6 = (int)lector["[12]"];
+                        unRegistro.CantCancelaciones = (int)lector["Total_Segundo_Semestre"];
+                        unRegistro.CantCancelaciones1 = (int)lector["7"];
+                        unRegistro.CantCancelaciones2 = (int)lector["8"];
+                        unRegistro.CantCancelaciones3 = (int)lector["9"];
+                        unRegistro.CantCancelaciones4 = (int)lector["10"];
+                        unRegistro.CantCancelaciones5 = (int)lector["11"];
+                        unRegistro.CantCancelaciones6 = (int)lector["12"];
                         unRegistro.ano = ano;
                         listaListado3.Add(unRegistro);
                     }
@@ -174,7 +178,7 @@ namespace Clinica_Frba.Clases
 
             if (semestre == 1)
             {
-                SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT Total_Primer_Semestre,Desc_Especialidad, Desc_Tipo_Especialidad, [1], [2], [3], [4], [5], [6] FROM mario_killers.listado_1_view WHERE Anio=@ano ORDER BY Total_Primer_Semestre", "T", ListaParametros);
+                SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT TOP 5 Total_Primer_Semestre,Desc_Especialidad, Desc_Tipo_Especialidad, [1], [2], [3], [4], [5], [6] FROM mario_killers.listado_1_view WHERE Anio=@ano ORDER BY Total_Primer_Semestre", "T", ListaParametros);
 
                 if (lector.HasRows)
                 {
@@ -184,12 +188,12 @@ namespace Clinica_Frba.Clases
                         unRegistro.EspecialidadMedica = (string)lector["Desc_Especialidad"];
                         unRegistro.TipoEspecialidadMedica = (string)lector["Desc_Tipo_Especialidad"];
                         unRegistro.CantCancelaciones = (int)lector["Total_Primer_Semestre"];
-                        unRegistro.CantCancelaciones1 = (int)lector["[1]"];
-                        unRegistro.CantCancelaciones2 = (int)lector["[2]"];
-                        unRegistro.CantCancelaciones3 = (int)lector["[3]"];
-                        unRegistro.CantCancelaciones4 = (int)lector["[4]"];
-                        unRegistro.CantCancelaciones5 = (int)lector["[5]"];
-                        unRegistro.CantCancelaciones6 = (int)lector["[6]"];
+                        unRegistro.CantCancelaciones1 = (int)lector["1"];
+                        unRegistro.CantCancelaciones2 = (int)lector["2"];
+                        unRegistro.CantCancelaciones3 = (int)lector["3"];
+                        unRegistro.CantCancelaciones4 = (int)lector["4"];
+                        unRegistro.CantCancelaciones5 = (int)lector["5"];
+                        unRegistro.CantCancelaciones6 = (int)lector["6"];
                         unRegistro.ano = ano;
                         listaListado1.Add(unRegistro);
                     }
@@ -198,7 +202,7 @@ namespace Clinica_Frba.Clases
             }
             else
             {
-                SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT Total_Segundo_Semestre,Desc_Especialidad, Desc_Tipo_Especialidad, [7], [8], [9], [10], [11], [12] FROM mario_killers.listado_1_view WHERE Anio=@ano ORDER BY Total_Segundo_Semestre", "T", ListaParametros);
+                SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT TOP 5 Total_Segundo_Semestre,Desc_Especialidad, Desc_Tipo_Especialidad, [7], [8], [9], [10], [11], [12] FROM mario_killers.listado_1_view WHERE Anio=@ano ORDER BY Total_Segundo_Semestre", "T", ListaParametros);
 
                 if (lector.HasRows)
                 {
@@ -208,12 +212,12 @@ namespace Clinica_Frba.Clases
                         unRegistro.EspecialidadMedica = (string)lector["Desc_Especialidad"];
                         unRegistro.TipoEspecialidadMedica = (string)lector["Desc_Tipo_Especialidad"];
                         unRegistro.CantCancelaciones = (int)lector["Total_Primer_Semestre"];
-                        unRegistro.CantCancelaciones1 = (int)lector["[7]"];
-                        unRegistro.CantCancelaciones2 = (int)lector["[8]"];
-                        unRegistro.CantCancelaciones3 = (int)lector["[9]"];
-                        unRegistro.CantCancelaciones4 = (int)lector["[10]"];
-                        unRegistro.CantCancelaciones5 = (int)lector["[11]"];
-                        unRegistro.CantCancelaciones6 = (int)lector["[12]"];
+                        unRegistro.CantCancelaciones1 = (int)lector["7"];
+                        unRegistro.CantCancelaciones2 = (int)lector["8"];
+                        unRegistro.CantCancelaciones3 = (int)lector["9"];
+                        unRegistro.CantCancelaciones4 = (int)lector["10"];
+                        unRegistro.CantCancelaciones5 = (int)lector["11"];
+                        unRegistro.CantCancelaciones6 = (int)lector["12"];
                         unRegistro.ano = ano;
                         listaListado1.Add(unRegistro);
                     }
@@ -231,9 +235,10 @@ namespace Clinica_Frba.Clases
 
             if (semestre == 1)
             {
-                string query =@"SELECT Nombre, Apellido, Documento, [1], [2], [3], [4], [5], [6], Total_Primer_Semestre
+                string query =@"SELECT TOP 5 Nombre, Apellido, Documento, [1], [2], [3], [4], [5], [6], Total_Primer_Semestre
                                 FROM mario_killers.listado_4_view
-                                WHERE Anio = @ano";
+                                WHERE Anio = @ano
+                                ORDER BY Total_Primer_Semestre DESC ";
 
                 SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader(query, "T", ListaParametros);
 
@@ -245,12 +250,12 @@ namespace Clinica_Frba.Clases
                         unRegistro.Nombre = (string)lector["Nombre"];
                         unRegistro.Apellido = (string)lector["Apellido"];
                         unRegistro.CantBonos = (int)lector["Total_Primer_Semestre"];
-                        unRegistro.CantBonos1 = (int)lector["[1]"];
-                        unRegistro.CantBonos2 = (int)lector["[2]"];
-                        unRegistro.CantBonos3 = (int)lector["[3]"];
-                        unRegistro.CantBonos4 = (int)lector["[4]"];
-                        unRegistro.CantBonos5 = (int)lector["[5]"];
-                        unRegistro.CantBonos6 = (int)lector["[6]"];
+                        unRegistro.CantBonos1 = (int)lector["1"];
+                        unRegistro.CantBonos2 = (int)lector["2"];
+                        unRegistro.CantBonos3 = (int)lector["3"];
+                        unRegistro.CantBonos4 = (int)lector["4"];
+                        unRegistro.CantBonos5 = (int)lector["5"];
+                        unRegistro.CantBonos6 = (int)lector["6"];
                         unRegistro.Documento = (int)(decimal)lector["Documento"];
                         unRegistro.ano = ano;
                         listaListado4.Add(unRegistro);
@@ -260,9 +265,10 @@ namespace Clinica_Frba.Clases
             }
             else 
             {
-                string query = @"SELECT Nombre, Apellido, Documento, [7], [8], [9], [10], [11], [12], Total_Segundo_Semestre
+                string query = @"SELECT TOP 5 Nombre, Apellido, Documento, [7], [8], [9], [10], [11], [12], Total_Segundo_Semestre
                                 FROM mario_killers.listado_4_view
-                                WHERE Anio = @ano";
+                                WHERE Anio = @ano
+                                ORDER BY Total_Segundo_Semestre DESC";
 
                 SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader(query, "T", ListaParametros);
 
@@ -274,12 +280,12 @@ namespace Clinica_Frba.Clases
                         unRegistro.Nombre = (string)lector["Nombre"];
                         unRegistro.Apellido = (string)lector["Apellido"];
                         unRegistro.CantBonos = (int)lector["Total_Segundo_Semestre"];
-                        unRegistro.CantBonos1 = (int)lector["[7]"];
-                        unRegistro.CantBonos2 = (int)lector["[8]"];
-                        unRegistro.CantBonos3 = (int)lector["[9]"];
-                        unRegistro.CantBonos4 = (int)lector["[10]"];
-                        unRegistro.CantBonos5 = (int)lector["[11]"];
-                        unRegistro.CantBonos6 = (int)lector["[12]"];
+                        unRegistro.CantBonos1 = (int)lector["7"];
+                        unRegistro.CantBonos2 = (int)lector["8"];
+                        unRegistro.CantBonos3 = (int)lector["9"];
+                        unRegistro.CantBonos4 = (int)lector["10"];
+                        unRegistro.CantBonos5 = (int)lector["11"];
+                        unRegistro.CantBonos6 = (int)lector["12"];
                         unRegistro.Documento = (int)(decimal)lector["Documento"];
                         unRegistro.ano = ano;
                         listaListado4.Add(unRegistro);

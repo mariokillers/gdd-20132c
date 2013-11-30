@@ -67,7 +67,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(754, 335);
+            this.tabControl1.Size = new System.Drawing.Size(968, 244);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -76,7 +76,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(746, 309);
+            this.tabPage1.Size = new System.Drawing.Size(960, 218);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Cancelaciones por especialidad";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -87,7 +87,7 @@
             this.grillaListado1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grillaListado1.Location = new System.Drawing.Point(3, 3);
             this.grillaListado1.Name = "grillaListado1";
-            this.grillaListado1.Size = new System.Drawing.Size(740, 303);
+            this.grillaListado1.Size = new System.Drawing.Size(954, 212);
             this.grillaListado1.TabIndex = 0;
             // 
             // tabPage2
@@ -96,7 +96,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(616, 309);
+            this.tabPage2.Size = new System.Drawing.Size(746, 309);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Bonos farmacia por afiliado";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -107,7 +107,7 @@
             this.grillaListado2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grillaListado2.Location = new System.Drawing.Point(3, 3);
             this.grillaListado2.Name = "grillaListado2";
-            this.grillaListado2.Size = new System.Drawing.Size(610, 303);
+            this.grillaListado2.Size = new System.Drawing.Size(740, 303);
             this.grillaListado2.TabIndex = 0;
             // 
             // tabPage3
@@ -116,7 +116,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(616, 309);
+            this.tabPage3.Size = new System.Drawing.Size(746, 309);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Bonos farmacia por especialidad";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -127,7 +127,7 @@
             this.grillaListado3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grillaListado3.Location = new System.Drawing.Point(3, 3);
             this.grillaListado3.Name = "grillaListado3";
-            this.grillaListado3.Size = new System.Drawing.Size(610, 303);
+            this.grillaListado3.Size = new System.Drawing.Size(740, 303);
             this.grillaListado3.TabIndex = 1;
             // 
             // tabPage4
@@ -136,7 +136,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(616, 309);
+            this.tabPage4.Size = new System.Drawing.Size(746, 309);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Bonos usados por terceros";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -147,7 +147,7 @@
             this.grillaListado4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grillaListado4.Location = new System.Drawing.Point(3, 3);
             this.grillaListado4.Name = "grillaListado4";
-            this.grillaListado4.Size = new System.Drawing.Size(610, 303);
+            this.grillaListado4.Size = new System.Drawing.Size(740, 303);
             this.grillaListado4.TabIndex = 1;
             // 
             // splitContainer1
@@ -168,8 +168,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer1.Size = new System.Drawing.Size(754, 473);
-            this.splitContainer1.SplitterDistance = 134;
+            this.splitContainer1.Size = new System.Drawing.Size(968, 345);
+            this.splitContainer1.SplitterDistance = 97;
             this.splitContainer1.TabIndex = 1;
             // 
             // dtpAño
@@ -227,7 +227,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(754, 473);
+            this.ClientSize = new System.Drawing.Size(968, 345);
             this.Controls.Add(this.splitContainer1);
             this.Name = "frmListadosEstadisticos";
             this.Text = "Listados estadísticos";

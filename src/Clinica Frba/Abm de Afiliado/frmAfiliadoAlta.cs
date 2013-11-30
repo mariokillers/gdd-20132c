@@ -69,7 +69,7 @@ namespace Clinica_Frba.NewFolder12
                             }
                             else
                             {
-                                MessageBox.Show("El Afiliado ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
+                                MessageBox.Show("El Afiliado ha sido dado de alta exitosamente", "Aviso", MessageBoxButtons.OK);
 
                                 this.Hide();
                             }
@@ -264,70 +264,80 @@ namespace Clinica_Frba.NewFolder12
 
         private void btnHijo_Click(object sender, EventArgs e)
         {
-            if (analizarCampos())
+            try
             {
-                if (Utiles.ExisteDni((decimal)cmbTipoDoc.SelectedValue, (decimal)decimal.Parse(txtDni.Text)) && Operacion == "Alta")
+                if (analizarCampos())
                 {
-                    MessageBox.Show("Ya existe una persona con ese tipo y numero de documento. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                    if (Utiles.ExisteDni((decimal)cmbTipoDoc.SelectedValue, (decimal)decimal.Parse(txtDni.Text)) && Operacion == "Alta")
+                    {
+                        MessageBox.Show("Ya existe una persona con ese tipo y numero de documento. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            Operacion = "Alta";
+                            almacenarDatos();
+                            frmAfiliadoAlta formHijo = new frmAfiliadoAlta();
+                            MessageBox.Show("El Afiliado ha sido dado de alta exitosamente", "Aviso", MessageBoxButtons.OK);
+                            formHijo.Operacion = this.Operacion;
+                            formHijo.Afiliado = this.nuevoAfil;
+                            formHijo.Afiliado.Numero_Grupo = nuevoAfil.Numero_Grupo;
+                            formHijo.Miembro = "Hijo";
+                            formHijo.Show();
+                            this.Close();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                        }
+                    }
                 }
                 else
                 {
-                    try
-                    {
-                        Operacion = "Alta";
-                        almacenarDatos();
-                        frmAfiliadoAlta formHijo = new frmAfiliadoAlta();
-                        formHijo.Operacion = this.Operacion;
-                        formHijo.Afiliado = this.nuevoAfil;
-                        formHijo.Afiliado.Numero_Grupo = nuevoAfil.Numero_Grupo;
-                        formHijo.Miembro = "Hijo";
-                        formHijo.Show();
-                        this.Close();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
-                    }
+                    MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
                 }
             }
-            else
-            {
-                MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
-            }
+            catch { MessageBox.Show("Hay campos con valores incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK); }
         }
 
         private void btnConyuge_Click(object sender, EventArgs e)
         {
-            if (analizarCampos())
+            try
             {
-                if (Utiles.ExisteDni((decimal)cmbTipoDoc.SelectedValue, (decimal)decimal.Parse(txtDni.Text)) && Operacion == "Alta")
+                if (analizarCampos())
                 {
-                    MessageBox.Show("Ya existe una persona con ese tipo y numero de documento. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                    if (Utiles.ExisteDni((decimal)cmbTipoDoc.SelectedValue, (decimal)decimal.Parse(txtDni.Text)) && Operacion == "Alta")
+                    {
+                        MessageBox.Show("Ya existe una persona con ese tipo y numero de documento. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            Operacion = "Alta";
+                            almacenarDatos();
+                            frmAfiliadoAlta formConyuge = new frmAfiliadoAlta();
+                            MessageBox.Show("El Afiliado ha sido dado de alta exitosamente", "Aviso", MessageBoxButtons.OK);
+                            formConyuge.Operacion = this.Operacion;
+                            formConyuge.Afiliado = this.nuevoAfil;
+                            formConyuge.Afiliado.Numero_Grupo = nuevoAfil.Numero_Grupo;
+                            formConyuge.Miembro = "Conyuge";
+                            formConyuge.Show();
+                            this.Close();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                        }
+                    }
                 }
                 else
                 {
-                    try
-                    {
-                        Operacion = "Alta";
-                        almacenarDatos();
-                        frmAfiliadoAlta formConyuge = new frmAfiliadoAlta();
-                        formConyuge.Operacion = this.Operacion;
-                        formConyuge.Afiliado = this.nuevoAfil;
-                        formConyuge.Afiliado.Numero_Grupo = nuevoAfil.Numero_Grupo;
-                        formConyuge.Miembro = "Conyuge";
-                        formConyuge.Show();
-                        this.Close();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
-                    }
+                    MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
                 }
             }
-            else
-            {
-                MessageBox.Show("Hay campos sin completar o incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
-            }
+            catch { MessageBox.Show("Hay campos con valores incorrectos. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK); }
         }
     }
 }

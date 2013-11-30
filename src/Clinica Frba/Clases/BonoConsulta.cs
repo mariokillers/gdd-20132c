@@ -75,7 +75,7 @@ namespace Clinica_Frba.Clases
             List<SqlParameter> ListaParametros2 = new List<SqlParameter>();
             ListaParametros2.Add(new SqlParameter("@codigo", turno.Id));
             ListaParametros2.Add(new SqlParameter("@horario_llegada", (DateTime)horario_llegada));
-            ListaParametros2.Add(new SqlParameter("@cant", cant_atenciones+1));
+            ListaParametros2.Add(new SqlParameter("@cant", (int)(cant_atenciones + 1)));
 
             Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Turno set horario_llegada = @horario_llegada, cant_consultas = @cant where id=@codigo ", "T", ListaParametros2);
 

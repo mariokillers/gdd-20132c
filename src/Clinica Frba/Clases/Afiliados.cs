@@ -12,6 +12,27 @@ namespace Clinica_Frba.Clases
 {
     class Afiliados
     {
+        public static Boolean ExisteComoAfiliado(decimal tipo, decimal dni)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@tipo", tipo));
+            ListaParametros.Add(new SqlParameter("@dni", dni));
+
+            String query = @"SELECT *
+                            FROM mario_killers.Persona P JOIN mario_killers.Afiliado A ON P.id = A.persona
+                            WHERE P.tipo_doc = @tipo AND P.documento = @dni";
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader(query, "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public static List<Afiliado> ObtenerAfiliados(String nombre, String apellido, String dni, String numeroAfiliado, decimal codigoPlan)
         {
             List<Afiliado> Lista = new List<Afiliado>();
@@ -157,6 +178,34 @@ namespace Clinica_Frba.Clases
             return (ret*100 + 1);        
         }
 
+        public static decimal AgregarAfiliadoSinPersona(Afiliado afil)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@tipo_doc", (int)afil.TipoDocumento));
+            ListaParametros.Add(new SqlParameter("@documento", (int)afil.NumeroDocumento));            
+            ListaParametros.Add(new SqlParameter("@estado_civil", (int)afil.Estado_Civil));
+            ListaParametros.Add(new SqlParameter("@cant_hijos", (int)afil.Cantidad_Hijos));
+            ListaParametros.Add(new SqlParameter("@plan_medico", (int)afil.Plan_Medico));
+            ListaParametros.Add(new SqlParameter("@nro_flia", (int)afil.Numero_Familiar));
+
+            SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
+            paramRet.Direction = System.Data.ParameterDirection.Output;
+
+            if (afil.Numero_Grupo != 0)
+            {
+                ListaParametros.Add(new SqlParameter("@grupo_familia", (int)afil.Numero_Grupo));
+                ListaParametros.Add(paramRet);
+                return Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarAfiliadoFamiliaSinPersona", ListaParametros);
+            }
+            else
+            {
+                ListaParametros.Add(paramRet);
+                decimal ret = Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarAfiliadoSinPersona", ListaParametros);
+
+                return ret;
+            }
+        }
+
         public static decimal AgregarAfiliado(Afiliado afil)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
@@ -182,7 +231,6 @@ namespace Clinica_Frba.Clases
                 ListaParametros.Add(new SqlParameter("@grupo_familia", (int)afil.Numero_Grupo));
                 ListaParametros.Add(paramRet);
                 return Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.agregarAfiliadoFamilia", ListaParametros);
-
             }
             else
             {

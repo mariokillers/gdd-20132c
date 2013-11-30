@@ -44,7 +44,16 @@ namespace Clinica_Frba.NewFolder12
                 {
                     if (Utiles.ExisteDni((decimal)cmbTipoDoc.SelectedValue, (decimal)decimal.Parse(txtDni.Text)) && Operacion == "Alta")
                     {
-                        MessageBox.Show("Ya existe una persona con ese tipo y numero de documento. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                        if (Afiliados.ExisteComoAfiliado((decimal)cmbTipoDoc.SelectedValue, (decimal)decimal.Parse(txtDni.Text)))
+                        {
+                            MessageBox.Show("Ya existe un afiliado con ese tipo y numero de documento. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                        }
+                        else
+                        {
+                            almacenarDatosSinPersona();
+                            MessageBox.Show("El Afiliado ha sido modificado exitosamente", "Aviso", MessageBoxButtons.OK);
+                            this.Hide();
+                        }
                     }
                     else
                     {
@@ -234,6 +243,17 @@ namespace Clinica_Frba.NewFolder12
             }
         }
 
+        public void almacenarDatosSinPersona()
+        {
+            nuevoAfil.TipoDocumento = (decimal)cmbTipoDoc.SelectedValue;
+            nuevoAfil.NumeroDocumento = (decimal)decimal.Parse(txtDni.Text);
+            nuevoAfil.Plan_Medico = (decimal)cmbPlanes.SelectedValue;
+            nuevoAfil.Cantidad_Hijos = (decimal)decimal.Parse(txtHijos.Text);
+            nuevoAfil.Estado_Civil = (decimal)cmbEstadoCivil.SelectedValue;
+            decimal GrupoNuevo = Afiliados.AgregarAfiliadoSinPersona(nuevoAfil);
+            nuevoAfil.Numero_Grupo = GrupoNuevo;
+        }
+
         public void almacenarDatos()
         {
             nuevoAfil.Estado_Civil = (decimal)cmbEstadoCivil.SelectedValue;
@@ -270,7 +290,23 @@ namespace Clinica_Frba.NewFolder12
                 {
                     if (Utiles.ExisteDni((decimal)cmbTipoDoc.SelectedValue, (decimal)decimal.Parse(txtDni.Text)) && Operacion == "Alta")
                     {
-                        MessageBox.Show("Ya existe una persona con ese tipo y numero de documento. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                        if (Afiliados.ExisteComoAfiliado((decimal)cmbTipoDoc.SelectedValue, (decimal)decimal.Parse(txtDni.Text)))
+                        {
+                            MessageBox.Show("Ya existe un afiliado con ese tipo y numero de documento. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                        }
+                        else
+                        {
+                            almacenarDatosSinPersona();
+                            Operacion = "Alta";
+                            frmAfiliadoAlta formHijo = new frmAfiliadoAlta();
+                            MessageBox.Show("El Afiliado ha sido dado de alta exitosamente", "Aviso", MessageBoxButtons.OK);
+                            formHijo.Operacion = this.Operacion;
+                            formHijo.Afiliado = this.nuevoAfil;
+                            formHijo.Afiliado.Numero_Grupo = nuevoAfil.Numero_Grupo;
+                            formHijo.Miembro = "Hijo";
+                            formHijo.Show();
+                            this.Close();
+                        }
                     }
                     else
                     {
@@ -309,7 +345,23 @@ namespace Clinica_Frba.NewFolder12
                 {
                     if (Utiles.ExisteDni((decimal)cmbTipoDoc.SelectedValue, (decimal)decimal.Parse(txtDni.Text)) && Operacion == "Alta")
                     {
-                        MessageBox.Show("Ya existe una persona con ese tipo y numero de documento. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                        if (Afiliados.ExisteComoAfiliado((decimal)cmbTipoDoc.SelectedValue, (decimal)decimal.Parse(txtDni.Text)))
+                        {
+                            MessageBox.Show("Ya existe un afiliado con ese tipo y numero de documento. Por favor verifique sus datos.", "Error", MessageBoxButtons.OK);
+                        }
+                        else
+                        {
+                            almacenarDatosSinPersona();
+                            Operacion = "Alta";
+                            frmAfiliadoAlta formConyuge = new frmAfiliadoAlta();
+                            MessageBox.Show("El Afiliado ha sido dado de alta exitosamente", "Aviso", MessageBoxButtons.OK);
+                            formConyuge.Operacion = this.Operacion;
+                            formConyuge.Afiliado = this.nuevoAfil;
+                            formConyuge.Afiliado.Numero_Grupo = nuevoAfil.Numero_Grupo;
+                            formConyuge.Miembro = "Conyuge";
+                            formConyuge.Show();
+                            this.Close();
+                        }
                     }
                     else
                     {

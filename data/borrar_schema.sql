@@ -53,7 +53,9 @@ DROP PROCEDURE mario_killers.agregar_funcionalidad,
                mario_killers.agregarTurno,
                mario_killers.agregarAtencion,
                mario_killers.anularDia,
-               mario_killers.anularRango
+               mario_killers.anularRango,
+               mario_killers.agregarAfiliadoFamiliaSinPersona,
+               mario_killers.agregarAfiliadoSinPersona
 
 DROP VIEW mario_killers.bonos_consulta_distinto_comprador,
 		  mario_killers.bonos_farmacia_distinto_comprador,

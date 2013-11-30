@@ -234,3 +234,14 @@ ALTER TABLE mario_killers.Medicamento_Atencion WITH NOCHECK
 	
 ALTER TABLE mario_killers.Turno WITH NOCHECK
 	ADD CONSTRAINT horario_valido CHECK (mario_killers.Turno_Valido(horario) = 1)
+
+
+------ Admin con profesional cualquiera de la migracion (no hay datos fruta)	
+INSERT INTO mario_killers.Usuario (nombre, pw, persona)
+	VALUES ('admin', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 13288527);
+
+INSERT INTO mario_killers.Rol_Usuario
+	VALUES ('admin', 1),
+	       ('admin', 2),
+	       ('admin', 3)	       
+GO

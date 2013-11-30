@@ -626,25 +626,6 @@ EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Profesional', @func = 'Confeccionar receta medica';
 EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Administrativo', @func = 'Consultar listado estadistico';
-	
-INSERT INTO mario_killers.Usuario (nombre, pw)
-	VALUES ('admin', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7');
-
-INSERT INTO mario_killers.Rol_Usuario
-	VALUES ('admin', 1),
-	       ('admin', 2),
-	       ('admin', 3)	       
-GO
-
--- ADMIN, AFILIADO Y PROFESIONAL: MENGANO (TEST)
-INSERT INTO mario_killers.Persona (nombre, apellido, documento, fecha_nac, direccion, telefono, mail, sexo, tipo_doc)
-VALUES ('Fulano', 'Mengano', 11111111, '1992-06-15', 'Calle Falsa 123', 22222222, 'fulano@mengano.com', 'X', 5)
-GO
-
-UPDATE mario_killers.Usuario
-SET persona = (SELECT id from mario_killers.Persona WHERE documento = 11111111)
-WHERE nombre = 'admin'
-GO
 
 SET IDENTITY_INSERT mario_killers.Tipo_Cancelacion ON
 INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (1, 'Evento Imprevisto')

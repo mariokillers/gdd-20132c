@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Clinica_Frba.Clases;
 using Clinica_Frba.Abm_de_Profesional;
+using Clinica_Frba.NewFolder4;
 
 namespace Clinica_Frba.Pedir_Turno
 {
@@ -30,17 +31,28 @@ namespace Clinica_Frba.Pedir_Turno
 
         private void frmTurno_Load(object sender, EventArgs e)
         {
-            unaAgenda.armarAgenda(unProfesional.Id);
+            try
+            {
+                unaAgenda.armarAgenda(unProfesional.Id);
 
-            if (unaAgenda.FechaDesde < DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date)
-            {
-                dtpFechas.MinDate = DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date;
+                if (unaAgenda.FechaDesde < DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date)
+                {
+                    dtpFechas.MinDate = DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date;
+                }
+                else
+                {
+                    dtpFechas.MinDate = unaAgenda.FechaDesde;
+                }
+                dtpFechas.MaxDate = unaAgenda.FechaHasta;
             }
-            else
+            catch
             {
-                dtpFechas.MinDate = unaAgenda.FechaDesde;
+                MessageBox.Show("El profesional seleccionado no tiene una agenda disponible", "Error", MessageBoxButtons.OK);
+                lstTurno frmTurno = new lstTurno();
+                frmTurno.unUser = this.unUsuario;
+                frmTurno.Show();
+                this.Close();
             }
-            dtpFechas.MaxDate = unaAgenda.FechaHasta;
 
             //MessageBox.Show("Desde: " + unaAgenda.FechaDesde + ", Hasta: " + unaAgenda.FechaHasta, "test", MessageBoxButtons.OK);
 

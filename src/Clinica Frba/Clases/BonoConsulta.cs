@@ -68,23 +68,24 @@ namespace Clinica_Frba.Clases
             if (lector.HasRows)
             {
                 lector.Read();
-                cant_atenciones = (int)lector["cant_aten"];
+                cant_atenciones = (int)lector["cant_aten"] + 1;
             }
 
-            //REGISTRAR HORARIO LLEGADA Y CANT CONSULTAS
+            //REGISTRAR HORARIO LLEGADA
             DateTime horario_llegada = (DateTime)(DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"])).AddHours(System.DateTime.Now.TimeOfDay.Hours).AddMinutes(System.DateTime.Now.Minute);
             List<SqlParameter> ListaParametros2 = new List<SqlParameter>();
             ListaParametros2.Add(new SqlParameter("@codigo", turno.Id));
             ListaParametros2.Add(new SqlParameter("@horario_llegada", (DateTime)horario_llegada));
-            ListaParametros2.Add(new SqlParameter("@cant", (int)(cant_atenciones + 1)));
 
-            Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Turno set horario_llegada = @horario_llegada, cant_consultas = @cant where id=@codigo ", "T", ListaParametros2);
+            Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Turno set horario_llegada = @horario_llegada where id=@codigo ", "T", ListaParametros2);
 
-            //USAR BONO
+            //USAR BONO Y REGISTRAR CANT CONSULTAS
+            
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@codigo", Id));
+            ListaParametros.Add(new SqlParameter("@cant", cant_atenciones));
 
-            return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Bono_Consulta set activo =0 where id=@codigo ", "T", ListaParametros);
+            return Clases.BaseDeDatosSQL.EscribirEnBase("update mario_killers.Bono_Consulta set activo = 0, cant_consultas = @cant where id = @codigo", "T", ListaParametros);
         }
     }
 }

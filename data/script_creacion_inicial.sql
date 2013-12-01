@@ -841,7 +841,7 @@ FROM mario_killers.Bono_Farmacia bf
 	join mario_killers.Compra c on c.id = bf.compra
 	join mario_killers.Afiliado a on a.persona = c.persona
 	join mario_killers.Grupo_Familia on Grupo_Familia.codigo = a.grupo_familia
-	join mario_killers.Plan_Medico on Plan_Medico.codigo = Grupo_Familia.codigo
+	join mario_killers.Plan_Medico on Plan_Medico.codigo = Grupo_Familia.plan_medico
 GO
 
 CREATE VIEW mario_killers.BonoConsultaYcompra AS
@@ -850,7 +850,7 @@ FROM mario_killers.Bono_Consulta
 	join mario_killers.Compra ON Compra.id = Bono_Consulta.compra
 	join mario_killers.Afiliado on Afiliado.persona = Compra.persona
 	join mario_killers.Grupo_Familia on Grupo_Familia.codigo = Afiliado.grupo_familia
-	join mario_killers.Plan_Medico on Plan_Medico.codigo = Grupo_Familia.codigo
+	join mario_killers.Plan_Medico on Plan_Medico.codigo = Grupo_Familia.plan_medico
 GO
 
 CREATE VIEW mario_killers.TurnosPorPaciente AS

@@ -59,7 +59,7 @@ namespace Clinica_Frba.Clases
             decimal cant_atenciones = 0;
             List<SqlParameter> ListaParametros3 = new List<SqlParameter>();
             ListaParametros3.Add(new SqlParameter("@persona", afiliado.Codigo_Persona));
-            String query = @"SELECT COUNT(*)
+            String query = @"SELECT COUNT(*) AS cant_aten
                              FROM mario_killers.Atencion A JOIN mario_killers.Turno T ON T.id = A.id
                              WHERE T.persona = @persona";
 
@@ -67,7 +67,7 @@ namespace Clinica_Frba.Clases
             if (lector.HasRows)
             {
                 lector.Read();
-                cant_atenciones = (decimal)lector["plan_medico"];
+                cant_atenciones = (decimal)lector["cant_aten"];
             }
 
             //REGISTRAR HORARIO LLEGADA Y CANT CONSULTAS

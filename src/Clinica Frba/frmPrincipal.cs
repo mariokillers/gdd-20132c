@@ -58,7 +58,7 @@ namespace Clinica_Frba
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             listaDeRoles = Usuarios.ObtenerRoles(User);
-            if (listaDeRoles.Count > 1)
+            if (listaDeRoles.Count > 0)
             {
                 //DAR LA OPCION DE LOGEARSE CON EL ROL QUE QUIERE
                 label1.Visible = true;

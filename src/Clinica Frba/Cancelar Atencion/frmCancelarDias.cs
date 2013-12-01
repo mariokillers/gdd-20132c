@@ -99,11 +99,16 @@ namespace Clinica_Frba.Cancelar_Atencion
                     else
                     {
                         MessageBox.Show("El dia/rango no puede cancelarse por ser en menos de 24hs.", "Aviso", MessageBoxButtons.OK);
+                        dtpInicio.Enabled = true;
+                        cmdRango.Enabled = true;
+                        dtpFin.Visible = false;
+                        lbl26.Visible = false;
                     }
                 }
                 catch
                 {
                     MessageBox.Show("Error al intentar cancelar.", "Error", MessageBoxButtons.OK);
+                    this.Close();
                 }
             }
             else

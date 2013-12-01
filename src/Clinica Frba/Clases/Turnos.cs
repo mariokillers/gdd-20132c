@@ -132,19 +132,6 @@ namespace Clinica_Frba.Clases
 
         public static void AnularRango(int profesional, DateTime fechaInicio, DateTime fechaFin, decimal tipo, String motivo)
         {
-            List<SqlParameter> ListaParametros = new List<SqlParameter>();
-            ListaParametros.Add(new SqlParameter("@profesional", profesional));
-            SqlParameter facha = new SqlParameter("@fechaInicio", System.Data.SqlDbType.Date);
-            facha.Value = fechaInicio.Date;
-            ListaParametros.Add(facha);
-            SqlParameter facha2 = new SqlParameter("@fechaFin", System.Data.SqlDbType.Date);
-            facha2.Value = fechaFin.Date;
-            ListaParametros.Add(facha2);
-
-            SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
-            paramRet.Direction = System.Data.ParameterDirection.Output;
-            ListaParametros.Add(paramRet);
-            Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.anularRango", ListaParametros);
 
             //Registro las cancleaciones
             List<SqlParameter> ListaParametros2 = new List<SqlParameter>();
@@ -156,7 +143,7 @@ namespace Clinica_Frba.Clases
             fechaFinal.Value = fechaFin.Date;
             ListaParametros2.Add(fechaFinal);
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id FROM mario_killers.Turno WHERE profesional = @profesional AND CONVERT(DATE,horario) BETWEEN CONVERT(DATE,@horarioInicio) AND CONVERT(DATE,@horarioFin)", "T", ListaParametros2);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT id FROM mario_killers.Turno WHERE profesional = @profesional AND CONVERT(DATE,horario) BETWEEN CONVERT(DATE,@horarioInicio) AND CONVERT(DATE,@horarioFin) AND activo = 1", "T", ListaParametros2);
 
             if (lector.HasRows)
             {
@@ -173,8 +160,21 @@ namespace Clinica_Frba.Clases
                     Clases.BaseDeDatosSQL.EscribirEnBase("INSERT INTO mario_killers.Cancelacion (tipo, motivo, persona, turno) VALUES (@tipo, @motivo, @persona, @turno)", "T", ListaParametros3);
 
                 }
-            } 
-
             }
+
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@profesional", profesional));
+            SqlParameter facha = new SqlParameter("@fechaInicio", System.Data.SqlDbType.Date);
+            facha.Value = fechaInicio.Date;
+            ListaParametros.Add(facha);
+            SqlParameter facha2 = new SqlParameter("@fechaFin", System.Data.SqlDbType.Date);
+            facha2.Value = fechaFin.Date;
+            ListaParametros.Add(facha2);
+
+            SqlParameter paramRet = new SqlParameter("@ret", System.Data.SqlDbType.Decimal);
+            paramRet.Direction = System.Data.ParameterDirection.Output;
+            ListaParametros.Add(paramRet);
+            Clases.BaseDeDatosSQL.ExecStoredProcedure("mario_killers.anularRango", ListaParametros);
+        }            
     }
 }

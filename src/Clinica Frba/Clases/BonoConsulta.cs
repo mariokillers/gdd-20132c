@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Clinica_Frba.Clases
 {
@@ -56,7 +57,7 @@ namespace Clinica_Frba.Clases
         {
 
             //NUMERO DE CONSULTAS DEL AFILIADO
-            decimal cant_atenciones = 0;
+            int cant_atenciones = 0;
             List<SqlParameter> ListaParametros3 = new List<SqlParameter>();
             ListaParametros3.Add(new SqlParameter("@persona", afiliado.Codigo_Persona));
             String query = @"SELECT COUNT(*) AS cant_aten
@@ -67,7 +68,7 @@ namespace Clinica_Frba.Clases
             if (lector.HasRows)
             {
                 lector.Read();
-                cant_atenciones = (decimal)lector["cant_aten"];
+                cant_atenciones = (int)lector["cant_aten"];
             }
 
             //REGISTRAR HORARIO LLEGADA Y CANT CONSULTAS

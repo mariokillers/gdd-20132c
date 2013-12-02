@@ -625,7 +625,7 @@ INSERT INTO mario_killers.Tipo_Documento (tipo)
 	VALUES ('DNI'), ('CI'), ('LC'), ('LE'), ('X');
 
 INSERT INTO mario_killers.Rol (nombre)
-	VALUES ('Administrativo'),
+	VALUES ('Administrador General'),
 	       ('Profesional'),
 	       ('Afiliado');
 	       

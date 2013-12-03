@@ -35,7 +35,7 @@ namespace Clinica_Frba.Cancelar_Atencion
         {
             try
             {
-                unaAgenda.armarAgenda(unUsuario.Codigo_Persona);
+                unaAgenda.armarAgendaSinEspecialidad(unUsuario.Codigo_Persona);
 
                 dtpInicio.MinDate = unaAgenda.FechaDesde;
                 dtpInicio.MaxDate = unaAgenda.FechaHasta;

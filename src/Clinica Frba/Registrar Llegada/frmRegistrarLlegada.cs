@@ -20,6 +20,7 @@ namespace Clinica_Frba.Registrar_Llegada
 
         public Afiliado afiliado = new Afiliado();
         public Profesional profesional = new Profesional();
+        public decimal especialidad { get; set; }
         public Agenda unaAgenda = new Agenda();
         public List<Turno> listaTurnos = new List<Turno>();
         public Turno turno = new Turno();
@@ -30,7 +31,7 @@ namespace Clinica_Frba.Registrar_Llegada
             grillaHorarios.MultiSelect = false;
             btnTurno.Enabled = false;
 
-            if (profesional != null) unaAgenda.armarAgenda(profesional.Id);
+            if (profesional != null) unaAgenda.armarAgenda(profesional.Id, especialidad);
 
             generarGrilla();
         }
@@ -52,7 +53,7 @@ namespace Clinica_Frba.Registrar_Llegada
 
         public Boolean cargarGrilla()
         {
-            if (profesional != null) unaAgenda.armarAgenda(profesional.Id);
+            if (profesional != null) unaAgenda.armarAgenda(profesional.Id, especialidad);
             listaTurnos = Utiles.ObtenerTurnosDia(unaAgenda, (DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"])));
             if (listaTurnos.Count != 0)
             {

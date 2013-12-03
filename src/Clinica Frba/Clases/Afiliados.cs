@@ -52,6 +52,7 @@ namespace Clinica_Frba.Clases
                 {
                     Afiliado unAfiliado = new Afiliado();
                     unAfiliado.Id = (int)(decimal)lector["persona"];
+                    unAfiliado.Codigo_Persona = unAfiliado.Id;
                     unAfiliado.Apellido = (string)lector["apellido"];
                     unAfiliado.Nombre = (string)lector["nombre"];
                     unAfiliado.Numero_Grupo = (decimal)lector["grupo_familia"];

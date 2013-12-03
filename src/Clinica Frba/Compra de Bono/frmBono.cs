@@ -165,12 +165,11 @@ namespace Clinica_Frba.NewFolder3
 
         private void cmdConfirmar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                afiliado = new Afiliado(txtNumAfil.Text);
-
-                lblNumeroAfiliado.Visible = false;
-                txtNumAfil.Visible = false;
+            afiliado = new Afiliado(txtNumAfil.Text);
+            if(afiliado.Codigo_Persona != 0)
+            {            
+                lblNumeroAfiliado.Text = (String)""+afiliado.Apellido + ", " + afiliado.Nombre;
+                txtNumAfil.Enabled = false;
                 cmdConfirmar.Visible = false;
                 grillaBonos.Visible = true;
                 tlpDatos.Visible = true;
@@ -183,10 +182,10 @@ namespace Clinica_Frba.NewFolder3
 
                 lblGrupoFamiliar.Text = afiliado.Numero_Familiar.ToString();
                 lblPrecioPorBono.Text = (new BonoConsulta(afiliado)).Precio.ToString();
-                lblNumeroAfiliado.Text = afiliado.Numero_Familiar.ToString() + afiliado.Numero_Grupo.ToString();
+          //      lblNumeroAfiliado.Text = afiliado.Numero_Familiar.ToString() + afiliado.Numero_Grupo.ToString();
                 lblPlanMedico.Text = afiliado.Plan_Medico.ToString(); //ES UN NOMBRE?
             }
-            catch { MessageBox.Show("El afiliado no existe", "Error!", MessageBoxButtons.OK); }
+            else { MessageBox.Show("El afiliado no existe", "Error!", MessageBoxButtons.OK); }
         }
 
         private void rbConsulta_CheckedChanged(object sender, EventArgs e)

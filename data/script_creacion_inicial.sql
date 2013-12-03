@@ -647,35 +647,47 @@ INSERT INTO mario_killers.Funcionalidad (nombre)
 	       ('Pedido de turno');
 
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'ABM de roles';
+	@rol = 'Administrador General', @func = 'ABM de roles';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'ABM de afiliados';
+	@rol = 'Administrador General', @func = 'ABM de afiliados';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'ABM de profesionales';
+	@rol = 'Administrador General', @func = 'ABM de profesionales';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'ABM de especialidades medicas';
+	@rol = 'Administrador General', @func = 'ABM de especialidades medicas';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'ABM de planes';
+	@rol = 'Administrador General', @func = 'ABM de planes';
+EXEC mario_killers.agregar_funcionalidad
+	@rol = 'Administrador General', @func = 'Registrar agenda profesional';
 EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Profesional', @func = 'Registrar agenda profesional';
 EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Afiliado', @func = 'Compra de bonos';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'Compra de bonos';	
+	@rol = 'Administrador General', @func = 'Compra de bonos';	
 EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Afiliado', @func = 'Pedido de turno';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'Registro de llegada para atencion medica';
+	@rol = 'Administrador General', @func = 'Pedido de turno';
+EXEC mario_killers.agregar_funcionalidad
+	@rol = 'Administrador General', @func = 'Registro de llegada para atencion medica';
 EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Profesional', @func = 'Registro de resultado para atencion medica';
 EXEC mario_killers.agregar_funcionalidad
+	@rol = 'Administrador General', @func = 'Registro de resultado para atencion medica';
+EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Profesional', @func = 'Cancelar dia';
+EXEC mario_killers.agregar_funcionalidad
+	@rol = 'Administrador General', @func = 'Cancelar dia';
 EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Afiliado', @func = 'Cancelar atencion medica';
 EXEC mario_killers.agregar_funcionalidad
+	@rol = 'Administrador General', @func = 'Cancelar atencion medica';
+EXEC mario_killers.agregar_funcionalidad
 	@rol = 'Profesional', @func = 'Confeccionar receta medica';
 EXEC mario_killers.agregar_funcionalidad
-	@rol = 'Administrativo', @func = 'Consultar listado estadistico';
+	@rol = 'Administrador General', @func = 'Confeccionar receta medica';
+EXEC mario_killers.agregar_funcionalidad
+	@rol = 'Administrador General', @func = 'Consultar listado estadistico';
 
 SET IDENTITY_INSERT mario_killers.Tipo_Cancelacion ON
 INSERT INTO mario_killers.Tipo_Cancelacion (id, descripcion) VALUES (1, 'Evento Imprevisto')

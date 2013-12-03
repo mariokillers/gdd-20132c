@@ -27,24 +27,24 @@ namespace Clinica_Frba.Clases
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@persona", codigoPersona));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Afiliado join mario_killers.Grupo_Familia on grupo_familia=codigo where persona=@persona", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Afiliado join mario_killers.Grupo_Familia on grupo_familia=codigo JOIN mario_killers.Persona on id = persona where persona=@persona", "T", ListaParametros);
 
             if (lector.HasRows)
             {
                 lector.Read();
                 
-                //Apellido = (string)lector["apellido"];
-                //Nombre = (string)lector["nombre"];
+                Apellido = (string)lector["apellido"];
+                Nombre = (string)lector["nombre"];
                 Numero_Grupo = (decimal)lector["grupo_familia"];
                 Numero_Familiar = (decimal)lector["nro_familiar"];
-                //NumeroDocumento = (int)lector["documento"];
+                NumeroDocumento = (decimal)lector["documento"];
                 Plan_Medico = (decimal)lector["plan_medico"];
-                //FechaNacimiento = (DateTime)lector["fecha_nac"];
-                //Direccion = (String)lector["direccion"];
-                //TipoDocumento = (int)lector["tipo_doc"];
-                //Sexo = (String)lector["sexo"];
-                //Mail = (String)lector["mail"];
-                //Telefono = (int)lector["telefono"];
+                FechaNacimiento = (DateTime)lector["fecha_nac"];
+                Direccion = (String)lector["direccion"];
+                TipoDocumento = (decimal)lector["tipo_doc"];
+                Sexo = (String)lector["sexo"];
+                Mail = (String)lector["mail"];
+                Telefono = (decimal)lector["telefono"];
                 Cantidad_Hijos = (decimal)lector["cant_hijos"];
                 Estado_Civil = (decimal)lector["estado_civil"];
                 Activo = (bool)lector["activo"];

@@ -19,7 +19,47 @@ namespace Clinica_Frba.Clases
             Rangos = new List<Rango>();
         }
 
-        public void armarAgenda(decimal pro)
+        public void armarAgenda(decimal pro, decimal esp)
+        {
+            List<SqlParameter> ListaParametros = new List<SqlParameter>();
+            ListaParametros.Add(new SqlParameter("@id", pro));
+            String query = @"SELECT desde, hasta 
+                         FROM mario_killers.Agenda
+                         WHERE profesional = @id";
+
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader(query, "T", ListaParametros);
+
+            if (lector.HasRows)
+            {
+                lector.Read();
+                this.FechaDesde = (DateTime)lector["desde"];
+                this.FechaHasta = (DateTime)lector["hasta"];
+            }
+
+            /*---ARMAR LOS RANGOS----*/
+            List<SqlParameter> ListaParametros2 = new List<SqlParameter>();
+            ListaParametros2.Add(new SqlParameter("@id", pro));
+            ListaParametros2.Add(new SqlParameter("@esp", esp));
+            String queryRangos = @"SELECT dia, hora_desde, hora_hasta
+                            FROM mario_killers.Rango    
+                            WHERE profesional = @id AND especialidad = @esp";
+            SqlDataReader lector2 = Clases.BaseDeDatosSQL.ObtenerDataReader(queryRangos, "T", ListaParametros2);
+
+            if (lector2.HasRows)
+            {
+                while (lector2.Read())
+                {
+                    TimeSpan desde = (TimeSpan)lector2["hora_desde"];
+                    TimeSpan hasta = (TimeSpan)lector2["hora_hasta"];
+                    int dia = (int)(decimal)lector2["dia"];
+                    Dias diau = new Dias(dia);
+                    Rango unRango = new Rango(diau, desde, hasta);
+                    this.Rangos.Add(unRango);
+                }
+            }
+        }
+
+        public void armarAgendaSinEspecialidad(decimal pro)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@id", pro));

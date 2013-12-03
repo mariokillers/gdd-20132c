@@ -34,13 +34,14 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbEspecialidades = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.lbl1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grillaProfesionales)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAction
             // 
-            this.btnAction.Location = new System.Drawing.Point(12, 280);
+            this.btnAction.Location = new System.Drawing.Point(364, 280);
             this.btnAction.Name = "btnAction";
             this.btnAction.Size = new System.Drawing.Size(75, 34);
             this.btnAction.TabIndex = 15;
@@ -97,11 +98,22 @@
             this.label5.TabIndex = 3;
             this.label5.Text = "Especialidad:";
             // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl1.Location = new System.Drawing.Point(9, 301);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(44, 13);
+            this.lbl1.TabIndex = 16;
+            this.lbl1.Text = "Afiliado:";
+            // 
             // lstTurno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(452, 323);
+            this.Controls.Add(this.lbl1);
             this.Controls.Add(this.btnAction);
             this.Controls.Add(this.grillaProfesionales);
             this.Controls.Add(this.cmdBuscar);
@@ -113,6 +125,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -124,5 +137,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cmbEspecialidades;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbl1;
     }
 }

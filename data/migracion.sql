@@ -247,7 +247,6 @@ GO
 
 INSERT INTO mario_killers.Rol_Usuario
 	VALUES ('admin', 1),
-	       ('admin', 2),
 	       ('prof', 2),
 	       ('afil', 3)	       	       
 GO

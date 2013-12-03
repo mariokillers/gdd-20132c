@@ -198,16 +198,34 @@ namespace Clinica_Frba
 
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            lstTurno frmTurno = new lstTurno();
-            frmTurno.unUser = this.User;
-            frmTurno.Show();
+            if (unRol.Nombre != "Administrador General")
+            {
+                lstTurno frmTurno = new lstTurno();
+                frmTurno.unAfiliado = new Afiliado(this.User.Codigo_Persona);
+                frmTurno.Show();
+            }
+            else
+            {
+                lstSeleccionAfiliado formAfil = new lstSeleccionAfiliado();
+                formAfil.Operacion = "Pedir Turno";
+                formAfil.Show();
+            }
         }
 
         private void cancelarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmCancelarAtencion cancel = new frmCancelarAtencion();
-            cancel.unUsuario = this.User;
-            cancel.Show();
+            if (unRol.Nombre != "Administrador General")
+            {
+                frmCancelarAtencion cancel = new frmCancelarAtencion();
+                cancel.unAfiliado = new Afiliado(this.User.Codigo_Persona);
+                cancel.Show();
+            }
+            else
+            {
+                lstSeleccionAfiliado formAfil = new lstSeleccionAfiliado();
+                formAfil.Operacion = "Cancelar Turno";
+                formAfil.Show();
+            }
         }
 
         private void cmdEstadisticas_Click(object sender, EventArgs e)

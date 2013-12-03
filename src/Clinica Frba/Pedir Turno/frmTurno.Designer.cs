@@ -38,6 +38,7 @@
             this.lblProfesional = new System.Windows.Forms.Label();
             this.lblEspecialidad = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.lbl1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grillaHorarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +53,7 @@
             // 
             // btnAction
             // 
-            this.btnAction.Location = new System.Drawing.Point(27, 357);
+            this.btnAction.Location = new System.Drawing.Point(354, 346);
             this.btnAction.Name = "btnAction";
             this.btnAction.Size = new System.Drawing.Size(100, 34);
             this.btnAction.TabIndex = 18;
@@ -131,11 +132,22 @@
             this.label4.TabIndex = 23;
             this.label4.Text = "Especialidad del Profesional:";
             // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl1.Location = new System.Drawing.Point(24, 367);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(44, 13);
+            this.lbl1.TabIndex = 25;
+            this.lbl1.Text = "Afiliado:";
+            // 
             // frmTurno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(468, 401);
+            this.ClientSize = new System.Drawing.Size(468, 388);
+            this.Controls.Add(this.lbl1);
             this.Controls.Add(this.lblEspecialidad);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblProfesional);
@@ -167,5 +179,6 @@
         private System.Windows.Forms.Label lblProfesional;
         private System.Windows.Forms.Label lblEspecialidad;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbl1;
     }
 }

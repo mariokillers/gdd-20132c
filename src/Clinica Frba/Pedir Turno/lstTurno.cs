@@ -23,7 +23,7 @@ namespace Clinica_Frba.NewFolder4
         private List<Profesional> listaDeProfesionales = new List<Profesional>();
         private List<SqlParameter> ListaDeParametros = new List<SqlParameter>();
         public Profesional unaProfesional = new Profesional();
-        public Usuario unUser = new Usuario();
+        public Afiliado unAfiliado = new Afiliado();
 
         private void lstTurno_Load(object sender, EventArgs e)
         {
@@ -63,6 +63,8 @@ namespace Clinica_Frba.NewFolder4
             ColDoc.HeaderText = "Documento";
             ColDoc.Width = 120;
             grillaProfesionales.Columns.Add(ColDoc);
+
+            lbl1.Text = "Afiliado: " + unAfiliado.Apellido + ", " + unAfiliado.Nombre;
         }
 
         private void cmdBuscar_Click(object sender, EventArgs e)
@@ -82,7 +84,7 @@ namespace Clinica_Frba.NewFolder4
                 frmTurno frmTurno = new frmTurno();
                 frmTurno.unProfesional = (Profesional)grillaProfesionales.CurrentRow.DataBoundItem;
                 frmTurno.unaEspecialidad = (decimal)cmbEspecialidades.SelectedValue;
-                frmTurno.unUsuario = this.unUser;
+                frmTurno.unAfiliado = this.unAfiliado;
                 frmTurno.Show();
                 this.Close();
             }

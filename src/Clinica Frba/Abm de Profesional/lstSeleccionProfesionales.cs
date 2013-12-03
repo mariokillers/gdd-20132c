@@ -21,10 +21,9 @@ namespace Clinica_Frba.Abm_de_Profesional
         }
         public frmRegistrarLlegada formLlegada { get; set; }
         private List<Profesional> listaDeProfesionales = new List<Profesional>();
-
         private List<SqlParameter> ListaDeParametros = new List<SqlParameter>();
-
         public string Operacion { get; set; }
+        public decimal especialidad { get; set; }
 
         public Profesional unProfesional = new Profesional();
 
@@ -55,11 +54,11 @@ namespace Clinica_Frba.Abm_de_Profesional
 
         public void ActualizarGrilla()
         {
-            decimal unaEspecialidad = (decimal)cmbEspecialidades.SelectedValue;
+            especialidad = (decimal)cmbEspecialidades.SelectedValue;
 
-            if (txtNombre.Text != "" || txtApellido.Text != "" || txtDni.Text != "" || txtNumMatricula.Text != "" || unaEspecialidad != 0)
+            if (txtNombre.Text != "" || txtApellido.Text != "" || txtDni.Text != "" || txtNumMatricula.Text != "" || especialidad != 0)
             {
-                listaDeProfesionales = Profesionales.ObtenerProfesionales(txtNombre.Text, txtApellido.Text, txtDni.Text, txtNumMatricula.Text, unaEspecialidad);
+                listaDeProfesionales = Profesionales.ObtenerProfesionales(txtNombre.Text, txtApellido.Text, txtDni.Text, txtNumMatricula.Text, especialidad);
             }
             else
             {
@@ -145,6 +144,7 @@ namespace Clinica_Frba.Abm_de_Profesional
                         {
                             Profesional profesional = (Profesional)grillaProfesionales.CurrentRow.DataBoundItem;
                             formLlegada.profesional = profesional;
+                            formLlegada.especialidad = especialidad;
                             if (formLlegada.cargarGrilla())
                             {
                                 formLlegada.Show();

@@ -118,7 +118,7 @@
             // lblNumeroAfiliado
             // 
             this.lblNumeroAfiliado.AutoSize = true;
-            this.lblNumeroAfiliado.Location = new System.Drawing.Point(10, 27);
+            this.lblNumeroAfiliado.Location = new System.Drawing.Point(26, 27);
             this.lblNumeroAfiliado.Name = "lblNumeroAfiliado";
             this.lblNumeroAfiliado.Size = new System.Drawing.Size(148, 13);
             this.lblNumeroAfiliado.TabIndex = 7;

@@ -16,7 +16,7 @@ namespace Clinica_Frba.NewFolder7
         {
             InitializeComponent();
         }
-        public Usuario unUsuario = new Usuario();
+        public Afiliado unAfiliado = new Afiliado();
         public String Operacion { get; set; }
         public List<Turno> listaTurnos { get; set; }
         public Turno unTurno { get; set; }
@@ -31,6 +31,8 @@ namespace Clinica_Frba.NewFolder7
             cmbCancelacion.DataSource = listaDeTipos;
             cmbCancelacion.ValueMember = "id";
             cmbCancelacion.DisplayMember = "descripcion";
+
+            lbl1.Text = "Afiliado: " + unAfiliado.Apellido + ", " + unAfiliado.Nombre;
 
             cargarGrilla();
         }
@@ -60,7 +62,7 @@ namespace Clinica_Frba.NewFolder7
 
         public void ActualizarGrilla()
         {
-            listaTurnos = Turnos.ObtenerTurnos(this.unUsuario.Codigo_Persona);
+            listaTurnos = Turnos.ObtenerTurnos(this.unAfiliado.Codigo_Persona);
             
             //meto el resultado en la grilla
             grillaTurnos.DataSource = listaTurnos;

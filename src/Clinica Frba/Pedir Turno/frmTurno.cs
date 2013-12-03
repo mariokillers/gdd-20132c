@@ -19,7 +19,7 @@ namespace Clinica_Frba.Pedir_Turno
             InitializeComponent();
         }
 
-        public Usuario unUsuario = new Usuario();
+        public Afiliado unAfiliado = new Afiliado();
         public Profesional unProfesional = new Profesional();
         public Agenda unaAgenda = new Agenda();
         public List<Turno> listaTurnos = new List<Turno>();
@@ -33,7 +33,7 @@ namespace Clinica_Frba.Pedir_Turno
         {
             try
             {
-                unaAgenda.armarAgenda(unProfesional.Id);
+                unaAgenda.armarAgenda(unProfesional.Id, unaEspecialidad);
 
                 if (unaAgenda.FechaDesde < DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]).Date)
                 {
@@ -44,12 +44,14 @@ namespace Clinica_Frba.Pedir_Turno
                     dtpFechas.MinDate = unaAgenda.FechaDesde;
                 }
                 dtpFechas.MaxDate = unaAgenda.FechaHasta;
+
+                lbl1.Text = "Afiliado: " + unAfiliado.Apellido + ", " + unAfiliado.Nombre;
             }
             catch
             {
                 MessageBox.Show("El profesional seleccionado no tiene una agenda disponible", "Error", MessageBoxButtons.OK);
                 lstTurno frmTurno = new lstTurno();
-                frmTurno.unUser = this.unUsuario;
+                frmTurno.unAfiliado = this.unAfiliado;
                 frmTurno.Show();
                 this.Close();
             }
@@ -124,7 +126,7 @@ namespace Clinica_Frba.Pedir_Turno
                 unTurno = (Turno)grillaHorarios.CurrentRow.DataBoundItem;
                 unTurno.Codigo_Profesional = unProfesional.Id;
                 unTurno.Codigo_Especialidad = unaEspecialidad;
-                unTurno.Codigo_Persona = unUsuario.Codigo_Persona;
+                unTurno.Codigo_Persona = unAfiliado.Codigo_Persona;
 
                 nro_turno = Turnos.AgregarTurno(unTurno);
                 if (nro_turno != 0)

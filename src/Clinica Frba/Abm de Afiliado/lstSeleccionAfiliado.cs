@@ -12,6 +12,8 @@ using System.Data.SqlClient;
 using Clinica_Frba.NewFolder12;
 using Clinica_Frba.Abm_de_Profesional;
 using Clinica_Frba.NewFolder6;
+using Clinica_Frba.NewFolder4;
+using Clinica_Frba.NewFolder7;
 
 namespace Clinica_Frba.Abm_de_Afiliado
 {
@@ -44,7 +46,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
             cargarGrilla();
 
-            if (Operacion == "Seleccion")
+            if (Operacion == "Seleccion" || Operacion == "Pedir Turno" || Operacion == "Cancelar Turno")
             {
                 btnAction.Text = "Seleccionar";
                 btnGrupoFlia.Visible = false;
@@ -179,6 +181,20 @@ namespace Clinica_Frba.Abm_de_Afiliado
                         formAtencion.afiliado = unAfiliado;
                         formAtencion.profesional = profesional;
                         formAtencion.Show();
+                        this.Close();
+                    }
+                    if (Operacion == "Pedir Turno")
+                    {
+                        lstTurno lstTurno = new lstTurno();
+                        lstTurno.unAfiliado = unAfiliado;
+                        lstTurno.Show();
+                        this.Close();
+                    }
+                    if (Operacion == "Cancelar Turno")
+                    {
+                        frmCancelarAtencion cancel = new frmCancelarAtencion();
+                        cancel.unAfiliado = unAfiliado;
+                        cancel.Show();
                         this.Close();
                     }
                 }

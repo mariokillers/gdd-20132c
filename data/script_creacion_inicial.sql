@@ -75,7 +75,12 @@ AS BEGIN
 DECLARE @pers numeric(18,0)
 SET @pers = (SELECT id FROM mario_killers.Persona WHERE tipo_doc = @tipo_doc AND documento = @documento)
 INSERT INTO mario_killers.Profesional (persona, matricula)
-	VALUES (@pers, @matricula) SET @ret = @pers
+	VALUES (@pers, @matricula) 
+ 
+INSERT INTO mario_killers.Rol_Usuario (usuario, rol)
+	VALUES (CONVERT(VARCHAR(255),@documento), 2)	
+
+SET @ret = @pers
 END
 GO
 
@@ -100,7 +105,16 @@ INSERT INTO mario_killers.Persona (nombre, apellido, documento,
 DECLARE @pers numeric(18,0)
 SET @pers = SCOPE_IDENTITY()
 INSERT INTO mario_killers.Profesional (persona, matricula)
-	VALUES (@pers, @matricula) SET @ret = @pers
+	VALUES (@pers, @matricula) 
+
+DECLARE @usr VARCHAR(255)
+SET @usr = CONVERT(VARCHAR(255),@documento)
+INSERT INTO mario_killers.Usuario (nombre, persona, pw)
+	VALUES (@usr, @pers, '24afe47d0bd302ae42643c5848d99b683264026cd12cc998e05e100bbf2dc30d')
+	
+INSERT INTO mario_killers.Rol_Usuario (usuario, rol)
+	VALUES (@usr, 2)
+SET @ret = @pers
 END
 GO
 
@@ -144,7 +158,16 @@ SET @pers = SCOPE_IDENTITY()
 IF(@nro_flia = 0) BEGIN SET @nro_flia = (SELECT COUNT(nro_familiar)+1 FROM mario_killers.Afiliado WHERE grupo_familia = @grupo_familia) END
 
 INSERT INTO mario_killers.Afiliado (persona, estado_civil, grupo_familia, nro_familiar, cant_hijos)
-	VALUES (@pers, @estado_civil, @grupo_familia, @nro_flia, @cant_hijos) SET @ret = @grupo_familia
+	VALUES (@pers, @estado_civil, @grupo_familia, @nro_flia, @cant_hijos) 
+	
+DECLARE @usr VARCHAR(255)
+SET @usr = CONVERT(VARCHAR(255),@documento)
+INSERT INTO mario_killers.Usuario (nombre, persona, pw)
+	VALUES (@usr, @pers, '1aeaeba4bdbf8907638434b60504b1037c01905bec294fb2cd5348724f2fa64f')
+	
+INSERT INTO mario_killers.Rol_Usuario (usuario, rol)
+	VALUES (@usr, 3)
+SET @ret = @grupo_familia
 END
 GO
 
@@ -163,7 +186,11 @@ SET @pers = (SELECT id FROM mario_killers.Persona WHERE tipo_doc = @tipo_doc AND
 IF(@nro_flia = 0) BEGIN SET @nro_flia = (SELECT COUNT(nro_familiar)+1 FROM mario_killers.Afiliado WHERE grupo_familia = @grupo_familia) END
 
 INSERT INTO mario_killers.Afiliado (persona, estado_civil, grupo_familia, nro_familiar, cant_hijos)
-	VALUES (@pers, @estado_civil, @grupo_familia, @nro_flia, @cant_hijos) SET @ret = @grupo_familia
+	VALUES (@pers, @estado_civil, @grupo_familia, @nro_flia, @cant_hijos) 
+
+INSERT INTO mario_killers.Rol_Usuario (usuario, rol)
+	VALUES (CONVERT(VARCHAR(255),@documento), 3)	
+SET @ret = @pers
 END
 GO
 
@@ -181,7 +208,11 @@ INSERT INTO mario_killers.Grupo_Familia (plan_medico)
 	VALUES (@plan_medico)
 DECLARE @grupo numeric(18,0) SET @grupo = SCOPE_IDENTITY()
 INSERT INTO mario_killers.Afiliado (persona, estado_civil, grupo_familia, nro_familiar, cant_hijos)
-	VALUES (@pers, @estado_civil, @grupo, @nro_flia, @cant_hijos) SET @ret = @grupo
+	VALUES (@pers, @estado_civil, @grupo, @nro_flia, @cant_hijos) 
+
+INSERT INTO mario_killers.Rol_Usuario (usuario, rol)
+	VALUES (CONVERT(VARCHAR(255),@documento), 3)	
+SET @ret = @grupo
 END
 GO
 
@@ -213,7 +244,17 @@ INSERT INTO mario_killers.Grupo_Familia (plan_medico)
 	VALUES (@plan_medico)
 DECLARE @grupo numeric(18,0) SET @grupo = SCOPE_IDENTITY()
 INSERT INTO mario_killers.Afiliado (persona, estado_civil, grupo_familia, nro_familiar, cant_hijos)
-	VALUES (@pers, @estado_civil, @grupo, @nro_flia, @cant_hijos) SET @ret = @grupo
+	VALUES (@pers, @estado_civil, @grupo, @nro_flia, @cant_hijos) 
+	
+DECLARE @usr VARCHAR(255)
+SET @usr = CONVERT(VARCHAR(255),@documento)
+INSERT INTO mario_killers.Usuario (nombre, persona, pw)
+	VALUES (@usr, @pers, '1aeaeba4bdbf8907638434b60504b1037c01905bec294fb2cd5348724f2fa64f')
+	
+INSERT INTO mario_killers.Rol_Usuario (usuario, rol)
+	VALUES (@usr, 3)	
+	
+SET @ret = @grupo
 END
 GO
 

@@ -37,6 +37,9 @@ namespace Clinica_Frba.Registrar_Agenda
             grillaHorarios.AutoGenerateColumns = false;
             grillaHorarios.MultiSelect = false;
 
+            dtpDesde.MinDate = DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]);
+            dtpHasta.MinDate = DateTime.Parse(System.Configuration.ConfigurationSettings.AppSettings["Fecha"]);
+
             generarGrilla();
 
             //OBTENGO LOS DIAS

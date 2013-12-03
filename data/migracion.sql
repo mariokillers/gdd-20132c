@@ -238,7 +238,8 @@ ALTER TABLE mario_killers.Turno WITH NOCHECK
 
 ------ Admin, un profesional y un afiliado cualquieras de la migracion (no hay datos fruta)	
 INSERT INTO mario_killers.Usuario (nombre, pw)
-	VALUES ('admin', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7')
+	VALUES ('admin', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),
+		   ('administrador', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7');
 	GO
 INSERT INTO mario_killers.Usuario (nombre, pw, persona)
 	VALUES ('prof', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 41522997),
@@ -248,5 +249,6 @@ GO
 INSERT INTO mario_killers.Rol_Usuario
 	VALUES ('admin', 1),
 	       ('prof', 2),
-	       ('afil', 3)	       	       
+	       ('afil', 3),
+	       ('administrador', 4)	       	       
 GO

@@ -26,7 +26,7 @@ namespace Clinica_Frba.NewFolder10
                 if (txtUserName.Text != "" && txtPassword.Text != "")
                 {
                     Usuario user = new Usuario(txtUserName.Text);
-                    if ((user.Codigo_Persona != -1 && user.Codigo_Persona != 0) || (user.Codigo_Persona == -1 && txtUserName.Text == "admin"))
+                    if ((user.Codigo_Persona != -1 && user.Codigo_Persona != 0) || (user.Codigo_Persona == -1 && (txtUserName.Text == "admin" || txtUserName.Text == "administrador")))
                     {
 
                         //comienza el hasheo de la pass

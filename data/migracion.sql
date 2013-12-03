@@ -105,6 +105,16 @@ CREATE VIEW mario_killers.Especialidades_Profesional AS
 	      AND Especialidad_Codigo IS NOT NULL
 GO
 
+CREATE VIEW mario_killers.Usuarios AS
+	SELECT DISTINCT CONVERT(VARCHAR(255), Medico_Dni) AS nombre, Medico_Dni AS persona, '24afe47d0bd302ae42643c5848d99b683264026cd12cc998e05e100bbf2dc30d' AS pw, 2 AS rol
+	FROM gd_esquema.Maestra
+	WHERE Medico_Dni IS NOT NULL
+	UNION 
+	SELECT DISTINCT CONVERT(VARCHAR(255), Paciente_Dni) AS nombre, Paciente_Dni AS persona, '1aeaeba4bdbf8907638434b60504b1037c01905bec294fb2cd5348724f2fa64f' AS pw, 3 AS rol
+	FROM gd_esquema.Maestra
+	WHERE Paciente_Dni IS NOT NULL
+GO
+
 -- Personas
 SET IDENTITY_INSERT mario_killers.Persona ON
 INSERT INTO mario_killers.Persona (id, nombre, apellido, documento, fecha_nac, direccion, telefono, mail, sexo, tipo_doc)
@@ -212,6 +222,18 @@ INSERT INTO mario_killers.Medicamento_Atencion (medicamento, atencion, bono_farm
 	SELECT Bono_Farmacia_Medicamento, Turno_Numero, Bono_Farmacia_Numero
 	FROM mario_killers.Medicamentos_Atencion
 
+--Usuarios
+INSERT INTO mario_killers.Usuario (nombre, persona, pw)
+	SELECT nombre, persona, pw
+	FROM mario_killers.Usuarios
+GO
+	
+--Rol por usuario
+INSERT INTO mario_killers.Rol_Usuario (usuario, rol)
+	SELECT nombre, rol
+	FROM mario_killers.Usuarios
+GO
+
 DROP VIEW mario_killers.Pacientes
          ,mario_killers.Medicos
          ,mario_killers.Especialidades
@@ -221,8 +243,9 @@ DROP VIEW mario_killers.Pacientes
          ,mario_killers.Bonos_Consulta
          ,mario_killers.Turnos
          ,mario_killers.Compras
-         ,mario_killers.Bonos_Farmacia,
-         mario_killers.Especialidades_Profesional
+         ,mario_killers.Bonos_Farmacia
+         ,mario_killers.Especialidades_Profesional
+   --      ,mario_killers.Usuarios
 
 ---------------------- Constraints post-migracion ----------------------
 
@@ -236,19 +259,13 @@ ALTER TABLE mario_killers.Turno WITH NOCHECK
 	ADD CONSTRAINT horario_valido CHECK (mario_killers.Turno_Valido(horario) = 1)
 
 
------- Admin, un profesional y un afiliado cualquieras de la migracion (no hay datos fruta)	
+------ Administrador General (admin) y un Administrativo	
 INSERT INTO mario_killers.Usuario (nombre, pw)
 	VALUES ('admin', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),
 		   ('administrador', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7');
 	GO
-INSERT INTO mario_killers.Usuario (nombre, pw, persona)
-	VALUES ('prof', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 41522997),
-		   ('afil', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1113058);
-GO
 
 INSERT INTO mario_killers.Rol_Usuario
 	VALUES ('admin', 1),
-	       ('prof', 2),
-	       ('afil', 3),
 	       ('administrador', 4)	       	       
 GO

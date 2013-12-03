@@ -270,7 +270,7 @@ namespace Clinica_Frba.Clases
             ListaParametros2.Add(new SqlParameter("@id", id));
             Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Afiliado SET Activo =0 where persona = @id", "T", ListaParametros2);
 
-            //ELIMINAR TURNOS Y REGISTRARLO
+            //REGISTRAR BAJA DE TURNOS
             List<SqlParameter> ListaParametros5 = new List<SqlParameter>();
             ListaParametros5.Add(new SqlParameter("@persona", id));
 
@@ -294,7 +294,6 @@ namespace Clinica_Frba.Clases
             }
 
             //DAR DE BAJA LAS RECETAS DEL PACIENTE
-            //ELIMINAR TURNOS Y REGISTRARLO
             List<SqlParameter> ListaParametros7 = new List<SqlParameter>();
             ListaParametros7.Add(new SqlParameter("@persona", id));
 
@@ -319,6 +318,23 @@ namespace Clinica_Frba.Clases
             List<SqlParameter> ListaParametros4 = new List<SqlParameter>();
             ListaParametros4.Add(new SqlParameter("@id", id));
             Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Turno SET activo = 0 WHERE persona = @id", "T", ListaParametros4);
+
+            //DOY DE BAJA EL ROL DEL USUARIO
+            List<SqlParameter> ListaParametros70 = new List<SqlParameter>();
+            ListaParametros70.Add(new SqlParameter("@persona", id));
+            SqlDataReader lector20 = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT nombre FROM mario_killers.Usuario WHERE persona = @persona", "T", ListaParametros70);
+
+            if (lector20.HasRows)
+            {
+                lector20.Read();
+                String nombre = (String)lector20["nombre"];
+
+                List<SqlParameter> ListaParametros60 = new List<SqlParameter>();
+                ListaParametros60.Add(new SqlParameter("@nombre", nombre));
+                String query = @"DELETE FROM mario_killers.Rol_Usuario
+                        WHERE usuario = @nombre AND rol = 3";
+                Clases.BaseDeDatosSQL.EscribirEnBase(query, "T", ListaParametros60);
+            }
         }
     }
 }

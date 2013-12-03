@@ -68,9 +68,16 @@ namespace Clinica_Frba
 
                 cmbRoles.DataSource = listaDeRoles;
                 cmbRoles.DisplayMember = "Nombre";
-                cmbRoles.ValueMember = "Id";    
+                cmbRoles.ValueMember = "Id";
             }
-            cmdAfiliado.Visible = true;
+            else
+            {
+                MessageBox.Show("El usuario no tiene ningun rol asignado!", "Error!", MessageBoxButtons.OK);
+                frmLogin login = new frmLogin();
+                login.Show();
+                this.Close();
+            }
+            
         }
 
         private void cmdAfiliadoModificacion_Click(object sender, EventArgs e)

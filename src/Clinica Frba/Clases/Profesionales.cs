@@ -124,6 +124,23 @@ namespace Clinica_Frba.Clases
             List<SqlParameter> ListaParametros4 = new List<SqlParameter>();
             ListaParametros4.Add(new SqlParameter("@id", pro));
             Clases.BaseDeDatosSQL.EscribirEnBase("UPDATE mario_killers.Turno SET activo = 0 WHERE profesional = @id", "T", ListaParametros4);
+
+            //DOY DE BAJA EL ROL DEL USUARIO
+            List<SqlParameter> ListaParametros70 = new List<SqlParameter>();
+            ListaParametros70.Add(new SqlParameter("@persona", pro));
+            SqlDataReader lector20 = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT nombre FROM mario_killers.Usuario WHERE persona = @persona", "T", ListaParametros70);
+
+            if (lector20.HasRows)
+            {
+                lector20.Read();
+                String nombre = (String)lector20["nombre"];
+
+                List<SqlParameter> ListaParametros60 = new List<SqlParameter>();
+                ListaParametros60.Add(new SqlParameter("@nombre", nombre));
+                String query = @"DELETE FROM mario_killers.Rol_Usuario
+                        WHERE usuario = @nombre AND rol = 2";
+                Clases.BaseDeDatosSQL.EscribirEnBase(query, "T", ListaParametros60);
+            }
         }
 
         public static void ModificarProfesional(Profesional pro)

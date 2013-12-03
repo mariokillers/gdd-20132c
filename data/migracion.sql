@@ -63,17 +63,6 @@ CREATE VIEW mario_killers.Compras AS
 		AND Bono_Consulta_Numero IS NULL
 GO
 
-CREATE VIEW mario_killers.Bonos_Consulta AS
-	SELECT DISTINCT Bono_Consulta_Numero,
-	                MAX(Turno_Numero) AS Turno_Numero,
-	                MAX(Compra_Bono_Fecha) AS Compra_Bono_Fecha,
-	                Paciente_Dni,
-	                Plan_Med_Codigo
-	FROM gd_esquema.Maestra
-	WHERE Bono_Consulta_Numero IS NOT NULL
-	GROUP BY Bono_Consulta_Numero, Paciente_Dni, Plan_Med_Codigo
-GO
-
 CREATE VIEW mario_killers.Atenciones AS
 	SELECT DISTINCT Turno_Numero, Turno_Fecha, Consulta_Sintomas, Consulta_Enfermedades, Bono_Consulta_Numero
 	FROM gd_esquema.Maestra
@@ -89,6 +78,17 @@ CREATE VIEW mario_killers.Turnos AS
 	FROM gd_esquema.Maestra
 	WHERE Turno_Numero IS NOT NULL
 	GROUP BY Turno_Numero, Paciente_Dni, Medico_Dni, Turno_Fecha, Especialidad_Codigo, Plan_Med_Codigo
+GO
+
+CREATE VIEW mario_killers.Bonos_Consulta AS
+	SELECT DISTINCT M.Bono_Consulta_Numero,
+	                MAX(M.Turno_Numero) AS Turno_Numero,
+	                MAX(M.Compra_Bono_Fecha) AS Compra_Bono_Fecha,
+	                M.Paciente_Dni,
+	                M.Plan_Med_Codigo
+	FROM gd_esquema.Maestra M
+	WHERE M.Bono_Consulta_Numero IS NOT NULL
+	GROUP BY M.Bono_Consulta_Numero, M.Paciente_Dni, M.Plan_Med_Codigo
 GO
 
 CREATE VIEW mario_killers.Bonos_Farmacia AS
@@ -207,9 +207,11 @@ SET IDENTITY_INSERT mario_killers.Compra OFF
 
 -- Bonos consulta
 SET IDENTITY_INSERT mario_killers.Bono_Consulta ON
-INSERT INTO mario_killers.Bono_Consulta (id, compra, plan_medico)
-	SELECT Bono_Consulta_Numero, Bono_Consulta_Numero, Plan_Med_Codigo
-	FROM mario_killers.Bonos_Consulta
+INSERT INTO mario_killers.Bono_Consulta (id, compra, plan_medico, activo)
+	SELECT B.Bono_Consulta_Numero, B.Bono_Consulta_Numero, B.Plan_Med_Codigo, 
+								CASE WHEN EXISTS (SELECT * FROM mario_killers.Atenciones A WHERE A.Bono_Consulta_Numero = B.Bono_Consulta_Numero) THEN 0
+								 ELSE 1 END
+	FROM mario_killers.Bonos_Consulta B
 SET IDENTITY_INSERT mario_killers.Bono_Consulta OFF
 
 -- Bonos farmacia

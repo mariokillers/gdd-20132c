@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Clinica_Frba.Clases;
+using Clinica_Frba.Abm_de_Profesional;
 
 namespace Clinica_Frba.Cancelar_Atencion
 {
@@ -16,7 +17,7 @@ namespace Clinica_Frba.Cancelar_Atencion
         {
             InitializeComponent();
         }
-        public Usuario unUsuario = new Usuario();
+        public Profesional unProfesional = new Profesional();
         public Agenda unaAgenda = new Agenda();
 
         private void cmdRango_Click(object sender, EventArgs e)
@@ -35,7 +36,7 @@ namespace Clinica_Frba.Cancelar_Atencion
         {
             try
             {
-                unaAgenda.armarAgendaSinEspecialidad(unUsuario.Codigo_Persona);
+                unaAgenda.armarAgendaSinEspecialidad(unProfesional.Id);
 
                 dtpInicio.MinDate = unaAgenda.FechaDesde;
                 dtpInicio.MaxDate = unaAgenda.FechaHasta;
@@ -44,6 +45,8 @@ namespace Clinica_Frba.Cancelar_Atencion
                 cmbCancelacion.DataSource = listaDeTipos;
                 cmbCancelacion.ValueMember = "id";
                 cmbCancelacion.DisplayMember = "descripcion";
+
+                lbl1.Text = "Profesional: " + unProfesional.Apellido + ", " + unProfesional.Nombre;
             }
             catch
             {
@@ -71,7 +74,7 @@ namespace Clinica_Frba.Cancelar_Atencion
                             {
                                 try
                                 {
-                                    Turnos.AnularDia(unUsuario.Codigo_Persona, fechaInicio, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
+                                    Turnos.AnularDia(unProfesional.Id, fechaInicio, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
                                     MessageBox.Show("La fecha seleccionada ha sido cancelada correctamente!", "Aviso", MessageBoxButtons.OK);
                                     this.Close();
                                 }
@@ -86,7 +89,7 @@ namespace Clinica_Frba.Cancelar_Atencion
                             DateTime fechaFin = dtpFin.Value;
                             try
                             {
-                                Turnos.AnularRango(unUsuario.Codigo_Persona, fechaInicio, fechaFin, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
+                                Turnos.AnularRango(unProfesional.Id, fechaInicio, fechaFin, (decimal)cmbCancelacion.SelectedValue, txtMotivo.Text);
                                 MessageBox.Show("El rango seleccionado ha sido cancelado correctamente!", "Aviso", MessageBoxButtons.OK);
                                 this.Close();
                             }

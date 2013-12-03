@@ -31,6 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbEspecialidades = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.cmbHoraHasta = new System.Windows.Forms.ComboBox();
             this.cmbHoraDesde = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -47,8 +49,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dtpHasta = new System.Windows.Forms.DateTimePicker();
             this.dtpDesde = new System.Windows.Forms.DateTimePicker();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cmbEspecialidades = new System.Windows.Forms.ComboBox();
+            this.lbl1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grillaHorarios)).BeginInit();
             this.groRango.SuspendLayout();
@@ -89,6 +90,23 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Registrar Dias y Horarios";
+            // 
+            // cmbEspecialidades
+            // 
+            this.cmbEspecialidades.FormattingEnabled = true;
+            this.cmbEspecialidades.Location = new System.Drawing.Point(425, 31);
+            this.cmbEspecialidades.Name = "cmbEspecialidades";
+            this.cmbEspecialidades.Size = new System.Drawing.Size(121, 21);
+            this.cmbEspecialidades.TabIndex = 14;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(448, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(70, 13);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Especialidad:";
             // 
             // cmbHoraHasta
             // 
@@ -185,6 +203,7 @@
             // 
             // groRango
             // 
+            this.groRango.Controls.Add(this.lbl1);
             this.groRango.Controls.Add(this.cmdConfirmarRango);
             this.groRango.Controls.Add(this.label6);
             this.groRango.Controls.Add(this.label5);
@@ -240,22 +259,15 @@
             this.dtpDesde.Size = new System.Drawing.Size(200, 20);
             this.dtpDesde.TabIndex = 0;
             // 
-            // label7
+            // lbl1
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(448, 16);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(70, 13);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Especialidad:";
-            // 
-            // cmbEspecialidades
-            // 
-            this.cmbEspecialidades.FormattingEnabled = true;
-            this.cmbEspecialidades.Location = new System.Drawing.Point(425, 31);
-            this.cmbEspecialidades.Name = "cmbEspecialidades";
-            this.cmbEspecialidades.Size = new System.Drawing.Size(121, 21);
-            this.cmbEspecialidades.TabIndex = 14;
+            this.lbl1.AutoSize = true;
+            this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl1.Location = new System.Drawing.Point(4, 118);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(62, 13);
+            this.lbl1.TabIndex = 26;
+            this.lbl1.Text = "Profesional:";
             // 
             // frmRegistrarAgenda
             // 
@@ -305,5 +317,6 @@
         private System.Windows.Forms.Button cmdConfirmarRango;
         private System.Windows.Forms.ComboBox cmbEspecialidades;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lbl1;
     }
 }

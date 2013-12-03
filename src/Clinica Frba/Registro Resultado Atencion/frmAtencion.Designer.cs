@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbDatos = new System.Windows.Forms.GroupBox();
+            this.btnConfEsp = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbEspecialidades = new System.Windows.Forms.ComboBox();
             this.cmbHora = new System.Windows.Forms.ComboBox();
@@ -46,7 +47,8 @@
             this.cmdGeneraReceta = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.cmdFinalizar = new System.Windows.Forms.Button();
-            this.btnConfEsp = new System.Windows.Forms.Button();
+            this.lbl1 = new System.Windows.Forms.Label();
+            this.lbl2 = new System.Windows.Forms.Label();
             this.gbDatos.SuspendLayout();
             this.gpHistoriaClinica.SuspendLayout();
             this.gpRecetas.SuspendLayout();
@@ -54,6 +56,7 @@
             // 
             // gbDatos
             // 
+            this.gbDatos.Controls.Add(this.lbl2);
             this.gbDatos.Controls.Add(this.btnConfEsp);
             this.gbDatos.Controls.Add(this.label3);
             this.gbDatos.Controls.Add(this.cmbEspecialidades);
@@ -68,6 +71,16 @@
             this.gbDatos.TabIndex = 4;
             this.gbDatos.TabStop = false;
             this.gbDatos.Text = "Datos Atención";
+            // 
+            // btnConfEsp
+            // 
+            this.btnConfEsp.Location = new System.Drawing.Point(230, 74);
+            this.btnConfEsp.Name = "btnConfEsp";
+            this.btnConfEsp.Size = new System.Drawing.Size(75, 23);
+            this.btnConfEsp.TabIndex = 59;
+            this.btnConfEsp.Text = "Confirmar";
+            this.btnConfEsp.UseVisualStyleBackColor = true;
+            this.btnConfEsp.Click += new System.EventHandler(this.btnConfEsp_Click);
             // 
             // label3
             // 
@@ -234,21 +247,32 @@
             this.cmdFinalizar.UseVisualStyleBackColor = true;
             this.cmdFinalizar.Click += new System.EventHandler(this.cmdFinalizar_Click);
             // 
-            // btnConfEsp
+            // lbl1
             // 
-            this.btnConfEsp.Location = new System.Drawing.Point(230, 74);
-            this.btnConfEsp.Name = "btnConfEsp";
-            this.btnConfEsp.Size = new System.Drawing.Size(75, 23);
-            this.btnConfEsp.TabIndex = 59;
-            this.btnConfEsp.Text = "Confirmar";
-            this.btnConfEsp.UseVisualStyleBackColor = true;
-            this.btnConfEsp.Click += new System.EventHandler(this.btnConfEsp_Click);
+            this.lbl1.AutoSize = true;
+            this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl1.Location = new System.Drawing.Point(28, 528);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(62, 13);
+            this.lbl1.TabIndex = 32;
+            this.lbl1.Text = "Profesional:";
+            // 
+            // lbl2
+            // 
+            this.lbl2.AutoSize = true;
+            this.lbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl2.Location = new System.Drawing.Point(6, 16);
+            this.lbl2.Name = "lbl2";
+            this.lbl2.Size = new System.Drawing.Size(44, 13);
+            this.lbl2.TabIndex = 60;
+            this.lbl2.Text = "Afiliado:";
             // 
             // frmAtencion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 524);
+            this.ClientSize = new System.Drawing.Size(570, 550);
+            this.Controls.Add(this.lbl1);
             this.Controls.Add(this.cmdFinalizar);
             this.Controls.Add(this.gpRecetas);
             this.Controls.Add(this.gpHistoriaClinica);
@@ -263,6 +287,7 @@
             this.gpRecetas.ResumeLayout(false);
             this.gpRecetas.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -287,5 +312,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbEspecialidades;
         private System.Windows.Forms.Button btnConfEsp;
+        private System.Windows.Forms.Label lbl1;
+        private System.Windows.Forms.Label lbl2;
     }
 }

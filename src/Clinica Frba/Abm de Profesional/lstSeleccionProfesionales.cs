@@ -10,6 +10,9 @@ using System.Data.SqlClient;
 using Clinica_Frba.Clases;
 using Clinica_Frba.NewFolder13;
 using Clinica_Frba.Registrar_Llegada;
+using Clinica_Frba.Registrar_Agenda;
+using Clinica_Frba.Cancelar_Atencion;
+using Clinica_Frba.Abm_de_Afiliado;
 
 namespace Clinica_Frba.Abm_de_Profesional
 {
@@ -152,6 +155,35 @@ namespace Clinica_Frba.Abm_de_Profesional
                             }
                         }
                         catch { MessageBox.Show("Debe seleccionar algun profesional", "Error!", MessageBoxButtons.OK); }
+                    }
+                    if (Operacion == "Registrar Agenda")
+                    {
+                        frmRegistrarAgenda formAgenda = new frmRegistrarAgenda();
+                        formAgenda.unProfesional = unProfesional;
+                        formAgenda.Show();
+                        this.Close();
+                    }
+                    if (Operacion == "Consultar Agenda")
+                    {
+                        lstSeleccionAgenda formAgenda = new lstSeleccionAgenda();
+                        formAgenda.unProfesional = unProfesional;
+                        formAgenda.Show();
+                        this.Close();
+                    }
+                    if (Operacion == "Cancelar Dias")
+                    {
+                        frmCancelarDias frmCancel = new frmCancelarDias();
+                        frmCancel.unProfesional = unProfesional;
+                        frmCancel.Show();
+                        this.Close();
+                    }
+                    if (Operacion == "Registrar Atencion")
+                    {
+                        lstSeleccionAfiliado formAfil = new lstSeleccionAfiliado();
+                        formAfil.Operacion = "Seleccion";
+                        formAfil.profesional = unProfesional;
+                        formAfil.Show();
+                        this.Close();
                     }
                 }
             }

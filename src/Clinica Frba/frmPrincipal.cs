@@ -147,16 +147,34 @@ namespace Clinica_Frba
 
         private void registrarAgendaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmRegistrarAgenda formAgenda = new frmRegistrarAgenda();
-            formAgenda.unProfesional = new Profesional(User.Codigo_Persona);
-            formAgenda.Show();
+            if (unRol.Nombre != "Administrador General")
+            {
+                frmRegistrarAgenda formAgenda = new frmRegistrarAgenda();
+                formAgenda.unProfesional = new Profesional(User.Codigo_Persona);
+                formAgenda.Show();
+            }
+            else
+            {
+                lstSeleccionProfesionales formProf = new lstSeleccionProfesionales();
+                formProf.Operacion = "Registrar Agenda";
+                formProf.Show();
+            }
         }
 
         private void consultarAgendaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            lstSeleccionAgenda formAgenda = new lstSeleccionAgenda();
-            formAgenda.unProfesional = new Profesional(User.Codigo_Persona);
-            formAgenda.Show();
+            if (unRol.Nombre != "Administrador General")
+            {
+                lstSeleccionAgenda formAgenda = new lstSeleccionAgenda();
+                formAgenda.unProfesional = new Profesional(User.Codigo_Persona);
+                formAgenda.Show();
+            }
+            else
+            {
+                lstSeleccionProfesionales formProf = new lstSeleccionProfesionales();
+                formProf.Operacion = "Consultar Agenda";
+                formProf.Show();
+            }
         }
 
         private void cmdCompraDeBonos_Click(object sender, EventArgs e)
@@ -190,10 +208,19 @@ namespace Clinica_Frba
 
         private void cmdAtencion_Click(object sender, EventArgs e)
         {
-            lstSeleccionAfiliado formAfil = new lstSeleccionAfiliado();
-            formAfil.Operacion = "Seleccion";
-            formAfil.profesional = new Profesional(User.Codigo_Persona);
-            formAfil.Show();
+            if (unRol.Nombre != "Administrador General")
+            {
+                lstSeleccionAfiliado formAfil = new lstSeleccionAfiliado();
+                formAfil.Operacion = "Seleccion";
+                formAfil.profesional = new Profesional(User.Codigo_Persona);
+                formAfil.Show();
+            }
+            else
+            {
+                lstSeleccionProfesionales formProf = new lstSeleccionProfesionales();
+                formProf.Operacion = "Registrar Atencion";
+                formProf.Show();
+            }
         }
 
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -236,9 +263,18 @@ namespace Clinica_Frba
 
         private void cancelarDiasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmCancelarDias frmCancel= new frmCancelarDias();
-            frmCancel.unUsuario = this.User;
-            frmCancel.Show();
+            if (unRol.Nombre != "Administrador General")
+            {
+                frmCancelarDias frmCancel = new frmCancelarDias();
+                frmCancel.unProfesional = new Profesional(this.User.Codigo_Persona);
+                frmCancel.Show();
+            }
+            else
+            {
+                lstSeleccionProfesionales formProf = new lstSeleccionProfesionales();
+                formProf.Operacion = "Cancelar Dias";
+                formProf.Show();
+            }
         }
 
         private void cmdRegistrarLlegada_Click(object sender, EventArgs e)

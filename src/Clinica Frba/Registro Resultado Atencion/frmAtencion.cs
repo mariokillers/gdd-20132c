@@ -31,6 +31,9 @@ namespace Clinica_Frba.NewFolder6
             cmbEspecialidades.DataSource = Especialidades.ObtenerEspecialidadesProfesional(profesional.Id);
             cmbEspecialidades.ValueMember = "Codigo";
             cmbEspecialidades.DisplayMember = "Descripcion";
+
+            lbl1.Text = "Profesional: " + profesional.Apellido + ", " + profesional.Nombre;
+            lbl2.Text = "Afiliado: " + afiliado.Apellido + ", " + afiliado.Nombre;
         }
 
         private void cmdAceptar_Click(object sender, EventArgs e)

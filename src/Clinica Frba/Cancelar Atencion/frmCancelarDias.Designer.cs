@@ -38,6 +38,7 @@
             this.btnAction = new System.Windows.Forms.Button();
             this.dtpFin = new System.Windows.Forms.DateTimePicker();
             this.lbl26 = new System.Windows.Forms.Label();
+            this.lbl1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // dtpInicio
@@ -104,7 +105,7 @@
             // 
             // btnAction
             // 
-            this.btnAction.Location = new System.Drawing.Point(364, 173);
+            this.btnAction.Location = new System.Drawing.Point(364, 198);
             this.btnAction.Name = "btnAction";
             this.btnAction.Size = new System.Drawing.Size(75, 34);
             this.btnAction.TabIndex = 23;
@@ -130,11 +131,22 @@
             this.lbl26.Text = "Seleccione Dia Fin Rango:";
             this.lbl26.Visible = false;
             // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl1.Location = new System.Drawing.Point(12, 219);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(62, 13);
+            this.lbl1.TabIndex = 31;
+            this.lbl1.Text = "Profesional:";
+            // 
             // frmCancelarDias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(457, 250);
+            this.Controls.Add(this.lbl1);
             this.Controls.Add(this.dtpFin);
             this.Controls.Add(this.lbl26);
             this.Controls.Add(this.txtMotivo);
@@ -165,5 +177,6 @@
         private System.Windows.Forms.Button btnAction;
         private System.Windows.Forms.DateTimePicker dtpFin;
         private System.Windows.Forms.Label lbl26;
+        private System.Windows.Forms.Label lbl1;
     }
 }

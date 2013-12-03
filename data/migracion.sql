@@ -78,10 +78,11 @@ CREATE VIEW mario_killers.Turnos AS
 	SELECT DISTINCT Turno_Numero, Paciente_Dni, Medico_Dni, Turno_Fecha, Especialidad_Codigo,
 	                MAX(Consulta_Sintomas) Consulta_Sintomas,
 	                MAX(Consulta_Enfermedades) Consulta_Enfermedades,
-	                mario_killers.Turno_Valido(Turno_Fecha) AS Turno_Activo
+	                mario_killers.Turno_Valido(Turno_Fecha) AS Turno_Activo,
+	                Bono_Consulta_Numero
 	FROM gd_esquema.Maestra
-	WHERE Turno_Numero IS NOT NULL
-	GROUP BY Turno_Numero, Paciente_Dni, Medico_Dni, Turno_Fecha, Especialidad_Codigo, Plan_Med_Codigo
+	WHERE Turno_Numero IS NOT NULL AND Consulta_Sintomas IS NOT NULL  AND Consulta_Enfermedades IS NOT NULL
+	GROUP BY Turno_Numero, Paciente_Dni, Medico_Dni, Turno_Fecha, Especialidad_Codigo, Plan_Med_Codigo, Bono_Consulta_Numero
 GO
 
 CREATE VIEW mario_killers.Bonos_Farmacia AS
@@ -191,12 +192,6 @@ INSERT INTO mario_killers.Turno (id, persona, profesional, horario, especialidad
 SET IDENTITY_INSERT mario_killers.Turno OFF
 GO
 
--- Historia clinica
--- Inicialmente los ID de historia clinica son los numeros de turno
-INSERT INTO mario_killers.Atencion (id, horario_atencion, sintomas, diagnostico)
-	SELECT Turno_Numero, Turno_Fecha, Consulta_Sintomas, Consulta_Enfermedades
-	FROM mario_killers.Turnos
-
 -- Compras
 SET IDENTITY_INSERT mario_killers.Compra ON
 INSERT INTO mario_killers.Compra (id, fecha, persona, plan_medico)
@@ -216,8 +211,15 @@ INSERT INTO mario_killers.Bono_Farmacia (codigo, compra, plan_medico,  activo)
 	FROM mario_killers.Bonos_Farmacia
 SET IDENTITY_INSERT mario_killers.Bono_Farmacia OFF
 
--- Medicamentos por turno
--- Inicialmente los ID de historia clinica son los numeros de turno
+-- Atencion
+-- Inicialmente los ID de atencion son los numeros de turno
+INSERT INTO mario_killers.Atencion (id, horario_atencion, sintomas, diagnostico, bono_consulta)
+	SELECT Turno_Numero, Turno_Fecha, Consulta_Sintomas, Consulta_Enfermedades, 
+			(SELECT id FROM mario_killers.Bono_Consulta WHERE compra = Bono_Consulta_Numero)
+	FROM mario_killers.Turnos
+
+-- Medicamentos por atencion
+-- Inicialmente los ID de atencion son los numeros de turno
 INSERT INTO mario_killers.Medicamento_Atencion (medicamento, atencion, bono_farmacia)
 	SELECT Bono_Farmacia_Medicamento, Turno_Numero, Bono_Farmacia_Numero
 	FROM mario_killers.Medicamentos_Atencion
@@ -259,7 +261,7 @@ ALTER TABLE mario_killers.Turno WITH NOCHECK
 	ADD CONSTRAINT horario_valido CHECK (mario_killers.Turno_Valido(horario) = 1)
 
 
------- Administrador General (admin) y un Administrativo	
+------ Administrador General (admin) y un Administrativo
 INSERT INTO mario_killers.Usuario (nombre, pw)
 	VALUES ('admin', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),
 		   ('administrador', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7');

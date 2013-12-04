@@ -252,7 +252,7 @@ DROP VIEW mario_killers.Pacientes
          ,mario_killers.Planes_Medicos
          ,mario_killers.Medicamentos
          ,mario_killers.Medicamentos_Atencion
- --        ,mario_killers.Bonos_Consulta
+         ,mario_killers.Bonos_Consulta
          ,mario_killers.Turnos
          ,mario_killers.Compras
          ,mario_killers.Bonos_Farmacia

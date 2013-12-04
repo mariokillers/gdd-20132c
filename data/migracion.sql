@@ -81,14 +81,14 @@ CREATE VIEW mario_killers.Turnos AS
 GO
 
 CREATE VIEW mario_killers.Bonos_Consulta AS
-	SELECT DISTINCT M.Bono_Consulta_Numero,
-	                MAX(M.Turno_Numero) AS Turno_Numero,
-	                MAX(M.Compra_Bono_Fecha) AS Compra_Bono_Fecha,
-	                M.Paciente_Dni,
-	                M.Plan_Med_Codigo
-	FROM gd_esquema.Maestra M
-	WHERE M.Bono_Consulta_Numero IS NOT NULL
-	GROUP BY M.Bono_Consulta_Numero, M.Paciente_Dni, M.Plan_Med_Codigo
+	SELECT DISTINCT Bono_Consulta_Numero,
+	                MAX(Turno_Numero) AS Turno_Numero,
+	                MAX(Compra_Bono_Fecha) AS Compra_Bono_Fecha,
+	                Paciente_Dni,
+	                Plan_Med_Codigo
+	FROM gd_esquema.Maestra
+	WHERE Bono_Consulta_Numero IS NOT NULL
+	GROUP BY Bono_Consulta_Numero, Paciente_Dni, Plan_Med_Codigo
 GO
 
 CREATE VIEW mario_killers.Bonos_Farmacia AS
@@ -252,7 +252,7 @@ DROP VIEW mario_killers.Pacientes
          ,mario_killers.Planes_Medicos
          ,mario_killers.Medicamentos
          ,mario_killers.Medicamentos_Atencion
-         ,mario_killers.Bonos_Consulta
+ --        ,mario_killers.Bonos_Consulta
          ,mario_killers.Turnos
          ,mario_killers.Compras
          ,mario_killers.Bonos_Farmacia

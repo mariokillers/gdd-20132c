@@ -7,7 +7,7 @@ CREATE VIEW mario_killers.Pacientes AS
 					Plan_Med_Codigo
 	FROM gd_esquema.Maestra
 	WHERE Paciente_Nombre IS NOT NULL
-GO
+GO 
 
 CREATE VIEW mario_killers.Medicos AS
 	SELECT DISTINCT Medico_Nombre, Medico_Apellido,

@@ -20,6 +20,17 @@ namespace Clinica_Frba.Clases
             {return false;}
         }
 
+        public static bool EsRangoValido(List<Rango> lista)
+        {
+            int cont = 0;
+            foreach (Rango r in lista)
+            {
+                cont = cont + (int)(r.HoraHasta.TotalMinutes - r.HoraDesde.TotalMinutes);
+            }
+
+            if(cont <= (48*60)) return true; else return false;
+          
+        }
         public static Boolean ExisteDni(decimal tipo, decimal dni)
         {
             List<SqlParameter> ListaParametros = new List<SqlParameter>();

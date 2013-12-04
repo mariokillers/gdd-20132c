@@ -114,10 +114,14 @@ namespace Clinica_Frba.Registrar_Agenda
 
         private void cmdFinalizar_Click(object sender, EventArgs e)
         {
-            if(unProfesional.RegistrarRango(listaDeRangos) )
+            if(Utiles.EsRangoValido(listaDeRangos))
             {
+                unProfesional.RegistrarRango(listaDeRangos);
                 MessageBox.Show("La agenda ha sido insertada correctamente", "EnhoraBuena!", MessageBoxButtons.OK);
                 groRango.Visible = true;
+                cmdFinalizar.Enabled = false;
+                cmdEliminar.Enabled = false;
+                cmdAceptar.Enabled = false;
             }
             else { MessageBox.Show("La carga horaria supera las 48 hs. semanales", "Error!", MessageBoxButtons.OK); }
         }

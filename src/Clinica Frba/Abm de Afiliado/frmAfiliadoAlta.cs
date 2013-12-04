@@ -99,7 +99,7 @@ namespace Clinica_Frba.NewFolder12
 
         private Boolean analizarCampos()
         {
-            if (txtApellido.Text == "" || txtDir.Text == "" || txtDni.Text == "" || txtMail.Text == "" || txtNombre.Text == "" || txtTel.Text == "" || txtHijos.Text == "")
+            if (txtApellido.Text == "" || txtDir.Text == "" || txtDni.Text == "" || txtMail.Text == "" || txtNombre.Text == "" || txtTel.Text == "" || txtHijos.Text == "" || int.Parse(txtHijos.Text) < 0)
             {
                 return false;
             }

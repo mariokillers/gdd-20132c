@@ -569,7 +569,8 @@ CREATE TABLE mario_killers.Bono_Consulta (
 	id numeric(18, 0) IDENTITY,
 	compra numeric(18, 0),
 	plan_medico numeric(18, 0),
-	cant_consultas numeric(18,0),
+	cant_consultas numeric(18,0)
+		CONSTRAINT cant_consultas DEFAULT 1,
 	activo bit NOT NULL
 		CONSTRAINT bono_consulta_activo DEFAULT 1,
 	PRIMARY KEY (id),

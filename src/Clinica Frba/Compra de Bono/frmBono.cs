@@ -101,15 +101,8 @@ namespace Clinica_Frba.NewFolder3
         {
             try
             {
-                if (!txtNumAfil.Visible)
-                {
-                    RealizarCompra();
-                }
-                else
-                {
-                    //SI ES ADMINISTRATIVO -> LE HAGO UNA COMPRA PARA EL AFILIADO
-                    RealizarCompra();
-                }
+                RealizarCompra();
+                cmdComprar.Enabled = false;
             }
             catch { MessageBox.Show("Inserte correctamente todos los campos", "Error!", MessageBoxButtons.OK); }
         }
@@ -209,25 +202,16 @@ namespace Clinica_Frba.NewFolder3
         {
             try
             {
-                if (!txtNumAfil.Visible)
-                {
-                    TipoCompraParaMostrar unaCompra = new TipoCompraParaMostrar();
-                    unaCompra.FechaVencimiento = lblFechaVencimiento.Text;
-                    unaCompra.Cantidad = (int)cmdCantBonos.Value;
-                    unaCompra.MontoBono = Int32.Parse(lblPrecioPorBono.Text);
-                    unaCompra.MontoTotal = (unaCompra.MontoBono * unaCompra.Cantidad);
-                    if (rbFarmacia.Checked) { unaCompra.TipoBono = "Bono Farmacia"; }
-                    else { unaCompra.TipoBono = "Bono Consulta"; }
-                    ListaAMostrar.Add(unaCompra);
-                    ActualizarGrilla();
-                    cmdComprar.Enabled = true;
-                }
-                else
-                {
-                    //SI ES ADMINISTRATIVO -> LE HAGO UNA COMPRA PARA EL AFILIADO
-                    afiliado = new Afiliado(Int32.Parse(txtNumAfil.Text));
-                    RealizarCompra();
-                }
+                TipoCompraParaMostrar unaCompra = new TipoCompraParaMostrar();
+                unaCompra.FechaVencimiento = lblFechaVencimiento.Text;
+                unaCompra.Cantidad = (int)cmdCantBonos.Value;
+                unaCompra.MontoBono = Int32.Parse(lblPrecioPorBono.Text);
+                unaCompra.MontoTotal = (unaCompra.MontoBono * unaCompra.Cantidad);
+                if (rbFarmacia.Checked) { unaCompra.TipoBono = "Bono Farmacia"; }
+                else { unaCompra.TipoBono = "Bono Consulta"; }
+                ListaAMostrar.Add(unaCompra);
+                ActualizarGrilla();
+                cmdComprar.Enabled = true;
             }
             catch { MessageBox.Show("Inserte correctamente todos los campos", "Error!", MessageBoxButtons.OK); }
         }

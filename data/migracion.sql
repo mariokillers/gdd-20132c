@@ -228,6 +228,20 @@ INSERT INTO mario_killers.Atencion (id, horario_atencion, sintomas, diagnostico,
 	FROM mario_killers.Atenciones
 	WHERE Turno_Numero IS NOT NULL
 
+-- Cantidad de atenciones
+UPDATE BC
+	SET cant_consultas = (
+		SELECT COUNT(*)
+		FROM mario_killers.Turno t1
+			JOIN mario_killers.Atencion on t1.id = Atencion.id
+		WHERE t1.persona = t2.persona
+			AND t2.horario >= t1.horario
+			--AND EXISTS (SELECT * FROM mario_killers.Atencion WHERE Atencion.id = t1.id)
+	)
+	FROM mario_killers.Bono_Consulta BC
+		JOIN mario_killers.Atencion a ON a.bono_consulta = BC.id
+		JOIN mario_killers.Turno t2 ON t2.id = a.id
+
 -- Medicamentos por atencion
 -- Inicialmente los ID de atencion son los numeros de turno
 INSERT INTO mario_killers.Medicamento_Atencion (medicamento, atencion, bono_farmacia)

@@ -100,8 +100,7 @@ namespace Clinica_Frba.Registrar_Llegada
                     {
                         if (unBono.PuedeUsarlo((int)afiliado.Numero_Grupo))
                         {
-                           // if (Utiles.LlegoAHorario(turno)) //COMENTAR PARA TESTS 181694
-                                if (true) 
+                            if (Utiles.LlegoAHorario(turno)) //COMENTAR PARA TESTS
                             {
                                 unBono.Usar(afiliado, turno);
                                 afiliado.CrearAtencion(unBono.Id, (int)turno.Id);

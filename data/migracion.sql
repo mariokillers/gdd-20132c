@@ -262,8 +262,9 @@ GO
 
 -- Agendas (dia de migracion + 120)
 INSERT INTO mario_killers.Agenda (profesional, desde, hasta)
-	SELECT Medico_Dni, GETDATE(), DATEADD(DAY, 120, GETDATE())
-	FROM mario_killers.Medicos
+	SELECT Medico_Dni, DATEADD(DAY, -120, MAX(Turno_Fecha)), MAX(Turno_Fecha)
+	FROM mario_killers.Turnos
+	GROUP BY Medico_Dni
 GO
 
 CREATE VIEW mario_killers.RangoView AS
@@ -282,10 +283,6 @@ SELECT *
 FROM mario_killers.RangoView
 GO
 
-SELECT profesional, mario_killers.horas_por_semana(profesional)
-FROM mario_killers.Rango
-GROUP BY profesional
-
 DROP VIEW mario_killers.Pacientes
          ,mario_killers.Medicos
          ,mario_killers.Especialidades
@@ -299,6 +296,7 @@ DROP VIEW mario_killers.Pacientes
          ,mario_killers.Especialidades_Profesional
          ,mario_killers.Usuarios
          ,mario_killers.Atenciones
+         ,mario_killers.RangoView
 
 ---------------------- Constraints post-migracion ----------------------
 

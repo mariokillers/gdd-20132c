@@ -322,8 +322,8 @@ GO
 CREATE FUNCTION mario_killers.horas_por_semana(@profesional numeric(18, 0)) RETURNS numeric(18, 0) AS
 BEGIN
 	RETURN (SELECT SUM(DATEDIFF(HOUR, hora_desde, hora_hasta))
-	FROM mario_killers.Rango
-	WHERE Rango.profesional = @profesional)
+	FROM (SELECT DISTINCT dia, profesional, hora_desde, hora_hasta FROM mario_killers.Rango) f
+	WHERE profesional = @profesional)
 END
 GO
 

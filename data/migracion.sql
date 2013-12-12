@@ -273,14 +273,18 @@ SELECT DISTINCT DATEPART(WEEKDAY, Turno_Fecha) diaV,
        CONVERT(TIME, DATEADD(MINUTE, 30, Turno_Fecha)) hora_hastaV,
        Especialidad_Codigo
 FROM mario_killers.Turnos
+WHERE DATEPART(WEEKDAY, Turno_Fecha) <> 1
 GO
 
 -- Días de atención
 INSERT INTO mario_killers.Rango (dia, profesional, hora_desde, hora_hasta, especialidad)
-SELECT diaV, Medico_Dni, hora_desdeV, hora_hastaV, Especialidad_Codigo
+SELECT *
 FROM mario_killers.RangoView
---GROUP BY DATEPART(WEEKDAY, Turno_Fecha), Medico_Dni, Especialidad_Codigo
 GO
+
+SELECT profesional, mario_killers.horas_por_semana(profesional)
+FROM mario_killers.Rango
+GROUP BY profesional
 
 DROP VIEW mario_killers.Pacientes
          ,mario_killers.Medicos

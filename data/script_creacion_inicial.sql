@@ -323,7 +323,8 @@ CREATE FUNCTION mario_killers.horas_por_semana(@profesional numeric(18, 0)) RETU
 BEGIN
 	RETURN (SELECT SUM(DATEDIFF(HOUR, hora_desde, hora_hasta))
 	FROM mario_killers.Rango
-	WHERE Rango.profesional = @profesional)
+	WHERE Rango.profesional = @profesional
+	GROUP BY profesional, especialidad)
 END
 GO
 

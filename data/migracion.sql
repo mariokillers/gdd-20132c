@@ -260,6 +260,28 @@ INSERT INTO mario_killers.Rol_Usuario (usuario, rol)
 	FROM mario_killers.Usuarios
 GO
 
+-- Agendas (dia de migracion + 120)
+INSERT INTO mario_killers.Agenda (profesional, desde, hasta)
+	SELECT Medico_Dni, GETDATE(), DATEADD(DAY, 120, GETDATE())
+	FROM mario_killers.Medicos
+GO
+
+CREATE VIEW mario_killers.RangoView AS
+SELECT DISTINCT DATEPART(WEEKDAY, Turno_Fecha) diaV,
+	   Medico_Dni,
+       CONVERT(TIME, Turno_Fecha) hora_desdeV,
+       CONVERT(TIME, DATEADD(MINUTE, 30, Turno_Fecha)) hora_hastaV,
+       Especialidad_Codigo
+FROM mario_killers.Turnos
+GO
+
+-- Días de atención
+INSERT INTO mario_killers.Rango (dia, profesional, hora_desde, hora_hasta, especialidad)
+SELECT diaV, Medico_Dni, hora_desdeV, hora_hastaV, Especialidad_Codigo
+FROM mario_killers.RangoView
+--GROUP BY DATEPART(WEEKDAY, Turno_Fecha), Medico_Dni, Especialidad_Codigo
+GO
+
 DROP VIEW mario_killers.Pacientes
          ,mario_killers.Medicos
          ,mario_killers.Especialidades

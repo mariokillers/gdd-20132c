@@ -299,6 +299,7 @@ DROP VIEW mario_killers.Pacientes
          ,mario_killers.Especialidades_Profesional
          ,mario_killers.Usuarios
          ,mario_killers.Atenciones
+         ,mario_killers.RangoView
 
 ---------------------- Constraints post-migracion ----------------------
 

@@ -489,11 +489,14 @@ CREATE TABLE mario_killers.Profesional (
 )
 
 CREATE TABLE mario_killers.Agenda (
+	id numeric(18, 0) IDENTITY,
 	profesional numeric(18, 0) NOT NULL,
 	desde date NOT NULL,
 	hasta date NOT NULL,
-	PRIMARY KEY (profesional),
-	CONSTRAINT max_120_dias CHECK (DATEDIFF(day, desde, hasta) <= 120),
+	activo bit NOT NULL
+		CONSTRAINT agenda_activa DEFAULT 1,
+	PRIMARY KEY (id),
+	--CONSTRAINT max_120_dias CHECK (DATEDIFF(day, desde, hasta) <= 120),
 	CONSTRAINT fechas_validas CHECK (desde < hasta),
 	FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona)
 )

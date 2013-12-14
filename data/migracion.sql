@@ -260,9 +260,9 @@ INSERT INTO mario_killers.Rol_Usuario (usuario, rol)
 	FROM mario_killers.Usuarios
 GO
 
--- Agendas (dia de migracion + 120)
-INSERT INTO mario_killers.Agenda (profesional, desde, hasta)
-	SELECT Medico_Dni, DATEADD(DAY, -120, MAX(Turno_Fecha)), MAX(Turno_Fecha)
+-- Agendas
+INSERT INTO mario_killers.Agenda (profesional, desde, hasta, activo)
+	SELECT Medico_Dni, MIN(Turno_Fecha), MAX(Turno_Fecha), 0
 	FROM mario_killers.Turnos
 	GROUP BY Medico_Dni
 GO
@@ -308,6 +308,9 @@ ALTER TABLE mario_killers.Medicamento_Atencion WITH NOCHECK
 	
 ALTER TABLE mario_killers.Turno WITH NOCHECK
 	ADD CONSTRAINT horario_valido CHECK (mario_killers.Turno_Valido(horario) = 1)
+	
+ALTER TABLE mario_killers.Agenda WITH NOCHECK
+	ADD CONSTRAINT fecha_valida CHECK (desde < hasta)
 
 
 ------ Administrador General (admin) y un Administrativo

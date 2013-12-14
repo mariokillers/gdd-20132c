@@ -25,7 +25,7 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(new SqlParameter("@id", pro));
             String query = @"SELECT desde, hasta 
                          FROM mario_killers.Agenda
-                         WHERE profesional = @id";
+                         WHERE (profesional = @id and activo =1)";
 
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader(query, "T", ListaParametros);
 
@@ -65,7 +65,7 @@ namespace Clinica_Frba.Clases
             ListaParametros.Add(new SqlParameter("@id", pro));
             String query = @"SELECT desde, hasta 
                          FROM mario_killers.Agenda
-                         WHERE profesional = @id";
+                         WHERE (profesional = @id and activo =1)";
 
             SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader(query, "T", ListaParametros);
 

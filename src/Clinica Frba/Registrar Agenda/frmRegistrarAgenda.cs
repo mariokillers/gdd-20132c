@@ -133,6 +133,7 @@ namespace Clinica_Frba.Registrar_Agenda
 
             if (Utiles.SonFechasValidas(fechaDesde, fechaHasta))
             {
+                //VER SI HAY QUE HACER LO DE 120: HASTA-DESDE.DAYS <= 120
                 if (unProfesional.RegistrarAgenda(fechaDesde, fechaHasta)) { MessageBox.Show("El rango de fechas ha sido insertado correctamente", "EnhoraBuena!", MessageBoxButtons.OK); this.Close(); }
                 else { MessageBox.Show("El rango de fechas supera los 120 dias", "Error!", MessageBoxButtons.OK); }
             }

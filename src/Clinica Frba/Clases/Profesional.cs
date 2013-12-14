@@ -121,7 +121,7 @@ namespace Clinica_Frba.Abm_de_Profesional
             {
                 List<SqlParameter> ListaParametros = new List<SqlParameter>();
                 ListaParametros.Add(new SqlParameter("@profesional", Id));
-                return Clases.BaseDeDatosSQL.EscribirEnBase("delete from mario_killers.Rango where profesional=@profesional", "T", ListaParametros);
+                return Clases.BaseDeDatosSQL.EscribirEnBase("delete from mario_killers.Rango where (profesional=@profesional and activo=1)", "T", ListaParametros);
             }
             catch { return false; }
         }
@@ -143,7 +143,7 @@ namespace Clinica_Frba.Abm_de_Profesional
 
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@profesional", Id));
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Rango where (profesional=@profesional)", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * FROM mario_killers.Rango where (profesional=@profesional and activo=1)", "T", ListaParametros);
             
             if (lector.HasRows)
             {

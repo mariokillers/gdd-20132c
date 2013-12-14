@@ -82,7 +82,7 @@ namespace Clinica_Frba.Abm_de_Profesional
             List<SqlParameter> ListaParametros = new List<SqlParameter>();
             ListaParametros.Add(new SqlParameter("@profesional", Id));
 
-            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * from mario_killers.Agenda where profesional=@profesional", "T", ListaParametros);
+            SqlDataReader lector = Clases.BaseDeDatosSQL.ObtenerDataReader("SELECT * from mario_killers.Agenda where (profesional=@profesional and activo=1)", "T", ListaParametros);
 
             return lector.HasRows;
         }

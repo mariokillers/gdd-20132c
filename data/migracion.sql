@@ -310,7 +310,7 @@ ALTER TABLE mario_killers.Turno WITH NOCHECK
 	ADD CONSTRAINT horario_valido CHECK (mario_killers.Turno_Valido(horario) = 1)
 	
 ALTER TABLE mario_killers.Agenda WITH NOCHECK
-	ADD CONSTRAINT fecha_valida CHECK (desde < hasta)
+	ADD CONSTRAINT max_120_dias CHECK (DATEDIFF(day, desde, hasta) <= 120)
 
 
 ------ Administrador General (admin) y un Administrativo

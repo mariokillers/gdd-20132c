@@ -522,6 +522,8 @@ CREATE TABLE mario_killers.Rango (
 	hora_desde time NOT NULL,
 	hora_hasta time NOT NULL,
 	especialidad numeric(18, 0) NOT NULL,
+	activo bit NOT NULL
+		CONSTRAINT rango_activo DEFAULT 1,
 	PRIMARY KEY (id),
 	CONSTRAINT horarios_validos CHECK (
 	mario_killers.horario_atencion(CONVERT(TIME,hora_desde)) = 1 AND

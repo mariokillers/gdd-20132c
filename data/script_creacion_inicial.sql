@@ -530,7 +530,7 @@ CREATE TABLE mario_killers.Rango (
 	mario_killers.horario_atencion(CONVERT(TIME,hora_hasta)) = 1 AND
 	hora_desde < hora_hasta
 	),
-	CONSTRAINT max_horas_por_semana CHECK (mario_killers.horas_por_semana(profesional) <= 48),
+	--CONSTRAINT max_horas_por_semana CHECK (mario_killers.horas_por_semana(profesional) <= 48),
 	--CONSTRAINT horas_no_se_pisan CHECK (mario_killers.horas_se_pisan(profesional) = 0),
 	FOREIGN KEY (profesional) REFERENCES mario_killers.Profesional(persona),
 	FOREIGN KEY (especialidad) REFERENCES mario_killers.Especialidad(codigo)

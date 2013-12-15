@@ -42,7 +42,7 @@ namespace Clinica_Frba.Clases
             ListaParametros2.Add(new SqlParameter("@esp", esp));
             String queryRangos = @"SELECT dia, hora_desde, hora_hasta
                             FROM mario_killers.Rango    
-                            WHERE profesional = @id AND especialidad = @esp";
+                            WHERE profesional = @id AND especialidad = @esp AND activo = 1";
             SqlDataReader lector2 = Clases.BaseDeDatosSQL.ObtenerDataReader(queryRangos, "T", ListaParametros2);
 
             if (lector2.HasRows)
@@ -81,7 +81,7 @@ namespace Clinica_Frba.Clases
             ListaParametros2.Add(new SqlParameter("@id", pro));
             String queryRangos = @"SELECT dia, hora_desde, hora_hasta
                             FROM mario_killers.Rango    
-                            WHERE profesional = @id";
+                            WHERE profesional = @id AND activo = 1";
             SqlDataReader lector2 = Clases.BaseDeDatosSQL.ObtenerDataReader(queryRangos, "T", ListaParametros2);
 
             if (lector2.HasRows)
